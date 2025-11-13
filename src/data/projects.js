@@ -20,6 +20,22 @@ export const additionalProjects = [
     }
   },
   {
+    title: "Marketing Analytics Visualization",
+    description: "Professional marketing analytics dashboard with real-time KPIs, campaign performance tracking, and cross-platform attribution insights. Built with modern data visualization techniques.",
+    image: "/marketing_etl.gif",
+    badges: [
+      { text: "Python" },
+      { text: "Streamlit" },
+      { text: "ECharts" },
+      { text: "Pandas" },
+      { text: "DuckDB" }
+    ],
+    links: {
+      live: { url: "https://marketing-analytics-etl.streamlit.app/", text: "🚀 Live Demo" },
+      code: { url: "https://github.com/anix-lynch/marketing-analytics-etl", text: "💻 Code" }
+    }
+  },
+  {
     title: "Business Intelligence Dashboard",
     description: "Interactive Tableau dashboard analyzing sales performance, customer behavior, and market trends with dynamic filtering.",
     placeholder: {
