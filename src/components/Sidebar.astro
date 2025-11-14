@@ -134,6 +134,10 @@ const {
   <!-- Skills -->
   <div>
     <strong>Skills</strong><br/>
-    {skills.map(skill => <span class="skill-chip">{skill}</span>)}
+    {skills.map(skill => (
+      <a href={`#skill-${skill.toLowerCase().replace(/\s+/g, '-')}`} class="skill-chip">
+        {skill}
+      </a>
+    ))}
   </div>
 </aside>
