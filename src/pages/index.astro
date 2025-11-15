@@ -7,10 +7,10 @@ import ProjectCard from '../components/ProjectCard.astro';
 const portfolioData = {
   personal: {
     name: "Anix Lynch",
-    tagline: "AI Data Engineer\nLos Angeles, CA",
+    tagline: "Data Scientist · ML Engineer\nLos Angeles, CA",
     avatar: "👨‍💻", // or URL to image
-    about: "AI Data Engineer specializing in vector databases, LLM integration, and semantic ETL pipelines. Expert in building scalable data platforms with RAG systems, multimodal AI, and real-time analytics across cloud environments.",
-    skills: ["Python", "Vector Databases", "LLMs", "AWS", "GCP", "Azure", "Metabase", "SQL", "Docker", "Kubernetes"],
+    about: "Data scientist with multi-cloud experience. Specialized in machine learning, data visualization, and deploying scalable ML solutions across AWS, GCP, and Azure.",
+    skills: ["Python", "Machine Learning", "AWS", "GCP", "Azure", "Tableau", "SQL", "Docker", "Kubernetes"],
     social: {
       linkedin: "https://www.linkedin.com/in/anixlynch/",
       github: "https://github.com/anix-lynch", 
@@ -20,6 +20,7 @@ const portfolioData = {
       website: "https://anixlynch.com",
       portfolio: "https://gozeroshot.dev",
       huggingface: "https://huggingface.co/anixlynch",
+      kaggle: "https://www.kaggle.com/anixlynch",
       medium: "https://medium.com/@anixlynch"
     }
   },
@@ -42,28 +43,25 @@ const portfolioData = {
       }
     },
     {
-      title: "Real-time Analytics Platform",
-      description: "BigQuery-powered analytics dashboard with semantic ETL pipelines, Vertex AI predictions, and real-time data streaming. Features vector embeddings for intelligent insights and LLM-powered business intelligence.",
-      placeholder: {
-        icon: "📊",
-        title: "GCP Analytics",
-        subtitle: "Replace with GIF/screenshot"
-      },
+      title: "End-to-End Churn ML Pipeline",
+      description: "Complete customer churn prediction system with ETL pipeline, feature engineering, model training, and interactive Streamlit dashboard. Includes synthetic data generation, RFM analysis, time-aware splitting, and FastAPI model serving.",
+      image: "/churn-ml-pipeline.gif",
       badges: [
-        { text: "GCP", variant: "gcp" },
-        { text: "Semantic ETL" },
-        { text: "Vector Embeddings" },
-        { text: "LLMs" }
+        { text: "Python", variant: "python" },
+        { text: "Streamlit" },
+        { text: "Scikit-learn" },
+        { text: "FastAPI" },
+        { text: "Docker" },
+        { text: "ML Pipeline" }
       ],
-      skillIds: ["skill-gcp", "skill-semantic-etl"],
       links: {
-        live: { url: "#", text: "🚀 Live Demo" },
-        code: { url: "#", text: "💻 Code" }
+        live: { url: "https://churn-ml-pipeline-mwvbz4fzdvmd8yyvjvz9jak.streamlit.app", text: "🚀 Live Demo" },
+        code: { url: "https://github.com/anix-lynch/churn-ml-pipeline", text: "💻 Code" }
       }
     },
     {
-      title: "MLOps Automation Suite",
-      description: "Complete MLOps pipeline with Azure Machine Learning, automated model deployment, vector database integration, and LLM-powered monitoring with A/B testing capabilities.",
+      title: "MLOps Automation Suite", 
+      description: "Complete MLOps pipeline with Azure Machine Learning, automated model deployment, monitoring, and A/B testing capabilities.",
       placeholder: {
         icon: "⚡",
         title: "Azure MLOps",
@@ -71,11 +69,10 @@ const portfolioData = {
       },
       badges: [
         { text: "Azure", variant: "azure" },
-        { text: "Vector Databases" },
-        { text: "LLMs" },
+        { text: "Python", variant: "python" },
+        { text: "Azure ML" },
         { text: "DevOps" }
       ],
-      skillIds: ["skill-azure", "skill-vector-databases"],
       links: {
         live: { url: "#", text: "🚀 Live Demo" },
         code: { url: "#", text: "💻 Code" }
@@ -93,7 +90,6 @@ const portfolioData = {
         { text: "Whisper" },
         { text: "Multimodal" }
       ],
-      skillIds: ["skill-llms"],
       links: {
         live: { url: "https://multimodal-genai-studio.streamlit.app", text: "🚀 Live Demo" },
         code: { url: "https://github.com/anix-lynch/multimodal-genai-studio", text: "💻 Code" }
@@ -115,7 +111,6 @@ const portfolioData = {
         { text: "RAG" },
         { text: "Gemini" }
       ],
-      skillIds: ["skill-vector-databases", "skill-llms"],
       links: {
         live: { url: "https://anix-lynch-ai-bi-agent.streamlit.app", text: "🚀 Live Demo" },
         code: { url: "https://github.com/anix-lynch/ai-bi-agent", text: "💻 Code" }
@@ -123,7 +118,7 @@ const portfolioData = {
     },
     {
       title: "Financial Modeling Automation",
-      description: "PE/VC financial modeling platform with semantic ETL pipelines, VC cap table analysis (Seed → Series B), LP/GP fund economics, and LLM-powered Excel automation using vector-based financial insights.",
+      description: "PE/VC financial modeling platform with VC cap table analysis (Seed → Series B), LP/GP fund economics, and Python-powered Excel automation using openpyxl.",
       placeholder: {
         icon: "📊",
         title: "Live Demo",
@@ -131,11 +126,10 @@ const portfolioData = {
       },
       badges: [
         { text: "Python", variant: "python" },
-        { text: "Semantic ETL" },
-        { text: "LLMs" },
-        { text: "Vector Analytics" }
+        { text: "Streamlit" },
+        { text: "openpyxl" },
+        { text: "Finance" }
       ],
-      skillIds: ["skill-semantic-etl"],
       links: {
         live: { url: "https://huggingface.co/spaces/anixlynch/financial-modeling-automation", text: "🚀 Live Demo" },
         code: { url: "https://github.com/anix-lynch/financial-modeling-automation", text: "💻 Code" }
@@ -143,19 +137,18 @@ const portfolioData = {
     },
     {
       title: "Business Intelligence Dashboard",
-      description: "Interactive Metabase dashboard with semantic ETL pipelines analyzing sales performance, customer behavior, and market trends. Features automated data transformation, vector-based analytics, and LLM-powered insights generation.",
+      description: "Interactive Tableau dashboard analyzing sales performance, customer behavior, and market trends with dynamic filtering.",
       placeholder: {
         icon: "📈",
-        title: "Metabase Dashboard",
+        title: "Tableau Dashboard",
         subtitle: "Replace with GIF/screenshot"
       },
       badges: [
-        { text: "Metabase" },
+        { text: "Tableau" },
         { text: "SQL" },
-        { text: "Semantic ETL" },
-        { text: "Vector Analytics" }
+        { text: "Excel" },
+        { text: "BI" }
       ],
-      skillIds: ["skill-metabase", "skill-semantic-etl"],
       links: {
         live: { url: "#", text: "📊 Dashboard" },
         code: { url: "#", text: "💻 Code" }
@@ -163,7 +156,7 @@ const portfolioData = {
     },
     {
       title: "Job Market Analyzer",
-      description: "Full-stack web application with semantic ETL pipelines analyzing job market trends using vector databases for skill matching, ML predictions, and interactive LLM-powered insights.",
+      description: "Full-stack web application analyzing job market trends with data scraping, ML predictions, and interactive visualizations.",
       placeholder: {
         icon: "🚀",
         title: "Web App Demo",
@@ -171,11 +164,10 @@ const portfolioData = {
       },
       badges: [
         { text: "Python", variant: "python" },
-        { text: "Semantic ETL" },
-        { text: "Vector Databases" },
-        { text: "LLMs" }
+        { text: "FastAPI" },
+        { text: "React" },
+        { text: "PostgreSQL" }
       ],
-      skillIds: ["skill-semantic-etl"],
       links: {
         live: { url: "#", text: "🚀 Live Demo" },
         code: { url: "#", text: "💻 Code" }
@@ -183,16 +175,15 @@ const portfolioData = {
     },
     {
       title: "Marketing Analytics Visualization",
-      description: "Professional marketing analytics dashboard with semantic ETL pipelines, real-time KPIs, campaign performance tracking, and cross-platform attribution insights. Features vector-based analytics and LLM-powered insight generation for marketing professionals.",
+      description: "Professional marketing analytics dashboard with real-time KPIs, campaign performance tracking, and cross-platform attribution insights. Built with modern data visualization techniques for marketing professionals.",
       image: "/marketing_etl.gif",
       badges: [
         { text: "Python", variant: "python" },
         { text: "Streamlit" },
-        { text: "Semantic ETL" },
-        { text: "Vector Analytics" },
+        { text: "ECharts" },
+        { text: "Pandas" },
         { text: "DuckDB" }
       ],
-      skillIds: ["skill-semantic-etl"],
       links: {
         live: { url: "https://marketing-analytics-etl.streamlit.app/", text: "🚀 Live Demo" },
         code: { url: "https://github.com/anix-lynch/marketing-analytics-etl", text: "💻 Code" }
