@@ -26,6 +26,26 @@ const portfolioData = {
   },
   projects: [
     {
+      title: "Coffeeverse: Azure Cloud ETL Pipeline",
+      description: "Azure-native ETL pipeline with Blob Storage, Azure Functions, Cosmos DB, orchestrated by Azure Data Factory + dbt. Demonstrates enterprise Microsoft stack: serverless transformation, Docker deployment, Bicep IaC. $0/month Azure Free Tier. Real Cosmos DB + live Docker dashboard.",
+      image: "/coffeeverse.gif",
+      badges: [
+        { text: "Python", variant: "python" },
+        { text: "Azure" },
+        { text: "Blob Storage" },
+        { text: "Azure Functions" },
+        { text: "Cosmos DB" },
+        { text: "Data Factory" },
+        { text: "dbt" },
+        { text: "Bicep" },
+        { text: "Docker" }
+      ],
+      links: {
+        live: { url: "http://localhost:8501", text: "🐳 Docker Demo" },
+        code: { url: "https://github.com/anix-lynch/coffeeverse", text: "💻 Code" }
+      }
+    },
+    {
       title: "Mocktailverse: AWS Serverless ETL Pipeline",
       description: "Production-ready AWS-native ETL pipeline with S3, Lambda, Glue, DynamoDB, orchestrated by Airflow + dbt. Showcases advanced data engineering: serverless transformation, Docker containerization, CloudFormation IaC. $0/month AWS Free Tier. Live dashboard + Docker Hub deployment.",
       image: "/mocktailverse.gif",
