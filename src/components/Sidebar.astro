@@ -31,7 +31,7 @@ const {
 
 <aside class="sidebar">
   <div class="avatar">
-    {avatar.startsWith('http') ? <img src={avatar} alt={name} /> : avatar}
+    {avatar.startsWith('http') || avatar.startsWith('/') ? <img src={avatar} alt={name} /> : avatar}
   </div>
   <div>
     <div class="name">{name}</div>
