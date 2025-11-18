@@ -31,7 +31,7 @@ const { title, description, image, placeholder, badges, links, skillIds = [] } =
 <article class="card" id={skillIds.length > 0 ? skillIds[0] : undefined}>
   <div class="card-img">
     {image ? (
-      <img src={image} alt={title} />
+      <img src={image} alt={title} loading="lazy" />
     ) : placeholder ? (
       <div class="img-placeholder">
         <span class="icon">{placeholder.icon}</span>
