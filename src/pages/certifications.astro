@@ -1,64 +1,62 @@
 ---
 import Layout from '../components/Layout.astro';
 
-const pdfWorkerUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
 const certifications = [
   {
     category: "📚 Academic Credentials",
     certs: [
-      { icon: "🎓", title: "MBA", org: "University of Chicago Booth School of Business", year: "2010-2012", pdf: "https://github.com/anix-lynch/Certification/raw/main/Diploma/diploma%20MBA.pdf" },
-      { icon: "🎓", title: "Bachelor of Arts", org: "Ritsumeikan University, Kyoto Japan", year: "2001", pdf: "https://github.com/anix-lynch/Certification/raw/main/Diploma/Certificate%20of%20Completion%20Ritsumeikan%20BA.pdf" }
+      { icon: "🎓", title: "MBA", org: "University of Chicago Booth School of Business", year: "2010-2012", image: "https://github.com/anix-lynch/Certification/raw/main/Diploma_jpg/diploma%20MBA.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/Diploma/diploma%20MBA.pdf" },
+      { icon: "🎓", title: "Bachelor of Arts", org: "Ritsumeikan University, Kyoto Japan", year: "2001", image: "https://github.com/anix-lynch/Certification/raw/main/Diploma_jpg/Certificate%20of%20Completion%20Ritsumeikan%20BA.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/Diploma/Certificate%20of%20Completion%20Ritsumeikan%20BA.pdf" }
     ]
   },
   {
     category: "🌍 Language Proficiency",
     certs: [
-      { icon: "🇯🇵", title: "JLPT N1", org: "Japanese Language Proficiency Test", year: "Certified", pdf: "https://github.com/anix-lynch/Certification/raw/main/Language/JLPT_N1_Certificate.pdf" },
-      { icon: "🇺🇸", title: "TOEIC 930", org: "English Proficiency Test", year: "Certified", pdf: "https://github.com/anix-lynch/Certification/raw/main/Language/TOEIC_930_2008.pdf" }
+      { icon: "🇯🇵", title: "JLPT N1", org: "Japanese Language Proficiency Test", year: "Certified", image: "https://github.com/anix-lynch/Certification/raw/main/Language_jpg/JLPT_N1_Certificate.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/Language/JLPT_N1_Certificate.pdf" },
+      { icon: "🇺🇸", title: "TOEIC 930", org: "English Proficiency Test", year: "Certified", image: "https://github.com/anix-lynch/Certification/raw/main/Language_jpg/TOEIC_930_2008.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/Language/TOEIC_930_2008.pdf" }
     ]
   },
   {
     category: "⚡ Agile & Project Management",
     certs: [
-      { icon: "✓", title: "Certified Scrum Master", org: "Scrum Alliance", year: "2012", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/other/ScrumAlliance_CSM_Certificate.pdf" }
+      { icon: "✓", title: "Certified Scrum Master", org: "Scrum Alliance", year: "2012", image: "https://github.com/anix-lynch/Certification/raw/main/other_jpg/ScrumAlliance_CSM_Certificate.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/other/ScrumAlliance_CSM_Certificate.pdf" }
     ]
   },
   {
     category: "📊 Meta Data Analytics Path",
     featured: true,
     certs: [
-      { icon: "⭐", title: "Meta Data Analyst", org: "5-Course Professional Certificate", year: "2025", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Meta_Data_Analyst_J2IM7FBE1LDE.pdf" },
-      { icon: "📈", title: "Introduction to Data Analytics", org: "Meta", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Introduction_Data_Analytics_Meta_2IYOKGJMCPES.pdf" },
-      { icon: "📊", title: "Data Analysis with Spreadsheets & SQL", org: "Meta", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Data_Analysis_Spreadsheets_SQL_Meta_C3V7ZDS2J845.pdf" },
-      { icon: "🐍", title: "Python Data Analytics", org: "Meta", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Python_Data_Analytics_Meta_J4G724E0RKC0.pdf" },
-      { icon: "📐", title: "Statistics Foundations", org: "Meta", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Statistics_Foundations_Meta_18W5WTKQZL5L.pdf" },
-      { icon: "🗂️", title: "Introduction to Data Management", org: "Meta", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Introduction_Data_Management_Meta_L5FRX9AAZL9N.pdf" }
+      { icon: "⭐", title: "Meta Data Analyst", org: "5-Course Professional Certificate", year: "2025", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Meta_Data_Analyst_J2IM7FBE1LDE.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Meta_Data_Analyst_J2IM7FBE1LDE.pdf" },
+      { icon: "📈", title: "Introduction to Data Analytics", org: "Meta", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Introduction_Data_Analytics_Meta_2IYOKGJMCPES.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Introduction_Data_Analytics_Meta_2IYOKGJMCPES.pdf" },
+      { icon: "📊", title: "Data Analysis with Spreadsheets & SQL", org: "Meta", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Data_Analysis_Spreadsheets_SQL_Meta_C3V7ZDS2J845.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Data_Analysis_Spreadsheets_SQL_Meta_C3V7ZDS2J845.pdf" },
+      { icon: "🐍", title: "Python Data Analytics", org: "Meta", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Python_Data_Analytics_Meta_J4G724E0RKC0.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Python_Data_Analytics_Meta_J4G724E0RKC0.pdf" },
+      { icon: "📐", title: "Statistics Foundations", org: "Meta", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Statistics_Foundations_Meta_18W5WTKQZL5L.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Statistics_Foundations_Meta_18W5WTKQZL5L.pdf" },
+      { icon: "🗂️", title: "Introduction to Data Management", org: "Meta", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Introduction_Data_Management_Meta_L5FRX9AAZL9N.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Introduction_Data_Management_Meta_L5FRX9AAZL9N.pdf" }
     ]
   },
   {
     category: "🔍 Google Data Analytics Path",
     certs: [
-      { icon: "❓", title: "Ask Questions & Make Data-Driven Decisions", org: "Google", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Ask_Questions_Make_Data_Driven_Decisions_Google_UTYWUATZ8NE2.pdf" }
+      { icon: "❓", title: "Ask Questions & Make Data-Driven Decisions", org: "Google", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Ask_Questions_Make_Data_Driven_Decisions_Google_UTYWUATZ8NE2.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Ask_Questions_Make_Data_Driven_Decisions_Google_UTYWUATZ8NE2.pdf" }
     ]
   },
   {
     category: "🤖 IBM Data Science & Analytics",
     certs: [
-      { icon: "📊", title: "Introduction to Data Analytics", org: "IBM", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Introduction_Data_Analytics_IBM_SMHSUP57JXRV.pdf" },
-      { icon: "📑", title: "Excel Basics for Data Analysis", org: "IBM", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Excel_Basics_Data_Analysis_IBM_2Y5NRH4XNH28.pdf" },
-      { icon: "🐍", title: "Python for Data Science & AI Development", org: "IBM", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Python_Data_Science_AI_Development_IBM_9BZ13BA5RR8P.pdf" },
-      { icon: "🔬", title: "Exploratory Data Analysis & Machine Learning", org: "IBM", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Exploratory_Data_Analysis_Machine_Learning_IBM_3K9PDNHUE9YQ.pdf" },
-      { icon: "📉", title: "Supervised Machine Learning & Regression", org: "IBM", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Supervised_ML_Regression_IBM_X4URDQVFVWTC.pdf" }
+      { icon: "📊", title: "Introduction to Data Analytics", org: "IBM", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Introduction_Data_Analytics_IBM_SMHSUP57JXRV.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Introduction_Data_Analytics_IBM_SMHSUP57JXRV.pdf" },
+      { icon: "📑", title: "Excel Basics for Data Analysis", org: "IBM", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Excel_Basics_Data_Analysis_IBM_2Y5NRH4XNH28.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Excel_Basics_Data_Analysis_IBM_2Y5NRH4XNH28.pdf" },
+      { icon: "🐍", title: "Python for Data Science & AI Development", org: "IBM", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Python_Data_Science_AI_Development_IBM_9BZ13BA5RR8P.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Python_Data_Science_AI_Development_IBM_9BZ13BA5RR8P.pdf" },
+      { icon: "🔬", title: "Exploratory Data Analysis & Machine Learning", org: "IBM", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Exploratory_Data_Analysis_Machine_Learning_IBM_3K9PDNHUE9YQ.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Exploratory_Data_Analysis_Machine_Learning_IBM_3K9PDNHUE9YQ.pdf" },
+      { icon: "📉", title: "Supervised Machine Learning & Regression", org: "IBM", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Supervised_ML_Regression_IBM_X4URDQVFVWTC.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Supervised_ML_Regression_IBM_X4URDQVFVWTC.pdf" }
     ]
   },
   {
     category: "✨ IBM AI & Generative AI Applications",
     certs: [
-      { icon: "🧠", title: "Build RAG Applications - Get Started", org: "IBM", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Build_RAG_Applications_Get_Started_IBM_41FGR9FABR2G.pdf" },
-      { icon: "🎨", title: "Build Multimodal GenAI Applications", org: "IBM", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Build_Multimodal_GenAI_Applications_IBM_ZUEWHNOO50PE.pdf" },
-      { icon: "🤖", title: "Fundamentals of Building AI Agents", org: "IBM", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Fundamentals_Building_AI_Agents_IBM_99UKAU92LKNJ.pdf" },
-      { icon: "🗄️", title: "Vector Databases & RAG Applications", org: "IBM", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Vector_Databases_RAG_IBM_VUZ45GBH8B7L.pdf" }
+      { icon: "🧠", title: "Build RAG Applications - Get Started", org: "IBM", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Build_RAG_Applications_Get_Started_IBM_41FGR9FABR2G.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Build_RAG_Applications_Get_Started_IBM_41FGR9FABR2G.pdf" },
+      { icon: "🎨", title: "Build Multimodal GenAI Applications", org: "IBM", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Build_Multimodal_GenAI_Applications_IBM_ZUEWHNOO50PE.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Build_Multimodal_GenAI_Applications_IBM_ZUEWHNOO50PE.pdf" },
+      { icon: "🤖", title: "Fundamentals of Building AI Agents", org: "IBM", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Fundamentals_Building_AI_Agents_IBM_99UKAU92LKNJ.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Fundamentals_Building_AI_Agents_IBM_99UKAU92LKNJ.pdf" },
+      { icon: "🗄️", title: "Vector Databases & RAG Applications", org: "IBM", image: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/jpg/Vector_Databases_RAG_IBM_VUZ45GBH8B7L.jpg", pdf: "https://github.com/anix-lynch/Certification/raw/main/certification/coursera/pdf/Vector_Databases_RAG_IBM_VUZ45GBH8B7L.pdf" }
     ]
   }
 ];
@@ -75,9 +73,9 @@ const certifications = [
       <section class="cert-section">
         <h2 class="section-title">{section.category}</h2>
         <div class="cert-gallery">
-          {section.certs.map((cert, idx) => (
+          {section.certs.map((cert) => (
             <a href={cert.pdf} target="_blank" rel="noopener noreferrer" class="cert-item">
-              <canvas class="pdf-canvas" data-pdf-url={cert.pdf} data-idx={idx}></canvas>
+              <img src={cert.image} alt={cert.title} class="cert-image" loading="lazy" />
               <div class="cert-overlay">
                 <div class="cert-info-overlay">
                   <h3>{cert.title}</h3>
@@ -97,46 +95,6 @@ const certifications = [
   </div>
 </Layout>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script define:vars={{pdfWorkerUrl}}>
-  if (typeof pdfjsLib !== 'undefined') {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '{pdfWorkerUrl}';
-  }
-
-  async function renderPDF(canvasElement) {
-    const pdfUrl = canvasElement.dataset.pdfUrl;
-    
-    try {
-      const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
-      const page = await pdf.getPage(1);
-      
-      const scale = 1.5;
-      const viewport = page.getViewport({ scale });
-      
-      canvasElement.width = viewport.width;
-      canvasElement.height = viewport.height;
-      
-      const renderContext = {
-        canvasContext: canvasElement.getContext('2d'),
-        viewport
-      };
-      
-      await page.render(renderContext).promise;
-    } catch (error) {
-      console.error('Error rendering PDF:', error);
-      canvasElement.style.backgroundColor = '#ffe0e0';
-      const ctx = canvasElement.getContext('2d');
-      ctx.fillStyle = '#999';
-      ctx.font = '14px Arial';
-      ctx.fillText('PDF loading...', 10, 30);
-    }
-  }
-
-  // Render all PDFs
-  document.querySelectorAll('.pdf-canvas').forEach(canvas => {
-    renderPDF(canvas);
-  });
-</script>
 
 <style>
   .certifications-page {
@@ -206,9 +164,10 @@ const certifications = [
     transform: translateY(-8px);
   }
 
-  .pdf-canvas {
+  .cert-image {
     width: 100%;
     height: 380px;
+    object-fit: cover;
     display: block;
     background: #f5f5f5;
   }
