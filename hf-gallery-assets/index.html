@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anix Lynch - HuggingFace Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 220px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 12px;
+        }
+
+        .project-desc {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            font-size: 0.9em;
+            color: #6b7280;
+            font-family: 'Monaco', 'Courier New', monospace;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f3f4f6;
+            border-radius: 8px;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .project-link:hover {
+            background: #1d4ed8;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 60px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .footer p {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #374151;
+        }
+
+        .footer a {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px 20px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid #2563eb;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .footer a:hover {
+            background: #2563eb;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤗 Anix Lynch</h1>
+            <p>HuggingFace Portfolio - AI Demos & ML Applications</p>
+        </div>
+
+        <div class="gallery">
+            <div class="project-card">
+                <img src="multimodal.png" alt="Multimodal GenAI Studio" class="project-image">
+                <div class="project-title">🎨 Multimodal GenAI Studio</div>
+                <div class="project-desc">Multi-modal AI application using PyTorch and HuggingFace Transformers for
+                    text, image, and audio generation</div>
+                <div class="project-tech">Deep Learning • PyTorch • Transformers • Multi-modal AI • LLM Integration •
+                    GPU Computing • Gemini • DALL-E • Whisper</div>
+                <a href="https://huggingface.co/spaces/anixlynch/multimodal-genai-studio" target="_blank"
+                    class="project-link">View Live Demo →</a>
+            </div>
+
+            <div class="project-card">
+                <img src="americanoverse.png" alt="AmericanoVerse" class="project-image">
+                <div class="project-title">☕ AmericanoVerse</div>
+                <div class="project-desc">Coffee knowledge chatbot powered by RAG (Retrieval Augmented Generation)</div>
+                <div class="project-tech">RAG • Vector Database • FAISS • LangChain • NLP • Embeddings • Sentence
+                    Transformers • PyTorch</div>
+                <a href="https://huggingface.co/spaces/anixlynch/AmericanoVerse" target="_blank"
+                    class="project-link">View Live Demo →</a>
+            </div>
+
+            <div class="project-card">
+                <img src="emotion.png" alt="Boss Baby Emotion Detector" class="project-image">
+                <div class="project-title">😊 Boss Baby Emotion Detector</div>
+                <div class="project-desc">Detect emotions from images using pre-trained models</div>
+                <div class="project-tech">Gradio • HuggingFace Datasets • Image Processing • Pillow • Python</div>
+                <a href="https://huggingface.co/spaces/anixlynch/boss-baby-emotion" target="_blank"
+                    class="project-link">View Live Demo →</a>
+            </div>
+
+            <div class="project-card">
+                <img src="voice.png" alt="Boss Baby Voice Clone" class="project-image">
+                <div class="project-title">🎙 Boss Baby Voice Clone</div>
+                <div class="project-desc">Audio sample player with voice demonstrations</div>
+                <div class="project-tech">Gradio • HuggingFace Datasets • HuggingFace Hub • Audio Processing • Python
+                </div>
+                <a href="https://huggingface.co/spaces/anixlynch/boss-baby-voice-clone" target="_blank"
+                    class="project-link">View Live Demo →</a>
+            </div>
+
+            <div class="project-card">
+                <img src="classifier.png" alt="Boss Baby Classifier" class="project-image">
+                <div class="project-title">🍼 Boss Baby Classifier</div>
+                <div class="project-desc">Image classification demo using the bossbaby-decaf model</div>
+                <div class="project-tech">Gradio • HuggingFace Datasets • Image Processing • Model Deployment • Python
+                </div>
+                <a href="https://huggingface.co/spaces/anixlynch/bossbaby-decaf-space" target="_blank"
+                    class="project-link">View Live Demo →</a>
+            </div>
+
+            <div class="project-card">
+                <img src="financial.png" alt="Financial Modeling Automation" class="project-image">
+                <div class="project-title">💰 Financial Modeling Automation</div>
+                <div class="project-desc">PE/VC financial modeling with automated Excel generation</div>
+                <div class="project-tech">Python • Data Analytics • Pandas • Plotly • Excel Automation • Gradio •
+                    openpyxl</div>
+                <a href="https://huggingface.co/spaces/anixlynch/financial-modeling-automation" target="_blank"
+                    class="project-link">View Live Demo →</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>More Projects & Production ML Pipelines:</p>
+            <a href="https://www.gozeroshot.dev" target="_blank">🌐 gozeroshot.dev</a>
+            <a href="https://github.com/anix-lynch" target="_blank">💻 GitHub</a>
+            <a href="https://huggingface.co/anixlynch" target="_blank">🤗 HuggingFace</a>
+        </div>
+    </div>
+</body>
+
+</html>
