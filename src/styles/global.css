@@ -86,3 +86,9 @@ html{scroll-behavior:smooth}
 }
 .resume-btn:hover{background:#4338ca!important}
 .resume-btn svg{opacity:1!important}
+.cert-button{
+  background:#667eea!important;color:#fff!important;font-weight:600!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+}
+.cert-button:hover{background:#764ba2!important;transform:scale(1.05);box-shadow:0 4px 12px rgba(102,126,234,.3)}
+.cert-button svg{opacity:1!important}
