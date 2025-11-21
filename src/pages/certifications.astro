@@ -1,6 +1,8 @@
 ---
 import Layout from '../components/Layout.astro';
 
+const pdfWorkerUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
 const certifications = [
   {
     category: "📚 Academic Credentials",
@@ -73,17 +75,15 @@ const certifications = [
       <section class="cert-section">
         <h2 class="section-title">{section.category}</h2>
         <div class="cert-gallery">
-          {section.certs.map((cert) => (
+          {section.certs.map((cert, idx) => (
             <a href={cert.pdf} target="_blank" rel="noopener noreferrer" class="cert-item">
-              <div class="cert-thumbnail">
-                <div class="cert-icon-large">{cert.icon}</div>
-                <div class="cert-badge">📄 PDF</div>
-              </div>
-              <div class="cert-info">
-                <h3>{cert.title}</h3>
-                <p class="org">{cert.org}</p>
-                {cert.year && <p class="year">{cert.year}</p>}
-                <span class="view-link">View Certificate →</span>
+              <canvas class="pdf-canvas" data-pdf-url={cert.pdf} data-idx={idx}></canvas>
+              <div class="cert-overlay">
+                <div class="cert-info-overlay">
+                  <h3>{cert.title}</h3>
+                  <p class="org">{cert.org}</p>
+                  {cert.year && <p class="year">{cert.year}</p>}
+                </div>
               </div>
             </a>
           ))}
@@ -96,6 +96,47 @@ const certifications = [
     </section>
   </div>
 </Layout>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script define:vars={{pdfWorkerUrl}}>
+  if (typeof pdfjsLib !== 'undefined') {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '{pdfWorkerUrl}';
+  }
+
+  async function renderPDF(canvasElement) {
+    const pdfUrl = canvasElement.dataset.pdfUrl;
+    
+    try {
+      const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+      const page = await pdf.getPage(1);
+      
+      const scale = 1.5;
+      const viewport = page.getViewport({ scale });
+      
+      canvasElement.width = viewport.width;
+      canvasElement.height = viewport.height;
+      
+      const renderContext = {
+        canvasContext: canvasElement.getContext('2d'),
+        viewport
+      };
+      
+      await page.render(renderContext).promise;
+    } catch (error) {
+      console.error('Error rendering PDF:', error);
+      canvasElement.style.backgroundColor = '#ffe0e0';
+      const ctx = canvasElement.getContext('2d');
+      ctx.fillStyle = '#999';
+      ctx.font = '14px Arial';
+      ctx.fillText('PDF loading...', 10, 30);
+    }
+  }
+
+  // Render all PDFs
+  document.querySelectorAll('.pdf-canvas').forEach(canvas => {
+    renderPDF(canvas);
+  });
+</script>
 
 <style>
   .certifications-page {
@@ -139,14 +180,14 @@ const certifications = [
 
   .cert-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
   }
 
   .cert-item {
     background: white;
-    border: 1px solid #e0e0e0;
+    border: 2px solid #e0e0e0;
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -156,84 +197,58 @@ const certifications = [
     height: 100%;
     text-decoration: none;
     color: inherit;
+    position: relative;
   }
 
   .cert-item:hover {
     border-color: #667eea;
-    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 16px 40px rgba(102, 126, 234, 0.25);
     transform: translateY(-8px);
   }
 
-  .cert-thumbnail {
+  .pdf-canvas {
     width: 100%;
-    height: 200px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
+    height: 380px;
+    display: block;
+    background: #f5f5f5;
   }
 
-  .cert-icon-large {
-    font-size: 4rem;
-    z-index: 1;
-  }
-
-  .cert-badge {
+  .cert-overlay {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #667eea;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    padding: 2rem 1.5rem 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
   }
 
-  .cert-info {
-    padding: 1.5rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+  .cert-item:hover .cert-overlay {
+    transform: translateY(0);
   }
 
-  .cert-item h3 {
-    font-size: 1.1rem;
+  .cert-info-overlay {
+    color: white;
+  }
+
+  .cert-info-overlay h3 {
+    font-size: 1rem;
     margin: 0;
     font-weight: 600;
-    color: #1f2937;
+    color: #fff;
   }
 
-  .cert-item .org {
-    font-size: 0.9rem;
-    color: #666;
-    margin: 0.5rem 0 0 0;
-  }
-
-  .cert-item .year {
+  .cert-info-overlay .org {
     font-size: 0.85rem;
-    color: #999;
-    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+    margin: 0.4rem 0 0 0;
   }
 
-  .view-link {
-    display: inline-block;
-    margin-top: auto;
-    color: #667eea;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-  }
-
-  .cert-item:hover .view-link {
-    color: #764ba2;
-    transform: translateX(4px);
-  }
-
-  .cert-item:hover .cert-thumbnail {
-    transform: scale(1.05);
+  .cert-info-overlay .year {
+    font-size: 0.8rem;
+    color: #b0b0b0;
+    margin-top: 0.3rem;
   }
 
   .footer-note {
