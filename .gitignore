@@ -40,3 +40,11 @@ pids
 
 # Optional eslint cache
 .eslintcache
+
+# Internal Analysis Files (Local Only)
+AI_DE_ACCURATE_ANALYSIS.md
+AI_DE_KEYWORD_ANALYSIS.md
+HIDDEN_KEYWORDS_FOUND.md
+HUGGINGFACE_ANALYSIS.md
+KEYWORD_SCORECARD.md
+HUGGINGFACE_README.md
