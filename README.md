@@ -21,19 +21,36 @@ npm run preview
 ## 📁 Project Structure
 
 ```
-/
-├── public/          # Static assets
+## 📂 Project Structure
+
+```bash
 ├── src/
-│   ├── components/  # Reusable Astro components
-│   │   ├── Layout.astro
-│   │   ├── Sidebar.astro
-│   │   └── ProjectCard.astro
-│   ├── data/       # Portfolio data
-│   ├── pages/      # File-based routing
-│   │   └── index.astro
-│   └── styles/     # Global CSS
-└── package.json
+│   ├── components/      # Astro components (Sidebar, ProjectCard, etc.)
+│   ├── layouts/         # Page layouts
+│   └── pages/           # Site pages (index.astro contains main content)
+├── hf-gallery-assets/   # 🎨 HuggingFace Gallery Source Code
+│   ├── index.html       # Main Gallery HTML (Static Site)
+│   ├── README.md        # Space Configuration (YAML)
+│   └── *.png            # Project Screenshots
+├── public/              # Static assets (images, gifs)
+├── ANIX_LYNCH_RESUME.md # 📄 Master Resume (Markdown)
+└── astro.config.mjs     # Astro configuration
 ```
+
+## 🚀 Deployment
+
+### Portfolio Website (Vercel)
+The main portfolio is built with **Astro** and deployed on **Vercel**.
+- **Live URL:** [gozeroshot.dev](https://gozeroshot.dev)
+- **Trigger:** Push to `main` branch triggers auto-deploy.
+
+### HuggingFace Gallery (Spaces)
+The AI project gallery is a **Static HTML** site hosted on **HuggingFace Spaces**.
+- **Live URL:** [huggingface.co/spaces/anixlynch/anixlynch](https://huggingface.co/spaces/anixlynch/anixlynch)
+- **Source:** `hf-gallery-assets/` folder.
+- **Update:** To update the gallery, edit `hf-gallery-assets/index.html` and upload it to the Space.
+
+## 🛠️ Tech Stack
 
 ## ✨ Features
 
