@@ -138,9 +138,10 @@ const certifications = [
 
   .cert-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    align-items: start;
   }
 
   .cert-item {
@@ -152,7 +153,6 @@ const certifications = [
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    height: 100%;
     text-decoration: none;
     color: inherit;
     position: relative;
@@ -166,8 +166,7 @@ const certifications = [
 
   .cert-image {
     width: 100%;
-    height: 380px;
-    object-fit: cover;
+    height: auto;
     display: block;
     background: #f5f5f5;
   }
@@ -177,8 +176,8 @@ const certifications = [
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-    padding: 2rem 1.5rem 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
+    padding: 3rem 1.5rem 1.5rem;
     transform: translateY(100%);
     transition: transform 0.3s ease;
   }
