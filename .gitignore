@@ -44,7 +44,23 @@ pids
 # Internal Analysis Files (Local Only)
 AI_DE_ACCURATE_ANALYSIS.md
 AI_DE_KEYWORD_ANALYSIS.md
+AI_DE_SKILL_CORRECTION.md
 HIDDEN_KEYWORDS_FOUND.md
 HUGGINGFACE_ANALYSIS.md
 KEYWORD_SCORECARD.md
 HUGGINGFACE_README.md
+LINKEDIN_50_SKILLS_STRATEGY.md
+LINKEDIN_TOP_25_SKILLS.md
+RESUME_KEYWORDS_EXTRACTED.md
+SKILL_VERIFICATION_MATRIX.md
+ANIX_LYNCH_RESUME.md
+
+# Internal Scripts (Local Only)
+scripts/
+copy_certs.py
+copy_one.py
+generate_cert_data.py
+generate_cert_data_debug.py
+
+# Internal Documentation (Local Only)
+docs/analysis/
