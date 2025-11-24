@@ -2,30 +2,45 @@
 import Layout from '../components/Layout.astro';
 import Sidebar from '../components/Sidebar.astro';
 
-const portfolioData = {
-  personal: {
-    name: "Anix Lynch",
-    tagline: "AI Data Engineer, AI Architect\nLos Angeles, CA",
-    avatar: "/profile-photo.jpg",
-    about: "Data engineer with multi-cloud experience. Specialized in machine learning, data visualization, and deploying scalable ML solutions across AWS, GCP, and Azure.",
-    skills: ["Python", "GenAI & LLMs", "AI Agents", "RAG Systems", "Data Engineering", "Snowflake Cortex", "Vertex AI", "Multi-Cloud (AWS/GCP/Azure)", "Vector Databases", "ML Pipelines", "ETL Pipelines", "SQL"],
-    social: {
-      linkedin: "https://www.linkedin.com/in/anixlynch/",
-      github: "https://github.com/anix-lynch",
-      email: "anixlynch@gmail.com",
-      twitter: "https://x.com/anixlynch",
-      website: "https://anixlynch.com",
-      huggingface: "https://huggingface.co/spaces/anixlynch/anixlynch",
-      medium: "https://medium.com/@anixlynch"
-    }
+interface SidebarProps {
+  name?: string;
+  tagline?: string;
+  avatar?: string;
+  about?: string;
+  skills?: string[];
+  social?: {
+    linkedin?: string;
+    github?: string;
+    email?: string;
+    twitter?: string;
+    website?: string;
+    huggingface?: string;
+    medium?: string;
+  };
+}
+
+const {
+  name = "Anix Lynch",
+  tagline = "AI Data Engineer, AI Architect\nLos Angeles, CA",
+  avatar = "/profile-photo.jpg",
+  about = "Data engineer with multi-cloud experience. Specialized in machine learning, data visualization, and deploying scalable ML solutions across AWS, GCP, and Azure.",
+  skills = ["Python", "GenAI & LLMs", "AI Agents", "RAG Systems", "Data Engineering", "Snowflake Cortex", "Vertex AI", "Multi-Cloud (AWS/GCP/Azure)", "Vector Databases", "ML Pipelines", "ETL Pipelines", "SQL"],
+  social = {
+    linkedin: "https://www.linkedin.com/in/anixlynch/",
+    github: "https://github.com/anix-lynch",
+    email: "anixlynch@gmail.com",
+    twitter: "https://x.com/anixlynch",
+    website: "https://anixlynch.com",
+    huggingface: "https://huggingface.co/spaces/anixlynch/anixlynch",
+    medium: "https://medium.com/@anixlynch"
   }
-};
+} = Astro.props;
 ---
 
 <Layout title="Public Speaking — Anix Lynch">
   <div class="container">
     <div class="main-content">
-      <Sidebar personalData={portfolioData.personal} />
+      <Sidebar {name} {tagline} {avatar} {about} {skills} {social} />
       
       <div class="content">
         <div class="back-button">
