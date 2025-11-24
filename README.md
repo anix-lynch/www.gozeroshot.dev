@@ -82,4 +82,4 @@ Ready for deployment to:
 4. Customize colors in `src/styles/global.css`
 5. Add more pages (blog, contact, etc.)
 
-Built with ❤️ using Astro
+Built with ❤️ using Astro# Cache bust
