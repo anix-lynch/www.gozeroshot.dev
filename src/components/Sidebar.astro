@@ -91,6 +91,13 @@ const {
 ---
 
 <aside class="sidebar">
+  <div class="avatar">
+    {avatar && (avatar.startsWith('http') || avatar.startsWith('/')) ? (
+      <img src={avatar} alt={name} />
+    ) : (
+      <span>{avatar}</span>
+    )}
+  </div>
   {name && (
     <div>
       <div class="name">{name}</div>
