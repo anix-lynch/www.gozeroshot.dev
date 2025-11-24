@@ -92,11 +92,15 @@ const {
 
 <aside class="sidebar">
   <div class="avatar">
-    {avatar.startsWith('http') || avatar.startsWith('/') ? <img src={avatar} alt={name} /> : avatar}
+    {avatar && (avatar.startsWith('http') || avatar.startsWith('/')) ? (
+      <img src={avatar} alt={name} style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+    ) : (
+      <span>{avatar}</span>
+    )}
   </div>
   <div>
-    <div class="name">{name}</div>
-    <div class="tagline" set:html={tagline.replace(/\n/g, '<br/>')}></div>
+    <div class="name">{name || "Anix Lynch"}</div>
+    <div class="tagline" set:html={(tagline || "AI Data Engineer, AI Architect\nLos Angeles, CA").replace(/\n/g, '<br/>')}></div>
   </div>
 
   <!-- Social -->
@@ -200,3 +204,114 @@ const {
     ))}
   </div>
 </aside>
+
+<style>
+  .sidebar {
+    width: 280px;
+    padding: 2rem 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+
+  .avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    background: #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 3rem;
+  }
+
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .tagline {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .social {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .social-link:hover {
+    background: #0056b3;
+  }
+
+  .cert-button {
+    display: inline-flex;
+    width: auto;
+  }
+
+  .about {
+    margin-bottom: 1.5rem;
+  }
+
+  .about h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .about p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .skill-chip {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    margin: 0.3rem 0.3rem 0.3rem 0;
+    background: #e7f3ff;
+    color: #007bff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+
+  .skill-chip:hover {
+    background: #b3d9ff;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+  }
+</style>
