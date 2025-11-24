@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  
+  <!-- Main Portfolio Page -->
+  <url>
+    <loc>https://www.gozeroshot.dev/</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.gozeroshot.dev/profile-photo.jpg</image:loc>
+      <image:title>Anix Lynch - AI Data Engineer, AI Architect</image:title>
+    </image:image>
+  </url>
+
+  <!-- Public Speaking Page -->
+  <url>
+    <loc>https://www.gozeroshot.dev/public-speaking</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Leadership Page -->
+  <url>
+    <loc>https://www.gozeroshot.dev/leadership</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Press Page -->
+  <url>
+    <loc>https://www.gozeroshot.dev/press</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Certifications Page -->
+  <url>
+    <loc>https://www.gozeroshot.dev/certifications</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
+

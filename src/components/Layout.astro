@@ -2,12 +2,18 @@
 export interface LayoutProps {
   title?: string;
   description?: string;
+  image?: string;
+  url?: string;
 }
 
 const { 
-  title = "Your Name — Portfolio",
-  description = "Data Scientist & ML Engineer Portfolio"
+  title = "Anix Lynch — AI Data Engineer & Architect Portfolio",
+  description = "Portfolio of Anix Lynch - AI Data Engineer, AI Architect. Specializing in machine learning, data visualization, and deploying scalable solutions across AWS, GCP, and Azure. Based in Los Angeles.",
+  image = "https://www.gozeroshot.dev/profile-photo.jpg",
+  url = "https://www.gozeroshot.dev"
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, url);
 ---
 
 <!DOCTYPE html>
@@ -15,8 +21,98 @@ const {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <!-- Primary Meta Tags -->
   <title>{title}</title>
+  <meta name="title" content={title} />
   <meta name="description" content={description} />
+  <meta name="keywords" content="Anix Lynch, AI Data Engineer, Machine Learning, Data Science, AWS, GCP, Azure, Python, ETL, Data Engineering, AI Architect, Los Angeles" />
+  <meta name="author" content="Anix Lynch" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalURL} />
+  
+  <!-- Open Graph Tags (Social Sharing) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Anix Lynch Portfolio" />
+  <meta property="og:locale" content="en_US" />
+  
+  <!-- Twitter Card Tags -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={canonicalURL} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={image} />
+  <meta name="twitter:creator" content="@anixlynch" />
+  
+  <!-- Search Engine / Web Crawlers Meta Tags -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="revisit-after" content="7 days" />
+  <meta name="language" content="English" />
+  
+  <!-- Additional Meta Tags -->
+  <meta name="theme-color" content="#6366f1" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/profile-photo.jpg" />
+  
+  <!-- JSON-LD Schema Markup (Structured Data) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Anix Lynch",
+    "url": "https://www.gozeroshot.dev",
+    "image": "https://www.gozeroshot.dev/profile-photo.jpg",
+    "description": "AI Data Engineer and AI Architect specializing in machine learning, data visualization, and deploying scalable solutions across AWS, GCP, and Azure.",
+    "jobTitle": "AI Data Engineer | AI Architect",
+    "location": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Los Angeles",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      }
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/anixlynch/",
+      "https://github.com/anix-lynch",
+      "https://x.com/anixlynch",
+      "https://medium.com/@anixlynch",
+      "https://huggingface.co/spaces/anixlynch/anixlynch"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "anixlynch@gmail.com",
+      "contactType": "Personal"
+    }
+  }
+  </script>
+  
+  <!-- Additional Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://www.gozeroshot.dev",
+    "name": "Anix Lynch Portfolio",
+    "description": "AI Data Engineer Portfolio - Machine Learning, Data Science, Cloud Solutions",
+    "author": {
+      "@type": "Person",
+      "name": "Anix Lynch"
+    }
+  }
+  </script>
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
