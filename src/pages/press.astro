@@ -1,0 +1,160 @@
+---
+import Layout from '../components/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+const portfolioData = {
+  personal: {
+    name: "Anix Lynch",
+    tagline: "AI Data Engineer, AI Architect\nLos Angeles, CA",
+    avatar: "/profile-photo.jpg",
+    about: "Data engineer with multi-cloud experience. Specialized in machine learning, data visualization, and deploying scalable ML solutions across AWS, GCP, and Azure.",
+    skills: ["Python", "GenAI & LLMs", "AI Agents", "RAG Systems", "Data Engineering", "Snowflake Cortex", "Vertex AI", "Multi-Cloud (AWS/GCP/Azure)", "Vector Databases", "ML Pipelines", "ETL Pipelines", "SQL"],
+    social: {
+      linkedin: "https://www.linkedin.com/in/anixlynch/",
+      github: "https://github.com/anix-lynch",
+      email: "anixlynch@gmail.com",
+      twitter: "https://x.com/anixlynch",
+      website: "https://anixlynch.com",
+      huggingface: "https://huggingface.co/spaces/anixlynch/anixlynch",
+      medium: "https://medium.com/@anixlynch"
+    }
+  }
+};
+---
+
+<Layout title="Press — Anix Lynch">
+  <div class="container">
+    <div class="main-content">
+      <Sidebar personalData={portfolioData.personal} />
+      
+      <div class="content">
+        <div class="back-button">
+          <a href="/">&larr; Back to Portfolio</a>
+        </div>
+
+        <h1>📺 Television & Press</h1>
+        
+        <section class="press-section">
+          <h2>Television Appearances</h2>
+          <ul class="press-list">
+            <li>Commentator at Reality Show, LINE TV "Startup Star 4.0" - First season, featuring top Singers and stars in Thailand</li>
+            <li>True Television on Thai Startup 2018 - First season</li>
+          </ul>
+        </section>
+
+        <section class="press-section">
+          <h2>Media Features</h2>
+          <ul class="press-list">
+            <li>Featured in European news article in Sweden about FinTech in Asia</li>
+            <li>Newspaper Article, "Expara GSB Startup Fund" Prachachat Business, Post Today, 2017</li>
+            <li>Tansettakij, Peak Engine Press Conference</li>
+            <li>Tech in Asia, E27, Event Banana Press Conference</li>
+          </ul>
+        </section>
+
+        <div class="back-button" style="margin-top: 2rem;">
+          <a href="/">&larr; Back to Portfolio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .main-content {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin: 0 0 2rem 0;
+    color: #333;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem 0;
+    color: #555;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+  }
+
+  .press-section {
+    margin-bottom: 2rem;
+  }
+
+  .press-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .press-list li {
+    padding: 0.75rem 0 0.75rem 1.5rem;
+    border-left: 3px solid #007bff;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: #555;
+    position: relative;
+  }
+
+  .press-list li:before {
+    content: "▸";
+    position: absolute;
+    left: -1rem;
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  .back-button {
+    margin: 2rem 0;
+  }
+
+  .back-button a {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.375rem;
+    transition: background 0.3s ease;
+  }
+
+  .back-button a:hover {
+    background: #0056b3;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .main-content {
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
