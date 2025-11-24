@@ -241,26 +241,28 @@ const {
   }
 
   .social {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
     margin-bottom: 1.5rem;
   }
 
   .social-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.6rem;
     background: #6366f1;
     color: white;
     text-decoration: none;
     border-radius: 4px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     transition: background 0.2s;
     border: none;
     cursor: pointer;
-    width: fit-content;
+    width: 100%;
+    text-align: center;
   }
 
   .social-link:hover {
@@ -268,8 +270,7 @@ const {
   }
 
   .cert-button {
-    display: inline-flex;
-    width: fit-content;
+    grid-column: 1 / -1;
   }
 
   .about {
