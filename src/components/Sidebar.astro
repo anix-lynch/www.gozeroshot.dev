@@ -91,10 +91,12 @@ const {
 ---
 
 <aside class="sidebar">
-  <div>
-    <div class="name">{name || "Anix Lynch"}</div>
-    <div class="tagline" set:html={(tagline || "AI Data Engineer, AI Architect\nLos Angeles, CA").replace(/\n/g, '<br/>')}></div>
-  </div>
+  {name && (
+    <div>
+      <div class="name">{name}</div>
+      <div class="tagline" set:html={tagline.replace(/\n/g, '<br/>')}></div>
+    </div>
+  )}
 
   <!-- Social -->
   <div class="social">
