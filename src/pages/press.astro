@@ -55,6 +55,16 @@ const {
             <li>Commentator at Reality Show, LINE TV "Startup Star 4.0" - First season, featuring top Singers and stars in Thailand</li>
             <li>True Television on Thai Startup 2018 - First season</li>
           </ul>
+          
+          <div class="video-container">
+            <iframe 
+              src="https://www.youtube.com/embed/OphcBTeRcG4" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+            </iframe>
+          </div>
         </section>
 
         <section class="press-section">
@@ -116,6 +126,7 @@ const {
     list-style: none;
     padding: 0;
     margin: 0;
+    margin-bottom: 1.5rem;
   }
 
   .press-list li {
@@ -133,6 +144,25 @@ const {
     left: -1rem;
     color: #007bff;
     font-weight: bold;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .back-button {
