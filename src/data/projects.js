@@ -1,6 +1,25 @@
 // src/data/projects.js
 export const additionalProjects = [
   {
+    title: "Mocktailverse: Enterprise GenAI Platform",
+    description: "Production-ready GenAI data engineering platform powered by AWS Bedrock. Features RAG pipeline, semantic vector search with Titan Embeddings, and real-time AI reasoning visualization. Serverless architecture with Next.js 14 frontend.",
+    image: "/mocktailverse_bedrock.gif",
+    badges: [
+      { text: "AWS Bedrock", variant: "aws" },
+      { text: "RAG Pipeline" },
+      { text: "Vector Search" },
+      { text: "Lambda" },
+      { text: "Next.js 14", variant: "react" },
+      { text: "TypeScript" },
+      { text: "Titan Embeddings" },
+      { text: "Claude 3" }
+    ],
+    links: {
+      live: { url: "https://dgco3hhxo94y8.cloudfront.net", text: "🚀 Live Demo" },
+      code: { url: "https://github.com/anix-lynch/mocktailverse-bedrock", text: "💻 Code" }
+    }
+  },
+  {
     title: "AI Text Analyzer",
     description: "Interactive NLP application using transformer models for sentiment analysis, entity recognition, and text summarization.",
     placeholder: {
