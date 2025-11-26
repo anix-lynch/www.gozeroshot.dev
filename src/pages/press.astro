@@ -65,11 +65,22 @@ const {
               allowfullscreen>
             </iframe>
           </div>
+
+          <div class="video-container" style="margin-top: 1.5rem;">
+            <iframe 
+              src="https://www.youtube.com/embed/Wa12YqxZo14" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+            </iframe>
+          </div>
         </section>
 
         <section class="press-section">
           <h2>Media Features</h2>
           <ul class="press-list">
+            <li><a href="https://today.line.me/th/v3/article/YawaqMB?utm_source=copyshare" target="_blank" rel="noopener noreferrer">LINE TODAY Article: Startup Star 4.0 Feature</a></li>
             <li>Featured in European news article in Sweden about FinTech in Asia</li>
             <li>Newspaper Article, "Expara GSB Startup Fund" Prachachat Business, Post Today, 2017</li>
             <li>Tansettakij, Peak Engine Press Conference</li>
@@ -144,6 +155,17 @@ const {
     left: -1rem;
     color: #007bff;
     font-weight: bold;
+  }
+
+  .press-list a {
+    color: #007bff;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  .press-list a:hover {
+    border-bottom-color: #007bff;
   }
 
   .video-container {
