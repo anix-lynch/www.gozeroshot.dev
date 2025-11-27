@@ -23,9 +23,13 @@ This repository hosts the portfolio website `gozeroshot.dev`, serving as a centr
 | **[Coffeeverse](https://github.com/anix-lynch/coffeeverse)** | Azure-native ETL pipeline with Cosmos DB and Data Factory orchestration. | Azure, dbt, Docker, Bicep |
 | **[Cocktailverse](https://github.com/anix-lynch/cocktailverse)** | Production-grade GCP data pipeline with BigQuery and Cloud Run. | GCP, BigQuery, Cloud Run |
 | **[Pied Piper Legal Simulator](https://github.com/anix-lynch/pied-piper-legal-simulator)** | AI-powered VC negotiation simulator teaching term-sheet dynamics. | FastAPI, React, Claude AI |
-| **[Network Intelligence Map](https://github.com/anix-lynch/silicon-beach-ai-jobs)** | Geospatial network analysis of the Silicon Beach tech ecosystem. | Snowflake Cortex, Streamlit |
+| **[End-to-End Churn ML Pipeline](https://github.com/anix-lynch/churn-ml-pipeline)** | Complete ML pipeline with RFM analysis, time-aware splitting, and ensemble model training. | Python, Scikit-learn, RFM Analysis |
+| **[Real-time Fraud Detection](https://github.com/anix-lynch/realtime-fraud-detection)** | Real-time feature engineering for fraud detection with statistical analysis. | Python, Anomaly Detection |
 | **[Multimodal GenAI Studio](https://github.com/anix-lynch/multimodal-genai-studio)** | Creative suite combining Gemini, DALL-E, and Whisper for content generation. | Gemini, DALL-E, Whisper |
 | **[AI Business Intelligence Agent](https://github.com/anix-lynch/ai-bi-agent)** | RAG-powered analytics assistant for automated EDA and visualization. | LangChain, ChromaDB |
+| **[Financial Modeling Automation](https://github.com/anix-lynch/financial-modeling-automation)** | PE/VC financial modeling platform with VC cap table analysis and Excel automation. | Python, Streamlit, openpyxl |
+| **[Network Intelligence Map](https://github.com/anix-lynch/silicon-beach-ai-jobs)** | Geospatial network analysis of the Silicon Beach tech ecosystem. | Snowflake Cortex, Streamlit |
+| **[Marketing Analytics Visualization](https://github.com/anix-lynch/marketing-analytics-etl)** | Professional marketing analytics dashboard with real-time KPIs and attribution insights. | Python, Streamlit, DuckDB |
 
 ## 🛠️ Website Architecture
 
