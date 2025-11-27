@@ -36,28 +36,25 @@ This portfolio is built as a static site for maximum performance and SEO.
 *   **Styling:** Custom CSS (Responsive & Glassmorphism)
 *   **Assets:** Optimized WebP/GIFs
 
-## 💻 Local Development
-
-To run this portfolio locally:
-
-```bash
-# Install dependencies
-npm install
-
-# Start dev server
-npm run dev
-
-# Build for production
-npm run build
-```
-
 ## 📁 Repository Structure
 
 ```bash
 ├── src/
-│   ├── components/      # UI Components (Sidebar, ProjectCard)
-│   ├── layouts/         # Page Layouts
-│   └── pages/           # Content Pages (index.astro is the homepage)
-├── hf-gallery-assets/   # Assets for HuggingFace Gallery mirror
-└── public/              # Static assets (images, gifs)
+│   ├── components/
+│   │   ├── Layout.astro        # Main site layout & SEO headers
+│   │   ├── Sidebar.astro       # Left sidebar with profile & skills
+│   │   └── ProjectCard.astro   # Reusable card component for projects
+│   ├── pages/
+│   │   ├── index.astro         # 🏠 Homepage (Portfolio Showcase)
+│   │   ├── certifications.astro # 📜 Certifications Gallery
+│   │   ├── leadership.astro    # 🎯 Leadership & Mentoring
+│   │   ├── press.astro         # 📺 Press & Media Appearances
+│   │   └── public-speaking.astro # 🎤 Public Speaking Events
+│   └── styles/                 # Global CSS & Design System
+├── public/                     # 🖼️ Static Assets (GIFs, Images, Resume)
+├── hf-gallery-assets/          # 🎨 HuggingFace Gallery Mirror
+│   ├── index.html              # Standalone HTML for HF Space
+│   └── *.png                   # Gallery specific assets
+├── ANIX_LYNCH_RESUME.md        # 📄 Master Resume Source
+└── astro.config.mjs            # Astro Configuration
 ```
