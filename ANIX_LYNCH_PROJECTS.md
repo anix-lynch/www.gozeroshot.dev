@@ -1,5 +1,5 @@
 # ANIX LYNCH
-**AI Data Engineer | Cloud Architect**  
+**AI Data Engineer, Gen AI Architect**  
 Los Angeles, CA | anixlynch@gmail.com | [LinkedIn](https://linkedin.com/in/anixlynch) | [GitHub](https://github.com/anix-lynch) | [Portfolio](https://gozeroshot.dev)
 
 ---
