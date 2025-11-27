@@ -1,85 +1,63 @@
-# 🚀 Astro Portfolio
+# Anix Lynch - AI Data Engineer & Architect
 
-Clean, modern portfolio converted from HTML to Astro framework.
+**Data engineer with multi-cloud experience. Specialized in machine learning, data visualization, and deploying scalable ML solutions across AWS, GCP, and Azure.**
 
-## 🛠️ Quick Setup
+[![Portfolio](https://img.shields.io/badge/Portfolio-gozeroshot.dev-blue?style=for-the-badge&logo=vercel)](https://gozeroshot.dev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/anixlynch/)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-Models-FFD21E?style=for-the-badge&logo=huggingface)](https://huggingface.co/spaces/anixlynch/anixlynch)
+
+## 🚀 Technical Skills
+
+*   **Core:** Python, SQL, Data Engineering, ML Pipelines, ETL Pipelines
+*   **AI/ML:** GenAI & LLMs, AWS Bedrock, AI Agents, RAG Systems, Vector Databases, Snowflake Cortex, Vertex AI
+*   **Cloud:** Multi-Cloud (AWS / GCP / Azure)
+
+## 📂 Project Showcase & Sitemap
+
+This repository hosts the portfolio website `gozeroshot.dev`, serving as a central hub for my engineering projects ("PortCo").
+
+| Project | Description | Stack |
+|---------|-------------|-------|
+| **[Mocktailverse](https://github.com/anix-lynch/mocktailverse-bedrock)** | Enterprise GenAI Platform powered by AWS Bedrock with RAG pipeline and semantic search. | AWS Bedrock, Next.js, Vector Search |
+| **[AI Agent Job Intelligence](https://github.com/anix-lynch/ai-agent-job-intelligence-phase-2)** | Autonomous resume-to-job matching using LangChain agents and MCP integration. | LangChain, Pinecone, OpenAI |
+| **[Coffeeverse](https://github.com/anix-lynch/coffeeverse)** | Azure-native ETL pipeline with Cosmos DB and Data Factory orchestration. | Azure, dbt, Docker, Bicep |
+| **[Cocktailverse](https://github.com/anix-lynch/cocktailverse)** | Production-grade GCP data pipeline with BigQuery and Cloud Run. | GCP, BigQuery, Cloud Run |
+| **[Pied Piper Legal Simulator](https://github.com/anix-lynch/pied-piper-legal-simulator)** | AI-powered VC negotiation simulator teaching term-sheet dynamics. | FastAPI, React, Claude AI |
+| **[Network Intelligence Map](https://github.com/anix-lynch/silicon-beach-ai-jobs)** | Geospatial network analysis of the Silicon Beach tech ecosystem. | Snowflake Cortex, Streamlit |
+| **[Multimodal GenAI Studio](https://github.com/anix-lynch/multimodal-genai-studio)** | Creative suite combining Gemini, DALL-E, and Whisper for content generation. | Gemini, DALL-E, Whisper |
+| **[AI Business Intelligence Agent](https://github.com/anix-lynch/ai-bi-agent)** | RAG-powered analytics assistant for automated EDA and visualization. | LangChain, ChromaDB |
+
+## 🛠️ Website Architecture
+
+This portfolio is built as a static site for maximum performance and SEO.
+
+*   **Framework:** [Astro](https://astro.build)
+*   **Hosting:** Vercel
+*   **Styling:** Custom CSS (Responsive & Glassmorphism)
+*   **Assets:** Optimized WebP/GIFs
+
+## 💻 Local Development
+
+To run this portfolio locally:
 
 ```bash
 # Install dependencies
 npm install
 
-# Start dev server  
+# Start dev server
 npm run dev
 
 # Build for production
 npm run build
-
-# Preview production build
-npm run preview
 ```
 
-## 📁 Project Structure
-
-```
-## 📂 Project Structure
+## 📁 Repository Structure
 
 ```bash
 ├── src/
-│   ├── components/      # Astro components (Sidebar, ProjectCard, etc.)
-│   ├── layouts/         # Page layouts
-│   └── pages/           # Site pages (index.astro contains main content)
-├── hf-gallery-assets/   # 🎨 HuggingFace Gallery Source Code
-│   ├── index.html       # Main Gallery HTML (Static Site)
-│   ├── README.md        # Space Configuration (YAML)
-│   └── *.png            # Project Screenshots
-├── public/              # Static assets (images, gifs)
-├── ANIX_LYNCH_RESUME.md # 📄 Master Resume (Markdown)
-└── astro.config.mjs     # Astro configuration
+│   ├── components/      # UI Components (Sidebar, ProjectCard)
+│   ├── layouts/         # Page Layouts
+│   └── pages/           # Content Pages (index.astro is the homepage)
+├── hf-gallery-assets/   # Assets for HuggingFace Gallery mirror
+└── public/              # Static assets (images, gifs)
 ```
-
-## 🚀 Deployment
-
-### Portfolio Website (Vercel)
-The main portfolio is built with **Astro** and deployed on **Vercel**.
-- **Live URL:** [gozeroshot.dev](https://gozeroshot.dev)
-- **Trigger:** Push to `main` branch triggers auto-deploy.
-
-### HuggingFace Gallery (Spaces)
-The AI project gallery is a **Static HTML** site hosted on **HuggingFace Spaces**.
-- **Live URL:** [huggingface.co/spaces/anixlynch/anixlynch](https://huggingface.co/spaces/anixlynch/anixlynch)
-- **Source:** `hf-gallery-assets/` folder.
-- **Update:** To update the gallery, edit `hf-gallery-assets/index.html` and upload it to the Space.
-
-## 🛠️ Tech Stack
-
-## ✨ Features
-
-- 🎨 Clean, responsive design
-- 🧩 Modular component architecture
-- 📱 Mobile-first responsive layout
-- ⚡ Fast loading with Astro
-- 🔧 Easy to customize
-
-## 🎛️ Customization
-
-Edit `src/pages/index.astro` to update:
-- Personal info (name, tagline, skills)
-- Social links
-- Project data
-
-## 🌐 Deployment
-
-Ready for deployment to:
-- Netlify: `npm run build` 
-- Vercel: `npm run build`
-- GitHub Pages: Update `astro.config.mjs` with your repo details
-
-## 📝 Next Steps
-
-1. Replace placeholder project images with real screenshots/GIFs
-2. Update social links and contact info
-3. Add your actual project URLs
-4. Customize colors in `src/styles/global.css`
-5. Add more pages (blog, contact, etc.)
-
-Built with ❤️ using Astro# Cache bust
