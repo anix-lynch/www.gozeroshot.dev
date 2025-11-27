@@ -64,3 +64,4 @@ generate_cert_data_debug.py
 
 # Internal Documentation (Local Only)
 docs/analysis/
+.vercel

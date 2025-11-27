@@ -136,7 +136,7 @@ const certifications = [
 
   .cert-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-bottom: 2rem;
     align-items: start;
@@ -236,6 +236,12 @@ const certifications = [
 
     .cert-preview {
       height: 220px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .cert-gallery {
+      grid-template-columns: 1fr;
     }
   }
 </style>
