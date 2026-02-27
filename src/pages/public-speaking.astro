@@ -47,12 +47,33 @@ const {
           <a href="/">&larr; Back to Portfolio</a>
         </div>
 
-        <h1>🎤 Public Speaking & Leadership</h1>
+        <h1>🎤 Public Speaking</h1>
         
+        <section class="speaking-section flagship">
+          <h2>🚀 Flagship Program</h2>
+          <div class="flagship-content">
+            <p><strong>Created Techsauce "<a href="https://summit.techsauce.co/speakers/" target="_blank" rel="noopener noreferrer">FAB</a>" (Food/Agri/Biotech).</strong> Built 15 future-forward stages discussing topics such as:</p>
+            <ul class="topic-list">
+              <li>"Genome Editing"</li>
+              <li>"Bringing Scifi to food with CRISPR"</li>
+              <li>"Food Blockchain"</li>
+              <li>"Menu of 2030"</li>
+              <li>"How to make farmer job better?"</li>
+              <li>"3D Printing - Organ on Demand"</li>
+              <li>"BioHacking"</li>
+              <li>"Social Dilemma in BioTech"</li>
+              <li>"Tasty VS Healthy, can we have both?"</li>
+            </ul>
+            <p><strong>Key speakers:</strong> Indiebio, Agfunder, SproutX, and Top Ittipat (Taokaenoi).</p>
+            <p><strong>Impact:</strong> Helped Techsauce grow audience from 10,000 to 15,000. Currently actively building community of FAB with 500 startups.</p>
+          </div>
+        </section>
+
         <section class="speaking-section">
           <h2>Keynote & Panel Engagements</h2>
           <ul class="speaking-list">
-            <li>Panelist "Future of Fintech" (2017) with SCB</li>
+            <li>Panelist "GovTech Mission" Future Innovation Thailand Institute</li>
+            <li>Panelist "Future of Fintech" with SCB</li>
             <li>Keynote Speaker, "Building CVC", Stock Exchange of Thailand by Techstars & Google for Entrepreneur</li>
             <li>Keynote speaker, "Annoying Myth about investing in startup", Techsauce 2018</li>
             <li>Keynote speaker at "Asia- Celebration of Influence" Chicago Booth, Singapore, 2015</li>
@@ -60,6 +81,7 @@ const {
             <li>Advisor, Ananda Tech Campus Technology: How CVC can work with universities?</li>
             <li>Seedstar speaker, "The tech investment landscape in Asia", 2018</li>
             <li>Guest advisor at Digital Venture Batch 01, 12 startups</li>
+            <li>Keynote Speaker, Female Leader at Startup Grind</li>
           </ul>
         </section>
 
@@ -72,7 +94,6 @@ const {
             <li>Judge Bangkok Big Bang, by DEPA (Sustainability Tech, AgriFoodTech)</li>
             <li>Judge and Mentor, EdTech Strom breaker with 500 Startup</li>
             <li>Regular solo Judge, Disrupt Technology</li>
-            <li>Keynote Speaker, Female Leader at Startup Grind</li>
             <li>Mentor, Web Summit (Ireland), Slush (Tokyo & Helsinki)</li>
             <li>Judge, Smart City competition by NSTDA</li>
           </ul>
@@ -83,18 +104,6 @@ const {
           <ul class="speaking-list">
             <li>Guest Lecturer, "How Venture Capital works" Sasin MBA, 2018</li>
             <li>Lecturer assistant, "Social entrepreneurship", Capital Market Academy, 2014</li>
-          </ul>
-        </section>
-
-        <section class="speaking-section">
-          <h2>Media & Press</h2>
-          <ul class="speaking-list">
-            <li>Commentator at Reality Show, LINE TV "Startup Star 4.0" - First season, featuring top Singers and stars in Thailand</li>
-            <li>True Television on Thai Startup 2018 - First season</li>
-            <li>Featured in European news article in Sweden about FinTech in Asia</li>
-            <li>Newspaper Article, "Expara GSB Startup Fund" Prachachat Business, Post Today, 2017</li>
-            <li>Tansettakij, Peak Engine Press Conference</li>
-            <li>Tech in Asia, E27, Event Banana Press Conference</li>
           </ul>
         </section>
 
@@ -164,6 +173,55 @@ const {
     left: -1rem;
     color: #007bff;
     font-weight: bold;
+  }
+
+  .flagship {
+    background: linear-gradient(135deg, #e1ebf4 0%, #b9cfe3 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: none;
+  }
+
+  .flagship h2 {
+    border-bottom: 2px solid #8cb0d4;
+    color: #2d5070;
+  }
+
+  .flagship-content {
+    color: #333;
+    line-height: 1.7;
+  }
+
+  .flagship-content p {
+    margin-bottom: 1rem;
+  }
+
+  .flagship-content a {
+    color: #8cb0d4;
+    text-decoration: none;
+    border-bottom: 1px solid #8cb0d4;
+  }
+
+  .flagship-content a:hover {
+    color: #6a8fb8;
+    border-bottom-color: #6a8fb8;
+  }
+
+  .topic-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .topic-list li {
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
+    color: #555;
+    font-size: 0.9rem;
   }
 
   .back-button {
