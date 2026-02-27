@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://anix-lynch.github.io',
-  base: '/astro-portfolio',
+  site: 'https://www.gozeroshot.dev',
+  base: '/',
   output: 'static',
   build: {
     assets: 'assets'
