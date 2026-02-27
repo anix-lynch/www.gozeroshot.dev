@@ -56,24 +56,14 @@ const {
             <li>True Television on Thai Startup 2018 - First season</li>
           </ul>
 
-          <div class="video-container" style="margin-top: 1.5rem;">
-            <iframe 
-              src="https://www.youtube.com/embed/OphcBTeRcG4" 
-              title="Techsauce Summit Coverage" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowfullscreen>
-            </iframe>
-          </div>
-
-          <div class="video-container" style="margin-top: 1.5rem;">
-            <iframe 
-              src="https://today.line.me/th/v3/article/YawaqMB?utm_source=copyshare" 
-              title="LINE TV Startup Star 4.0" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowfullscreen>
-            </iframe>
+          <div style="margin-top: 1.5rem;">
+            <a href="https://today.line.me/th/v3/article/YawaqMB?utm_source=copyshare" target="_blank" rel="noopener noreferrer" class="video-link">
+              <div class="video-placeholder">
+                <div class="play-icon">▶</div>
+                <div class="video-title">Watch: LINE TV "Startup Star 4.0" - Episode 1</div>
+                <div class="video-note">Click to watch on LINE TODAY (Geo-restricted to Thailand)</div>
+              </div>
+            </a>
           </div>
         </section>
 
@@ -199,23 +189,45 @@ const {
     background: #6a8fb8;
   }
 
-  .video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: #000;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  .video-link {
+    display: block;
+    text-decoration: none;
   }
 
-  .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  .video-placeholder {
+    position: relative;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #e1ebf4 0%, #b9cfe3 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .video-placeholder:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    border-color: #8cb0d4;
+  }
+
+  .play-icon {
+    font-size: 3rem;
+    color: #8cb0d4;
+    margin-bottom: 1rem;
+  }
+
+  .video-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d5070;
+    margin-bottom: 0.5rem;
+  }
+
+  .video-note {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
   }
 
   .newspaper-grid {
