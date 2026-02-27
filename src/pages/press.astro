@@ -57,11 +57,12 @@ const {
           </ul>
 
           <div style="margin-top: 1.5rem;">
-            <a href="https://today.line.me/th/v3/article/YawaqMB?utm_source=copyshare" target="_blank" rel="noopener noreferrer" class="video-link">
-              <div class="video-placeholder">
-                <div class="play-icon">▶</div>
-                <div class="video-title">Watch: LINE TV "Startup Star 4.0" - Episode 1</div>
-                <div class="video-note">Click to watch on LINE TODAY (Geo-restricted to Thailand)</div>
+            <a href="https://today.line.me/th/v3/article/2DrB8Bj" target="_blank" rel="noopener noreferrer" class="video-link">
+              <div class="video-thumbnail">
+                <img src="/line-tv-thumbnail.png" alt="LINE TV Startup Star 4.0 - Judge appearance" />
+                <div class="play-overlay">
+                  <div class="play-icon">▶</div>
+                </div>
               </div>
             </a>
           </div>
@@ -193,40 +194,45 @@ const {
     text-decoration: none;
   }
 
-  .video-placeholder {
+  .video-thumbnail {
     position: relative;
-    padding: 3rem 2rem;
-    background: linear-gradient(135deg, #e1ebf4 0%, #b9cfe3 100%);
     border-radius: 12px;
+    overflow: hidden;
     box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    text-align: center;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
   }
 
-  .video-placeholder:hover {
+  .video-thumbnail:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    border-color: #8cb0d4;
+  }
+
+  .video-thumbnail img {
+    width: 100%;
+    display: block;
+  }
+
+  .play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+  }
+
+  .video-thumbnail:hover .play-overlay {
+    background: rgba(0, 0, 0, 0.5);
   }
 
   .play-icon {
-    font-size: 3rem;
-    color: #8cb0d4;
-    margin-bottom: 1rem;
-  }
-
-  .video-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #2d5070;
-    margin-bottom: 0.5rem;
-  }
-
-  .video-note {
-    font-size: 0.9rem;
-    color: #666;
-    font-style: italic;
+    font-size: 4rem;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
   }
 
   .newspaper-grid {
