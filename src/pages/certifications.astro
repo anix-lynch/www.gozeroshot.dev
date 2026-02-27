@@ -87,6 +87,28 @@ const certifications = [
       </section>
     ))}
 
+    <section class="cert-section">
+      <h2 class="section-title">🏆 Awards</h2>
+      <div class="cert-gallery">
+        <div class="cert-item award-item">
+          <img src="/emba-video-contest-plaque.png" alt="Executive MBA Council 2012 Video Contest Silver" class="cert-image" loading="lazy" />
+          <div class="cert-info">
+            <h3>Video Contest Silver (Booth Video Award)</h3>
+            <p class="org">Executive MBA Council</p>
+            <p class="year">2012</p>
+          </div>
+        </div>
+        <div class="cert-item award-item">
+          <img src="/afs-certificate.png" alt="AFS exchange certificate of appreciation" class="cert-image" loading="lazy" />
+          <div class="cert-info">
+            <h3>AFS Scholarship — Certificate of Appreciation</h3>
+            <p class="org">Yanagawa City Ryokai District Youth Development Association</p>
+            <p class="year">1994</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="footer-note">
       <p>🎓 Continuous learning drives continuous growth. <a href="https://github.com/anix-lynch/Certification" target="_blank">View full certification repository →</a></p>
     </section>
@@ -160,6 +182,10 @@ const certifications = [
     border-color: #667eea;
     box-shadow: 0 16px 40px rgba(102, 126, 234, 0.25);
     transform: translateY(-8px);
+  }
+
+  .award-item {
+    cursor: default;
   }
 
   .cert-image {
