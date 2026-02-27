@@ -20,10 +20,10 @@ html{scroll-behavior:smooth}
 .social a:hover{background:#e2e8f0}
 .skill-chip{
   display:inline-block;padding:.25rem .6rem;margin:.15rem;
-  background:#eef2ff;color:#4f46e5;font-size:.8rem;border-radius:12px;
+  background:#e1ebf4;color:#6a8fb8;font-size:.8rem;border-radius:12px;
   text-decoration:none;transition:.2s;
 }
-.skill-chip:hover{background:#ddd6fe;color:#3730a3}
+.skill-chip:hover{background:#b9cfe3;color:#4a6f98}
 .about{margin-top:1rem}
 .about h3{font-size:1rem;margin-bottom:.5rem}
 .about p{font-size:.9rem;line-height:1.5;opacity:.8}
@@ -44,22 +44,22 @@ html{scroll-behavior:smooth}
 .card-title{font-size:1.2rem;font-weight:600;margin-bottom:.5rem}
 .card-desc{font-size:.9rem;line-height:1.45;flex:1}
 .badges span{
-  display:inline-block;background:#e0e7ff;color:#4338ca;
+  display:inline-block;background:#e1ebf4;color:#6a8fb8;
   font-size:.75rem;padding:.25rem .55rem;margin:.1rem;border-radius:8px
 }
 .badges .aws{background:#fff3e0;color:#f57c00}
 .badges .gcp{background:#e8f5e8;color:#388e3c}
 .badges .azure{background:#e3f2fd;color:#1976d2}
 .badges .python{background:#fff8e1;color:#f9a825}
-.badges .hf{background:#fff5f5;color:#ef4444}
+.badges .hf{background:#fff9e6;color:#d4a017;font-weight:600}
 .btns{display:flex;gap:.5rem;margin-top:auto}
 .btns a{
   flex:1;display:inline-block;text-align:center;padding:.55rem 1rem;
   border-radius:10px;font-size:.85rem;font-weight:600;
   text-decoration:none;transition:.2s
 }
-.live{background:#4f46e5;color:#fff}
-.live:hover{background:#4338ca}
+.live{background:#8cb0d4;color:#fff}
+.live:hover{background:#6a8fb8}
 .code{background:#f1f5f9;color:#374151}
 .code:hover{background:#e2e8f0}
 
@@ -82,13 +82,7 @@ html{scroll-behavior:smooth}
 .social-link:hover{background:#e2e8f0;color:#1f2937}
 .social-link svg{flex-shrink:0;opacity:.8}
 .resume-btn{
-  background:#4f46e5!important;color:#fff!important;font-weight:600!important;
+  background:#8cb0d4!important;color:#fff!important;font-weight:600!important;
 }
-.resume-btn:hover{background:#4338ca!important}
+.resume-btn:hover{background:#6a8fb8!important}
 .resume-btn svg{opacity:1!important}
-.cert-button{
-  background:#667eea!important;color:#fff!important;font-weight:600!important;
-  display:flex!important;align-items:center!important;justify-content:center!important;
-}
-.cert-button:hover{background:#764ba2!important;transform:scale(1.05);box-shadow:0 4px 12px rgba(102,126,234,.3)}
-.cert-button svg{opacity:1!important}
