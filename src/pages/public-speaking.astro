@@ -121,23 +121,20 @@ const {
   }
 
   .video-container {
-    position: relative;
-    max-width: 560px;
-    margin: 0 auto 2rem auto;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    background: #000;
+    width: 560px;
+    max-width: 100%;
+    margin: 0 0 2rem 0;
     border-radius: 12px;
+    overflow: hidden;
     box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    background: #000;
   }
 
   .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    display: block;
+    width: 560px;
+    max-width: 100%;
+    height: 315px;
   }
 
   .speaking-section {
