@@ -49,25 +49,19 @@ const {
 
         <h1>🎤 Public Speaking</h1>
         
-        <section class="speaking-section flagship">
-          <h2>🚀 Flagship Program</h2>
-          <div class="flagship-content">
-            <p><strong>Created Techsauce "<a href="https://summit.techsauce.co/speakers/" target="_blank" rel="noopener noreferrer">FAB</a>" (Food/Agri/Biotech).</strong> Built 15 future-forward stages discussing topics such as:</p>
-            <ul class="topic-list">
-              <li>"Genome Editing"</li>
-              <li>"Bringing Scifi to food with CRISPR"</li>
-              <li>"Food Blockchain"</li>
-              <li>"Menu of 2030"</li>
-              <li>"How to make farmer job better?"</li>
-              <li>"3D Printing - Organ on Demand"</li>
-              <li>"BioHacking"</li>
-              <li>"Social Dilemma in BioTech"</li>
-              <li>"Tasty VS Healthy, can we have both?"</li>
-            </ul>
-            <p><strong>Key speakers:</strong> Indiebio, Agfunder, SproutX, and Top Ittipat (Taokaenoi).</p>
-            <p><strong>Impact:</strong> Helped Techsauce grow audience from 10,000 to 15,000. Currently actively building community of FAB with 500 startups.</p>
-          </div>
-        </section>
+        <div class="video-container" style="margin-bottom: 2rem;">
+          <iframe 
+            src="https://www.youtube.com/embed/Wa12YqxZo14?start=755" 
+            title="Techsauce Summit" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <p style="color: #666; line-height: 1.7; margin-bottom: 2rem;">
+          Created Techsauce "<a href="https://summit.techsauce.co/speakers/" target="_blank" rel="noopener noreferrer" style="color: #8cb0d4; text-decoration: none; border-bottom: 1px solid #8cb0d4;">FAB</a>" (Food/Agri/Biotech). Built 15 future-forward stages discussing topics such as "Genome Editing", "Bringing Scifi to food with CRISPR", "Food Blockchain", "Menu of 2030", "How to make farmer job better?", "3D Printing - Organ on Demand", "BioHacking", "Social Dilemma in BioTech", and "Tasty VS Healthy, can we have both?". Key speakers included Indiebio, Agfunder, SproutX, and Top Ittipat (Taokaenoi). Helped Techsauce grow audience from 10,000 to 15,000. Currently actively building community of FAB with 500 startups.
+        </p>
 
         <section class="speaking-section">
           <h2>Keynote & Panel Engagements</h2>
@@ -148,6 +142,25 @@ const {
     padding-bottom: 0.5rem;
   }
 
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   .speaking-section {
     margin-bottom: 2rem;
   }
@@ -173,55 +186,6 @@ const {
     left: -1rem;
     color: #007bff;
     font-weight: bold;
-  }
-
-  .flagship {
-    background: linear-gradient(135deg, #e1ebf4 0%, #b9cfe3 100%);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: none;
-  }
-
-  .flagship h2 {
-    border-bottom: 2px solid #8cb0d4;
-    color: #2d5070;
-  }
-
-  .flagship-content {
-    color: #333;
-    line-height: 1.7;
-  }
-
-  .flagship-content p {
-    margin-bottom: 1rem;
-  }
-
-  .flagship-content a {
-    color: #8cb0d4;
-    text-decoration: none;
-    border-bottom: 1px solid #8cb0d4;
-  }
-
-  .flagship-content a:hover {
-    color: #6a8fb8;
-    border-bottom-color: #6a8fb8;
-  }
-
-  .topic-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 0.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
-  }
-
-  .topic-list li {
-    padding: 0.5rem 0.75rem;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 6px;
-    color: #555;
-    font-size: 0.9rem;
   }
 
   .back-button {
