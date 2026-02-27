@@ -71,6 +71,15 @@ const {
               </div>
             </a>
           </div>
+
+          <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; color: #2d5070; font-size: 1.25rem;">Channel 3</h3>
+          <div class="tv-photos-grid channel3-grid">
+            <img src="/channel3/468296341_10164639940184937_2938451754201049604_n.jpg" alt="Channel 3 TV" />
+            <img src="/channel3/468498003_10164639942069937_2579516075593144937_n.jpg" alt="Channel 3 TV" />
+            <img src="/channel3/468544210_10164639941989937_8964270732508554233_n.jpg" alt="Channel 3 TV" />
+            <img src="/channel3/468632248_10164639942064937_4431867452485675514_n.jpg" alt="Channel 3 TV" />
+            <img src="/channel3/471426415_10164958848909937_392631806019892133_n.jpg" alt="Channel 3 TV" />
+          </div>
         </section>
 
         <section class="press-section">
@@ -255,6 +264,14 @@ const {
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   }
 
+  .channel3-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .channel3-grid img {
+    height: 220px;
+  }
+
   .newspaper-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -290,6 +307,14 @@ const {
 
     h2 {
       font-size: 1.25rem;
+    }
+
+    .channel3-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .channel3-grid img {
+      height: 180px;
     }
   }
 </style>
