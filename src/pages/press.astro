@@ -56,6 +56,12 @@ const {
             <li>True Television on Thai Startup 2018 - First season</li>
           </ul>
 
+          <div class="tv-photos-grid">
+            <img src="/tv1.jpg" alt="TV appearance 1" />
+            <img src="/tv2.jpg" alt="TV appearance 2" />
+            <img src="/tv3.jpg" alt="TV appearance 3" />
+          </div>
+
           <div style="margin-top: 1.5rem;">
             <a href="https://today.line.me/th/v3/article/2DrB8Bj" target="_blank" rel="noopener noreferrer" class="video-link">
               <div class="video-thumbnail">
@@ -227,6 +233,25 @@ const {
     font-size: 4rem;
     color: white;
     text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .tv-photos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .tv-photos-grid img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .tv-photos-grid img:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   }
 
   .newspaper-grid {
