@@ -1,6 +1,7 @@
 ---
 import Layout from '../components/Layout.astro';
 import Sidebar from '../components/Sidebar.astro';
+import PageNav from '../components/PageNav.astro';
 
 interface SidebarProps {
   name?: string;
@@ -38,15 +39,10 @@ const {
 ---
 
 <Layout title="Leadership — Anix Lynch">
-  <div class="container">
-    <div class="main-content">
-      <Sidebar {name} {tagline} {avatar} {about} {skills} {social} />
-      
-      <div class="content">
-        <div class="back-button">
-          <a href="/">&larr; Back to Portfolio</a>
-        </div>
-
+  <Sidebar {name} {tagline} {avatar} {about} {skills} {social} />
+  <main class="main">
+    <PageNav showBack={true} />
+    <div class="content">
         <h1>🎯 Leadership & Advisory</h1>
         
         <section class="leadership-section">
@@ -96,33 +92,20 @@ const {
             <li>Guest Lecturer, "How Venture Capital works" Sasin MBA, 2018</li>
             <li>Lecturer assistant, "Social entrepreneurship", Capital Market Academy, 2014</li>
           </ul>
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: #555;">Hosted UNC Chapel Hill MBA students at Sasin; taught alongside faculty from the U.S. (e.g. UNC’s Strategy & Entrepreneurship).</p>
+          <blockquote class="testimonial">
+            <p>“Recently I had the opportunity to take a group of MBA students from the U.S. to visit Anix and hear from her. The students truly appreciated everything she shared and came away inspired. I sincerely appreciated her taking time to create an enriching learning experience for the next generation of budding entrepreneurs and venture capitalists. Her knowledge and approach to mentoring entrepreneurs is truly exceptional—she combines deep knowledge with practical experience in picking and supporting entrepreneurs. In the world of venture capital, her approach to relationship building and mentorship is truly exceptional.”</p>
+            <footer>— <strong>Arvind Malhotra</strong>, H. Allen Andrew Professor of Strategy & Entrepreneurship, University of North Carolina at Chapel Hill <span style="color:#888;">(March 2019)</span></footer>
+          </blockquote>
         </section>
 
-        <div class="back-button" style="margin-top: 2rem;">
-          <a href="/">&larr; Back to Portfolio</a>
-        </div>
       </div>
-    </div>
-  </div>
+  </main>
 </Layout>
 
 <style>
-  .container {
-    display: flex;
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .main-content {
-    display: flex;
-    gap: 2rem;
-    width: 100%;
-  }
-
   .content {
-    flex: 1;
+    max-width: 100%;
   }
 
   h1 {
@@ -166,34 +149,28 @@ const {
     font-weight: bold;
   }
 
-  .back-button {
-    margin: 2rem 0;
+  .testimonial {
+    margin: 1.5rem 0 0 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid #007bff;
+    background: #f8f9fa;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: #444;
   }
 
-  .back-button a {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 0.375rem;
-    transition: background 0.3s ease;
+  .testimonial p {
+    margin: 0 0 0.75rem 0;
+    line-height: 1.6;
   }
 
-  .back-button a:hover {
-    background: #0056b3;
+  .testimonial footer {
+    font-style: normal;
+    font-size: 0.9rem;
+    color: #555;
   }
 
   @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .main-content {
-      flex-direction: column;
-    }
-
     h1 {
       font-size: 2rem;
     }

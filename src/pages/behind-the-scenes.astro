@@ -1,6 +1,7 @@
 ---
 import Layout from '../components/Layout.astro';
 import Sidebar from '../components/Sidebar.astro';
+import PageNav from '../components/PageNav.astro';
 
 interface SidebarProps {
   name?: string;
@@ -38,15 +39,10 @@ const {
 ---
 
 <Layout title="Behind the Scenes — Anix Lynch">
-  <div class="container">
-    <div class="main-content">
-      <Sidebar {name} {tagline} {avatar} {about} {skills} {social} />
-      
-      <div class="content">
-        <div class="back-button">
-          <a href="/">&larr; Back to Portfolio</a>
-        </div>
-
+  <Sidebar {name} {tagline} {avatar} {about} {skills} {social} />
+  <main class="main">
+    <PageNav showBack={true} />
+    <div class="content">
         <h1>📸 Behind the Scenes</h1>
         <p style="color: #666; margin-bottom: 2rem; line-height: 1.6; font-size: 1.1rem;">Reality TV judge, hackathon head judge, stage presence, and VC days.</p>
         
@@ -117,31 +113,13 @@ const {
           ))}
         </div>
 
-        <div class="back-button" style="margin-top: 2rem;">
-          <a href="/">&larr; Back to Portfolio</a>
-        </div>
       </div>
-    </div>
-  </div>
+  </main>
 </Layout>
 
 <style>
-  .container {
-    display: flex;
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .main-content {
-    display: flex;
-    gap: 2rem;
-    width: 100%;
-  }
-
   .content {
-    flex: 1;
+    max-width: 100%;
   }
 
   h1 {
@@ -179,34 +157,7 @@ const {
     display: block;
   }
 
-  .back-button {
-    margin: 2rem 0;
-  }
-
-  .back-button a {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background: #8cb0d4;
-    color: white;
-    text-decoration: none;
-    border-radius: 0.375rem;
-    transition: background 0.3s ease;
-  }
-
-  .back-button a:hover {
-    background: #6a8fb8;
-  }
-
   @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .main-content {
-      flex-direction: column;
-    }
-
     h1 {
       font-size: 2rem;
     }
