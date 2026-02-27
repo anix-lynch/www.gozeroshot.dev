@@ -87,6 +87,82 @@ const {
           </ul>
         </section>
 
+        <section class="press-section">
+          <h2>📸 Behind the Scenes</h2>
+          <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.6;">Shark Tank Thailand judge, hackathon head judge, stage presence, and VC days.</p>
+          <div class="instagram-grid">
+            {[
+              "151825986_10160811082629937_2170212629189884083_n.jpg",
+              "153908720_10160811082639937_1966974819955562743_n.jpg",
+              "29261160_10155769243264300_3982142987923619840_n.jpg",
+              "34066390_2098259696883200_5463854843313520640_n.jpg",
+              "466485173_10231722750519111_2923371242269399091_n.jpg",
+              "466595608_10228254829335431_2222913254701656121_n.jpg",
+              "467753032_10237141193818505_4041157456766659728_n.jpg",
+              "467813400_10160641189105737_3991412274140137678_n.jpg",
+              "468224335_10164569342469937_455290697263460889_n.jpg",
+              "468353655_10164562464924937_6206931299641800322_n.jpg",
+              "468448279_10162160113289446_6728003575914282623_n.jpg",
+              "468598390_10164720023139937_8166384553460372956_n.jpg",
+              "468669107_10169798887355557_4547864683401164894_n.jpg",
+              "468771122_10164779835844937_8563739490605595723_n.jpg",
+              "468821662_10165247028684554_2877376512624702570_n.jpg",
+              "468842441_10164775714889937_7835345832875568730_n.jpg",
+              "468957317_10164779960074937_1123803483903531878_n.jpg",
+              "471565622_10164967166219937_3808624497138594976_n.jpg",
+              "471582563_10160982682037285_1780425722953523363_n.jpg",
+              "471917450_10160982906197285_1548335545573737658_n.jpg",
+              "471995904_10170235185375608_7394298208783412346_n.jpg",
+              "472090478_10164994573269937_2796784983020060184_n.jpg",
+              "472099960_10165008616104937_4212341788920392147_n.jpg",
+              "472103104_10165008607139937_8791643408344567733_n.jpg",
+              "472123372_10165016447034937_6578703626878025268_n.jpg",
+              "472224656_10165016427019937_4483299079214070423_n.jpg",
+              "473566450_10170611073085557_7342576237428386150_n.jpg",
+              "474210025_10171930425680393_1423480298891679833_n.jpg",
+              "504173399_9959804077402669_3143528952215105066_n.jpg",
+              "504195448_9959804184069325_6443356031566423767_n.jpg",
+              "554080739_24918974827715763_8601431877215500931_n.jpg",
+              "62126104_10213646396381265_3250733336137564160_n.jpg",
+              "EB press.jpg",
+              "IMG_0079.jpg",
+              "IMG_0080.jpg",
+              "IMG_0333.jpg",
+              "IMG_0360.jpg",
+              "IMG_0374.jpg",
+              "IMG_0386.jpg",
+              "IMG_0634.jpg",
+              "IMG_0691.jpg",
+              "IMG_0693.jpg",
+              "IMG_0709.jpg",
+              "IMG_0711.jpg",
+              "IMG_0739.jpg",
+              "IMG_0742.jpg",
+              "IMG_0751.jpg",
+              "IMG_0752.jpg",
+              "IMG_0754.jpg",
+              "IMG_0757.jpg",
+              "IMG_0758.jpg",
+              "IMG_1019.jpg",
+              "IMG_1020.jpg",
+              "IMG_1517.jpg",
+              "IMG_2159.jpg",
+              "IMG_2268.jpg",
+              "IMG_3147.jpg",
+              "IMG_7845.jpg",
+              "IMG_7855.jpg",
+              "IMG_9809.JPG",
+              "eb post.jpg",
+              "newspaper.jpg",
+              "press post today.jpg"
+            ].map(photo => (
+              <div class="grid-item">
+                <img src={`/press-gallery/${photo}`} alt="Press photo" loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </section>
+
         <div class="back-button" style="margin-top: 2rem;">
           <a href="/">&larr; Back to Portfolio</a>
         </div>
@@ -204,6 +280,35 @@ const {
     background: #0056b3;
   }
 
+  .instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .grid-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: #f0f0f0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .grid-item:hover {
+    transform: scale(1.05);
+    z-index: 10;
+  }
+
+  .grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   @media (max-width: 768px) {
     .container {
       flex-direction: column;
@@ -220,6 +325,11 @@ const {
 
     h2 {
       font-size: 1.25rem;
+    }
+
+    .instagram-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.25rem;
     }
   }
 </style>
