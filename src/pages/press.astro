@@ -54,12 +54,30 @@ const {
           <ul class="press-list">
             <li><a href="https://today.line.me/th/v3/article/YawaqMB?utm_source=copyshare" target="_blank" rel="noopener noreferrer">Main Judge at Reality Show, LINE TV "Startup Star 4.0"</a> - First season, featuring top Singers and stars in Thailand. <em>(Geo-restricted to Thailand)</em></li>
             <li>True Television on Thai Startup 2018 - First season</li>
-            <li><a href="https://www.youtube.com/watch?v=OphcBTeRcG4" target="_blank" rel="noopener noreferrer">Techsauce Summit Coverage</a> <em>(Video currently private)</em></li>
-            <li><a href="https://www.youtube.com/watch?v=Wa12YqxZo14" target="_blank" rel="noopener noreferrer">Startup Ecosystem Discussion</a> <em>(Video currently private)</em></li>
           </ul>
           
           <div style="margin-top: 1.5rem;">
             <img src="/tv-studio-collage.png" alt="TV studio appearances" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+          </div>
+
+          <div class="video-container" style="margin-top: 1.5rem;">
+            <iframe 
+              src="https://www.youtube.com/embed/OphcBTeRcG4" 
+              title="Techsauce Summit Coverage" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <div class="video-container" style="margin-top: 1.5rem;">
+            <iframe 
+              src="https://www.youtube.com/embed/Wa12YqxZo14" 
+              title="Startup Ecosystem Discussion" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+            </iframe>
           </div>
         </section>
 
@@ -183,6 +201,25 @@ const {
 
   .back-button a:hover {
     background: #6a8fb8;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .newspaper-grid {
