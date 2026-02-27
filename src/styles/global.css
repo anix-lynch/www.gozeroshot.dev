@@ -24,8 +24,9 @@ body > .main {
   border-right:1px solid #e5e7eb;padding:2rem 1.5rem;
   display:flex;flex-direction:column;gap:1.5rem
 }
-.avatar{width:120px;height:120px;border-radius:50%;overflow:hidden;margin-bottom:.5rem;background:#ddd;display:flex;align-items:center;justify-content:center;font-size:3rem}
-.avatar img{width:100%;height:100%;object-fit:cover}
+.avatar{width:120px;height:120px;border-radius:50%;overflow:hidden;margin-bottom:.5rem;background:#ddd;display:flex;align-items:center;justify-content:center;font-size:3rem;outline:none}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block;outline:none}
+.avatar:focus-within,.avatar img:focus{outline:none}
 .name{font-size:1.8rem;font-weight:700}
 .tagline{opacity:.75;font-size:.95rem;line-height:1.4}
 .social{display:flex;gap:.5rem;margin-top:.5rem}
