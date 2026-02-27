@@ -85,6 +85,12 @@ const {
             <li>Tansettakij, Peak Engine Press Conference</li>
             <li>Tech in Asia, E27, Event Banana Press Conference</li>
           </ul>
+
+          <div class="newspaper-grid">
+            <img src="/press-gallery/newspaper.jpg" alt="Newspaper article" />
+            <img src="/press-gallery/press post today.jpg" alt="Post Today newspaper" />
+            <img src="/press-gallery/EB press.jpg" alt="EB Press article" />
+          </div>
         </section>
 
         <div class="back-button" style="margin-top: 2rem;">
@@ -202,6 +208,24 @@ const {
 
   .back-button a:hover {
     background: #0056b3;
+  }
+
+  .newspaper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .newspaper-grid img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .newspaper-grid img:hover {
+    transform: scale(1.02);
   }
 
   @media (max-width: 768px) {
