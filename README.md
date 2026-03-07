@@ -59,6 +59,6 @@ This portfolio is built as a static site for maximum performance and SEO.
 ├── hf-gallery-assets/          # 🎨 HuggingFace Gallery Mirror
 │   ├── index.html              # Standalone HTML for HF Space
 │   └── *.png                   # Gallery specific assets
-├── ANIX_LYNCH_RESUME.md        # 📄 Master Resume Source
+├── (resume source)             # 📄 Resume content for site
 └── astro.config.mjs            # Astro Configuration
 ```
