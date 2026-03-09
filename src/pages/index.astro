@@ -166,7 +166,7 @@ const portfolioData = {
     },
     {
       title: "End-to-End Churn ML Pipeline",
-      description: "Achieved 98.8% AUC using ensemble models (XGBoost, LightGBM, CatBoost) with time-aware validation. Complete ML pipeline with RFM analysis, 47 Great Expectations rules, and training-serving parity. Reduced false positives by 40%.",
+      description: "Achieved 98.8% AUC using ensemble models with time-aware validation. Production Feast feature store: 3 feature views, AWS DynamoDB online serving, offline/online parity tests, and data quality checks. Complete ML platform with RFM analysis, 47 Great Expectations rules. Reduced false positives by 40%.",
       image: "/churn-ml-pipeline.gif",
       badges: [
         { text: "98.8% AUC", variant: "hf" },
@@ -175,8 +175,10 @@ const portfolioData = {
         { text: "LightGBM" },
         { text: "Great Expectations", variant: "hf" },
         { text: "Time-aware Validation" },
-        { text: "Feast" },
-        { text: "Feature Store" }
+        { text: "Feast Feature Store", variant: "hf" },
+        { text: "DynamoDB", variant: "hf" },
+        { text: "Point-in-Time Correct" },
+        { text: "Parity Tests" }
       ],
       links: {
         live: { url: "https://churn-ml-pipeline-mwvbz4fzdvmd8yvjvz9jak.streamlit.app", text: "🚀 Live Demo" },
