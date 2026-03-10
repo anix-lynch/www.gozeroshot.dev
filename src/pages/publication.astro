@@ -2,7 +2,6 @@
 import Layout from '../components/Layout.astro';
 import Sidebar from '../components/Sidebar.astro';
 import PageNav from '../components/PageNav.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 
 interface SidebarProps {
   name?: string;
@@ -40,42 +39,18 @@ const {
 const publications = [
   {
     title: "DeepSeek Beat OpenAI (5% Budget)",
-    description: "5K views on Medium",
-    image: "/writing-for-developers.png",
-    badges: [
-      { text: "Publication", variant: "hf" },
-      { text: "Medium" },
-      { text: "5K views" }
-    ],
-    links: {
-      live: { url: "https://medium.com/@anixlynch", text: "Read Article" }
-    }
+    url: "https://medium.com/@anixlynch/deepseek-beat-openai-5-budget",
+    stats: "5K views"
   },
   {
     title: "OpenAI Operator vs Google AI Studio",
-    description: "44% read-through rate",
-    image: "/writing-for-developers.png",
-    badges: [
-      { text: "Publication", variant: "hf" },
-      { text: "Medium" },
-      { text: "44% read-through" }
-    ],
-    links: {
-      live: { url: "https://medium.com/@anixlynch", text: "Read Article" }
-    }
+    url: "https://medium.com/@anixlynch/openai-operator-vs-google-ai-studio",
+    stats: "44% read-through"
   },
   {
     title: "F/Awesome N8N-MCP",
-    description: "DevRel tooling guide",
-    image: "/writing-for-developers.png",
-    badges: [
-      { text: "Publication", variant: "hf" },
-      { text: "Medium" },
-      { text: "DevRel" }
-    ],
-    links: {
-      live: { url: "https://medium.com/@anixlynch/f-awesome-repo-for-n8n-mcp-de6ba9473bdf", text: "Read Article" }
-    }
+    url: "https://medium.com/@anixlynch/f-awesome-repo-for-n8n-mcp-de6ba9473bdf",
+    stats: "DevRel tooling"
   }
 ];
 ---
@@ -103,9 +78,12 @@ const publications = [
         </a>
       </div>
       
-      <div class="projects">
+      <div class="articles-list">
         {publications.map(publication => (
-          <ProjectCard {...publication} />
+          <div class="article-item">
+            <h3><a href={publication.url} target="_blank" rel="noopener">{publication.title}</a></h3>
+            <p class="article-stats">{publication.stats}</p>
+          </div>
         ))}
       </div>
     </div>
@@ -154,11 +132,45 @@ const publications = [
     font-size: 1.1rem;
   }
 
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  .articles-list {
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
     margin-top: 2rem;
+  }
+
+  .article-item {
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+
+  .article-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .article-item h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .article-item h3 a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .article-item h3 a:hover {
+    color: #007bff;
+  }
+
+  .article-stats {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
   }
 
   @media (max-width: 768px) {
@@ -171,8 +183,12 @@ const publications = [
       max-width: 100%;
     }
 
-    .projects {
-      grid-template-columns: 1fr;
+    .article-item {
+      padding: 1rem;
+    }
+
+    .article-item h3 {
+      font-size: 1.1rem;
     }
   }
 </style>
