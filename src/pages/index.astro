@@ -23,6 +23,49 @@ const portfolioData = {
     }
   },
   
+  // Publications (writing for developers)
+  publications: [
+    {
+      title: "DeepSeek Beat OpenAI (5% Budget)",
+      description: "5K views on Medium",
+      image: "/writing-for-developers.png",
+      badges: [
+        { text: "Publication", variant: "hf" },
+        { text: "Medium" },
+        { text: "5K views" }
+      ],
+      links: {
+        live: { url: "https://medium.com/@anixlynch", text: "Read Article" }
+      }
+    },
+    {
+      title: "OpenAI Operator vs Google AI Studio",
+      description: "44% read-through rate",
+      image: "/writing-for-developers.png",
+      badges: [
+        { text: "Publication", variant: "hf" },
+        { text: "Medium" },
+        { text: "44% read-through" }
+      ],
+      links: {
+        live: { url: "https://medium.com/@anixlynch", text: "Read Article" }
+      }
+    },
+    {
+      title: "F/Awesome N8N-MCP",
+      description: "DevRel tooling guide",
+      image: "/writing-for-developers.png",
+      badges: [
+        { text: "Publication", variant: "hf" },
+        { text: "Medium" },
+        { text: "DevRel" }
+      ],
+      links: {
+        live: { url: "https://medium.com/@anixlynch/f-awesome-repo-for-n8n-mcp-de6ba9473bdf", text: "Read Article" }
+      }
+    }
+  ],
+  
   // Production Ops Stack (monitoring dashboards)
   opsStack: [
     {
@@ -77,42 +120,6 @@ const portfolioData = {
   ],
   
   projects: [
-    {
-      title: "Writing for Developers",
-      description: "120+ articles on Medium \u00b7 197 on Hashnode \u00b7 Published in AI in Plain English",
-      image: "/writing-for-developers.png", // Assuming you'll provide an image for this section
-      badges: [
-        { text: "Medium" },
-        { text: "Hashnode" },
-        { text: "AI in Plain English" }
-      ],
-      links: {
-        live: { url: "https://anixlynch.medium.com", text: "anixlynch.medium.com \u2192" },
-        articles: [
-          { title: "DeepSeek Beat OpenAI (5% Budget)", url: "https://medium.com/@anixlynch" },
-          { title: "OpenAI Operator vs Google AI Studio", url: "https://medium.com/@anixlynch" },
-          { title: "F/Awesome N8N-MCP", url: "https://medium.com/@anixlynch/f-awesome-repo-for-n8n-mcp-de6ba9473bdf" }
-        ]
-      }
-    },
-  ],
-  publications: [
-    {
-      title: "DeepSeek Beat OpenAI (5% Budget)",
-      description: "5K views",
-      links: { live: { url: "https://medium.com/@anixlynch", text: "Read Article" } }
-    },
-    {
-      title: "OpenAI Operator vs Google AI Studio",
-      description: "44% read-through",
-      links: { live: { url: "https://medium.com/@anixlynch", text: "Read Article" } }
-    },
-    {
-      title: "F/Awesome N8N-MCP",
-      description: "DevRel tooling",
-      links: { live: { url: "https://medium.com/@anixlynch/f-awesome-repo-for-n8n-mcp-de6ba9473bdf", text: "Read Article" } }
-    }
-  ],
     {
       title: "Mocktailverse: Enterprise GenAI Platform",
       description: "Self-healing serverless GenAI platform powered by AWS Bedrock. RAG pipeline with semantic search (Titan Embeddings), memory persistence, and cost controls ($1-2/month runtime). Part of multi-agent architecture with drift detection and auto-rollback.",
@@ -361,23 +368,6 @@ const portfolioData = {
   <main class="main">
     <PageNav showBack={false} />
     
-    <section style="margin-bottom: 3rem;">
-      <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#333;">✍️ Writing for Developers</h2>
-      <div class="projects">
-        <ProjectCard {...portfolioData.projects.find(p => p.title === "Writing for Developers")} />
-      </div>
-    </section>
-
-    <!-- Publications Section -->
-    <section style="margin-bottom: 3rem;">
-      <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#333;">Publications</h2>
-      <div class="projects">
-        {portfolioData.publications.map(publication => (
-          <ProjectCard {...publication} />
-        ))}
-      </div>
-    </section>
-
     <!-- Ops Stack Section -->
     <section style="margin-bottom: 3rem;">
       <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#333;">🔬 Production Ops Stack</h2>
@@ -446,6 +436,17 @@ const portfolioData = {
           p.title.includes("Marketing")
         ).map(project => (
           <ProjectCard {...project} />
+        ))}
+      </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#333;">✍️ Writing for Developers</h2>
+      <p style="color:#666;margin-bottom:2rem;line-height:1.6;">120+ articles on Medium · 197 on Hashnode · Published in AI in Plain English · <a href="https://anixlynch.medium.com" target="_blank" rel="noopener" style="color:#007bff;font-weight:600;">anixlynch.medium.com →</a></p>
+      <div class="projects">
+        {portfolioData.publications.map(publication => (
+          <ProjectCard {...publication} />
         ))}
       </div>
     </section>
