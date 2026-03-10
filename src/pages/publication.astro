@@ -1,0 +1,127 @@
+---
+import Layout from '../components/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import PageNav from '../components/PageNav.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+interface SidebarProps {
+  name?: string;
+  tagline?: string;
+  avatar?: string;
+  about?: string;
+  skills?: string[];
+  social?: {
+    linkedin?: string;
+    github?: string;
+    email?: string;
+    twitter?: string;
+    website?: string;
+    huggingface?: string;
+    medium?: string;
+  };
+}
+
+const {
+  name = "Anix Lynch",
+  tagline = "AI Data Engineer, AI Architect\nLos Angeles, CA",
+  avatar = "/profile-photo.jpg",
+  about = "Data engineer with multi-cloud experience. Specialized in machine learning, data visualization, and deploying scalable ML solutions across AWS, GCP, and Azure.",
+  skills = ["Python", "GenAI & LLMs", "AI Agents", "RAG Systems", "Data Engineering", "Snowflake Cortex", "Vertex AI", "Multi-Cloud (AWS/GCP/Azure)", "Vector Databases", "ML Pipelines", "ETL Pipelines", "SQL"],
+  social = {
+    linkedin: "https://www.linkedin.com/in/anixlynch/",
+    github: "https://github.com/anix-lynch",
+    email: "anix@anixlynch.com",
+    bluesky: "https://bsky.app/profile/anixlynch.bsky.social",
+    huggingface: "https://huggingface.co/spaces/anixlynch/anixlynch",
+    medium: "https://medium.com/@anixlynch"
+  }
+} = Astro.props;
+
+const publications = [
+  {
+    title: "DeepSeek Beat OpenAI (5% Budget)",
+    description: "5K views on Medium",
+    image: "/writing-for-developers.png",
+    badges: [
+      { text: "Publication", variant: "hf" },
+      { text: "Medium" },
+      { text: "5K views" }
+    ],
+    links: {
+      live: { url: "https://medium.com/@anixlynch", text: "Read Article" }
+    }
+  },
+  {
+    title: "OpenAI Operator vs Google AI Studio",
+    description: "44% read-through rate",
+    image: "/writing-for-developers.png",
+    badges: [
+      { text: "Publication", variant: "hf" },
+      { text: "Medium" },
+      { text: "44% read-through" }
+    ],
+    links: {
+      live: { url: "https://medium.com/@anixlynch", text: "Read Article" }
+    }
+  },
+  {
+    title: "F/Awesome N8N-MCP",
+    description: "DevRel tooling guide",
+    image: "/writing-for-developers.png",
+    badges: [
+      { text: "Publication", variant: "hf" },
+      { text: "Medium" },
+      { text: "DevRel" }
+    ],
+    links: {
+      live: { url: "https://medium.com/@anixlynch/f-awesome-repo-for-n8n-mcp-de6ba9473bdf", text: "Read Article" }
+    }
+  }
+];
+---
+
+<Layout title="Publication — Anix Lynch">
+  <Sidebar {name} {tagline} {avatar} {about} {skills} {social} />
+  <main class="main">
+    <PageNav showBack={true} />
+    <div class="content">
+      <h1>✍️ Writing for Developers</h1>
+      <p style="color: #666; margin-bottom: 2rem; line-height: 1.6; font-size: 1.1rem;">120+ articles on Medium · 197 on Hashnode · Published in AI in Plain English · <a href="https://anixlynch.medium.com" target="_blank" rel="noopener" style="color:#007bff;font-weight:600;">anixlynch.medium.com →</a></p>
+      
+      <div class="projects">
+        {publications.map(publication => (
+          <ProjectCard {...publication} />
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .content {
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+    color: #333;
+  }
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .projects {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
