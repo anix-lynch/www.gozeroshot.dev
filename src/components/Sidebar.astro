@@ -16,6 +16,7 @@ export interface SidebarProps {
     huggingface?: string;
     kaggle?: string;
     medium?: string;
+    hashnode?: string;
     home?: string;
   };
 }
@@ -166,6 +167,14 @@ const {
           <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
         </svg>
         Email
+      </a>
+    )}
+    {social.hashnode && (
+      <a href={social.hashnode} target="_blank" class="social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22.351 8.019l-6.37-6.37a5.63 5.63 0 0 0-7.962 0l-6.37 6.37a5.63 5.63 0 0 0 0 7.962l6.37 6.37a5.63 5.63 0 0 0 7.962 0l6.37-6.37a5.63 5.63 0 0 0 0-7.962zM12 15.953a3.953 3.953 0 1 1 0-7.906 3.953 3.953 0 0 1 0 7.906z"/>
+        </svg>
+        Hashnode
       </a>
     )}
         <a href="/certifications" class="social-link">
