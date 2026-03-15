@@ -79,6 +79,24 @@ const portfolioData = {
   
   projects: [
     {
+      title: "Healthcare Analytics: Full-Stack BI Platform",
+      description: "End-to-end healthcare analytics stack with FastAPI (11 endpoints, 55K encounters), dbt star schema (8 marts, 3 tests), Power BI semantic model (TMDL/DAX), and XGBoost ML (0.6641 accuracy). Microsoft Fabric integration with service principal auth. All resume claims traceable to code + proof artifacts.",
+      image: "/healthcare-da.png",
+      badges: [
+        { text: "FastAPI", variant: "hf" },
+        { text: "dbt", variant: "hf" },
+        { text: "Power BI" },
+        { text: "XGBoost" },
+        { text: "Microsoft Fabric", variant: "hf" },
+        { text: "MLflow" },
+        { text: "55K Records" }
+      ],
+      links: {
+        live: { url: "https://app.fabric.microsoft.com/groups/2f0c0d3c-7a0a-4e4a-9e4a-7a0a4e4a9e4a/list", text: "🚀 Fabric Workspace" },
+        code: { url: "https://gitlab.com/anixlynch/healthcare-da", text: "💻 Code" }
+      }
+    },
+    {
       title: "Mocktailverse: Enterprise GenAI Platform",
       description: "Self-healing serverless GenAI platform powered by AWS Bedrock. RAG pipeline with semantic search (Titan Embeddings), memory persistence, and cost controls ($1-2/month runtime). Part of multi-agent architecture with drift detection and auto-rollback.",
       image: "/mocktailverse_bedrock.gif",
@@ -292,7 +310,7 @@ const portfolioData = {
         { text: "Full-Stack" }
       ],
       links: {
-        live: { url: "https://github.com/anix-lynch/silicon-beach-ai-jobs", text: "🚀 Code & Docs" },
+        live: { url: "https://github.com/anix-lynch/silicon-beach-ai-jobs", text: "🚀 Live Demo" },
         code: { url: "https://github.com/anix-lynch/silicon-beach-ai-jobs", text: "💻 Code" }
       }
     },
