@@ -4,6 +4,7 @@ html{scroll-behavior:smooth}
 /* ── 2-GRID LAYOUT (same on landing + every page) ───────────────── */
 body{
   display:flex;
+  flex-wrap:wrap;
   min-height:100vh;
   background:#f7f9fc;
   color:#333;
@@ -16,6 +17,9 @@ body > .sidebar {
 body > .main {
   flex: 1 1 0;
   min-width: 0;
+}
+body > .site-footer {
+  flex: 0 0 100%;
 }
 
 /* ── SIDEBAR ─────────────────────────────── */
@@ -103,3 +107,27 @@ body > .main {
 }
 .resume-btn:hover{background:#6a8fb8!important}
 .resume-btn svg{opacity:1!important}
+
+.site-footer{
+  padding:1rem 2rem 1.75rem;
+  text-align:center;
+  color:#6b7280;
+  font-size:.9rem;
+}
+
+.site-footer-nav{
+  display:inline-flex;
+  align-items:center;
+  gap:.7rem;
+}
+
+.site-footer-nav a{
+  color:#4a6f98;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.site-footer-nav a:hover{
+  color:#2d5070;
+  text-decoration:underline;
+}

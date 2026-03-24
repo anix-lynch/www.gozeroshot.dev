@@ -119,6 +119,13 @@ const canonicalURL = new URL(Astro.url.pathname, url);
 </head>
 <body>
   <slot />
+  <footer class="site-footer">
+    <nav class="site-footer-nav" aria-label="Legal">
+      <a href="/terms">Terms</a>
+      <span aria-hidden="true">·</span>
+      <a href="/privacy">Privacy</a>
+    </nav>
+  </footer>
 </body>
 </html>
 
