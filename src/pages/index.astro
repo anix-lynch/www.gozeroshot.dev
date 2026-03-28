@@ -10,7 +10,7 @@ const portfolioData = {
     name: "Anix Lynch",
     tagline: "AI Data Engineer, AI Architect\nLos Angeles, CA",
     avatar: "/profile-photo.jpg",
-    about: "AI Data Engineer specializing in production ML systems and multi-cloud pipelines. Achieved 98.8% AUC in churn prediction, 149ms p95 API latency, 93% agent task success rate, and ~1% hallucination rate across 13 projects. Built monitoring dashboards (Phoenix, Great Expectations, dbt) for production observability. I've written 120+ technical articles on Medium (top: 5K views) and 197 posts on Hashnode — because the best documentation is written by someone who hit the same wall you did.",
+    about: "AI Data Engineer specializing in production ML systems and multi-cloud pipelines. Real eval results: Ragas faithfulness 0.97 on RAG pipeline (OpenAI judge), 51 data quality rules at 100% pass rate, 14-tool MCP server for multi-agent orchestration, $1-2/month serverless runtime. Built monitoring dashboards (Phoenix, Great Expectations, dbt) for production observability. I've written 120+ technical articles on Medium (top: 5K views) and 197 posts on Hashnode — because the best documentation is written by someone who hit the same wall you did.",
     skills: ["Python", "GenAI & LLMs", "AWS Bedrock", "AI Agents", "RAG Systems", "Data Engineering", "Snowflake Cortex", "Vertex AI", "Multi-Cloud (AWS/GCP/Azure)", "Vector Databases", "ML Pipelines", "ETL Pipelines", "SQL", "Great Expectations", "dbt", "Phoenix", "OpenTelemetry"],
     social: {
       linkedin: "https://www.linkedin.com/in/anixlynch/",
@@ -28,15 +28,15 @@ const portfolioData = {
   opsStack: [
     {
       title: "Phoenix - GenAI Ops Dashboard",
-      description: "Real-time agent monitoring with trace visualization, eval scoring, latency tracking, and cost monitoring. Shows 93% task success rate, ~1% hallucination rate (Ragas faithfulness 0.92), 149ms p95 latency, and $0.02 cost per request across 100+ production workflows.",
+      description: "Real-time agent monitoring with trace visualization, eval scoring, latency tracking, and cost monitoring. Ragas faithfulness 0.97 (real eval, OpenAI judge, 18 pairs). 14-tool MCP orchestration. $0.02 cost per request.",
       image: "/phoenix_preview.png",
       badges: [
         { text: "Phoenix OSS" },
         { text: "OpenTelemetry" },
         { text: "Ragas" },
         { text: "Agent Monitoring" },
-        { text: "93% Task Success", variant: "hf" },
-        { text: "~1% Hallucination", variant: "hf" }
+        { text: "Faithfulness 0.97", variant: "hf" },
+        { text: "14 Tools", variant: "hf" }
       ],
       links: {
         live: { url: "/dashboards/phoenix_dashboard.html", text: "🚀 Live Demo" },
@@ -45,7 +45,7 @@ const portfolioData = {
     },
     {
       title: "Great Expectations - Data Quality Gates",
-      description: "47 validation rules preventing bad data from reaching production. Covers schema validation, null checks, range validation, uniqueness, pattern matching, and statistical anomalies. Achieved 95.7% success rate with 12→0 incidents/month.",
+      description: "51 data quality rules across churn pipeline (customers, transactions, sessions, support). Covers schema validation, null checks, range validation, uniqueness, domain checks, and statistical anomalies. 100% pass rate on real CSV data.",
       image: "/ge_preview.png",
       badges: [
         { text: "Great Expectations" },
@@ -115,16 +115,15 @@ const portfolioData = {
     },
     {
       title: "AI Agent Job Intelligence",
-      description: "Orchestrated 14-tool agent achieving 93% task success rate across 100+ production workflows. Multi-agent architecture with RAG pipelines, semantic search (DynamoDB vector store), and memory persistence (ChromaDB). Achieved ~1% hallucination rate using Ragas evaluation.",
+      description: "14-tool MCP server for multi-agent job intelligence. Multi-agent architecture with RAG pipelines, semantic search (DynamoDB vector store), and memory persistence (ChromaDB). Ragas faithfulness 0.97 on RAG eval (real run, OpenAI judge).",
       image: "/ATS_phase2.gif",
       badges: [
-        { text: "93% Task Success", variant: "hf" },
+        { text: "Faithfulness 0.97", variant: "hf" },
         { text: "14 Tools", variant: "hf" },
         { text: "Python" },
         { text: "LangChain" },
         { text: "RAG" },
-        { text: "Multi-Agent" },
-        { text: "~1% Hallucination", variant: "hf" }
+        { text: "Multi-Agent" }
       ],
       links: {
         live: { url: "https://ai-agent-job-intelligence-phase-2-tr8fm4dzvgzjmpd2mo63a3.streamlit.app/", text: "🚀 Live Demo" },
@@ -185,10 +184,10 @@ const portfolioData = {
     },
     {
       title: "End-to-End Churn ML Pipeline",
-      description: "Achieved 98.8% AUC using ensemble models with time-aware validation. Production Feast feature store: 3 feature views, AWS DynamoDB online serving, offline/online parity tests, and data quality checks. Complete ML platform with RFM analysis, 47 Great Expectations rules. Reduced false positives by 40%.",
+      description: "Ensemble ML pipeline with time-aware validation. Production Feast feature store: 3 feature views, AWS DynamoDB online serving, offline/online parity tests. Complete ML platform with RFM analysis and data quality gates across the full pipeline.",
       image: "/churn-ml-pipeline.gif",
       badges: [
-        { text: "98.8% AUC", variant: "hf" },
+        { text: "Ensemble ML", variant: "hf" },
         { text: "Python" },
         { text: "XGBoost" },
         { text: "LightGBM" },
@@ -206,10 +205,10 @@ const portfolioData = {
     },
     {
       title: "Real-time Fraud Detection",
-      description: "Optimized API latency to 149ms p95 for real-time fraud detection. Streaming ETL with Kinesis, 47 Great Expectations validation rules, and drift monitoring. Reduced data quality incidents from 12→0/month.",
+      description: "Streaming feature engine for real-time fraud detection. Sub-millisecond in-memory scoring. Streaming ETL with Kinesis, data quality gates, and drift monitoring. 51 validation rules validated across pipeline datasets.",
       image: "/realtime-fraud-detection.gif",
       badges: [
-        { text: "149ms p95", variant: "hf" },
+        { text: "Sub-ms Scoring", variant: "hf" },
         { text: "Python" },
         { text: "Kinesis", variant: "hf" },
         { text: "Great Expectations", variant: "hf" },
@@ -373,7 +372,7 @@ const portfolioData = {
     <!-- Bullet 2: AI-DE Multi-Pain -->
     <section style="margin-bottom: 3rem;">
       <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#4FB3C8;">🎯 AI-DE Multi-Pain</h2>
-      <p style="color:#666;margin-bottom:2rem;line-height:1.6;">The messy stuff: point-in-time correctness, training-serving parity, streaming ETL, data quality gates. Hit 98.8% AUC, 149ms p95, went from 12 incidents/month → 0.</p>
+      <p style="color:#666;margin-bottom:2rem;line-height:1.6;">The messy stuff: point-in-time correctness, training-serving parity, streaming ETL, data quality gates. 51 real DQ rules, 100% pass rate. Sub-ms in-memory fraud scoring.</p>
       <div class="projects">
         {portfolioData.projects.filter(p => 
           p.title.includes("Churn ML") || 
@@ -388,7 +387,7 @@ const portfolioData = {
     <!-- Bullet 3: GenAI Multi-Pain -->
     <section style="margin-bottom: 3rem;">
       <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#5DC1D8;">🤖 GenAI Multi-Pain</h2>
-      <p style="color:#666;margin-bottom:2rem;line-height:1.6;">Built agents that don't break at 3 AM. RAG pipelines, 14-tool orchestration, 93% task success, ~1% hallucination. Runs serverless for $1-2/month.</p>
+      <p style="color:#666;margin-bottom:2rem;line-height:1.6;">Built agents that don't break at 3 AM. RAG pipelines, 14-tool MCP orchestration, Ragas faithfulness 0.97 (real eval). Runs serverless for $1-2/month.</p>
       <div class="projects">
         {portfolioData.projects.filter(p => 
           p.title.includes("AI Agent Job") || 
