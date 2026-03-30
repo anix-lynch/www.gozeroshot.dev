@@ -1,0 +1,593 @@
+---
+import Layout from '../../components/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import { projects } from '../../data/projects-detailed.js';
+
+const lanes = ["All", "GenAI", "Data Eng", "ML", "n8n"];
+
+const laneColors = {
+  "GenAI":    { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
+  "n8n":      { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
+  "Data Eng": { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
+  "ML":       { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
+};
+
+const counts = lanes.reduce((acc, lane) => {
+  acc[lane] = lane === "All" ? projects.length : projects.filter(p => p.lane === lane).length;
+  return acc;
+}, {});
+
+const svgPaths = {
+  cpu: `<path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 1-2-2V9m0 0h18"/>`,
+  layers: `<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>`,
+  workflow: `<rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M6 9v3a3 3 0 0 0 3 3h6"/>`,
+  database: `<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>`,
+  search: `<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>`,
+  "bar-chart": `<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
+  "trending-up": `<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>`,
+  shield: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
+  activity: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`,
+  heart: `<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>`,
+  "file-text": `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>`,
+  "external-link": `<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>`,
+  github: `<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>`,
+  zap: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
+  bot: `<rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/>`,
+};
+
+function icon(name, size = 18) {
+  const path = svgPaths[name] || svgPaths['cpu'];
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+}
+
+const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n8n": "workflow" };
+---
+
+<Layout
+  title="Projects — Anix Lynch"
+  description="15 production AI and data engineering projects: GenAI agents, RAG pipelines, n8n automations, and ML systems."
+>
+  <div class="app-shell">
+    <Sidebar
+      name="Anix Lynch"
+      tagline="AI Data Engineer · GenAI Architect\nLos Angeles, CA"
+      avatar="/profile-photo.jpg"
+      about="Self-taught AI engineer. 4 sprint lanes: AI Data Engineering, GenAI/Agent, DevRel, n8n. Ex-VC."
+      social={{
+        github: "https://github.com/anix-lynch",
+        linkedin: "https://linkedin.com/in/anixlynch",
+        email: "alynch@gozeroshot.dev",
+        bluesky: "https://bsky.app/profile/anixlynch.bsky.social",
+        medium: "https://medium.com/@anixlynch",
+        home: "/"
+      }}
+    />
+
+    <main class="directory-main">
+
+      <!-- Page header -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Projects</h1>
+          <p class="page-sub">Production AI and data engineering systems — click any card to see the full breakdown.</p>
+        </div>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <div class="search-wrap">
+          <span class="search-icon">
+            <Fragment set:html={icon('search', 15)} />
+          </span>
+          <input
+            id="search-input"
+            class="search-input"
+            type="text"
+            placeholder="Search projects..."
+            autocomplete="off"
+          />
+        </div>
+        <div class="filter-pills" id="filter-pills">
+          {lanes.map(lane => (
+            <button
+              class={`filter-pill ${lane === 'All' ? 'active' : ''}`}
+              data-lane={lane}
+            >
+              {lane !== 'All' && (
+                <span class="pill-icon" set:html={icon(laneIcons[lane] || 'cpu', 13)} />
+              )}
+              {lane}
+              <span class="pill-count">{counts[lane]}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Project grid -->
+      <div class="project-grid" id="project-grid">
+        {projects.map(project => {
+          const lc = laneColors[project.lane] || laneColors["GenAI"];
+          return (
+            <a
+              href={`/projects/${project.slug}`}
+              class="project-card"
+              data-lane={project.lane}
+              data-title={project.title.toLowerCase()}
+              data-desc={project.tagline.toLowerCase()}
+              data-stack={project.stack.join(' ').toLowerCase()}
+            >
+              <div class="card-top">
+                <div class="card-icon-box">
+                  <Fragment set:html={icon(project.icon, 20)} />
+                </div>
+                <div class="card-badges">
+                  <span class="card-lane-badge"
+                    style={`background:${lc.bg};color:${lc.text};border-color:${lc.border}`}>
+                    {project.lane}
+                  </span>
+                  {project.live && (
+                    <span class="live-badge">
+                      <span class="live-dot"></span>
+                      Live Demo
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div class="card-body">
+                <h2 class="card-title">{project.title}</h2>
+                <p class="card-desc">{project.tagline}</p>
+              </div>
+
+              <div class="card-footer">
+                <div class="card-stack-row">
+                  {project.stack.slice(0, 4).map(tech => (
+                    <span class="mini-pill">{tech}</span>
+                  ))}
+                  {project.stack.length > 4 && (
+                    <span class="mini-pill mini-pill-more">+{project.stack.length - 4}</span>
+                  )}
+                </div>
+                <div class="card-stat">
+                  {project.stats[0] && (
+                    <span class="card-stat-value">{project.stats[0].value}</span>
+                  )}
+                  {project.stats[0] && (
+                    <span class="card-stat-label">{project.stats[0].label}</span>
+                  )}
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="empty-state" style="display:none">
+        <div class="empty-icon">
+          <Fragment set:html={icon('search', 32)} />
+        </div>
+        <p>No projects match that filter.</p>
+        <button class="btn-reset" onclick="resetFilters()">Clear filters</button>
+      </div>
+
+    </main>
+  </div>
+</Layout>
+
+<script>
+  let activeFilter = 'All';
+  let searchQuery = '';
+
+  const grid = document.getElementById('project-grid');
+  const cards = grid ? Array.from(grid.querySelectorAll('.project-card')) : [];
+  const emptyState = document.getElementById('empty-state');
+  const searchInput = document.getElementById('search-input');
+
+  function applyFilters() {
+    let visible = 0;
+    cards.forEach(card => {
+      const lane = card.dataset.lane;
+      const title = card.dataset.title || '';
+      const desc = card.dataset.desc || '';
+      const stack = card.dataset.stack || '';
+      const text = title + ' ' + desc + ' ' + stack;
+
+      const laneMatch = activeFilter === 'All' || lane === activeFilter;
+      const searchMatch = !searchQuery || text.includes(searchQuery);
+
+      if (laneMatch && searchMatch) {
+        card.style.display = '';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (emptyState) {
+      emptyState.style.display = visible === 0 ? 'flex' : 'none';
+    }
+  }
+
+  // Filter pills
+  document.getElementById('filter-pills')?.addEventListener('click', (e) => {
+    const pill = e.target.closest('.filter-pill');
+    if (!pill) return;
+    activeFilter = pill.dataset.lane;
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    applyFilters();
+  });
+
+  // Search
+  searchInput?.addEventListener('input', (e) => {
+    searchQuery = e.target.value.toLowerCase().trim();
+    applyFilters();
+  });
+
+  // Reset
+  window.resetFilters = function() {
+    activeFilter = 'All';
+    searchQuery = '';
+    if (searchInput) searchInput.value = '';
+    document.querySelectorAll('.filter-pill').forEach(p => {
+      p.classList.toggle('active', p.dataset.lane === 'All');
+    });
+    applyFilters();
+  };
+</script>
+
+<style>
+  /* ── Shell ─────────────────────────────────────── */
+  .app-shell {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fbfd;
+  }
+
+  /* ── Main ──────────────────────────────────────── */
+  .directory-main {
+    flex: 1;
+    min-width: 0;
+    padding: 2rem 2.5rem 4rem;
+  }
+
+  /* ── Page header ───────────────────────────────── */
+  .page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #0f1923;
+    margin: 0 0 0.3rem;
+  }
+
+  .page-sub {
+    font-size: 14px;
+    color: #8aa0b8;
+    margin: 0;
+  }
+
+  /* ── Filter bar ────────────────────────────────── */
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+    max-width: 320px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8aa0b8;
+    display: flex;
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 8px 12px 8px 34px;
+    border: 1px solid #dde8f0;
+    border-radius: 10px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 13.5px;
+    color: #0f1923;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .search-input:focus {
+    border-color: #7bb3d9;
+    box-shadow: 0 0 0 3px rgba(123, 179, 217, 0.14);
+  }
+
+  .search-input::placeholder { color: #b0c8e0; }
+
+  .filter-pills {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 500;
+    border: 1px solid #dde8f0;
+    background: #fff;
+    color: #4a6080;
+    cursor: pointer;
+    transition: all 0.15s;
+    line-height: 1;
+  }
+
+  .filter-pill:hover {
+    background: #eef4f9;
+    color: #0f1923;
+    border-color: #b8d4ec;
+  }
+
+  .filter-pill.active {
+    background: #7bb3d9;
+    color: #fff;
+    border-color: #7bb3d9;
+  }
+
+  .filter-pill.active .pill-count {
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+  }
+
+  .pill-icon { display: flex; align-items: center; opacity: 0.8; }
+
+  .pill-count {
+    font-size: 10.5px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    background: #eef4f9;
+    color: #8aa0b8;
+    padding: 1px 6px;
+    border-radius: 999px;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  /* ── Project Grid ──────────────────────────────── */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1rem;
+  }
+
+  /* ── Project Card ──────────────────────────────── */
+  .project-card {
+    background: #fff;
+    border: 1px solid #dde8f0;
+    border-radius: 14px;
+    padding: 1.25rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    box-shadow: 0 1px 3px rgba(100,140,180,0.07);
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 6px 20px rgba(100,140,180,0.16);
+    transform: translateY(-3px);
+    border-color: #b8d4ec;
+  }
+
+  /* ── Card top ────── */
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .card-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #eef4f9;
+    border: 1px solid #dde8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7bb3d9;
+    flex-shrink: 0;
+  }
+
+  .card-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .card-lane-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    border: 1px solid;
+  }
+
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 600;
+    background: #edfaf0;
+    color: #1e6b38;
+    border: 1px solid rgba(100,200,130,0.3);
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2ecc71;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── Card body ────── */
+  .card-body { flex: 1; }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f1923;
+    margin: 0 0 0.35rem;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: #4a6080;
+    line-height: 1.55;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ── Card footer ────── */
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .card-stack-row {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .mini-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 600;
+    background: #f0f4f8;
+    color: #4a6080;
+    border: 1px solid #dde8f0;
+    white-space: nowrap;
+  }
+
+  .mini-pill-more {
+    background: #eef4f9;
+    color: #8aa0b8;
+  }
+
+  .card-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+
+  .card-stat-value {
+    font-size: 14px;
+    font-weight: 800;
+    color: #0f1923;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .card-stat-label {
+    font-size: 10px;
+    color: #8aa0b8;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+
+  /* ── Empty state ───────────────────────────────── */
+  .empty-state {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    color: #8aa0b8;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .empty-icon { opacity: 0.35; }
+
+  .empty-state p {
+    font-size: 14px;
+    color: #8aa0b8;
+    margin: 0;
+  }
+
+  .btn-reset {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid #dde8f0;
+    background: #fff;
+    color: #7bb3d9;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-reset:hover { background: #eef4f9; }
+
+  /* ── Responsive ────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .directory-main { padding: 1.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    .project-grid { grid-template-columns: 1fr; }
+    .filter-bar { flex-direction: column; align-items: stretch; }
+    .search-wrap { max-width: unset; }
+  }
+</style>
