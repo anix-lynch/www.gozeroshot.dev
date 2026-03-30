@@ -79,7 +79,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
 
       <!-- Breadcrumb -->
       <nav class="breadcrumb">
-        <a href="/" class="breadcrumb-link">
+        <a href="/projects" class="breadcrumb-link">
           <Fragment set:html={icon('arrow-left', 14)} />
           All Projects
         </a>
@@ -129,6 +129,13 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
           </div>
         ))}
       </div>
+
+      <!-- Media Preview (GIF / screenshot) -->
+      {project.gif && (
+        <div class="media-preview">
+          <img src={project.gif} alt={`${project.title} — demo`} class="preview-gif" loading="lazy" />
+        </div>
+      )}
 
       <!-- Description + Highlight -->
       <section class="description-block">
@@ -210,7 +217,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
               Open Live Demo
             </a>
           )}
-          <a href="/" class="btn btn-ghost btn-lg">
+          <a href="/projects" class="btn btn-ghost btn-lg">
             <Fragment set:html={icon('arrow-left', 16)} />
             All Projects
           </a>
@@ -222,14 +229,12 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
 </Layout>
 
 <style>
-  /* ── Shell ────────────────────────────────────── */
   .app-shell {
     display: flex;
     min-height: 100vh;
     background: #f8fbfd;
   }
 
-  /* ── Main ─────────────────────────────────────── */
   .project-main {
     flex: 1;
     min-width: 0;
@@ -237,7 +242,6 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     max-width: 860px;
   }
 
-  /* ── Breadcrumb ───────────────────────────────── */
   .breadcrumb {
     display: flex;
     align-items: center;
@@ -261,7 +265,6 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
   .breadcrumb-sep { color: #c8d8e8; }
   .breadcrumb-current { color: #4a6080; font-weight: 500; }
 
-  /* ── Hero ─────────────────────────────────────── */
   .project-hero {
     margin-bottom: 1.5rem;
   }
@@ -345,7 +348,6 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     flex-shrink: 0;
   }
 
-  /* ── Buttons ──────────────────────────────────── */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -363,32 +365,17 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     line-height: 1;
   }
 
-  .btn-primary {
-    background: #7bb3d9;
-    color: #fff;
-  }
+  .btn-primary { background: #7bb3d9; color: #fff; }
   .btn-primary:hover { background: #5f9bc8; color: #fff; }
-
-  .btn-ghost {
-    background: #eef4f9;
-    color: #4a6080;
-    border: 1px solid #dde8f0;
-  }
+  .btn-ghost { background: #eef4f9; color: #4a6080; border: 1px solid #dde8f0; }
   .btn-ghost:hover { background: #e2ecf4; color: #0f1923; }
+  .btn-lg { padding: 10px 20px; font-size: 14px; font-weight: 600; border-radius: 12px; }
 
-  .btn-lg {
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 12px;
-  }
-
-  /* ── Stats Row ────────────────────────────────── */
   .stats-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0.75rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .stat-card {
@@ -417,20 +404,32 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     letter-spacing: 0.05em;
   }
 
-  /* highlight the first stat with yellow accent */
   .stats-row .stat-card:first-child {
     background: rgba(245, 230, 66, 0.10);
     border-color: rgba(245, 200, 66, 0.35);
   }
 
-  .stats-row .stat-card:first-child .stat-value {
-    color: #6b5900;
+  .stats-row .stat-card:first-child .stat-value { color: #6b5900; }
+
+  /* ── Media Preview ─────────────────────────────── */
+  .media-preview {
+    margin-bottom: 2rem;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #dde8f0;
+    box-shadow: 0 2px 12px rgba(100,140,180,0.12);
+    background: #f8fbfd;
   }
 
-  /* ── Description ──────────────────────────────── */
-  .description-block {
-    margin-bottom: 2rem;
+  .preview-gif {
+    width: 100%;
+    display: block;
+    max-height: 480px;
+    object-fit: cover;
+    object-position: top;
   }
+
+  .description-block { margin-bottom: 2rem; }
 
   .description-text {
     font-size: 15px;
@@ -455,13 +454,8 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     line-height: 1.6;
   }
 
-  .highlight-quote svg {
-    flex-shrink: 0;
-    margin-top: 2px;
-    color: #7bb3d9;
-  }
+  .highlight-quote svg { flex-shrink: 0; margin-top: 2px; color: #7bb3d9; }
 
-  /* ── Section label ────────────────────────────── */
   .section-label {
     font-size: 11px;
     font-weight: 700;
@@ -471,16 +465,9 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     margin: 0 0 0.875rem;
   }
 
-  /* ── Stack Pills ──────────────────────────────── */
-  .stack-section {
-    margin-bottom: 2rem;
-  }
+  .stack-section { margin-bottom: 2rem; }
 
-  .stack-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+  .stack-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
   .stack-pill {
     display: inline-flex;
@@ -494,10 +481,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     border: 1px solid rgba(123, 179, 217, 0.28);
   }
 
-  /* ── Feature Grid ─────────────────────────────── */
-  .features-section {
-    margin-bottom: 2rem;
-  }
+  .features-section { margin-bottom: 2rem; }
 
   .feature-grid {
     display: grid;
@@ -551,10 +535,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     margin: 0;
   }
 
-  /* ── Architecture ─────────────────────────────── */
-  .arch-section {
-    margin-bottom: 2rem;
-  }
+  .arch-section { margin-bottom: 2rem; }
 
   .arch-flow {
     display: flex;
@@ -577,7 +558,6 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
   }
 
   .arch-number {
-    writing-mode: initial;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -592,10 +572,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     font-variant-numeric: tabular-nums;
   }
 
-  .arch-content {
-    padding: 1.1rem 1rem;
-    flex: 1;
-  }
+  .arch-content { padding: 1.1rem 1rem; flex: 1; }
 
   .arch-label {
     font-size: 12px;
@@ -606,11 +583,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     letter-spacing: 0.04em;
   }
 
-  .arch-desc {
-    font-size: 12px;
-    color: #4a6080;
-    line-height: 1.5;
-  }
+  .arch-desc { font-size: 12px; color: #4a6080; line-height: 1.5; }
 
   .arch-arrow {
     display: flex;
@@ -622,7 +595,6 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     flex-shrink: 0;
   }
 
-  /* ── Footer ───────────────────────────────────── */
   .project-footer {
     display: flex;
     align-items: center;
@@ -634,11 +606,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     margin-top: 1rem;
   }
 
-  .footer-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
+  .footer-meta { display: flex; flex-direction: column; gap: 0.4rem; }
 
   .cost-badge {
     display: inline-flex;
@@ -648,22 +616,11 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     color: #4a6080;
   }
 
-  .phase-note {
-    font-size: 12px;
-    color: #8aa0b8;
-    font-style: italic;
-  }
+  .phase-note { font-size: 12px; color: #8aa0b8; font-style: italic; }
 
-  .footer-actions {
-    display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
+  .footer-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
 
-  /* ── Responsive ───────────────────────────────── */
-  @media (max-width: 1100px) {
-    .project-main { padding: 1.5rem; }
-  }
+  @media (max-width: 1100px) { .project-main { padding: 1.5rem; } }
 
   @media (max-width: 900px) {
     .hero-top { flex-wrap: wrap; }
@@ -674,6 +631,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     .arch-arrow { display: none; }
     .arch-step { min-width: unset; border-bottom: 1px solid #dde8f0; }
     .arch-step:last-child { border-bottom: none; }
+    .preview-gif { max-height: 300px; }
   }
 
   @media (max-width: 640px) {
