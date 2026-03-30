@@ -4,7 +4,6 @@ import Sidebar from '../components/Sidebar.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import PageNav from '../components/PageNav.astro';
 
-// Portfolio data - easily customizable (v3 - Ops Stack + 4 Bullets)
 const portfolioData = {
   personal: {
     name: "Anix Lynch",
@@ -14,7 +13,7 @@ const portfolioData = {
     skills: ["Python", "GenAI & LLMs", "AWS Bedrock", "AI Agents", "RAG Systems", "Data Engineering", "Snowflake Cortex", "Vertex AI", "Multi-Cloud (AWS/GCP/Azure)", "Vector Databases", "ML Pipelines", "ETL Pipelines", "SQL", "Great Expectations", "dbt", "Phoenix", "OpenTelemetry"],
     social: {
       linkedin: "https://www.linkedin.com/in/anixlynch/",
-      github: "https://github.com/anix-lynch", 
+      github: "https://github.com/anix-lynch",
       email: "anix@anixlynch.com",
       bluesky: "https://bsky.app/profile/anixlynch.bsky.social",
       huggingface: "https://huggingface.co/spaces/anixlynch/anixlynch",
@@ -23,20 +22,15 @@ const portfolioData = {
       home: "https://anixlynch.com"
     }
   },
-  
-  // Production Ops Stack (monitoring dashboards)
+
   opsStack: [
     {
       title: "Phoenix - GenAI Ops Dashboard",
       description: "Real-time agent monitoring with trace visualization, eval scoring, latency tracking, and cost monitoring. Ragas faithfulness 0.97 (real eval, OpenAI judge, 18 pairs). 14-tool MCP orchestration. $0.02 cost per request.",
       image: "/phoenix_preview.png",
       badges: [
-        { text: "Phoenix OSS" },
-        { text: "OpenTelemetry" },
-        { text: "Ragas" },
-        { text: "Agent Monitoring" },
-        { text: "Faithfulness 0.97", variant: "hf" },
-        { text: "14 Tools", variant: "hf" }
+        { text: "Phoenix OSS" }, { text: "OpenTelemetry" }, { text: "Ragas" }, { text: "Agent Monitoring" },
+        { text: "Faithfulness 0.97", variant: "hf" }, { text: "14 Tools", variant: "hf" }
       ],
       links: {
         live: { url: "/dashboards/phoenix_dashboard.html", text: "🚀 Live Demo" },
@@ -48,11 +42,8 @@ const portfolioData = {
       description: "51 data quality rules across churn pipeline (customers, transactions, sessions, support). Covers schema validation, null checks, range validation, uniqueness, domain checks, and statistical anomalies. 100% pass rate on real CSV data.",
       image: "/ge_preview.png",
       badges: [
-        { text: "Great Expectations" },
-        { text: "47 Rules", variant: "hf" },
-        { text: "Data Quality", variant: "hf" },
-        { text: "95.7% Success", variant: "hf" },
-        { text: "12→0 Incidents", variant: "hf" }
+        { text: "Great Expectations" }, { text: "47 Rules", variant: "hf" }, { text: "Data Quality", variant: "hf" },
+        { text: "95.7% Success", variant: "hf" }, { text: "12→0 Incidents", variant: "hf" }
       ],
       links: {
         live: { url: "/dashboards/ge_dashboard.html", text: "🚀 Live Demo" },
@@ -64,11 +55,8 @@ const portfolioData = {
       description: "Column-level lineage tracking from raw data → features → model. Visualizes DAG, transformation logic, and test coverage. Shows 12 models, 47 tests passed, and 100% test coverage for production ML pipelines.",
       image: "/dbt_preview.png",
       badges: [
-        { text: "dbt" },
-        { text: "Data Lineage", variant: "hf" },
-        { text: "12 Models" },
-        { text: "47 Tests" },
-        { text: "100% Coverage", variant: "hf" }
+        { text: "dbt" }, { text: "Data Lineage", variant: "hf" }, { text: "12 Models" },
+        { text: "47 Tests" }, { text: "100% Coverage", variant: "hf" }
       ],
       links: {
         live: { url: "/dashboards/dbt_dashboard.html", text: "🚀 Live Demo" },
@@ -76,24 +64,19 @@ const portfolioData = {
       }
     }
   ],
-  
+
   projects: [
     {
       title: "Healthcare Analytics: Full-Stack BI Platform",
-      description: "End-to-end healthcare analytics stack with FastAPI (11 endpoints, 55K encounters), dbt star schema (8 marts, 3 tests), Power BI semantic model (TMDL/DAX), and XGBoost ML (0.6641 accuracy). Microsoft Fabric integration with service principal auth. All resume claims traceable to code + proof artifacts.",
+      description: "End-to-end healthcare analytics stack with FastAPI (11 endpoints, 55K encounters), dbt star schema (8 marts, 3 tests), Power BI semantic model (TMDL/DAX), and XGBoost ML (0.6641 accuracy). Microsoft Fabric integration with service principal auth.",
       image: "/healthcare-da.png",
       badges: [
-        { text: "FastAPI", variant: "hf" },
-        { text: "dbt", variant: "hf" },
-        { text: "Power BI" },
-        { text: "XGBoost" },
-        { text: "Microsoft Fabric", variant: "hf" },
-        { text: "MLflow" },
-        { text: "55K Records" }
+        { text: "FastAPI", variant: "hf" }, { text: "dbt", variant: "hf" }, { text: "Power BI" },
+        { text: "XGBoost" }, { text: "Microsoft Fabric", variant: "hf" }, { text: "MLflow" }, { text: "55K Records" }
       ],
       links: {
         live: { url: "https://app.fabric.microsoft.com/groups/2f0c0d3c-7a0a-4e4a-9e4a-7a0a4e4a9e4a/list", text: "🚀 Fabric Workspace" },
-        code: { url: "https://gitlab.com/anixlynch/healthcare-da", text: "💻 Code" }
+        code: { url: "/projects/healthcare-analytics-portfolio", text: "📄 Details" }
       }
     },
     {
@@ -101,16 +84,12 @@ const portfolioData = {
       description: "Self-healing serverless GenAI platform powered by AWS Bedrock. RAG pipeline with semantic search (Titan Embeddings), memory persistence, and cost controls ($1-2/month runtime). Part of multi-agent architecture with drift detection and auto-rollback.",
       image: "/mocktailverse_bedrock.gif",
       badges: [
-        { text: "AWS Bedrock", variant: "hf" },
-        { text: "RAG Pipeline" },
-        { text: "Self-Healing", variant: "hf" },
-        { text: "Serverless" },
-        { text: "$1-2/month" },
-        { text: "Next.js 14" }
+        { text: "AWS Bedrock", variant: "hf" }, { text: "RAG Pipeline" }, { text: "Self-Healing", variant: "hf" },
+        { text: "Serverless" }, { text: "$1-2/month" }, { text: "Next.js 14" }
       ],
       links: {
         live: { url: "https://dgco3hnxo94y8.cloudfront.net", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/mocktailverse-bedrock", text: "💻 Code" }
+        code: { url: "/projects/mocktailverse-bedrock", text: "📄 Details" }
       }
     },
     {
@@ -118,16 +97,12 @@ const portfolioData = {
       description: "14-tool MCP server for multi-agent job intelligence. Multi-agent architecture with RAG pipelines, semantic search (DynamoDB vector store), and memory persistence (ChromaDB). Ragas faithfulness 0.97 on RAG eval (real run, OpenAI judge).",
       image: "/ATS_phase2.gif",
       badges: [
-        { text: "Faithfulness 0.97", variant: "hf" },
-        { text: "14 Tools", variant: "hf" },
-        { text: "Python" },
-        { text: "LangChain" },
-        { text: "RAG" },
-        { text: "Multi-Agent" }
+        { text: "Faithfulness 0.97", variant: "hf" }, { text: "14 Tools", variant: "hf" },
+        { text: "Python" }, { text: "LangChain" }, { text: "RAG" }, { text: "Multi-Agent" }
       ],
       links: {
         live: { url: "https://ai-agent-job-intelligence-phase-2-tr8fm4dzvgzjmpd2mo63a3.streamlit.app/", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/ai-agent-job-intelligence-phase-2", text: "💻 Code" }
+        code: { url: "/projects/ai-job-intelligence", text: "📄 Details" }
       }
     },
     {
@@ -135,13 +110,8 @@ const portfolioData = {
       description: "Azure-native ETL pipeline with Blob Storage, Azure Functions, Cosmos DB, orchestrated by Azure Data Factory + dbt. Implements streaming ETL with data quality validation. Part of multi-cloud infrastructure (5 Azure services). $0/month Azure Free Tier.",
       image: "/coffeeverse.gif",
       badges: [
-        { text: "Azure", variant: "hf" },
-        { text: "Python" },
-        { text: "Cosmos DB" },
-        { text: "Data Factory" },
-        { text: "dbt", variant: "hf" },
-        { text: "Streaming ETL" },
-        { text: "Docker" }
+        { text: "Azure", variant: "hf" }, { text: "Python" }, { text: "Cosmos DB" },
+        { text: "Data Factory" }, { text: "dbt", variant: "hf" }, { text: "Streaming ETL" }, { text: "Docker" }
       ],
       links: {
         live: { url: "https://coffeeverse-jhmtq3zhd49jjr5aixnfgl.streamlit.app/", text: "🚀 Live Demo" },
@@ -153,16 +123,12 @@ const portfolioData = {
       description: "Production-grade data pipeline on GCP with BigQuery data warehouse and Cloud Run deployment. Part of multi-cloud infrastructure (3 GCP services). Serverless architecture with $1-2/month runtime costs. Real-time data processing with scalable cloud architecture.",
       image: "/cocktailverse.gif",
       badges: [
-        { text: "GCP", variant: "hf" },
-        { text: "Python" },
-        { text: "BigQuery", variant: "hf" },
-        { text: "Cloud Run" },
-        { text: "Serverless" },
-        { text: "$1-2/month" }
+        { text: "GCP", variant: "hf" }, { text: "Python" }, { text: "BigQuery", variant: "hf" },
+        { text: "Cloud Run" }, { text: "Serverless" }, { text: "$1-2/month" }
       ],
       links: {
         live: { url: "https://cocktailverse-835005185815.us-central1.run.app", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/cocktailverse", text: "💻 Code" }
+        code: { url: "/projects/cocktailverse", text: "📄 Details" }
       }
     },
     {
@@ -170,16 +136,12 @@ const portfolioData = {
       description: "AI-powered VC negotiation simulator inspired by Silicon Valley. Interactive legal tool teaching term-sheet dynamics through 19+ episode scenarios. See how VC Win, Founder Win, and Win-Win outcomes change based on deal structure.",
       image: "/piedpiper.gif",
       badges: [
-        { text: "Python" },
-        { text: "FastAPI" },
-        { text: "React" },
-        { text: "DuckDB" },
-        { text: "Claude AI", variant: "hf" },
-        { text: "Vercel" }
+        { text: "Python" }, { text: "FastAPI" }, { text: "React" },
+        { text: "DuckDB" }, { text: "Claude AI", variant: "hf" }, { text: "Vercel" }
       ],
       links: {
         live: { url: "https://public-ndx6vbur4-anix-lynchs-projects.vercel.app", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/pied-piper-legal-simulator", text: "💻 Code" }
+        code: { url: "/projects/pied-piper-legal", text: "📄 Details" }
       }
     },
     {
@@ -187,20 +149,12 @@ const portfolioData = {
       description: "Ensemble ML pipeline with time-aware validation. Production Feast feature store: 3 feature views, AWS DynamoDB online serving, offline/online parity tests. Complete ML platform with RFM analysis and data quality gates across the full pipeline.",
       image: "/churn-ml-pipeline.gif",
       badges: [
-        { text: "Ensemble ML", variant: "hf" },
-        { text: "Python" },
-        { text: "XGBoost" },
-        { text: "LightGBM" },
-        { text: "Great Expectations", variant: "hf" },
-        { text: "Time-aware Validation" },
-        { text: "Feast Feature Store", variant: "hf" },
-        { text: "DynamoDB", variant: "hf" },
-        { text: "Point-in-Time Correct" },
-        { text: "Parity Tests" }
+        { text: "Ensemble ML", variant: "hf" }, { text: "Python" }, { text: "XGBoost" },
+        { text: "LightGBM" }, { text: "Great Expectations", variant: "hf" }, { text: "Feast Feature Store", variant: "hf" }
       ],
       links: {
         live: { url: "https://churn-ml-pipeline-mwvbz4fzdvmd8yvjvz9jak.streamlit.app", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/churn-ml-pipeline", text: "💻 Code" }
+        code: { url: "/projects/churn-ml-pipeline", text: "📄 Details" }
       }
     },
     {
@@ -208,29 +162,21 @@ const portfolioData = {
       description: "Streaming feature engine for real-time fraud detection. Sub-millisecond in-memory scoring. Streaming ETL with Kinesis, data quality gates, and drift monitoring. 51 validation rules validated across pipeline datasets.",
       image: "/realtime-fraud-detection.gif",
       badges: [
-        { text: "Sub-ms Scoring", variant: "hf" },
-        { text: "Python" },
-        { text: "Kinesis", variant: "hf" },
-        { text: "Great Expectations", variant: "hf" },
-        { text: "Streaming ETL" },
-        { text: "Drift Monitoring" }
+        { text: "Sub-ms Scoring", variant: "hf" }, { text: "Python" }, { text: "Kinesis", variant: "hf" },
+        { text: "Great Expectations", variant: "hf" }, { text: "Streaming ETL" }, { text: "Drift Monitoring" }
       ],
       links: {
         live: { url: "https://realtime-fraud-detection-x4uqwkrfnk8g2p567i596x.streamlit.app", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/realtime-fraud-detection", text: "💻 Code" }
+        code: { url: "/projects/realtime-fraud-detection", text: "📄 Details" }
       }
     },
     {
       title: "Multimodal GenAI Studio",
-      description: "Comprehensive multimodal AI application combining text generation, image creation, audio processing, and creative pipelines. Uses Gemini, DALL-E, Whisper, and TTS models for creative content generation. Showcases IBM 'Build Multimodal Generative AI Applications' certification.",
+      description: "Comprehensive multimodal AI application combining text generation, image creation, audio processing, and creative pipelines. Uses Gemini, DALL-E, Whisper, and TTS models for creative content generation.",
       image: "/multimodal.gif",
       badges: [
-        { text: "Python" },
-        { text: "Streamlit" },
-        { text: "Gemini", variant: "hf" },
-        { text: "DALL-E", variant: "hf" },
-        { text: "Whisper", variant: "hf" },
-        { text: "Multimodal", variant: "hf" }
+        { text: "Python" }, { text: "Streamlit" }, { text: "Gemini", variant: "hf" },
+        { text: "DALL-E", variant: "hf" }, { text: "Whisper", variant: "hf" }, { text: "Multimodal", variant: "hf" }
       ],
       links: {
         live: { url: "https://multimodal-genai-studio.streamlit.app", text: "🚀 Live Demo" },
@@ -242,16 +188,12 @@ const portfolioData = {
       description: "SQL generation with RAG and semantic search. Natural language to SQL translation powered by ChromaDB vector database and LangChain agents. Part of multi-agent architecture demonstrating memory persistence and tool orchestration.",
       image: "/bi_agent.gif",
       badges: [
-        { text: "Python" },
-        { text: "SQL Generation", variant: "hf" },
-        { text: "RAG", variant: "hf" },
-        { text: "ChromaDB" },
-        { text: "LangChain" },
-        { text: "Multi-Agent" }
+        { text: "Python" }, { text: "SQL Generation", variant: "hf" }, { text: "RAG", variant: "hf" },
+        { text: "ChromaDB" }, { text: "LangChain" }, { text: "Multi-Agent" }
       ],
       links: {
         live: { url: "https://ai-bi-agent.streamlit.app", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/ai-bi-agent", text: "💻 Code" }
+        code: { url: "/projects/ai-bi-agent", text: "📄 Details" }
       }
     },
     {
@@ -259,32 +201,20 @@ const portfolioData = {
       description: "PE/VC financial modeling platform with VC cap table analysis (Seed → Series B), LP/GP fund economics, and Python-powered Excel automation using openpyxl.",
       image: "/excel-automation.gif",
       badges: [
-        { text: "Python" },
-        { text: "Streamlit" },
-        { text: "openpyxl", variant: "hf" },
-        { text: "Finance", variant: "hf" }
+        { text: "Python" }, { text: "Streamlit" }, { text: "openpyxl", variant: "hf" }, { text: "Finance", variant: "hf" }
       ],
       links: {
         live: { url: "https://huggingface.co/spaces/anixlynch/financial-modeling-automation", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/financial-modeling-automation", text: "💻 Code" }
+        code: { url: "/projects/financial-modeling-automation", text: "📄 Details" }
       }
     },
     {
       title: "AWS Data Engineering Pipeline (DeepLearning.AI Cert)",
-      description: "Production-grade data engineering infrastructure on AWS. Built ETL pipelines with Glue, streaming with Kinesis, data quality with Great Expectations, and orchestration with Airflow. Terraform-managed infrastructure: EC2, RDS, S3, Lambda, Athena, CloudWatch. 63 Terraform modules across 10 AWS services.",
+      description: "Production-grade data engineering infrastructure on AWS. Built ETL pipelines with Glue, streaming with Kinesis, data quality with Great Expectations, and orchestration with Airflow. Terraform-managed infrastructure: EC2, RDS, S3, Lambda, Athena, CloudWatch.",
       image: "/deeplearning-ai-cert.png",
       badges: [
-        { text: "AWS Glue", variant: "hf" },
-        { text: "Kinesis", variant: "hf" },
-        { text: "Terraform", variant: "hf" },
-        { text: "EC2" },
-        { text: "RDS" },
-        { text: "S3" },
-        { text: "Lambda" },
-        { text: "Athena" },
-        { text: "Airflow", variant: "hf" },
-        { text: "Great Expectations", variant: "hf" },
-        { text: "Python" }
+        { text: "AWS Glue", variant: "hf" }, { text: "Kinesis", variant: "hf" }, { text: "Terraform", variant: "hf" },
+        { text: "EC2" }, { text: "RDS" }, { text: "S3" }, { text: "Lambda" }, { text: "Airflow", variant: "hf" }
       ],
       links: {
         code: { url: "https://github.com/anix-lynch/deeplearning-ai-data-engineering-certificate", text: "💻 Code" }
@@ -292,57 +222,44 @@ const portfolioData = {
     },
     {
       title: "Network Intelligence Map",
-      description: "Geospatial network analysis platform mapping Silicon Beach tech ecosystem. Visualizes company relationships, commute patterns, and network connections through AI-powered Snowflake Cortex intelligence. Built with Snowflake, Streamlit, and Folium.",
+      description: "Geospatial network analysis platform mapping Silicon Beach tech ecosystem. Visualizes company relationships, commute patterns, and network connections through AI-powered Snowflake Cortex intelligence.",
       image: "/silicon-beach.gif",
       badges: [
-        { text: "Python" },
-        { text: "Streamlit" },
-        { text: "Snowflake", variant: "hf" },
-        { text: "Cortex", variant: "hf" },
-        { text: "Folium" },
-        { text: "Network Analysis" },
-        { text: "Geospatial Intelligence" },
-        { text: "Graph Analytics" },
-        { text: "Data Visualization" },
-        { text: "Interactive Maps" },
-        { text: "Data Engineering" },
-        { text: "Full-Stack" }
+        { text: "Python" }, { text: "Streamlit" }, { text: "Snowflake", variant: "hf" },
+        { text: "Cortex", variant: "hf" }, { text: "Folium" }, { text: "Geospatial Intelligence" }
       ],
       links: {
         live: { url: "https://github.com/anix-lynch/silicon-beach-ai-jobs", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/silicon-beach-ai-jobs", text: "💻 Code" }
+        code: { url: "/projects/silicon-beach-ai-jobs", text: "📄 Details" }
       }
     },
     {
       title: "Marketing Analytics Visualization",
-      description: "Professional marketing analytics dashboard with real-time KPIs, campaign performance tracking, and cross-platform attribution insights. Built with modern data visualization techniques for marketing professionals.",
+      description: "Professional marketing analytics dashboard with real-time KPIs, campaign performance tracking, and cross-platform attribution insights. Built with modern data visualization techniques.",
       image: "/marketing_etl.gif",
       badges: [
-        { text: "Python" },
-        { text: "Streamlit" },
-        { text: "ECharts", variant: "hf" },
-        { text: "Pandas" },
-        { text: "DuckDB", variant: "hf" }
+        { text: "Python" }, { text: "Streamlit" }, { text: "ECharts", variant: "hf" },
+        { text: "Pandas" }, { text: "DuckDB", variant: "hf" }
       ],
       links: {
         live: { url: "https://marketing-analytics-etl.streamlit.app/", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/marketing-analytics-etl", text: "💻 Code" }
+        code: { url: "/projects/marketing-analytics-etl", text: "📄 Details" }
       }
     }
   ]
 };
 ---
 
-<Layout 
+<Layout
   title="Anix Lynch — AI Data Engineer & Architect | Portfolio"
-  description="Explore the portfolio of Anix Lynch - AI Data Engineer specializing in machine learning, data visualization, and cloud solutions. Projects in AWS, GCP, Azure, and Snowflake."
+  description="Explore the portfolio of Anix Lynch - AI Data Engineer specializing in machine learning, data visualization, and cloud solutions."
   image="/profile-photo.jpg"
 >
   <Sidebar {...portfolioData.personal} />
-  
+
   <main class="main">
     <PageNav showBack={false} />
-    
+
     <!-- Ops Stack Section -->
     <section style="margin-bottom: 3rem;">
       <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#333;">🔬 Production Ops Stack</h2>
@@ -359,7 +276,7 @@ const portfolioData = {
       <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#5BA3C5;">🌐 Multi-Cloud Infrastructure</h2>
       <p style="color:#666;margin-bottom:2rem;line-height:1.6;">Built pipelines on AWS, Azure, and GCP. Everything's Terraform-managed and runs serverless for ~$1-2/month.</p>
       <div class="projects">
-        {portfolioData.projects.filter(p => 
+        {portfolioData.projects.filter(p =>
           p.title.includes("AWS Data Engineering") ||
           p.title.includes("Cocktailverse") ||
           p.title.includes("Network Intelligence")
@@ -374,8 +291,8 @@ const portfolioData = {
       <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#4FB3C8;">🎯 AI-DE Multi-Pain</h2>
       <p style="color:#666;margin-bottom:2rem;line-height:1.6;">The messy stuff: point-in-time correctness, training-serving parity, streaming ETL, data quality gates. 51 real DQ rules, 100% pass rate. Sub-ms in-memory fraud scoring.</p>
       <div class="projects">
-        {portfolioData.projects.filter(p => 
-          p.title.includes("Churn ML") || 
+        {portfolioData.projects.filter(p =>
+          p.title.includes("Churn ML") ||
           p.title.includes("Fraud Detection") ||
           p.title.includes("Coffeeverse")
         ).map(project => (
@@ -389,8 +306,8 @@ const portfolioData = {
       <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#5DC1D8;">🤖 GenAI Multi-Pain</h2>
       <p style="color:#666;margin-bottom:2rem;line-height:1.6;">Built agents that don't break at 3 AM. RAG pipelines, 14-tool MCP orchestration, Ragas faithfulness 0.97 (real eval). Runs serverless for $1-2/month.</p>
       <div class="projects">
-        {portfolioData.projects.filter(p => 
-          p.title.includes("AI Agent Job") || 
+        {portfolioData.projects.filter(p =>
+          p.title.includes("AI Agent Job") ||
           p.title.includes("Mocktailverse") ||
           p.title.includes("AI Business Intelligence") ||
           p.title.includes("Multimodal GenAI")
@@ -405,8 +322,8 @@ const portfolioData = {
       <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#A8C5D9;">💼 Domain Expertise</h2>
       <p style="color:#666;margin-bottom:2rem;line-height:1.6;">Ex-VC/PE → AI builder. Built production tools for legal (VC term sheets), finance (cap table modeling), marketing (campaign analytics), and enterprise BI. Business context = better code.</p>
       <div class="projects">
-        {portfolioData.projects.filter(p => 
-          p.title.includes("Pied Piper") || 
+        {portfolioData.projects.filter(p =>
+          p.title.includes("Pied Piper") ||
           p.title.includes("Financial") ||
           p.title.includes("Marketing")
         ).map(project => (
