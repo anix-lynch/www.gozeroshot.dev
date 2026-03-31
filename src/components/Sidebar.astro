@@ -9,251 +9,251 @@ export interface SidebarProps {
     linkedin?: string;
     github?: string;
     email?: string;
-    resume?: string;
     bluesky?: string;
-    website?: string;
-    portfolio?: string;
-    huggingface?: string;
-    kaggle?: string;
     medium?: string;
     hashnode?: string;
     home?: string;
   };
 }
 
-const { 
-  name = "Your Name",
-  tagline = "AI Data Engineer, AI Architect\\nLos Angeles, CA",
-  avatar = "👨‍💻",
-  about = "Data engineer with multi-cloud experience.",
-  skills = [],
-  social = {}
+const {
+  name    = "Anix Lynch",
+  tagline = "AI Data Engineer · GenAI Architect\nLos Angeles, CA",
+  avatar  = "/profile-photo.jpg",
+  about   = "",
+  social  = {}
 } = Astro.props;
 ---
 
 <aside class="sidebar">
-  <div class="avatar">
+  <!-- Avatar -->
+  <div class="avatar-wrap">
     {avatar && (avatar.startsWith('http') || avatar.startsWith('/')) ? (
-      <img src={avatar} alt={name} />
+      <img class="avatar" src={avatar} alt={name} />
     ) : (
-      <span>{avatar}</span>
+      <div class="avatar avatar-emoji">{avatar}</div>
     )}
   </div>
-  {name && (
-    <div>
-      <div class="name">{name}</div>
-      <div class="tagline" set:html={tagline.replace(/\n/g, '<br/>')}></div>
-    </div>
-  )}
 
-  <!-- Social -->
-  <div class="social">
+  <!-- Identity -->
+  <div class="identity">
+    <div class="sidebar-name">{name}</div>
+    <div class="sidebar-tagline" set:html={tagline.replace(/\n/g, '<br/>')} />
+  </div>
+
+  <!-- Social icons row -->
+  <div class="social-row">
     {social.linkedin && (
-      <a href={social.linkedin} target="_blank" class="social-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <a href={social.linkedin} target="_blank" class="s-icon" title="LinkedIn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
         </svg>
-        LinkedIn
       </a>
     )}
     {social.github && (
-      <a href={social.github} target="_blank" class="social-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <a href={social.github} target="_blank" class="s-icon" title="GitHub">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
         </svg>
-        GitHub
       </a>
     )}
     {social.bluesky && (
-      <a href={social.bluesky} target="_blank" class="social-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <a href={social.bluesky} target="_blank" class="s-icon" title="Bluesky">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/>
         </svg>
-        Bluesky
-      </a>
-    )}
-    {social.huggingface && (
-      <a href={social.huggingface} target="_blank" class="social-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2z"/>
-          <circle cx="8.5" cy="9.5" r="1.5"/>
-          <circle cx="15.5" cy="9.5" r="1.5"/>
-          <path d="M8 14.5c0-1.5 1.5-3 4-3s4 1.5 4 3"/>
-        </svg>
-        HuggingFace
       </a>
     )}
     {social.medium && (
-      <a href={social.medium} target="_blank" class="social-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <a href={social.medium} target="_blank" class="s-icon" title="Medium">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
           <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
         </svg>
-        Medium
-      </a>
-    )}
-    {social.email && (
-      <a href={`mailto:${social.email}`} class="social-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-        Email
       </a>
     )}
     {social.hashnode && (
-      <a href={social.hashnode} target="_blank" class="social-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <a href={social.hashnode} target="_blank" class="s-icon" title="Hashnode">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
           <path d="M22.351 8.019l-6.37-6.37a5.63 5.63 0 0 0-7.962 0l-6.37 6.37a5.63 5.63 0 0 0 0 7.962l6.37 6.37a5.63 5.63 0 0 0 7.962 0l6.37-6.37a5.63 5.63 0 0 0 0-7.962zM12 15.953a3.953 3.953 0 1 1 0-7.906 3.953 3.953 0 0 1 0 7.906z"/>
         </svg>
-        Hashnode
       </a>
     )}
-    <a href="/certifications" class="social-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-2.08-2.51c-.29-.35-.77-.35-1.06 0-.29.35-.29.92 0 1.27l2.61 3.13c.29.35.77.35 1.06 0L15.56 9.9c.29-.35.29-.92 0-1.27-.29-.35-.77-.35-1.06 0z"/>
-      </svg>
-      Certifications
-    </a>
-    {social.home && (
-      <a href={social.home} target="_blank" class="social-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    {social.email && (
+      <a href={`mailto:${social.email}`} class="s-icon" title="Email">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
         </svg>
-        Home
       </a>
     )}
-    <a href="/projects" class="social-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M3 3h7v7H3V3zm0 11h7v7H3v-7zm11-11h7v7h-7V3zm0 11h7v7h-7v-7z"/>
+  </div>
+
+  <!-- Nav links -->
+  <nav class="sidebar-nav">
+    <a href="/" class="nav-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      Home
+    </a>
+    <a href="/projects" class="nav-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+        <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
       </svg>
       Projects
     </a>
-  </div>
+    <a href="/certifications" class="nav-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+      </svg>
+      Certifications
+    </a>
+  </nav>
 
   <!-- About -->
-  <div class="about">
-    <h3>About</h3>
-    <p>{about}</p>
-  </div>
-
-  <!-- Skills -->
-  <div>
-    <strong>Skills</strong><br/>
-    {skills.map(skill => (
-      <a href={`#skill-${skill.toLowerCase().replace(/\s+/g, '-')}`} class="skill-chip">
-        {skill}
-      </a>
-    ))}
-  </div>
+  {about && (
+    <div class="sidebar-about">
+      <div class="about-label">About</div>
+      <p class="about-text">{about}</p>
+    </div>
+  )}
 </aside>
 
 <style>
   .sidebar {
-    width: 280px;
-    padding: 2rem 1.5rem;
-    background: #f8f9fa;
-    border-radius: 8px;
+    width: 210px;
+    min-width: 210px;
+    padding: 1.75rem 1.25rem 2rem;
+    background: #ffffff;
+    border-right: 1px solid #dde8f0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
   }
+
+  /* Slim scrollbar */
+  .sidebar::-webkit-scrollbar { width: 3px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: #dde8f0; border-radius: 999px; }
+
+  /* Avatar */
+  .avatar-wrap { display: flex; justify-content: center; }
 
   .avatar {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 1.5rem;
-    background: #e0e0e0;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    font-size: 3rem;
-    border: 3px solid #8cb0d4;
-    box-shadow: 0 4px 12px rgba(140, 176, 212, 0.3);
-  }
-
-  .avatar img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
+    border: 2px solid #dde8f0;
     display: block;
   }
 
-  .name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+  .avatar-emoji {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef4f9;
+    font-size: 2rem;
   }
 
-  .tagline {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 1.5rem;
+  /* Identity */
+  .sidebar-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f1923;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+
+  .sidebar-tagline {
+    font-size: 11.5px;
+    color: #8aa0b8;
+    text-align: center;
     line-height: 1.5;
   }
 
-  .social {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .social-link {
-    display: inline-flex;
+  /* Social icons */
+  .social-row {
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    padding: 0.5rem 0.6rem;
-    background: #8cb0d4;
-    color: white;
+    flex-wrap: wrap;
+  }
+
+  .s-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: #eef4f9;
+    color: #4a6080;
     text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    transition: background 0.2s;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
+    border: 1px solid #dde8f0;
+    transition: all 0.15s;
+    flex-shrink: 0;
   }
 
-  .social-link:hover {
-    background: #6a8fb8;
+  .s-icon:hover {
+    background: #7bb3d9;
+    color: #fff;
+    border-color: #7bb3d9;
   }
 
-  .about {
-    margin-bottom: 1.5rem;
+  /* Nav */
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 
-  .about h3 {
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
-    font-weight: 600;
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #4a6080;
+    text-decoration: none;
+    transition: all 0.15s;
   }
 
-  .about p {
-    font-size: 0.9rem;
-    color: #666;
+  .nav-link:hover {
+    background: #eef4f9;
+    color: #0f1923;
+  }
+
+  .nav-link svg { flex-shrink: 0; opacity: 0.7; }
+
+  /* About */
+  .about-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #b0c8e0;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-text {
+    font-size: 12px;
+    color: #4a6080;
     line-height: 1.6;
+    margin: 0;
   }
 
-  .skill-chip {
-    display: inline-block;
-    padding: 0.4rem 0.8rem;
-    margin: 0.3rem 0.3rem 0.3rem 0;
-    background: #e7f3ff;
-    color: #007bff;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    transition: background 0.2s;
-  }
-
-  .skill-chip:hover {
-    background: #b3d9ff;
-  }
-
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 100%;
-      margin-bottom: 2rem;
-    }
+  @media (max-width: 1024px) {
+    .sidebar { display: none; }
   }
 </style>
