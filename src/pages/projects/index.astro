@@ -12,6 +12,13 @@ const laneColors = {
   "ML":       { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
 };
 
+const laneThumbBg = {
+  "GenAI":    "#ddeef8",
+  "n8n":      "#fdf6d8",
+  "Data Eng": "#ece6f8",
+  "ML":       "#dff5e5",
+};
+
 const counts = lanes.reduce((acc, lane) => {
   acc[lane] = lane === "All" ? projects.length : projects.filter(p => p.lane === lane).length;
   return acc;
@@ -107,6 +114,7 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
       <div class="project-grid" id="project-grid">
         {projects.map(project => {
           const lc = laneColors[project.lane] || laneColors["GenAI"];
+          const thumbBg = laneThumbBg[project.lane] || laneThumbBg["GenAI"];
           return (
             <a
               href={`/projects/${project.slug}`}
@@ -116,45 +124,59 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
               data-desc={project.tagline.toLowerCase()}
               data-stack={project.stack.join(' ').toLowerCase()}
             >
-              <div class="card-top">
-                <div class="card-icon-box">
-                  <Fragment set:html={icon(project.icon, 20)} />
+              <!-- GIF / image thumbnail -->
+              {project.gif ? (
+                <div class="card-thumb">
+                  <img src={project.gif} alt={project.title} loading="lazy" />
                 </div>
-                <div class="card-badges">
-                  <span class="card-lane-badge"
-                    style={`background:${lc.bg};color:${lc.text};border-color:${lc.border}`}>
-                    {project.lane}
-                  </span>
-                  {project.live && (
-                    <span class="live-badge">
-                      <span class="live-dot"></span>
-                      Live Demo
+              ) : (
+                <div class="card-thumb card-thumb-placeholder" style={`background:${thumbBg}`}>
+                  <span style={`color:${lc.text};opacity:0.5`} set:html={icon(project.icon, 36)} />
+                </div>
+              )}
+
+              <!-- Card content -->
+              <div class="card-content">
+                <div class="card-top">
+                  <div class="card-icon-box">
+                    <Fragment set:html={icon(project.icon, 20)} />
+                  </div>
+                  <div class="card-badges">
+                    <span class="card-lane-badge"
+                      style={`background:${lc.bg};color:${lc.text};border-color:${lc.border}`}>
+                      {project.lane}
                     </span>
-                  )}
+                    {project.live && (
+                      <span class="live-badge">
+                        <span class="live-dot"></span>
+                        Live
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <div class="card-body">
-                <h2 class="card-title">{project.title}</h2>
-                <p class="card-desc">{project.tagline}</p>
-              </div>
-
-              <div class="card-footer">
-                <div class="card-stack-row">
-                  {project.stack.slice(0, 4).map(tech => (
-                    <span class="mini-pill">{tech}</span>
-                  ))}
-                  {project.stack.length > 4 && (
-                    <span class="mini-pill mini-pill-more">+{project.stack.length - 4}</span>
-                  )}
+                <div class="card-body">
+                  <h2 class="card-title">{project.title}</h2>
+                  <p class="card-desc">{project.tagline}</p>
                 </div>
-                <div class="card-stat">
-                  {project.stats[0] && (
-                    <span class="card-stat-value">{project.stats[0].value}</span>
-                  )}
-                  {project.stats[0] && (
-                    <span class="card-stat-label">{project.stats[0].label}</span>
-                  )}
+
+                <div class="card-footer">
+                  <div class="card-stack-row">
+                    {project.stack.slice(0, 3).map(tech => (
+                      <span class="mini-pill">{tech}</span>
+                    ))}
+                    {project.stack.length > 3 && (
+                      <span class="mini-pill mini-pill-more">+{project.stack.length - 3}</span>
+                    )}
+                  </div>
+                  <div class="card-stat">
+                    {project.stats[0] && (
+                      <span class="card-stat-value">{project.stats[0].value}</span>
+                    )}
+                    {project.stats[0] && (
+                      <span class="card-stat-label">{project.stats[0].label}</span>
+                    )}
+                  </div>
                 </div>
               </div>
             </a>
@@ -209,7 +231,6 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
     }
   }
 
-  // Filter pills
   document.getElementById('filter-pills')?.addEventListener('click', (e) => {
     const pill = e.target.closest('.filter-pill');
     if (!pill) return;
@@ -219,13 +240,11 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
     applyFilters();
   });
 
-  // Search
   searchInput?.addEventListener('input', (e) => {
     searchQuery = e.target.value.toLowerCase().trim();
     applyFilters();
   });
 
-  // Reset
   window.resetFilters = function() {
     activeFilter = 'All';
     searchQuery = '';
@@ -238,21 +257,18 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
 </script>
 
 <style>
-  /* ── Shell ─────────────────────────────────────── */
   .app-shell {
     display: flex;
     min-height: 100vh;
-    background: #f8fbfd;
+    background: var(--color-surface-1, #f8fbfd);
   }
 
-  /* ── Main ──────────────────────────────────────── */
   .directory-main {
     flex: 1;
     min-width: 0;
     padding: 2rem 2.5rem 4rem;
   }
 
-  /* ── Page header ───────────────────────────────── */
   .page-header {
     display: flex;
     align-items: flex-end;
@@ -275,7 +291,7 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
     margin: 0;
   }
 
-  /* ── Filter bar ────────────────────────────────── */
+  /* Filter bar */
   .filter-bar {
     display: flex;
     align-items: center;
@@ -343,29 +359,15 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
     line-height: 1;
   }
 
-  .filter-pill:hover {
-    background: #eef4f9;
-    color: #0f1923;
-    border-color: #b8d4ec;
-  }
-
-  .filter-pill.active {
-    background: #7bb3d9;
-    color: #fff;
-    border-color: #7bb3d9;
-  }
-
-  .filter-pill.active .pill-count {
-    background: rgba(255,255,255,0.25);
-    color: #fff;
-  }
+  .filter-pill:hover { background: #eef4f9; color: #0f1923; border-color: #b8d4ec; }
+  .filter-pill.active { background: #7bb3d9; color: #fff; border-color: #7bb3d9; }
+  .filter-pill.active .pill-count { background: rgba(255,255,255,0.25); color: #fff; }
 
   .pill-icon { display: flex; align-items: center; opacity: 0.8; }
 
   .pill-count {
     font-size: 10.5px;
     font-weight: 700;
-    font-variant-numeric: tabular-nums;
     background: #eef4f9;
     color: #8aa0b8;
     padding: 1px 6px;
@@ -374,23 +376,22 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
     text-align: center;
   }
 
-  /* ── Project Grid ──────────────────────────────── */
+  /* Grid */
   .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
     gap: 1rem;
   }
 
-  /* ── Project Card ──────────────────────────────── */
+  /* Card */
   .project-card {
     background: #fff;
     border: 1px solid #dde8f0;
     border-radius: 14px;
-    padding: 1.25rem;
+    overflow: hidden;
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    gap: 0.875rem;
     box-shadow: 0 1px 3px rgba(100,140,180,0.07);
     transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
     cursor: pointer;
@@ -402,7 +403,43 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
     border-color: #b8d4ec;
   }
 
-  /* ── Card top ────── */
+  /* Thumbnail */
+  .card-thumb {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover .card-thumb img {
+    transform: scale(1.03);
+  }
+
+  .card-thumb-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Content */
+  .card-content {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    flex: 1;
+  }
+
+  /* Card top */
   .card-top {
     display: flex;
     align-items: flex-start;
@@ -468,7 +505,7 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
     50% { opacity: 0.4; }
   }
 
-  /* ── Card body ────── */
+  /* Card body */
   .card-body { flex: 1; }
 
   .card-title {
@@ -490,7 +527,7 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
     overflow: hidden;
   }
 
-  /* ── Card footer ────── */
+  /* Card footer */
   .card-footer {
     display: flex;
     align-items: center;
@@ -518,10 +555,7 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
     white-space: nowrap;
   }
 
-  .mini-pill-more {
-    background: #eef4f9;
-    color: #8aa0b8;
-  }
+  .mini-pill-more { background: #eef4f9; color: #8aa0b8; }
 
   .card-stat {
     display: flex;
@@ -547,7 +581,7 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
     margin-top: 2px;
   }
 
-  /* ── Empty state ───────────────────────────────── */
+  /* Empty state */
   .empty-state {
     flex-direction: column;
     align-items: center;
@@ -559,12 +593,7 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
   }
 
   .empty-icon { opacity: 0.35; }
-
-  .empty-state p {
-    font-size: 14px;
-    color: #8aa0b8;
-    margin: 0;
-  }
+  .empty-state p { font-size: 14px; color: #8aa0b8; margin: 0; }
 
   .btn-reset {
     padding: 6px 16px;
@@ -580,10 +609,8 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
 
   .btn-reset:hover { background: #eef4f9; }
 
-  /* ── Responsive ────────────────────────────────── */
-  @media (max-width: 1024px) {
-    .directory-main { padding: 1.5rem; }
-  }
+  /* Responsive */
+  @media (max-width: 1024px) { .directory-main { padding: 1.5rem; } }
 
   @media (max-width: 768px) {
     .project-grid { grid-template-columns: 1fr; }
