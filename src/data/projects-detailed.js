@@ -78,41 +78,6 @@ export const projects = [
   },
 
   {
-    slug: "n8n-automation-kit",
-    title: "n8n Upwork Automation Kit",
-    tagline: "3 production-ready n8n workflows — email to Airtable, lead enrichment, RE CRM with Claude AI.",
-    lane: "n8n",
-    laneColor: "#f5c842",
-    status: "Production",
-    github: "https://github.com/anix-lynch/n8n-upwork-automation-kit",
-    live: null,
-    gif: null,
-    icon: "workflow",
-    description: "Three production-grade n8n automation workflows built for Upwork clients. Connects Gmail, Airtable, Hunter.io, and Claude AI into hands-free pipelines. Each workflow is deployable from JSON — import, configure credentials, run.",
-    highlight: "Production n8n JSON you can import, configure, and run in 10 minutes. Not demos — actual client deliverables.",
-    stats: [
-      { value: "3", label: "Production Workflows" },
-      { value: "n8n", label: "Orchestration" },
-      { value: "Claude", label: "AI Enrichment" },
-      { value: "0", label: "Manual Steps" }
-    ],
-    stack: ["n8n", "Claude AI", "Airtable", "Gmail API", "Hunter.io", "Apollo", "Webhooks", "JSON"],
-    features: [
-      { icon: "mail", title: "Email → Airtable", desc: "Gmail trigger → parse → Airtable record. Zero manual data entry for inbound leads." },
-      { icon: "user", title: "Lead Enrichment", desc: "Apollo + Hunter.io verification pipeline. Enriches contacts before they hit your CRM." },
-      { icon: "building", title: "RE CRM Notifier", desc: "Real estate CRM with Claude AI for property description generation and automated follow-up routing." }
-    ],
-    architecture: [
-      { step: "01", label: "Trigger", desc: "Gmail / Webhook / Schedule → n8n workflow starts" },
-      { step: "02", label: "Enrich", desc: "Apollo + Hunter.io APIs pull company and contact data" },
-      { step: "03", label: "AI Layer", desc: "Claude AI personalizes messages or generates descriptions" },
-      { step: "04", label: "Store + Notify", desc: "Airtable record created → Slack/email notification sent" }
-    ],
-    cost: "$0 (n8n self-hosted). Claude API minimal per-workflow cost.",
-    phase: null
-  },
-
-  {
     slug: "churn-ml-pipeline",
     title: "Churn ML Pipeline",
     tagline: "End-to-end customer churn prediction with FastAPI serving and Streamlit dashboard.",
