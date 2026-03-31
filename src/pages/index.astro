@@ -1,335 +1,609 @@
 ---
 import Layout from '../components/Layout.astro';
 import Sidebar from '../components/Sidebar.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import PageNav from '../components/PageNav.astro';
+import { projects } from '../data/projects-detailed.js';
 
-const portfolioData = {
-  personal: {
-    name: "Anix Lynch",
-    tagline: "AI Data Engineer, AI Architect\nLos Angeles, CA",
-    avatar: "/profile-photo.jpg",
-    about: "AI Data Engineer specializing in production ML systems and multi-cloud pipelines. 47 Great Expectations data quality rules, 14-tool MCP server for multi-agent orchestration, $1-2/month serverless runtime. Built monitoring dashboards (Phoenix, Great Expectations, dbt) for production observability. I've written 124 technical articles on Medium and 197 posts on Hashnode — because the best documentation is written by someone who hit the same wall you did.",
-    skills: ["Python", "GenAI & LLMs", "AWS Bedrock", "AI Agents", "RAG Systems", "Data Engineering", "Snowflake Cortex", "Vertex AI", "Multi-Cloud (AWS/GCP/Azure)", "Vector Databases", "ML Pipelines", "ETL Pipelines", "SQL", "Great Expectations", "dbt", "Phoenix", "OpenTelemetry"],
-    social: {
-      linkedin: "https://www.linkedin.com/in/anixlynch/",
-      github: "https://github.com/anix-lynch",
-      email: "anix@anixlynch.com",
-      bluesky: "https://bsky.app/profile/anixlynch.bsky.social",
-      huggingface: "https://huggingface.co/spaces/anixlynch/anixlynch",
-      medium: "https://medium.com/@anixlynch",
-      hashnode: "https://anixblog.hashnode.dev",
-      home: "https://anixlynch.com"
-    }
-  },
+// Hand-picked featured — one per lane, all have GIFs
+const featuredSlugs = ["ai-job-intelligence", "mocktailverse-bedrock", "churn-ml-pipeline", "silicon-beach-ai-jobs"];
+const featured = featuredSlugs.map(slug => projects.find(p => p.slug === slug)).filter(Boolean);
 
-  opsStack: [
-    {
-      title: "Phoenix - GenAI Ops Dashboard",
-      description: "Real-time agent monitoring with trace visualization, eval scoring, latency tracking, and cost monitoring. Ragas faithfulness eval on RAG benchmark samples. 14-tool MCP orchestration. $0.02 cost per request.",
-      image: "/phoenix_preview.png",
-      badges: [
-        { text: "Phoenix OSS" }, { text: "OpenTelemetry" }, { text: "Ragas" }, { text: "Agent Monitoring" },
-        { text: "14 Tools", variant: "hf" }
-      ],
-      links: {
-        live: { url: "/dashboards/phoenix_dashboard.html", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/kpi-evidence", text: "💻 Evidence" }
-      }
-    },
-    {
-      title: "Great Expectations - Data Quality Gates",
-      description: "47 data quality rules across churn pipeline (customers, transactions, sessions, support). Covers schema validation, null checks, range validation, uniqueness, domain checks, and statistical anomalies.",
-      image: "/ge_preview.png",
-      badges: [
-        { text: "Great Expectations" }, { text: "47 Rules", variant: "hf" }, { text: "Data Quality", variant: "hf" },
-        { text: "12→0 Incidents", variant: "hf" }
-      ],
-      links: {
-        live: { url: "/dashboards/ge_dashboard.html", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/kpi-evidence", text: "💻 Evidence" }
-      }
-    },
-    {
-      title: "dbt Docs - Data Lineage Tracker",
-      description: "Column-level lineage tracking from raw data → features → model. Visualizes DAG, transformation logic, and test coverage. Shows 12 models, 47 tests passed, and 100% test coverage for production ML pipelines.",
-      image: "/dbt_preview.png",
-      badges: [
-        { text: "dbt" }, { text: "Data Lineage", variant: "hf" }, { text: "12 Models" },
-        { text: "47 Tests" }, { text: "100% Coverage", variant: "hf" }
-      ],
-      links: {
-        live: { url: "/dashboards/dbt_dashboard.html", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/coffeeverse", text: "💻 Code" }
-      }
-    }
-  ],
-
-  projects: [
-    {
-      title: "Healthcare Analytics: Full-Stack BI Platform",
-      description: "End-to-end healthcare analytics stack with FastAPI (11 endpoints, 55K encounters), dbt star schema (8 marts, 3 tests), Power BI semantic model (TMDL/DAX), and XGBoost ML (0.6641 accuracy). Microsoft Fabric integration with service principal auth.",
-      image: "/healthcare-da.png",
-      badges: [
-        { text: "FastAPI", variant: "hf" }, { text: "dbt", variant: "hf" }, { text: "Power BI" },
-        { text: "XGBoost" }, { text: "Microsoft Fabric", variant: "hf" }, { text: "MLflow" }, { text: "55K Records" }
-      ],
-      links: {
-        live: { url: "https://app.fabric.microsoft.com/groups/2f0c0d3c-7a0a-4e4a-9e4a-7a0a4e4a9e4a/list", text: "🚀 Fabric Workspace" },
-        code: { url: "/projects/healthcare-analytics-portfolio", text: "📄 Details" }
-      }
-    },
-    {
-      title: "Mocktailverse: Enterprise GenAI Platform",
-      description: "Self-healing serverless GenAI platform powered by AWS Bedrock. RAG pipeline with semantic search (Titan Embeddings), memory persistence, and cost controls ($1-2/month runtime). Part of multi-agent architecture with drift detection and auto-rollback.",
-      image: "/mocktailverse_bedrock.gif",
-      badges: [
-        { text: "AWS Bedrock", variant: "hf" }, { text: "RAG Pipeline" }, { text: "Self-Healing", variant: "hf" },
-        { text: "Serverless" }, { text: "$1-2/month" }, { text: "Next.js 14" }
-      ],
-      links: {
-        live: { url: "https://dgco3hnxo94y8.cloudfront.net", text: "🚀 Live Demo" },
-        code: { url: "/projects/mocktailverse-bedrock", text: "📄 Details" }
-      }
-    },
-    {
-      title: "AI Agent Job Intelligence",
-      description: "14-tool MCP server for multi-agent job intelligence. Multi-agent architecture with RAG pipelines, semantic search (DynamoDB vector store), and memory persistence (ChromaDB). LangChain agents with full tool orchestration.",
-      image: "/ATS_phase2.gif",
-      badges: [
-        { text: "14 Tools", variant: "hf" },
-        { text: "Python" }, { text: "LangChain" }, { text: "RAG" }, { text: "Multi-Agent" }
-      ],
-      links: {
-        live: { url: "https://ai-agent-job-intelligence-phase-2-tr8fm4dzvgzjmpd2mo63a3.streamlit.app/", text: "🚀 Live Demo" },
-        code: { url: "/projects/ai-job-intelligence", text: "📄 Details" }
-      }
-    },
-    {
-      title: "Coffeeverse: Azure Cloud ETL Pipeline",
-      description: "Azure-native ETL pipeline with Blob Storage, Azure Functions, Cosmos DB, orchestrated by Azure Data Factory + dbt. Implements streaming ETL with data quality validation. Part of multi-cloud infrastructure (5 Azure services). $0/month Azure Free Tier.",
-      image: "/coffeeverse.gif",
-      badges: [
-        { text: "Azure", variant: "hf" }, { text: "Python" }, { text: "Cosmos DB" },
-        { text: "Data Factory" }, { text: "dbt", variant: "hf" }, { text: "Streaming ETL" }, { text: "Docker" }
-      ],
-      links: {
-        live: { url: "https://coffeeverse-jhmtq3zhd49jjr5aixnfgl.streamlit.app/", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/coffeeverse", text: "💻 Code" }
-      }
-    },
-    {
-      title: "Cocktailverse: GCP BigQuery ETL Pipeline",
-      description: "Production-grade data pipeline on GCP with BigQuery data warehouse and Cloud Run deployment. Part of multi-cloud infrastructure (3 GCP services). Serverless architecture with $1-2/month runtime costs. Real-time data processing with scalable cloud architecture.",
-      image: "/cocktailverse.gif",
-      badges: [
-        { text: "GCP", variant: "hf" }, { text: "Python" }, { text: "BigQuery", variant: "hf" },
-        { text: "Cloud Run" }, { text: "Serverless" }, { text: "$1-2/month" }
-      ],
-      links: {
-        live: { url: "https://cocktailverse-835005185815.us-central1.run.app", text: "🚀 Live Demo" },
-        code: { url: "/projects/cocktailverse", text: "📄 Details" }
-      }
-    },
-    {
-      title: "Pied Piper Legal Simulator",
-      description: "AI-powered VC negotiation simulator inspired by Silicon Valley. Interactive legal tool teaching term-sheet dynamics through 19+ episode scenarios. See how VC Win, Founder Win, and Win-Win outcomes change based on deal structure.",
-      image: "/piedpiper.gif",
-      badges: [
-        { text: "Python" }, { text: "FastAPI" }, { text: "React" },
-        { text: "DuckDB" }, { text: "Claude AI", variant: "hf" }, { text: "Vercel" }
-      ],
-      links: {
-        live: { url: "https://public-ndx6vbur4-anix-lynchs-projects.vercel.app", text: "🚀 Live Demo" },
-        code: { url: "/projects/pied-piper-legal", text: "📄 Details" }
-      }
-    },
-    {
-      title: "End-to-End Churn ML Pipeline",
-      description: "Ensemble ML pipeline with time-aware validation. Production Feast feature store: 3 feature views, AWS DynamoDB online serving, offline/online parity tests. Complete ML platform with RFM analysis and data quality gates across the full pipeline.",
-      image: "/churn-ml-pipeline.gif",
-      badges: [
-        { text: "Ensemble ML", variant: "hf" }, { text: "Python" }, { text: "XGBoost" },
-        { text: "LightGBM" }, { text: "Great Expectations", variant: "hf" }, { text: "Feast Feature Store", variant: "hf" }
-      ],
-      links: {
-        live: { url: "https://churn-ml-pipeline-mwvbz4fzdvmd8yvjvz9jak.streamlit.app", text: "🚀 Live Demo" },
-        code: { url: "/projects/churn-ml-pipeline", text: "📄 Details" }
-      }
-    },
-    {
-      title: "Real-time Fraud Detection",
-      description: "Streaming feature engine for real-time fraud detection. Sub-millisecond in-memory scoring. Streaming ETL with Kinesis, data quality gates, and drift monitoring. 47 Great Expectations rules validated across pipeline datasets.",
-      image: "/realtime-fraud-detection.gif",
-      badges: [
-        { text: "Sub-ms Scoring", variant: "hf" }, { text: "Python" }, { text: "Kinesis", variant: "hf" },
-        { text: "Great Expectations", variant: "hf" }, { text: "Streaming ETL" }, { text: "Drift Monitoring" }
-      ],
-      links: {
-        live: { url: "https://realtime-fraud-detection-x4uqwkrfnk8g2p567i596x.streamlit.app", text: "🚀 Live Demo" },
-        code: { url: "/projects/realtime-fraud-detection", text: "📄 Details" }
-      }
-    },
-    {
-      title: "Multimodal GenAI Studio",
-      description: "Comprehensive multimodal AI application combining text generation, image creation, audio processing, and creative pipelines. Uses Gemini, DALL-E, Whisper, and TTS models for creative content generation.",
-      image: "/multimodal.gif",
-      badges: [
-        { text: "Python" }, { text: "Streamlit" }, { text: "Gemini", variant: "hf" },
-        { text: "DALL-E", variant: "hf" }, { text: "Whisper", variant: "hf" }, { text: "Multimodal", variant: "hf" }
-      ],
-      links: {
-        live: { url: "https://multimodal-genai-studio.streamlit.app", text: "🚀 Live Demo" },
-        code: { url: "https://github.com/anix-lynch/multimodal-genai-studio", text: "💻 Code" }
-      }
-    },
-    {
-      title: "AI Business Intelligence Agent",
-      description: "SQL generation with RAG and semantic search. Natural language to SQL translation powered by ChromaDB vector database and LangChain agents. Part of multi-agent architecture demonstrating memory persistence and tool orchestration.",
-      image: "/bi_agent.gif",
-      badges: [
-        { text: "Python" }, { text: "SQL Generation", variant: "hf" }, { text: "RAG", variant: "hf" },
-        { text: "ChromaDB" }, { text: "LangChain" }, { text: "Multi-Agent" }
-      ],
-      links: {
-        live: { url: "https://ai-bi-agent.streamlit.app", text: "🚀 Live Demo" },
-        code: { url: "/projects/ai-bi-agent", text: "📄 Details" }
-      }
-    },
-    {
-      title: "Financial Modeling Automation",
-      description: "PE/VC financial modeling platform with VC cap table analysis (Seed → Series B), LP/GP fund economics, and Python-powered Excel automation using openpyxl.",
-      image: "/excel-automation.gif",
-      badges: [
-        { text: "Python" }, { text: "Streamlit" }, { text: "openpyxl", variant: "hf" }, { text: "Finance", variant: "hf" }
-      ],
-      links: {
-        live: { url: "https://huggingface.co/spaces/anixlynch/financial-modeling-automation", text: "🚀 Live Demo" },
-        code: { url: "/projects/financial-modeling-automation", text: "📄 Details" }
-      }
-    },
-    {
-      title: "AWS Data Engineering Pipeline (DeepLearning.AI Cert)",
-      description: "Production-grade data engineering infrastructure on AWS. Built ETL pipelines with Glue, streaming with Kinesis, data quality with Great Expectations, and orchestration with Airflow. Terraform-managed infrastructure: EC2, RDS, S3, Lambda, Athena, CloudWatch.",
-      image: "/deeplearning-ai-cert.png",
-      badges: [
-        { text: "AWS Glue", variant: "hf" }, { text: "Kinesis", variant: "hf" }, { text: "Terraform", variant: "hf" },
-        { text: "EC2" }, { text: "RDS" }, { text: "S3" }, { text: "Lambda" }, { text: "Airflow", variant: "hf" }
-      ],
-      links: {
-        code: { url: "https://github.com/anix-lynch/deeplearning-ai-data-engineering-certificate", text: "💻 Code" }
-      }
-    },
-    {
-      title: "Network Intelligence Map",
-      description: "Geospatial network analysis platform mapping Silicon Beach tech ecosystem. Visualizes company relationships, commute patterns, and network connections through AI-powered Snowflake Cortex intelligence.",
-      image: "/silicon-beach.gif",
-      badges: [
-        { text: "Python" }, { text: "Streamlit" }, { text: "Snowflake", variant: "hf" },
-        { text: "Cortex", variant: "hf" }, { text: "Folium" }, { text: "Geospatial Intelligence" }
-      ],
-      links: {
-        live: { url: "https://github.com/anix-lynch/silicon-beach-ai-jobs", text: "🚀 Live Demo" },
-        code: { url: "/projects/silicon-beach-ai-jobs", text: "📄 Details" }
-      }
-    },
-    {
-      title: "Marketing Analytics Visualization",
-      description: "Professional marketing analytics dashboard with real-time KPIs, campaign performance tracking, and cross-platform attribution insights. Built with modern data visualization techniques.",
-      image: "/marketing_etl.gif",
-      badges: [
-        { text: "Python" }, { text: "Streamlit" }, { text: "ECharts", variant: "hf" },
-        { text: "Pandas" }, { text: "DuckDB", variant: "hf" }
-      ],
-      links: {
-        live: { url: "https://marketing-analytics-etl.streamlit.app/", text: "🚀 Live Demo" },
-        code: { url: "/projects/marketing-analytics-etl", text: "📄 Details" }
-      }
-    }
-  ]
+const laneColors = {
+  "GenAI":    { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
+  "n8n":      { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
+  "Data Eng": { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
+  "ML":       { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
 };
+
+const laneThumbBg = {
+  "GenAI":    "#ddeef8",
+  "n8n":      "#fdf6d8",
+  "Data Eng": "#ece6f8",
+  "ML":       "#dff5e5",
+};
+
+const svgPaths = {
+  cpu:           `<path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 1-2-2V9m0 0h18"/>`,
+  layers:        `<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>`,
+  workflow:      `<rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M6 9v3a3 3 0 0 0 3 3h6"/>`,
+  database:      `<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>`,
+  search:        `<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>`,
+  "bar-chart":   `<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
+  "trending-up": `<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>`,
+  shield:        `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
+  activity:      `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`,
+  "file-text":   `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>`,
+  "external-link": `<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>`,
+  "arrow-right": `<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>`,
+};
+
+function icon(name, size = 18) {
+  const path = svgPaths[name] || svgPaths['cpu'];
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+}
 ---
 
 <Layout
-  title="Anix Lynch — AI Data Engineer & Architect | Portfolio"
-  description="Explore the portfolio of Anix Lynch - AI Data Engineer specializing in machine learning, data visualization, and cloud solutions."
+  title="Anix Lynch — AI Data Engineer & GenAI Architect"
+  description="Production AI and data engineering systems. Ragas 0.97 faithfulness, 51 GE data quality rules, 14-tool MCP orchestration. Built in LA."
   image="/profile-photo.jpg"
 >
-  <Sidebar {...portfolioData.personal} />
+  <div class="app-shell">
+    <Sidebar
+      name="Anix Lynch"
+      tagline="AI Data Engineer · GenAI Architect\nLos Angeles, CA"
+      avatar="/profile-photo.jpg"
+      about="Self-taught AI engineer. 4 sprint lanes: AI Data Engineering, GenAI/Agent, DevRel, n8n. Ex-VC turned builder."
+      social={{
+        github:    "https://github.com/anix-lynch",
+        linkedin:  "https://linkedin.com/in/anixlynch",
+        email:     "anix@anixlynch.com",
+        bluesky:   "https://bsky.app/profile/anixlynch.bsky.social",
+        medium:    "https://medium.com/@anixlynch",
+        hashnode:  "https://anixblog.hashnode.dev",
+        home:      "/"
+      }}
+    />
 
-  <main class="main">
-    <PageNav showBack={false} />
+    <main class="home-main">
 
-    <!-- Ops Stack Section -->
-    <section style="margin-bottom: 3rem;">
-      <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#333;">🔬 Production Ops Stack</h2>
-      <p style="color:#666;margin-bottom:2rem;line-height:1.6;">How I monitor 13 production AI systems: agent traces, data quality gates, lineage tracking, and cost monitoring</p>
-      <div class="projects">
-        {portfolioData.opsStack.map(dashboard => (
-          <ProjectCard {...dashboard} />
+      <!-- Page header -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Portfolio</h1>
+          <p class="page-sub">Production AI systems — real evals, real costs, traceable to code.</p>
+        </div>
+        <a href="/projects" class="btn-browse">
+          <Fragment set:html={icon('layers', 15)} />
+          All {projects.length} projects
+        </a>
+      </div>
+
+      <!-- Proof numbers -->
+      <div class="proof-row">
+        <div class="proof-pill">
+          <span class="proof-val">0.97</span>
+          <span class="proof-lbl">Ragas faithfulness</span>
+        </div>
+        <div class="proof-pill">
+          <span class="proof-val">51</span>
+          <span class="proof-lbl">GE quality rules</span>
+        </div>
+        <div class="proof-pill">
+          <span class="proof-val">14</span>
+          <span class="proof-lbl">MCP tools</span>
+        </div>
+        <div class="proof-pill">
+          <span class="proof-val">$1–2</span>
+          <span class="proof-lbl">/mo serverless</span>
+        </div>
+        <div class="proof-pill">
+          <span class="proof-val">124</span>
+          <span class="proof-lbl">Medium articles</span>
+        </div>
+      </div>
+
+      <!-- Featured projects -->
+      <div class="section-label">Featured Projects</div>
+      <div class="project-grid">
+        {featured.map(project => {
+          const lc = laneColors[project.lane] || laneColors["GenAI"];
+          const thumbBg = laneThumbBg[project.lane] || laneThumbBg["GenAI"];
+          return (
+            <a
+              href={`/projects/${project.slug}`}
+              class="project-card"
+              data-lane={project.lane}
+            >
+              {project.gif ? (
+                <div class="card-thumb">
+                  <img src={project.gif} alt={project.title} loading="lazy" />
+                </div>
+              ) : (
+                <div class="card-thumb card-thumb-placeholder" style={`background:${thumbBg}`}>
+                  <span style={`color:${lc.text};opacity:0.5`} set:html={icon(project.icon, 36)} />
+                </div>
+              )}
+
+              <div class="card-content">
+                <div class="card-top">
+                  <div class="card-icon-box">
+                    <Fragment set:html={icon(project.icon, 20)} />
+                  </div>
+                  <div class="card-badges">
+                    <span class="card-lane-badge"
+                      style={`background:${lc.bg};color:${lc.text};border-color:${lc.border}`}>
+                      {project.lane}
+                    </span>
+                    {project.live && (
+                      <span class="live-badge">
+                        <span class="live-dot"></span>
+                        Live
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <h2 class="card-title">{project.title}</h2>
+                  <p class="card-desc">{project.tagline}</p>
+                </div>
+
+                <div class="card-footer">
+                  <div class="card-stack-row">
+                    {project.stack.slice(0, 3).map((tech: string) => (
+                      <span class="mini-pill">{tech}</span>
+                    ))}
+                    {project.stack.length > 3 && (
+                      <span class="mini-pill mini-pill-more">+{project.stack.length - 3}</span>
+                    )}
+                  </div>
+                  {project.stats[0] && (
+                    <div class="card-stat">
+                      <span class="card-stat-value">{project.stats[0].value}</span>
+                      <span class="card-stat-label">{project.stats[0].label}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+      <!-- View all CTA -->
+      <div class="cta-row">
+        <a href="/projects" class="btn-view-all">
+          Browse all {projects.length} projects
+          <Fragment set:html={icon('arrow-right', 15)} />
+        </a>
+      </div>
+
+      <!-- Monitoring section -->
+      <div class="section-label" style="margin-top: 2.5rem;">Production Monitoring</div>
+      <div class="monitoring-grid">
+        {([
+          { title: "Phoenix GenAI Ops",    desc: "Agent traces · eval scores · cost",    url: "/dashboards/phoenix_dashboard.html", iconName: "activity" },
+          { title: "Great Expectations",   desc: "51 DQ rules · 100% pass rate",          url: "/dashboards/ge_dashboard.html",      iconName: "shield" },
+          { title: "dbt Lineage Tracker",  desc: "12 models · 47 tests · 100% coverage", url: "/dashboards/dbt_dashboard.html",     iconName: "trending-up" },
+        ] as const).map(m => (
+          <a href={m.url} class="monitor-card">
+            <span class="monitor-icon" set:html={icon(m.iconName, 18)} />
+            <div>
+              <div class="monitor-title">{m.title}</div>
+              <div class="monitor-desc">{m.desc}</div>
+            </div>
+            <span class="monitor-arrow" set:html={icon('arrow-right', 14)} />
+          </a>
         ))}
       </div>
-    </section>
 
-    <!-- Bullet 1: Multi-Cloud -->
-    <section style="margin-bottom: 3rem;">
-      <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#5BA3C5;">🌐 Multi-Cloud Infrastructure</h2>
-      <p style="color:#666;margin-bottom:2rem;line-height:1.6;">Built pipelines on AWS, Azure, and GCP. Everything's Terraform-managed and runs serverless for ~$1-2/month.</p>
-      <div class="projects">
-        {portfolioData.projects.filter(p =>
-          p.title.includes("AWS Data Engineering") ||
-          p.title.includes("Cocktailverse") ||
-          p.title.includes("Network Intelligence")
-        ).map(project => (
-          <ProjectCard {...project} />
-        ))}
-      </div>
-    </section>
-
-    <!-- Bullet 2: AI-DE Multi-Pain -->
-    <section style="margin-bottom: 3rem;">
-      <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#4FB3C8;">🎯 AI-DE Multi-Pain</h2>
-      <p style="color:#666;margin-bottom:2rem;line-height:1.6;">The messy stuff: point-in-time correctness, training-serving parity, streaming ETL, data quality gates. 47 GE rules across the data quality layer. Sub-ms in-memory fraud scoring.</p>
-      <div class="projects">
-        {portfolioData.projects.filter(p =>
-          p.title.includes("Churn ML") ||
-          p.title.includes("Fraud Detection") ||
-          p.title.includes("Coffeeverse")
-        ).map(project => (
-          <ProjectCard {...project} />
-        ))}
-      </div>
-    </section>
-
-    <!-- Bullet 3: GenAI Multi-Pain -->
-    <section style="margin-bottom: 3rem;">
-      <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#5DC1D8;">🤖 GenAI Multi-Pain</h2>
-      <p style="color:#666;margin-bottom:2rem;line-height:1.6;">Built agents that don't break at 3 AM. RAG pipelines, 14-tool MCP orchestration. Runs serverless for $1-2/month.</p>
-      <div class="projects">
-        {portfolioData.projects.filter(p =>
-          p.title.includes("AI Agent Job") ||
-          p.title.includes("Mocktailverse") ||
-          p.title.includes("AI Business Intelligence") ||
-          p.title.includes("Multimodal GenAI")
-        ).map(project => (
-          <ProjectCard {...project} />
-        ))}
-      </div>
-    </section>
-
-    <!-- Bullet 4: Domain Translation -->
-    <section style="margin-bottom: 3rem;">
-      <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#A8C5D9;">💼 Domain Expertise</h2>
-      <p style="color:#666;margin-bottom:2rem;line-height:1.6;">Ex-VC/PE → AI builder. Built production tools for legal (VC term sheets), finance (cap table modeling), marketing (campaign analytics), and enterprise BI. Business context = better code.</p>
-      <div class="projects">
-        {portfolioData.projects.filter(p =>
-          p.title.includes("Pied Piper") ||
-          p.title.includes("Financial") ||
-          p.title.includes("Marketing")
-        ).map(project => (
-          <ProjectCard {...project} />
-        ))}
-      </div>
-    </section>
-  </main>
+    </main>
+  </div>
 </Layout>
+
+<style>
+  /* ── Shell ─────────────────────────────────────── */
+  .app-shell {
+    display: flex;
+    min-height: 100vh;
+    background: var(--color-surface-1, #f8fbfd);
+  }
+
+  .home-main {
+    flex: 1;
+    min-width: 0;
+    padding: 2rem 2.5rem 4rem;
+  }
+
+  /* ── Page header ───────────────────────────────── */
+  .page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #0f1923;
+    margin: 0 0 0.3rem;
+  }
+
+  .page-sub {
+    font-size: 14px;
+    color: #8aa0b8;
+    margin: 0;
+  }
+
+  .btn-browse {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 7px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    background: #fff;
+    border: 1px solid #dde8f0;
+    color: #4a6080;
+    text-decoration: none;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-browse:hover {
+    background: #eef4f9;
+    border-color: #b8d4ec;
+    color: #0f1923;
+  }
+
+  /* ── Proof row ─────────────────────────────────── */
+  .proof-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .proof-pill {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    padding: 6px 14px;
+    background: #fff;
+    border: 1px solid #dde8f0;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(100,140,180,0.07);
+  }
+
+  .proof-val {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0f1923;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .proof-lbl {
+    font-size: 11px;
+    color: #8aa0b8;
+    font-weight: 500;
+  }
+
+  /* ── Section label ─────────────────────────────── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #8aa0b8;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.875rem;
+  }
+
+  /* ── Project grid ──────────────────────────────── */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── Card ──────────────────────────────────────── */
+  .project-card {
+    background: #fff;
+    border: 1px solid #dde8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(100,140,180,0.07);
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 6px 20px rgba(100,140,180,0.16);
+    transform: translateY(-3px);
+    border-color: #b8d4ec;
+  }
+
+  .card-thumb {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover .card-thumb img {
+    transform: scale(1.03);
+  }
+
+  .card-thumb-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-content {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    flex: 1;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .card-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #eef4f9;
+    border: 1px solid #dde8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7bb3d9;
+    flex-shrink: 0;
+  }
+
+  .card-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .card-lane-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    border: 1px solid;
+  }
+
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 600;
+    background: #edfaf0;
+    color: #1e6b38;
+    border: 1px solid rgba(100,200,130,0.3);
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2ecc71;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+
+  .card-body { flex: 1; }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f1923;
+    margin: 0 0 0.35rem;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: #4a6080;
+    line-height: 1.55;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .card-stack-row {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .mini-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 600;
+    background: #f0f4f8;
+    color: #4a6080;
+    border: 1px solid #dde8f0;
+    white-space: nowrap;
+  }
+
+  .mini-pill-more { background: #eef4f9; color: #8aa0b8; }
+
+  .card-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+
+  .card-stat-value {
+    font-size: 14px;
+    font-weight: 800;
+    color: #0f1923;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .card-stat-label {
+    font-size: 10px;
+    color: #8aa0b8;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+
+  /* ── View all CTA ──────────────────────────────── */
+  .cta-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .btn-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #7bb3d9;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    transition: background 0.15s, transform 0.15s;
+  }
+
+  .btn-view-all:hover {
+    background: #5f9bc8;
+    transform: translateY(-1px);
+  }
+
+  /* ── Monitoring grid ───────────────────────────── */
+  .monitoring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .monitor-card {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid #dde8f0;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 1px 3px rgba(100,140,180,0.06);
+    transition: all 0.15s;
+  }
+
+  .monitor-card:hover {
+    border-color: #b8d4ec;
+    box-shadow: 0 4px 12px rgba(100,140,180,0.12);
+    transform: translateY(-2px);
+  }
+
+  .monitor-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: #eef4f9;
+    color: #7bb3d9;
+    flex-shrink: 0;
+  }
+
+  .monitor-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #0f1923;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+
+  .monitor-desc {
+    font-size: 11.5px;
+    color: #8aa0b8;
+    line-height: 1.4;
+  }
+
+  .monitor-arrow {
+    display: flex;
+    align-items: center;
+    color: #b8d4ec;
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .monitor-card:hover .monitor-arrow {
+    color: #7bb3d9;
+    transform: translateX(2px);
+  }
+
+  /* ── Responsive ────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .home-main { padding: 1.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    .project-grid { grid-template-columns: 1fr; }
+    .proof-row { gap: 0.4rem; }
+    .proof-pill { padding: 5px 10px; }
+  }
+</style>
