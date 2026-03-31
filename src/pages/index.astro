@@ -44,7 +44,7 @@ function icon(name, size = 18) {
 
 <Layout
   title="Anix Lynch — AI Data Engineer & GenAI Architect"
-  description="Production AI and data engineering systems. Ragas 0.97 faithfulness, 51 GE data quality rules, 14-tool MCP orchestration. Built in LA."
+  description="Production AI and data engineering systems. Ragas 0.92 faithfulness, 47 GE data quality rules, 14-tool MCP orchestration. Built in LA."
   image="/profile-photo.jpg"
 >
   <div class="app-shell">
@@ -84,11 +84,11 @@ function icon(name, size = 18) {
       <!-- Proof numbers -->
       <div class="proof-row">
         <div class="proof-pill">
-          <span class="proof-val">0.97</span>
+          <span class="proof-val">0.92</span>
           <span class="proof-lbl">Ragas faithfulness</span>
         </div>
         <div class="proof-pill">
-          <span class="proof-val">51</span>
+          <span class="proof-val">47</span>
           <span class="proof-lbl">GE quality rules</span>
         </div>
         <div class="proof-pill">
@@ -186,7 +186,7 @@ function icon(name, size = 18) {
       <div class="monitoring-grid">
         {([
           { title: "Phoenix GenAI Ops",    desc: "Agent traces · eval scores · cost",    url: "/dashboards/phoenix_dashboard.html", iconName: "activity" },
-          { title: "Great Expectations",   desc: "51 DQ rules · 100% pass rate",          url: "/dashboards/ge_dashboard.html",      iconName: "shield" },
+          { title: "Great Expectations",   desc: "47 DQ rules · 100% pass rate",          url: "/dashboards/ge_dashboard.html",      iconName: "shield" },
           { title: "dbt Lineage Tracker",  desc: "12 models · 47 tests · 100% coverage", url: "/dashboards/dbt_dashboard.html",     iconName: "trending-up" },
         ] as const).map(m => (
           <a href={m.url} class="monitor-card">
@@ -220,7 +220,7 @@ function icon(name, size = 18) {
   .home-main {
     flex: 1;
     min-width: 0;
-    padding: 2rem 2.5rem 4rem;
+    padding: 2rem 1.5rem 4rem;
   }
 
   /* ── Page header ───────────────────────────────── */
@@ -314,8 +314,8 @@ function icon(name, size = 18) {
   /* ── Project grid ──────────────────────────────── */
   .project-grid {
     display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
     margin-bottom: 1.25rem;
   }
 
@@ -340,7 +340,7 @@ function icon(name, size = 18) {
 
   .card-thumb {
     width: 100%;
-    height: 160px;
+    height: 200px;
     overflow: hidden;
     flex-shrink: 0;
   }
@@ -541,7 +541,7 @@ function icon(name, size = 18) {
   /* ── Monitoring grid ───────────────────────────── */
   .monitoring-grid {
     display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 0.75rem;
   }
 
