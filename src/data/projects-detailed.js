@@ -150,6 +150,42 @@ export const projects = [
   },
 
   {
+    slug: "healthcare-analytics-fabric",
+    title: "Healthcare Analytics on Microsoft Fabric",
+    tagline: "FastAPI + dbt + Fabric lakehouse + TMDL semantic model + MLflow — interview-ready proof stack.",
+    lane: "Data Eng",
+    laneColor: "#c4a8d8",
+    status: "Production",
+    github: "https://github.com/anix-lynch/healthcare-da",
+    live: null,
+    gif: "/healthcare-fabric-proof.png",
+    icon: "layers",
+    description: "End-to-end healthcare analytics on Microsoft Fabric: synthetic 55.5k encounters, FastAPI read layer, dbt star schema, Power BI semantic model as TMDL in git, Fabric lakehouse validation, and MLflow-tracked XGBoost baseline. Every headline claim maps to a file in the repo.",
+    highlight: "The Microsoft Fabric + Power BI story recruiters ask for — with dbt and API layers in the same public showroom repo.",
+    stats: [
+      { value: "55.5K", label: "Encounters" },
+      { value: "11", label: "API Routes" },
+      { value: "TMDL", label: "Semantic Model" },
+      { value: "Fabric", label: "Lakehouse Proof" }
+    ],
+    stack: ["Microsoft Fabric", "Power BI", "dbt", "FastAPI", "Python", "TMDL", "DAX", "MLflow", "Azure AD"],
+    features: [
+      { icon: "database", title: "dbt Star Schema", desc: "Staging → intermediate → fact + dims with domain SQL tests before BI." },
+      { icon: "layers", title: "TMDL in Git", desc: "Certified measures and relationships reviewed like application code." },
+      { icon: "zap", title: "Fabric API Proof", desc: "Lakehouse + semantic validation captured as markdown + scripted screenshot summaries." },
+      { icon: "cpu", title: "MLflow Lineage", desc: "Training runs logged with metrics — honest AUC for synthetic demo data." }
+    ],
+    architecture: [
+      { step: "01", label: "Serve", desc: "FastAPI exposes curated metrics and encounter slices from the synthetic dataset." },
+      { step: "02", label: "Transform", desc: "dbt builds the star schema and clinical DQ assertions." },
+      { step: "03", label: "Model", desc: "Power BI semantic model (TMDL) defines certified DAX measures." },
+      { step: "04", label: "Fabric", desc: "Workspace lakehouse + dataset checks via service principal automation." }
+    ],
+    cost: "Dev Fabric trial / local API — no PHI; demo dataset only.",
+    phase: null
+  },
+
+  {
     slug: "vc-dealflow-automation",
     title: "VC Dealflow Automation",
     tagline: "End-to-end VC deal flow: Apollo enrichment → Hunter verify → n8n → Claude → Airtable CRM.",

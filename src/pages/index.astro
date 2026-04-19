@@ -4,7 +4,7 @@ import Sidebar from '../components/Sidebar.astro';
 import { projects } from '../data/projects-detailed.js';
 
 // Hand-picked featured — one per lane, all have GIFs
-const featuredSlugs = ["ai-job-intelligence", "mocktailverse-bedrock", "churn-ml-pipeline", "silicon-beach-ai-jobs"];
+const featuredSlugs = ["ai-job-intelligence", "mocktailverse-bedrock", "churn-ml-pipeline", "healthcare-analytics-fabric"];
 const featured = featuredSlugs.map(slug => projects.find(p => p.slug === slug)).filter(Boolean);
 
 const laneColors = {
@@ -44,7 +44,7 @@ function icon(name, size = 18) {
 
 <Layout
   title="Anix Lynch — AI Data Engineer & GenAI Architect"
-  description="Production AI and data engineering systems. Ragas 0.92 faithfulness, 47 GE data quality rules, 14-tool MCP orchestration. Built in LA."
+  description="Production AI and data engineering systems. Ragas 0.92 faithfulness, 24 Python + dbt data quality checks, 14-tool MCP orchestration. Built in LA."
   image="/profile-photo.jpg"
 >
   <div class="app-shell">
@@ -52,7 +52,7 @@ function icon(name, size = 18) {
       name="Anix Lynch"
       tagline={"AI Data Engineer · GenAI Architect\nLos Angeles, CA"}
       avatar="/profile-photo.jpg"
-      about="Self-taught AI engineer. 4 sprint lanes: AI Data Engineering, GenAI/Agent, DevRel, n8n. Ex-VC turned builder."
+      about="Self-taught AI engineer. Microsoft Fabric, Power BI (TMDL), dbt, and Python data products. 4 sprint lanes: AI-DE, GenAI/Agent, DevRel, n8n. Ex-VC turned builder."
       social={{
         github:    "https://github.com/anix-lynch",
         linkedin:  "https://linkedin.com/in/anixlynch",
@@ -88,8 +88,8 @@ function icon(name, size = 18) {
           <span class="proof-lbl">Ragas faithfulness</span>
         </div>
         <div class="proof-pill">
-          <span class="proof-val">47</span>
-          <span class="proof-lbl">GE quality rules</span>
+          <span class="proof-val">24</span>
+          <span class="proof-lbl">Python + dbt DQ checks</span>
         </div>
         <div class="proof-pill">
           <span class="proof-val">14</span>
