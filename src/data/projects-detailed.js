@@ -389,11 +389,11 @@ export const projects = [
       { icon: "activity", title: "Hallucination Tracking", desc: "Per-system hallucination rates measured with Ragas + manual spot checks. Trend over time." },
       { icon: "zap", title: "Latency Benchmarks", desc: "p50/p95/p99 latency for each AI system. Before/after for every optimization." },
       { icon: "target", title: "Task Success Rates", desc: "Agent task completion rates, retry counts, fallback triggers per system." },
-      { icon: "database", title: "Data Quality Scores", desc: "Great Expectations + custom validators tracking data quality across pipeline stages." }
+      { icon: "database", title: "Data Quality Scores", desc: "Python + dbt custom validators tracking data quality across pipeline stages." }
     ],
     architecture: [
       { step: "01", label: "Capture", desc: "OpenTelemetry spans + custom metrics → DuckDB evidence store" },
-      { step: "02", label: "Validate", desc: "Great Expectations assertions run on each metric batch" },
+      { step: "02", label: "Validate", desc: "Custom Python + dbt test assertions run on each metric batch" },
       { step: "03", label: "Report", desc: "Evidence.dev dashboard renders KPI trends from SQL queries" },
       { step: "04", label: "Audit", desc: "Each resume bullet links to a specific KPI record in this store" }
     ],

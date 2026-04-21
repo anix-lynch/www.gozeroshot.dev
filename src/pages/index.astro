@@ -186,7 +186,7 @@ function icon(name, size = 18) {
       <div class="monitoring-grid">
         {([
           { title: "Phoenix GenAI Ops",    desc: "Agent traces · eval scores · cost",    url: "/dashboards/phoenix_dashboard.html", iconName: "activity" },
-          { title: "Great Expectations",   desc: "47 DQ rules · 100% pass rate",          url: "/dashboards/ge_dashboard.html",      iconName: "shield" },
+          { title: "Python + dbt DQ",      desc: "24 custom checks · 100% pass rate",     url: "/dashboards/ge_dashboard.html",      iconName: "shield" },
           { title: "dbt Lineage Tracker",  desc: "12 models · 47 tests · 100% coverage", url: "/dashboards/dbt_dashboard.html",     iconName: "trending-up" },
         ] as const).map(m => (
           <a href={m.url} class="monitor-card">
