@@ -76,7 +76,7 @@ jobs:
 
               const title = await page.title();
               const body  = (await page.locator("body").innerText().catch(() => "")).slice(0, 500);
-              const broken = /Oh no\.|Error running app|This page is not configured|deployment_not_found|404/i.test(body);
+              const broken = /Oh no\.|Error running app|ModuleNotFoundError|ImportError|Traceback \(most recent call last\)|This page is not configured|deployment_not_found|404 Not Found|This Space is on error|Build failed/i.test(body);
 
               if (broken) {
                 failures.push({ name: demo.name, url: demo.url, reason: `runtime error visible: ${body.slice(0, 120)}` });
