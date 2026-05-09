@@ -1,0 +1,38 @@
+name: demo-healthcheck
+
+# Streamlit Community Cloud puts apps to sleep after ~7 days of zero traffic.
+# Hugging Face Spaces sleep after ~48 hours.
+# This job visits every live demo with a real browser, dismisses any sleep
+# splash screen, and verifies the app actually renders. If a demo is broken
+# (5xx, traceback page, or "Oh no" splash), the job fails and notifies.
+#
+# Schedule: every 36 hours (covers HF cadence; Streamlit gets 4-5 visits per
+# 7-day window, well under the sleep threshold).
+
+on:
+  schedule:
+    - cron: "0 */36 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  ping-demos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm i --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Visit + wake all live demos
+        run: node .github/scripts/healthcheck.mjs
