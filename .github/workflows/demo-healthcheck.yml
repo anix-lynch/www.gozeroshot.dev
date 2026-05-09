@@ -36,7 +36,7 @@ jobs:
 
       - name: Visit + wake demos
         run: |
-          cat > /tmp/healthcheck.mjs <<'EOF'
+          cat > healthcheck.mjs <<'EOF'
           import { chromium } from "playwright";
 
           const DEMOS = [
@@ -103,4 +103,4 @@ jobs:
           }
           console.log("\nall demos healthy");
           EOF
-          node /tmp/healthcheck.mjs
+          node healthcheck.mjs
