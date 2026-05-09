@@ -11,7 +11,7 @@ export const projects = [
     laneColor: "#7bb3d9",
     status: "Production",
     github: "https://github.com/anix-lynch/ai-agent-job-intelligence-phase-2",
-    live: "https://ai-agent-job-intelligence-phase-2-tr8fm4dzvgzjmpd2mo63a3.streamlit.app/",
+    // live: hidden — Streamlit Cloud runtime error, code is on GitHub
     gif: "/ATS_phase2.gif",
     icon: "cpu",
     description: "A multi-agent job intelligence system that combines semantic vector search, ML-powered ATS scoring, and a LangChain ReAct agent to find and rank the best-fit roles for a specific resume. Built for the LA Silicon Beach market. Personalizes every search to your actual skills, salary targets, and commute tolerance — not just keywords.",
@@ -49,7 +49,7 @@ export const projects = [
     laneColor: "#7bb3d9",
     status: "Production",
     github: "https://github.com/anix-lynch/mocktailverse-bedrock",
-    live: "https://dgco3hnxo94y8.cloudfront.net",
+    // live: hidden — CloudFront distribution retired, code is on GitHub
     gif: "/mocktailverse_bedrock.gif",
     icon: "layers",
     description: "Enterprise-grade GenAI data engineering platform using AWS Bedrock for LLM inference, pgvector for semantic search, and a full RAG pipeline over a cocktail knowledge base. Demonstrates the full AWS GenAI stack from ingestion to retrieval to generation.",
@@ -265,7 +265,7 @@ export const projects = [
     laneColor: "#a8d8a8",
     status: "Production",
     github: "https://github.com/anix-lynch/realtime-fraud-detection",
-    live: "https://realtime-fraud-detection-x4uqwkrfnk8g2p567i596x.streamlit.app",
+    // live: hidden — Streamlit Cloud runtime error, code is on GitHub
     gif: "/realtime-fraud-detection.gif",
     icon: "shield",
     description: "Real-time feature engineering pipeline for fraud detection, with a Streamlit dashboard for monitoring fraud scores and anomaly patterns. Demonstrates streaming feature computation, point-in-time correctness, and production fraud scoring patterns.",
