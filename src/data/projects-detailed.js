@@ -49,7 +49,7 @@ export const projects = [
     laneColor: "#7bb3d9",
     status: "Production",
     github: "https://github.com/anix-lynch/mocktailverse-bedrock",
-    // live: hidden — CloudFront distribution retired, code is on GitHub
+    live: "https://dgco3hhxo94y8.cloudfront.net",
     gif: "/mocktailverse_bedrock.gif",
     icon: "layers",
     description: "Enterprise-grade GenAI data engineering platform using AWS Bedrock for LLM inference, pgvector for semantic search, and a full RAG pipeline over a cocktail knowledge base. Demonstrates the full AWS GenAI stack from ingestion to retrieval to generation.",
