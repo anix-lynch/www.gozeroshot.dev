@@ -580,5 +580,77 @@ export const projects = [
     ],
     cost: "Free. Streamlit Cloud free tier.",
     phase: null
+  },
+
+  {
+    slug: "healthcare-ai-data-engineer",
+    title: "Healthcare AI Data Engineer",
+    tagline: "L1 data backbone — dbt medallion + FastAPI + Vertex AI enrichment + 7-check L1 quality gate over 55K synthetic patient encounters.",
+    lane: "AI Data",
+    laneColor: "#8fbc8f",
+    status: "Production",
+    github: "https://github.com/anix-lynch/healthcare-ai-data-engineer",
+    live: "https://healthcare-ai-data-2ihyeqmb6q-uw.a.run.app",
+    gif: null,
+    icon: "database",
+    description: "Healthcare data backbone: dbt medallion (bronze→silver→gold) star schema, FastAPI 11 endpoints over 55,500 synthetic encounters, LLM-augmented enrichment via Vertex AI gemini-2.5-flash (497 rows · $0.0005/row · 100% JSON-schema success), patient identity resolver (55K encounters → 40K patients), and a 7-check L1 quality gate that runs in CI and exits 1 on any critical failure.",
+    highlight: "Trusted L1 layer that catches the dumb-but-pipeline-killing failures BEFORE the GenAI layer hallucinates around bad input.",
+    stats: [
+      { value: "55,500", label: "encounters" },
+      { value: "7/7", label: "quality checks pass" },
+      { value: "$0.0005", label: "Vertex cost/row" },
+      { value: "40,235", label: "unique patients" }
+    ],
+    stack: ["Python", "dbt", "FastAPI", "Pandas", "Vertex AI", "Gemini 2.5 Flash", "Pydantic", "pytest", "Docker", "GCP Cloud Run", "GitHub Actions"],
+    features: [
+      { icon: "database", title: "dbt medallion star schema", desc: "Bronze → silver → gold. fact_patient_encounters + 7 dim_*. Full schema.yml with not_null + unique + relationships (FK) + accepted_values for clinical enums." },
+      { icon: "shield", title: "7-check L1 quality gate", desc: "schema_drift · critical_nulls · duplicate_encounters · temporal_sanity · pii_in_narrative · patient_identity · audit_lineage. Runs in CI on every PR, exits 1 on failure." },
+      { icon: "cpu", title: "Vertex AI enrichment", desc: "gemini-2.5-flash + response_schema → 100% JSON parse success on 497 rows. CC/HPI/vitals/labs/ESI ground-truth generated for $0.25 total. Scales to 1M rows ≈ $500." },
+      { icon: "search", title: "Patient identity bridge", desc: "55K encounters → 40,235 unique patients via SHA256 short hash. Catches the 'same patient, 12 encounters' pattern that breaks cross-patient leak guards in eval." }
+    ],
+    architecture: [
+      { step: "01", label: "Raw CSV", desc: "55K synthetic encounters → dbt staging (bronze) with PII hashing + type casting." },
+      { step: "02", label: "Enrichment", desc: "Stratified 497-row sample → Vertex AI gemini-2.5-flash with response_schema → CC/HPI/vitals/labs/ESI." },
+      { step: "03", label: "Mart", desc: "fact_patient_encounters + 7 dim_*. Full FK + accepted_values + unique tests in schema.yml." },
+      { step: "04", label: "Gate + API", desc: "7-check L1 quality gate in CI · FastAPI 11 endpoints + OpenAPI docs at /docs · live on Cloud Run." }
+    ],
+    cost: "Free. Cloud Run scale-to-zero, well under monthly free tier at portfolio traffic.",
+    phase: "Phase 1-3 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
+  },
+
+  {
+    slug: "healthcare-forward-deployed-engineer",
+    title: "Healthcare Forward Deployed Engineer",
+    tagline: "Customer-deployable ER triage assistant — one workflow, one runbook, one postmortem, one acceptance gate.",
+    lane: "Forward Deployed",
+    laneColor: "#e8a87c",
+    status: "Production",
+    github: "https://github.com/anix-lynch/healthcare-forward-deployed-engineer",
+    live: "https://healthcare-fde-2ihyeqmb6q-uw.a.run.app",
+    gif: null,
+    icon: "shield",
+    description: "End-to-end customer-deployment package for an ER triage assistant: customer brief + solution design + runbook + handoff guide + integrations (Epic FHIR adapter, OAuth, identity mapper), the one workflow (rule-based ESI + pediatric/suicidal/sepsis safety floors + retrieval + grounded rationale), guardrails (input + output + PII), observability (split-sink audit/PHI logging), deployment unit (Dockerfile + non-root + healthcheck), and a postmortem template populated with a real incident.",
+    highlight: "Acceptance tests as customer-contract gates — NOT ML metrics. If a suicidal patient doesn't get human review, the deployment isn't done.",
+    stats: [
+      { value: "10", label: "customer-contract tests" },
+      { value: "39 ms", label: "/v1/ask p50" },
+      { value: "P0/P1/P2/P3", label: "alert ladder" },
+      { value: "8/8", label: "FDE deliverables" }
+    ],
+    stack: ["Python", "FastAPI", "BM25", "Pydantic", "pytest", "Docker", "Cloud Run", "GitHub Actions", "Epic FHIR (mock)", "OAuth", "asciinema"],
+    features: [
+      { icon: "shield", title: "Customer-contract acceptance gate", desc: "8 tests: pediatric < 1y safety floor · chest-pain + diaphoresis · sepsis SIRS (qSOFA-shaped) · suicidal ideation · altered mental status · p95 < 800ms · p99 < 2000ms · response shape complete. Each maps to eval_dataset.json with a named customer owner." },
+      { icon: "file-text", title: "Runbook + postmortem discipline", desc: "P0/P1/P2/P3 alert ladder with paging windows + exact curl commands. Two postmortems (one real-shaped integration failure + one brief↔code drift audit finding) using the same template." },
+      { icon: "lock", title: "Split-sink HIPAA-aligned logging", desc: "audit.jsonl = metadata only (safe for cloud index + stdout). phi_archive.jsonl = full payload, restricted volume, NO stdout mirror. Fail-LOUD on archive write failure (compliance event)." },
+      { icon: "key", title: "Fail-closed admin auth", desc: "POST /admin/mode requires bearer token (hmac.compare_digest, timing-safe). ADMIN_BEARER_TOKEN unset → 503. Explicit ADMIN_AUTH_DISABLED=1 escape hatch for dev only." }
+    ],
+    architecture: [
+      { step: "01", label: "EHR intake", desc: "Epic FHIR adapter (mocked) → fhir_transform (Patient/Encounter/Observation with LOINC codes) → identity_mapper (MRN ↔ patient_id SHA256 short hash)." },
+      { step: "02", label: "Guard + workflow", desc: "guardrails (input + output + PII mask on inbound) → workflows.triage_assistant (rule-based ESI + pediatric/suicidal/SIRS safety floors + retrieval + grounded rationale)." },
+      { step: "03", label: "Fallback + audit", desc: "should_escalate routes low-confidence + safety-floor cases to human review. Split-sink audit: metadata to audit.jsonl + stdout; full payload to phi_archive.jsonl (restricted)." },
+      { step: "04", label: "Deploy + smoke", desc: "Dockerfile (port $PORT, non-root) + smoke_test.sh (5 curl checks incl. 401 on missing bearer) + CI runs `make acceptance` on every PR." }
+    ],
+    cost: "Free. Cloud Run scale-to-zero, well under monthly free tier at portfolio traffic.",
+    phase: "Phase 1-8 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
   }
 ];
