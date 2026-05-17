@@ -3,6 +3,43 @@
 // Add { slug, title, ... } here → page auto-generates. That's it.
 
 export const projects = [
+  // ── NORTHSTAR ──────────────────────────────────────────────
+  {
+    slug: "healthcare-genai-engineer",
+    title: "Healthcare GenAI Engineer",
+    tagline: "Healthcare RAG service — BM25/dense hybrid + PII guardrails + custom-proxy eval + CI regression gate.",
+    lane: "GenAI",
+    laneColor: "#7bb3d9",
+    status: "Production",
+    github: "https://github.com/anix-lynch/healthcare-genai-engineer",
+    live: null,
+    gif: null,
+    icon: "shield",
+    description: "End-to-end healthcare RAG service: FastAPI ER-triage workflow with BM25 + dense + RRF hybrid retrieval over a 497-row enriched corpus, input PII guardrails (SSN, phone, email, CC, MRN, DOB), citation-validated grounded answers, custom-proxy Ragas-style eval over a 20-query golden set, and a CI regression gate that blocks merges on metric drop past tolerance.",
+    highlight: "One focused ER-triage RAG vertical where every claim cites a retrieved source_id — no hallucinated citations on hits.",
+    stats: [
+      { value: "5 ms", label: "p95 latency" },
+      { value: "0.65", label: "faithfulness (BM25)" },
+      { value: "20", label: "golden queries" },
+      { value: "497", label: "corpus rows" }
+    ],
+    stack: ["Python", "FastAPI", "BM25", "Sentence Transformers", "RRF", "Anthropic", "OpenAI", "Docker", "Pydantic", "pytest", "GitHub Actions"],
+    features: [
+      { icon: "search", title: "Hybrid retrieval", desc: "BM25 from scratch (Okapi k1=1.5 / b=0.75) + dense MiniLM + RRF fusion (k=60, Cormack & Buettcher). Swap method via query param." },
+      { icon: "shield", title: "PII + injection guardrails", desc: "Input: sanitize · injection regex · token cap. PII masker covers SSN, phone, email, CC, MRN, DOB. Output: citation valid · length · forbidden-action." },
+      { icon: "file-text", title: "Citation-grounded answers", desc: "Every claim cites a retrieved source_id. Deterministic template baseline by default; LLM path behind USE_LLM flag (Anthropic or OpenAI), falls back on provider error." },
+      { icon: "activity", title: "Regression gate in CI", desc: "20-query golden set + custom-proxy faithfulness/relevance + baseline.json snapshot. `make gate` exits 1 on metric drop past tolerance — GitHub Actions blocks merges." }
+    ],
+    architecture: [
+      { step: "01", label: "Guard", desc: "POST /v1/ask → sanitize · injection scan · PII mask · token cap before retrieval sees the query." },
+      { step: "02", label: "Retrieve", desc: "BM25 (default) / dense / hybrid over 497-row enriched corpus → top-k candidates with similarity scores." },
+      { step: "03", label: "Generate", desc: "Grounded template (zero-LLM, deterministic) or LLM path with enforced inline source_id citations." },
+      { step: "04", label: "Validate", desc: "Output validator: citation freshness · length · forbidden actions. Regression gate runs in CI on every PR." }
+    ],
+    cost: "Template path = $0 (zero LLM calls). LLM path = pay-per-token via Anthropic or OpenAI. Service runs in-memory; ~$1–2/month serverless when deployed.",
+    phase: "Phase 1–6 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
+  },
+
   {
     slug: "ai-job-intelligence",
     title: "AI Job Intelligence",
