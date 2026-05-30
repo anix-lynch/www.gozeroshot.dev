@@ -295,41 +295,6 @@ export const projects = [
     phase: null
   },
 
-  {
-    slug: "cocktailverse",
-    title: "CocktailVerse",
-    tagline: "GCP BigQuery ETL pipeline with Cloud Run deployment and TheCocktailDB as the data source.",
-    lane: "Data Eng",
-    laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/cocktailverse",
-    live: "https://cocktailverse-835005185815.us-central1.run.app",
-    gif: "/cocktailverse.gif",
-    icon: "database",
-    description: "Production GCP data engineering pipeline using BigQuery as the warehouse and Cloud Run for containerized ETL execution. Pulls data from TheCocktailDB API, transforms it through a layered BigQuery schema, and deploys via Cloud Run with Terraform infrastructure.",
-    highlight: "GCP production stack: Cloud Run + BigQuery + Terraform + CI/CD. Real infra, not a local notebook.",
-    stats: [
-      { value: "GCP", label: "Cloud Platform" },
-      { value: "BigQuery", label: "Data Warehouse" },
-      { value: "Cloud Run", label: "ETL Execution" },
-      { value: "Terraform", label: "IaC" }
-    ],
-    stack: ["Python", "GCP", "BigQuery", "Cloud Run", "Terraform", "Docker", "Cloud Storage", "dbt"],
-    features: [
-      { icon: "layers", title: "Layered Schema", desc: "Raw → staging → marts BigQuery schema. dbt transformations with full lineage." },
-      { icon: "cpu", title: "Cloud Run ETL", desc: "Containerized Python ETL jobs run on Cloud Run — serverless, scalable, zero idle cost." },
-      { icon: "database", title: "BigQuery Warehouse", desc: "Partitioned and clustered BigQuery tables for cost-efficient analytics queries." },
-      { icon: "code", title: "Terraform IaC", desc: "All GCP resources defined in Terraform. Reproducible infra from scratch in minutes." }
-    ],
-    architecture: [
-      { step: "01", label: "Extract", desc: "TheCocktailDB API → Cloud Run job → Cloud Storage landing zone" },
-      { step: "02", label: "Load", desc: "GCS → BigQuery raw tables with schema enforcement" },
-      { step: "03", label: "Transform", desc: "dbt models: staging → intermediate → marts" },
-      { step: "04", label: "Deploy", desc: "Terraform provisions all GCP resources. Cloud Run handles execution." }
-    ],
-    cost: "GCP free tier for dev. Cloud Run + BigQuery costs scale to $0 at low volume.",
-    phase: null
-  },
 
   {
     slug: "ai-bi-agent",
@@ -476,41 +441,6 @@ export const projects = [
     phase: null
   },
 
-  {
-    slug: "marketing-analytics-etl",
-    title: "Marketing Analytics ETL",
-    tagline: "Marketing analytics dashboard with real-time KPIs, campaign tracking, and cross-platform attribution.",
-    lane: "Data Eng",
-    laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/marketing-analytics-etl",
-    live: "https://marketing-analytics-etl.streamlit.app/",
-    gif: "/marketing_etl.gif",
-    icon: "bar-chart",
-    description: "Professional marketing analytics ETL pipeline with a live Streamlit dashboard. Ingests TheCocktailDB data as a proxy for marketing events, transforms via DuckDB, and renders KPIs, campaign performance, and cross-platform attribution in an ECharts-powered UI.",
-    highlight: "The only project in this portfolio with a public live demo. Click the button.",
-    stats: [
-      { value: "Live", label: "Public Demo" },
-      { value: "ECharts", label: "Visualizations" },
-      { value: "DuckDB", label: "Analytics Engine" },
-      { value: "Real-time", label: "KPI Dashboard" }
-    ],
-    stack: ["Python", "Streamlit", "ECharts", "Pandas", "DuckDB", "ETL"],
-    features: [
-      { icon: "zap", title: "Live Demo", desc: "Publicly deployed on Streamlit Cloud. See the full dashboard without any setup." },
-      { icon: "bar-chart", title: "ECharts Viz", desc: "Apache ECharts for interactive charts — funnel, bar, line, scatter, all responsive." },
-      { icon: "database", title: "DuckDB Analytics", desc: "In-process analytics engine. Sub-second aggregations over marketing event tables." },
-      { icon: "layers", title: "Attribution Model", desc: "First-touch, last-touch, and linear attribution models computed in DuckDB SQL." }
-    ],
-    architecture: [
-      { step: "01", label: "Extract", desc: "TheCocktailDB API → pandas raw DataFrames" },
-      { step: "02", label: "Transform", desc: "DuckDB SQL → KPI aggregations, attribution calculations" },
-      { step: "03", label: "Load", desc: "In-memory DuckDB → Streamlit session state" },
-      { step: "04", label: "Visualize", desc: "ECharts components render live, interactive marketing dashboard" }
-    ],
-    cost: "Free. Streamlit Cloud free tier.",
-    phase: null
-  },
 
   {
     slug: "healthcare-ai-data-engineer",
