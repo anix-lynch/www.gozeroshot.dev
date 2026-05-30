@@ -162,7 +162,7 @@ export const projects = [
     title: "Healthcare Analytics on Microsoft Fabric",
     tagline: "FastAPI + dbt + Fabric lakehouse + TMDL semantic model + MLflow — interview-ready proof stack.",
     lane: "Data Eng",
-    tags: ["Data Eng", "Cloud"],
+    tags: ["Data Eng", "Cloud", "ML/DL"],
     cloud: "Azure",
     laneColor: "#c4a8d8",
     status: "Production",
