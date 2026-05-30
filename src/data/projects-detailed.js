@@ -82,45 +82,6 @@ export const projects = [
   },
 
   {
-    slug: "ai-job-intelligence",
-    title: "AI Job Intelligence",
-    tagline: "Multi-agent job platform with resume-aware AI, ATS scoring, and commute analysis.",
-    lane: "GenAI",
-    tags: ["GenAI"],
-    laneColor: "#7bb3d9",
-    status: "Production",
-    github: "https://github.com/anix-lynch/ai-agent-job-intelligence-phase-2",
-    // live: hidden — Streamlit Cloud runtime error, code is on GitHub
-    gif: "/ATS_phase2.gif",
-    icon: "cpu",
-    description: "A multi-agent job intelligence system that combines semantic vector search, ML-powered ATS scoring, and a LangChain ReAct agent to find and rank the best-fit roles for a specific resume. Built for the LA Silicon Beach market. Personalizes every search to your actual skills, salary targets, and commute tolerance — not just keywords.",
-    highlight: "What if job search worked like a personal recruiter instead of a keyword filter? This is that.",
-    stats: [
-      { value: "93%", label: "Task Success Rate" },
-      { value: "14", label: "Parallel MCP Tools" },
-      { value: "96%+", label: "ATS Accuracy" },
-      { value: "1,000+", label: "AI/ML Jobs" }
-    ],
-    stack: ["Python", "LangChain", "ChromaDB", "Streamlit", "FastAPI", "scikit-learn", "Sentence Transformers", "DuckDB", "DeepSeek", "Docker"],
-    features: [
-      { icon: "search", title: "Semantic Vector Search", desc: "SBERT sentence-transformer embeddings + ChromaDB. Finds roles by meaning, not keywords. Your resume becomes the query." },
-      { icon: "target", title: "ATS Classifier", desc: "scikit-learn ML model trained on real posting data. Predicts pass rate with 96%+ accuracy and shows which keywords move the needle." },
-      { icon: "bot", title: "ReAct Agent Orchestration", desc: "LangChain multi-agent with autonomous reasoning. Uses 14 parallel MCP tools to filter, rank, and compare jobs — no human loop." },
-      { icon: "user", title: "Resume-Aware Personalization", desc: "Auto-loads resume.json. Every search pre-filled with your skills, target roles, and salary preference. One-click matching." },
-      { icon: "map", title: "Commute-Aware Scoring", desc: "LA Silicon Beach geospatial focus. Commute distance is part of the ranking model — not filtered out after the fact." },
-      { icon: "zap", title: "70× Cheaper Than GPT-4", desc: "DeepSeek as the reasoning backbone: $0.14/$0.28 per 1M tokens. Full agent intelligence at 1% of the typical LLM cost." }
-    ],
-    architecture: [
-      { step: "01", label: "Resume Load", desc: "resume.json → resume_loader.py extracts skills, projects, salary targets" },
-      { step: "02", label: "Vector Index", desc: "SBERT embeds 1,000+ postings → ChromaDB cosine similarity search" },
-      { step: "03", label: "ATS Score", desc: "ML classifier predicts pass/fail for your specific resume vs each job" },
-      { step: "04", label: "Agent Rank", desc: "LangChain ReAct agent orchestrates 14 tools → ranked shortlist with reasoning" }
-    ],
-    cost: "$0–2/month (DeepSeek API only). All infra on free tiers.",
-    phase: "Phase 2 — adds personalized resume matching on top of Phase 1 job search engine."
-  },
-
-  {
     slug: "mocktailverse-bedrock",
     title: "MocktailVerse Bedrock",
     tagline: "Enterprise GenAI data platform powered by AWS Bedrock, RAG, and Vector Search.",
@@ -157,8 +118,6 @@ export const projects = [
     cost: "AWS Bedrock pay-per-token. pgvector runs on any Postgres instance.",
     phase: null
   },
-
-
 
   {
     slug: "healthcare-analytics-fabric",
@@ -199,80 +158,6 @@ export const projects = [
   },
 
   {
-    slug: "vc-dealflow-automation",
-    title: "VC Dealflow Automation",
-    tagline: "End-to-end VC deal flow: Apollo enrichment → Hunter verify → n8n → Claude → Airtable CRM.",
-    lane: "n8n",
-    tags: ["Automation"],
-    laneColor: "#f5c842",
-    status: "Production",
-    github: "https://github.com/anix-lynch/vc-dealflow-automation",
-    live: null,
-    gif: null,
-    icon: "trending-up",
-    description: "Full VC deal flow automation pipeline that takes a raw company name and runs it through Apollo enrichment, Hunter.io email verification, n8n orchestration, Claude AI personalization, and into an Airtable CRM with outreach drafted and ready to send.",
-    highlight: "From company name to personalized outreach in one n8n workflow. The full VC ops stack automated.",
-    stats: [
-      { value: "E2E", label: "Deal Flow Pipeline" },
-      { value: "Apollo", label: "+ Hunter Enrichment" },
-      { value: "Claude", label: "Personalization" },
-      { value: "0", label: "Manual Steps" }
-    ],
-    stack: ["n8n", "Apollo API", "Hunter.io", "Claude AI", "Airtable", "Python", "Webhooks"],
-    features: [
-      { icon: "search", title: "Apollo Enrichment", desc: "Company → firmographics, funding stage, headcount, key contacts pulled automatically." },
-      { icon: "mail", title: "Hunter Verification", desc: "Email addresses verified before any outreach. No bounces, no spam flags." },
-      { icon: "bot", title: "Claude Personalization", desc: "Claude reads the company profile and drafts personalized outreach for each contact." },
-      { icon: "database", title: "Airtable CRM", desc: "All deal data lands in Airtable: company, contacts, enrichment, outreach status, follow-up dates." }
-    ],
-    architecture: [
-      { step: "01", label: "Trigger", desc: "Company name → n8n webhook or manual trigger" },
-      { step: "02", label: "Enrich", desc: "Apollo API → firmographics, contacts, funding data" },
-      { step: "03", label: "Verify", desc: "Hunter.io → email verification → deliverability score" },
-      { step: "04", label: "Draft + Log", desc: "Claude → personalized outreach → Airtable CRM record" }
-    ],
-    cost: "Apollo free tier + Hunter.io free tier covers initial pipeline. Claude API minimal.",
-    phase: null
-  },
-
-  {
-    slug: "silicon-beach-ai-jobs",
-    title: "Silicon Beach AI Jobs",
-    tagline: "AI-powered job search with Snowflake Cortex + Vector Search, migrated to DuckDB.",
-    lane: "Data Eng",
-    tags: ["Data Eng", "GenAI"],
-    laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/silicon-beach-ai-jobs",
-    live: null,
-    gif: "/silicon-beach.gif",
-    icon: "search",
-    description: "ML-powered job search engine using Snowflake Cortex for LLM inference and Cortex Search for vector similarity, with a clean DuckDB migration path for local/portable deployment. Demonstrates the full Snowflake ML stack with a real-world dataset of LA AI/ML jobs.",
-    highlight: "Snowflake Cortex end-to-end — LLM inference, vector search, and ML functions — with a DuckDB fallback for portability.",
-    stats: [
-      { value: "Cortex", label: "Snowflake LLM" },
-      { value: "Vector", label: "Semantic Search" },
-      { value: "DuckDB", label: "Local Migration" },
-      { value: "LA", label: "Silicon Beach Focus" }
-    ],
-    stack: ["Snowflake Cortex", "DuckDB", "Python", "Streamlit", "SQL", "Vector Search", "Pandas"],
-    features: [
-      { icon: "cpu", title: "Snowflake Cortex", desc: "LLM inference and embedding generation natively in Snowflake — no external API calls." },
-      { icon: "search", title: "Cortex Search", desc: "Vector similarity search over job postings using Snowflake's managed vector store." },
-      { icon: "database", title: "DuckDB Migration", desc: "Full portability layer — same queries run locally in DuckDB without Snowflake credits." },
-      { icon: "map", title: "LA Market Focus", desc: "Curated AI/ML job dataset from LA Silicon Beach companies. Real data, real market." }
-    ],
-    architecture: [
-      { step: "01", label: "Ingest", desc: "LA AI/ML job dataset → Snowflake staging table" },
-      { step: "02", label: "Embed", desc: "Cortex EMBED_TEXT_768 → vector column on each job posting" },
-      { step: "03", label: "Search", desc: "User query → Cortex Search → top-k semantic results" },
-      { step: "04", label: "Local", desc: "DuckDB migration for zero-cost local development and demos" }
-    ],
-    cost: "Snowflake free trial covers development. DuckDB path is free indefinitely.",
-    phase: null
-  },
-
-  {
     slug: "realtime-fraud-detection",
     title: "Realtime Fraud Detection",
     tagline: "Real-time feature engineering for fraud detection with Streamlit monitoring UI.",
@@ -308,9 +193,6 @@ export const projects = [
     cost: "Free to run locally.",
     phase: null
   },
-
-
-
 
   {
     slug: "pied-piper-legal",
@@ -350,7 +232,6 @@ export const projects = [
     phase: null
   },
 
-
   {
     slug: "financial-modeling-automation",
     title: "Financial Modeling Automation",
@@ -387,7 +268,6 @@ export const projects = [
     cost: "Free. Pure Python.",
     phase: null
   },
-
 
   {
     slug: "healthcare-ai-data-engineer",
@@ -437,8 +317,8 @@ export const projects = [
     laneColor: "#e8a87c",
     status: "Production",
     github: "https://github.com/anix-lynch/healthcare-forward-deployed-engineer",
-    live: "https://healthcare-fde-2ihyeqmb6q-uw.a.run.app/docs",
-    gif: "/healthcare-forward-deployed-engineer.gif",
+    live: "https://healthcare-fde-2ihyeqmb6q-uw.a.run.app/",
+    gif: "/healthcare-fde.png",
     icon: "shield",
     description: "End-to-end customer-deployment package for an ER triage assistant: customer brief + solution design + runbook + handoff guide + integrations (Epic FHIR adapter, OAuth, identity mapper), the one workflow (rule-based ESI + pediatric/suicidal/sepsis safety floors + retrieval + grounded rationale), guardrails (input + output + PII), observability (split-sink audit/PHI logging), deployment unit (Dockerfile + non-root + healthcheck), and a postmortem template populated with a real incident.",
     highlight: "Acceptance tests as customer-contract gates — NOT ML metrics. If a suicidal patient doesn't get human review, the deployment isn't done.",
