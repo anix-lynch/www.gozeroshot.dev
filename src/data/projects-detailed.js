@@ -272,7 +272,7 @@ export const projects = [
   {
     slug: "healthcare-ai-data-engineer",
     title: "Healthcare AI Data Engineer",
-    tagline: "L1 data backbone, deployed for real — dbt medallion warehouse on BigQuery (55 tests green) + FastAPI cockpit + a Vertex-grounded RAG agent over 55K synthetic patient encounters.",
+    tagline: "L1 + L1.25 data backbone, deployed for real — dbt medallion warehouse on BigQuery (55 tests green) + a Feast feature store (point-in-time-correct patient features) + FastAPI cockpit + a Vertex-grounded RAG agent over 55K synthetic patient encounters.",
     lane: "Data Eng",
     tags: ["Data Eng", "Cloud"],
     cloud: "Vertex",
