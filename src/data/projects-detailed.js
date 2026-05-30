@@ -371,23 +371,23 @@ export const projects = [
   {
     slug: "pied-piper-legal",
     title: "Pied Piper Legal Simulator",
-    tagline: "LLM-powered legal document simulator inspired by Silicon Valley's Pied Piper compression drama.",
+    tagline: "Grounded VC term-sheet advisor — Gemini on Vertex reads a clause, cites it, and explains who it favors + which Silicon Valley episode it mirrors.",
     lane: "GenAI",
     laneColor: "#7bb3d9",
-    status: "Experimental",
+    status: "Production",
     github: "https://github.com/anix-lynch/pied-piper-legal-simulator",
-    live: "https://public-ndx6vbur4-anix-lynchs-projects.vercel.app",
+    live: "https://pied-piper-advisor-819957310168.us-west1.run.app",
     gif: "/piedpiper.gif",
     icon: "file-text",
-    description: "A GenAI simulator that generates legal documents, term sheets, and IP disputes in the style of the Silicon Valley TV show's Pied Piper storyline. Uses LLMs to draft fictional but structurally accurate VC term sheets, NDAs, and court filings for educational purposes.",
-    highlight: "What if LLMs could simulate an entire startup legal drama? This tests the boundaries of structured legal document generation.",
+    description: "A grounded VC term-sheet advisor: ask any term and it retrieves the matching clause(s) from a 57-clause library, links the Silicon Valley episode by conflict_type, then grounds a Gemini 2.5 Flash answer (Vertex AI) with [clause_id] citations, founder/VC risk scores, and the direction the term pushes fund returns. DIY retrieval right-sized for the corpus (no managed index) — same grounded-RAG pattern as the healthcare service, retargeted to legal/VC.",
+    highlight: "Read a term sheet the way a new analyst dreams of: instant grounded read of who it favors, the risk, and the real-world drama it mirrors — every claim cites a clause.",
     stats: [
-      { value: "LLM", label: "Doc Generation" },
-      { value: "VC", label: "Term Sheets" },
-      { value: "NDA", label: "Legal Templates" },
-      { value: "IP", label: "Dispute Simulation" }
+      { value: "57", label: "clauses grounded" },
+      { value: "19", label: "SV episodes" },
+      { value: "[id]", label: "cited answers" },
+      { value: "2.5 Flash", label: "Gemini / Vertex" }
     ],
-    stack: ["Python", "LangChain", "OpenAI", "Streamlit", "Jinja2", "Pydantic"],
+    stack: ["Python", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "RAG", "Cloud Run", "Docker"],
     features: [
       { icon: "file-text", title: "Term Sheet Generator", desc: "Structured VC term sheets with configurable valuation, liquidation prefs, and pro-rata rights." },
       { icon: "shield", title: "NDA Simulator", desc: "Mutual and one-way NDAs with jurisdiction-aware clause selection." },
