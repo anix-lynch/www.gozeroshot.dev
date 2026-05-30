@@ -118,6 +118,12 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
                 Live Demo
               </a>
             )}
+            {project.wandb && (
+              <a href={project.wandb} target="_blank" rel="noopener" class="btn btn-ghost">
+                <Fragment set:html={icon('activity', 15)} />
+                W&B evals
+              </a>
+            )}
           </div>
         </div>
       </header>

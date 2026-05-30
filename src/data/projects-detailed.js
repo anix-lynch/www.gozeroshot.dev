@@ -13,19 +13,20 @@ export const projects = [
     cloud: "Vertex",
     laneColor: "#1e6b38",
     status: "Production",
-    github: "https://github.com/anix-lynch/healthcare-genai-fullstack",
+    github: "https://github.com/anix-lynch/healthcare-signal-platform",
     live: "https://signal-console-819957310168.us-west1.run.app",
-    gif: "/healthcare-ai-data-engineer.gif",
+    wandb: "https://wandb.ai/alynch-zeroshot/healthcare-l15-signals",
+    gif: "/signal-console.png",
     icon: "activity",
-    description: "An AI-platform signal layer (L1.5) that turns trusted healthcare data into pre-computed signals — anomaly, cluster, classify, forecast, rank — that feed a GenAI agent as labeled fields, never as raw text in the context window. The Signal Console shows the full chain on three audience cases (ER triage, ops capacity, exec brief): L1 truth (dbt/warehouse) → L1.5 signals → L2 Gemini agent decision → L3 human override. The architecture insight — signals are computed before the agent, so it reasons on labels not noise — is the senior platform-engineering answer to context pollution.",
-    highlight: "Signals are machine intuition the agent consumes, not computes — the platform pattern Palantir AIP uses, shown end-to-end on real eval numbers.",
+    description: "An AI-platform signal layer (L1.5) that turns trusted healthcare data into pre-computed signals — cluster, classify, anomaly, rank (+ BM25 retrieval) — fed to a GenAI agent as labeled fields, never raw text in the context window. The live console proves two things: (1) the signals are HIGH QUALITY — each carries its eval vs an industry benchmark with a green/yellow status; (2) the signals CHANGE THE AGENT — an on-screen ablation runs the same Gemini agent WITH signals vs on raw facts only, and on the ops-capacity case the call visibly flips ('monitor beds' → 'initiate critical-care surge planning'). Chain: L1 truth (dbt/warehouse) → L1.5 signals → L2 Gemini decision → L3 human Approve/Override (accountable judgment). Signal evals tracked in Weights & Biases; every agent call traced in Langfuse.",
+    highlight: "Signals are machine intuition the agent consumes, not computes — the Palantir-AIP platform pattern. Toggle the signals off in the live demo and the agent's call degrades: that ablation is the proof they matter.",
     stats: [
       { value: "0.85", label: "anomaly F1 (R 0.92)" },
       { value: "535", label: "high-utilizers / 40K" },
       { value: "100%", label: "classify ±1 tier" },
       { value: "0", label: "safety violations" }
     ],
-    stack: ["Python", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "NumPy", "Cloud Run", "Docker"],
+    stack: ["Python", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "scikit-learn (K-Means)", "NumPy", "Weights & Biases", "Langfuse", "Cloud Run", "Docker"],
     features: [
       { icon: "activity", title: "Smoke Detector — anomaly", desc: "Z-score over (gender × condition × age-band) cohorts on LOS + admission alignment. Eval: P 0.79 / R 0.92 / F1 0.85, FPR 6% on a 250-case synthetic injection set." },
       { icon: "search", title: "Treasure Map — cluster", desc: "Pure-Python k-means on 5 patient-level features (z-standardized). Surfaces 535 complex high-utilizers (1.3%) out of 40,167 patients; silhouette 0.41." },
@@ -34,9 +35,9 @@ export const projects = [
     ],
     architecture: [
       { step: "01", label: "L1 Truth", desc: "dbt / warehouse facts for the case (vitals, history, KPIs) — the trusted inputs." },
-      { step: "02", label: "L1.5 Signals", desc: "anomaly / cluster / classify (+ forecast, rank) pre-computed by the eval harness into labeled fields." },
-      { step: "03", label: "L2 Agent", desc: "Gemini 2.5 Flash (Vertex) reads truth + labeled signals and produces a cited recommendation." },
-      { step: "04", label: "L3 Human", desc: "Approve / Hold / Override / Need-more-evidence — human stays in the loop on the decision." }
+      { step: "02", label: "L1.5 Signals", desc: "cluster / classify / anomaly / rank (+ BM25 retrieval) pre-computed into labeled fields — each evaluated vs a benchmark (green/yellow), tracked in Weights & Biases." },
+      { step: "03", label: "L2 Agent", desc: "Gemini 2.5 Flash (Vertex) reads truth + labeled signals, cites them by name. On-screen ablation shows the call WITH vs WITHOUT signals; traced in Langfuse." },
+      { step: "04", label: "L3 Human", desc: "Approve / Override / Hold — the accountable human judgment. The agent recommends; the human decides." }
     ],
     cost: "$0 at portfolio traffic — Cloud Run scales to zero, Gemini draws the GCP GenAI credit.",
     phase: "Layer-2 of healthcare-genai-fullstack: 7 signal patterns, real eval numbers per pattern."
