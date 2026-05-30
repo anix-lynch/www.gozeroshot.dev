@@ -308,42 +308,6 @@ export const projects = [
 
 
 
-  {
-    slug: "kpi-evidence",
-    title: "KPI Evidence Store",
-    tagline: "Hallucination rate, latency, task success and data quality dashboards for 13 production AI systems.",
-    lane: "GenAI",
-    tags: ["GenAI"],
-    laneColor: "#7bb3d9",
-    status: "Production",
-    github: "https://github.com/anix-lynch/kpi-evidence",
-    live: null,
-    gif: null,
-    icon: "activity",
-    description: "Centralized KPI evidence store tracking production metrics across 13 AI systems: hallucination rates, p50/p95 latency, task success rates, and data quality scores. Designed as a credibility layer — every claim in a resume bullet has a source record here.",
-    highlight: "Every metric is sourced. This repo exists so 'I improved latency by 40%' has an audit trail.",
-    stats: [
-      { value: "13", label: "AI Systems Tracked" },
-      { value: "Halluc.", label: "Rate Monitoring" },
-      { value: "p95", label: "Latency Benchmarks" },
-      { value: "Audit", label: "Trail for Claims" }
-    ],
-    stack: ["Python", "DuckDB", "Pandas", "Evidence.dev", "SQL", "Markdown", "GitHub Actions"],
-    features: [
-      { icon: "activity", title: "Hallucination Tracking", desc: "Per-system hallucination rates measured with Ragas + manual spot checks. Trend over time." },
-      { icon: "zap", title: "Latency Benchmarks", desc: "p50/p95/p99 latency for each AI system. Before/after for every optimization." },
-      { icon: "target", title: "Task Success Rates", desc: "Agent task completion rates, retry counts, fallback triggers per system." },
-      { icon: "database", title: "Data Quality Scores", desc: "Python + dbt custom validators tracking data quality across pipeline stages." }
-    ],
-    architecture: [
-      { step: "01", label: "Capture", desc: "OpenTelemetry spans + custom metrics → DuckDB evidence store" },
-      { step: "02", label: "Validate", desc: "Custom Python + dbt test assertions run on each metric batch" },
-      { step: "03", label: "Report", desc: "Evidence.dev dashboard renders KPI trends from SQL queries" },
-      { step: "04", label: "Audit", desc: "Each resume bullet links to a specific KPI record in this store" }
-    ],
-    cost: "Free. DuckDB + Evidence.dev + GitHub Actions all free tier.",
-    phase: null
-  },
 
   {
     slug: "pied-piper-legal",
