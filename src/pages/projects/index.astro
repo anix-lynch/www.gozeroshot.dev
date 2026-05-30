@@ -3,24 +3,32 @@ import Layout from '../../components/Layout.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import { projects } from '../../data/projects-detailed.js';
 
-const lanes = ["All", "GenAI", "Data Eng", "ML", "n8n"];
+const lanes = ["All", "GenAI", "Data Eng", "ML/DL", "Automation", "Cloud", "Solutions"];
+
+// A card can live in multiple lanes (e.g. a GCP GenAI service shows under both
+// GenAI and Cloud). `tags` is the source of truth; fall back to single `lane`.
+const tagsOf = (p) => (p.tags && p.tags.length ? p.tags : [p.lane]);
 
 const laneColors = {
-  "GenAI":    { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
-  "n8n":      { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
-  "Data Eng": { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
-  "ML":       { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
+  "GenAI":      { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
+  "Data Eng":   { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
+  "ML/DL":      { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
+  "Automation": { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
+  "Cloud":      { bg: "#e6f2f2", text: "#2a7a7a", border: "rgba(90,139,139,0.4)" },
+  "Solutions":  { bg: "#fbeee6", text: "#a85a2a", border: "rgba(217,139,111,0.4)" },
 };
 
 const laneThumbBg = {
-  "GenAI":    "#ddeef8",
-  "n8n":      "#fdf6d8",
-  "Data Eng": "#ece6f8",
-  "ML":       "#dff5e5",
+  "GenAI":      "#ddeef8",
+  "Data Eng":   "#ece6f8",
+  "ML/DL":      "#dff5e5",
+  "Automation": "#fdf6d8",
+  "Cloud":      "#dceeee",
+  "Solutions":  "#f6e4d8",
 };
 
 const counts = lanes.reduce((acc, lane) => {
-  acc[lane] = lane === "All" ? projects.length : projects.filter(p => p.lane === lane).length;
+  acc[lane] = lane === "All" ? projects.length : projects.filter(p => tagsOf(p).includes(lane)).length;
   return acc;
 }, {});
 
@@ -47,7 +55,7 @@ function icon(name, size = 18) {
   return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 }
 
-const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n8n": "workflow" };
+const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML/DL": "activity", "Automation": "workflow", "Cloud": "layers", "Solutions": "heart" };
 ---
 
 <Layout
@@ -113,13 +121,15 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
       <!-- Project grid -->
       <div class="project-grid" id="project-grid">
         {projects.map(project => {
-          const lc = laneColors[project.lane] || laneColors["GenAI"];
-          const thumbBg = laneThumbBg[project.lane] || laneThumbBg["GenAI"];
+          const tags = tagsOf(project);
+          const primary = tags[0];
+          const lc = laneColors[primary] || laneColors["GenAI"];
+          const thumbBg = laneThumbBg[primary] || laneThumbBg["GenAI"];
           return (
             <a
               href={`/projects/${project.slug}`}
               class="project-card"
-              data-lane={project.lane}
+              data-lane={tags.join('|')}
               data-title={project.title.toLowerCase()}
               data-desc={project.tagline.toLowerCase()}
               data-stack={project.stack.join(' ').toLowerCase()}
@@ -144,7 +154,7 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
                   <div class="card-badges">
                     <span class="card-lane-badge"
                       style={`background:${lc.bg};color:${lc.text};border-color:${lc.border}`}>
-                      {project.lane}
+                      {primary}
                     </span>
                     {project.live && (
                       <span class="live-badge">
@@ -209,13 +219,13 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML": "activity", "n
   function applyFilters() {
     let visible = 0;
     cards.forEach(card => {
-      const lane = card.dataset.lane;
+      const laneTags = (card.dataset.lane || '').split('|');
       const title = card.dataset.title || '';
       const desc = card.dataset.desc || '';
       const stack = card.dataset.stack || '';
       const text = title + ' ' + desc + ' ' + stack;
 
-      const laneMatch = activeFilter === 'All' || lane === activeFilter;
+      const laneMatch = activeFilter === 'All' || laneTags.includes(activeFilter);
       const searchMatch = !searchQuery || text.includes(searchQuery);
 
       if (laneMatch && searchMatch) {
