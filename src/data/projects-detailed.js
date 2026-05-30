@@ -119,42 +119,6 @@ export const projects = [
     phase: null
   },
 
-  {
-    slug: "churn-ml-pipeline",
-    title: "Churn ML Pipeline",
-    tagline: "End-to-end customer churn prediction with FastAPI serving and Streamlit dashboard.",
-    lane: "ML",
-    tags: ["ML/DL"],
-    laneColor: "#a8d8a8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/churn-ml-pipeline",
-    live: "https://churn-ml-pipeline-mwvbz4fzdvmd8yvjvz9jak.streamlit.app",
-    gif: "/churn-ml-pipeline.gif",
-    icon: "bar-chart",
-    description: "Full ML lifecycle for customer churn prediction: feature engineering, model training with time-aware splitting, FastAPI model serving, and a Streamlit monitoring dashboard. Production patterns throughout — no notebook-only experiments.",
-    highlight: "The ML pipeline gap most tutorials skip: training-serving parity, time-aware splits, drift detection, production API.",
-    stats: [
-      { value: "E2E", label: "ML Lifecycle" },
-      { value: "FastAPI", label: "Model Serving" },
-      { value: "Streamlit", label: "Monitoring UI" },
-      { value: "RFM", label: "Feature Engineering" }
-    ],
-    stack: ["Python", "scikit-learn", "FastAPI", "Streamlit", "Pandas", "DuckDB", "Docker", "Pydantic"],
-    features: [
-      { icon: "layers", title: "Feature Engineering", desc: "RFM analysis, time-aware train/test splits, statistical feature selection." },
-      { icon: "cpu", title: "Model Training", desc: "scikit-learn pipeline with hyperparameter tuning, cross-validation, SHAP explainability." },
-      { icon: "zap", title: "FastAPI Serving", desc: "REST API with Pydantic validation, async endpoints, health checks, versioned models." },
-      { icon: "bar-chart", title: "Drift Detection", desc: "Streamlit dashboard monitors prediction distribution shifts and feature drift in production." }
-    ],
-    architecture: [
-      { step: "01", label: "Feature Store", desc: "Raw events → RFM features → DuckDB feature store" },
-      { step: "02", label: "Train", desc: "Time-aware split → scikit-learn pipeline → SHAP explainability" },
-      { step: "03", label: "Serve", desc: "FastAPI REST endpoint with Pydantic validation + versioned model registry" },
-      { step: "04", label: "Monitor", desc: "Streamlit dashboard → drift detection → retraining trigger" }
-    ],
-    cost: "Free to run locally or on Streamlit Cloud.",
-    phase: null
-  },
 
 
   {
