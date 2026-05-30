@@ -5,6 +5,44 @@
 export const projects = [
   // ── NORTHSTAR ──────────────────────────────────────────────
   {
+    slug: "healthcare-ai-platform-signals",
+    title: "Healthcare AI Platform — Signal Layer",
+    tagline: "L1.5 Signal Intelligence — machine intuition (anomaly, cluster, classify) computed before the agent and fed in as labeled facts.",
+    lane: "AI Platform",
+    tags: ["AI Platform", "Cloud"],
+    cloud: "Vertex",
+    laneColor: "#1e6b38",
+    status: "Production",
+    github: "https://github.com/anix-lynch/healthcare-genai-fullstack",
+    live: "https://signal-console-819957310168.us-west1.run.app",
+    gif: "/healthcare-ai-data-engineer.gif",
+    icon: "activity",
+    description: "An AI-platform signal layer (L1.5) that turns trusted healthcare data into pre-computed signals — anomaly, cluster, classify, forecast, rank — that feed a GenAI agent as labeled fields, never as raw text in the context window. The Signal Console shows the full chain on three audience cases (ER triage, ops capacity, exec brief): L1 truth (dbt/warehouse) → L1.5 signals → L2 Gemini agent decision → L3 human override. The architecture insight — signals are computed before the agent, so it reasons on labels not noise — is the senior platform-engineering answer to context pollution.",
+    highlight: "Signals are machine intuition the agent consumes, not computes — the platform pattern Palantir AIP uses, shown end-to-end on real eval numbers.",
+    stats: [
+      { value: "0.85", label: "anomaly F1 (R 0.92)" },
+      { value: "535", label: "high-utilizers / 40K" },
+      { value: "100%", label: "classify ±1 tier" },
+      { value: "0", label: "safety violations" }
+    ],
+    stack: ["Python", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "NumPy", "Cloud Run", "Docker"],
+    features: [
+      { icon: "activity", title: "Smoke Detector — anomaly", desc: "Z-score over (gender × condition × age-band) cohorts on LOS + admission alignment. Eval: P 0.79 / R 0.92 / F1 0.85, FPR 6% on a 250-case synthetic injection set." },
+      { icon: "search", title: "Treasure Map — cluster", desc: "Pure-Python k-means on 5 patient-level features (z-standardized). Surfaces 535 complex high-utilizers (1.3%) out of 40,167 patients; silhouette 0.41." },
+      { icon: "shield", title: "Traffic Light — classify", desc: "ESI tier + NOW/SOON/WAIT with a safety overlay. ±1-tier accuracy 100%, bucket accuracy 94%, 0 safety-critical violations across the gold set." },
+      { icon: "cpu", title: "Signals feed the agent as labels", desc: "Each signal is a labeled field ({anomaly_score, cluster, esi_tier}), pre-computed in L1.5. The L2 Gemini agent reasons on the labels — never recomputes them — avoiding context pollution." }
+    ],
+    architecture: [
+      { step: "01", label: "L1 Truth", desc: "dbt / warehouse facts for the case (vitals, history, KPIs) — the trusted inputs." },
+      { step: "02", label: "L1.5 Signals", desc: "anomaly / cluster / classify (+ forecast, rank) pre-computed by the eval harness into labeled fields." },
+      { step: "03", label: "L2 Agent", desc: "Gemini 2.5 Flash (Vertex) reads truth + labeled signals and produces a cited recommendation." },
+      { step: "04", label: "L3 Human", desc: "Approve / Hold / Override / Need-more-evidence — human stays in the loop on the decision." }
+    ],
+    cost: "$0 at portfolio traffic — Cloud Run scales to zero, Gemini draws the GCP GenAI credit.",
+    phase: "Layer-2 of healthcare-genai-fullstack: 7 signal patterns, real eval numbers per pattern."
+  },
+
+  {
     slug: "healthcare-genai-engineer",
     title: "Healthcare GenAI Engineer",
     tagline: "Healthcare RAG service — BM25/dense hybrid + PII guardrails + custom-proxy eval + CI regression gate.",
@@ -126,7 +164,7 @@ export const projects = [
     title: "Healthcare Analytics on Microsoft Fabric",
     tagline: "FastAPI + dbt + Fabric lakehouse + TMDL semantic model + MLflow — interview-ready proof stack.",
     lane: "Data Eng",
-    tags: ["Data Eng", "Cloud", "ML/DL"],
+    tags: ["Data Eng", "Cloud", "AI Platform"],
     cloud: "Azure",
     laneColor: "#c4a8d8",
     status: "Production",
@@ -238,7 +276,7 @@ export const projects = [
     title: "Realtime Fraud Detection",
     tagline: "Real-time feature engineering for fraud detection with Streamlit monitoring UI.",
     lane: "ML",
-    tags: ["ML/DL"],
+    tags: ["AI Platform"],
     laneColor: "#a8d8a8",
     status: "Production",
     github: "https://github.com/anix-lynch/realtime-fraud-detection",

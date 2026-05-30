@@ -3,7 +3,7 @@ import Layout from '../../components/Layout.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import { projects } from '../../data/projects-detailed.js';
 
-const lanes = ["All", "GenAI", "Data Eng", "ML/DL", "Automation", "Cloud", "Solutions"];
+const lanes = ["All", "GenAI", "Data Eng", "AI Platform", "Automation", "Cloud", "Solutions"];
 
 // A card can live in multiple lanes (e.g. a GCP GenAI service shows under both
 // GenAI and Cloud). `tags` is the source of truth; fall back to single `lane`.
@@ -12,7 +12,7 @@ const tagsOf = (p) => (p.tags && p.tags.length ? p.tags : [p.lane]);
 const laneColors = {
   "GenAI":      { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
   "Data Eng":   { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
-  "ML/DL":      { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
+  "AI Platform":      { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
   "Automation": { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
   "Cloud":      { bg: "#e6f2f2", text: "#2a7a7a", border: "rgba(90,139,139,0.4)" },
   "Solutions":  { bg: "#fbeee6", text: "#a85a2a", border: "rgba(217,139,111,0.4)" },
@@ -21,7 +21,7 @@ const laneColors = {
 const laneThumbBg = {
   "GenAI":      "#ddeef8",
   "Data Eng":   "#ece6f8",
-  "ML/DL":      "#dff5e5",
+  "AI Platform":      "#dff5e5",
   "Automation": "#fdf6d8",
   "Cloud":      "#dceeee",
   "Solutions":  "#f6e4d8",
@@ -55,7 +55,7 @@ function icon(name, size = 18) {
   return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 }
 
-const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML/DL": "activity", "Automation": "workflow", "Cloud": "layers", "Solutions": "heart" };
+const laneIcons = { "GenAI": "bot", "Data Eng": "database", "AI Platform": "activity", "Automation": "workflow", "Cloud": "layers", "Solutions": "heart" };
 ---
 
 <Layout
@@ -67,7 +67,7 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML/DL": "activity",
       name="Anix Lynch"
       tagline={"AI Data Engineer · GenAI Architect\nLos Angeles, CA"}
       avatar="/profile-photo.jpg"
-      about="Self-taught AI engineer. Lanes: GenAI, Data Eng, ML/DL, Cloud, Automation, Solutions. Ex-VC."
+      about="Self-taught AI engineer. Lanes: GenAI, Data Eng, AI Platform, Cloud, Automation, Solutions. Ex-VC."
       social={{
         github: "https://github.com/anix-lynch",
         linkedin: "https://linkedin.com/in/anixlynch",
