@@ -67,7 +67,7 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML/DL": "activity",
       name="Anix Lynch"
       tagline={"AI Data Engineer · GenAI Architect\nLos Angeles, CA"}
       avatar="/profile-photo.jpg"
-      about="Self-taught AI engineer. 4 sprint lanes: AI Data Engineering, GenAI/Agent, DevRel, n8n. Ex-VC."
+      about="Self-taught AI engineer. Lanes: GenAI, Data Eng, ML/DL, Cloud, Automation, Solutions. Ex-VC."
       social={{
         github: "https://github.com/anix-lynch",
         linkedin: "https://linkedin.com/in/anixlynch",
@@ -156,6 +156,9 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML/DL": "activity",
                       style={`background:${lc.bg};color:${lc.text};border-color:${lc.border}`}>
                       {primary}
                     </span>
+                    {project.cloud && (
+                      <span class="cloud-badge">☁ {project.cloud}</span>
+                    )}
                     {project.live && (
                       <span class="live-badge">
                         <span class="live-dot"></span>
@@ -254,6 +257,18 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML/DL": "activity",
     searchQuery = e.target.value.toLowerCase().trim();
     applyFilters();
   });
+
+  // Honor ?lane= deep link from the homepage chip bar (e.g. /projects?lane=Cloud)
+  (function initLaneFromQuery() {
+    const want = new URLSearchParams(location.search).get('lane');
+    if (!want) return;
+    const pill = document.querySelector(`.filter-pill[data-lane="${CSS.escape(want)}"]`);
+    if (!pill) return;
+    activeFilter = want;
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    applyFilters();
+  })();
 
   window.resetFilters = function() {
     activeFilter = 'All';
@@ -492,6 +507,19 @@ const laneIcons = { "GenAI": "bot", "Data Eng": "database", "ML/DL": "activity",
     font-weight: 700;
     letter-spacing: 0.03em;
     border: 1px solid;
+  }
+
+  .cloud-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    background: #2b2b28;
+    color: #fbf9f4;
   }
 
   .live-badge {
