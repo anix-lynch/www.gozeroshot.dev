@@ -585,37 +585,37 @@ export const projects = [
   {
     slug: "healthcare-ai-data-engineer",
     title: "Healthcare AI Data Engineer",
-    tagline: "L1 data backbone — dbt medallion + FastAPI + Vertex AI enrichment + 7-check L1 quality gate over 55K synthetic patient encounters.",
+    tagline: "L1 data backbone, deployed for real — dbt medallion warehouse on BigQuery (55 tests green) + FastAPI cockpit + a Vertex-grounded RAG agent over 55K synthetic patient encounters.",
     lane: "AI Data",
     laneColor: "#8fbc8f",
     status: "Production",
     github: "https://github.com/anix-lynch/healthcare-ai-data-engineer",
-    live: "https://healthcare-ai-data-2ihyeqmb6q-uw.a.run.app/docs",
+    live: "https://healthcare-ai-data-819957310168.us-west1.run.app/app",
     gif: "/healthcare-ai-data-engineer.gif",
     icon: "database",
-    description: "Healthcare data backbone: dbt medallion (bronze→silver→gold) star schema, FastAPI 11 endpoints over 55,500 synthetic encounters, LLM-augmented enrichment via Vertex AI gemini-2.5-flash (497 rows · $0.0005/row · 100% JSON-schema success), patient identity resolver (55K encounters → 40K patients), and a 7-check L1 quality gate that runs in CI and exits 1 on any critical failure.",
-    highlight: "Trusted L1 layer that catches the dumb-but-pipeline-killing failures BEFORE the GenAI layer hallucinates around bad input.",
+    description: "Healthcare data backbone deployed end-to-end on GCP: a dbt medallion star schema (staging → intermediate → marts) built and tested LIVE on BigQuery — 55,500 encounters loaded, dbt build green on all 55 tests. A 7-check L1 quality gate runs in CI. FastAPI serves the warehouse plus a human cockpit (A1–A6) where every number links to its proof file, and an L2 grounded-RAG agent (/api/ask): BM25 retrieves from the redacted enriched corpus, then Vertex Gemini answers with [doc N] citations — no raw PII indexed.",
+    highlight: "The data-engineer layer is real, not a mockup: dbt actually runs on BigQuery with every test green, and the AI agent answers only from the trusted marts.",
     stats: [
-      { value: "55,500", label: "encounters" },
-      { value: "7/7", label: "quality checks pass" },
-      { value: "$0.0005", label: "Vertex cost/row" },
-      { value: "40,235", label: "unique patients" }
+      { value: "55,500", label: "rows in BigQuery" },
+      { value: "55/55", label: "dbt tests green" },
+      { value: "50,000", label: "fact-table rows" },
+      { value: "[doc N]", label: "grounded citations" }
     ],
-    stack: ["Python", "dbt", "FastAPI", "Pandas", "Vertex AI", "Gemini 2.5 Flash", "Pydantic", "pytest", "Docker", "GCP Cloud Run", "GitHub Actions"],
+    stack: ["Python", "dbt", "BigQuery", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "BM25", "Pandas", "pytest", "Docker", "GCP Cloud Run", "GitHub Actions"],
     features: [
-      { icon: "database", title: "dbt medallion star schema", desc: "Bronze → silver → gold. fact_patient_encounters + 7 dim_*. Full schema.yml with not_null + unique + relationships (FK) + accepted_values for clinical enums." },
-      { icon: "shield", title: "7-check L1 quality gate", desc: "schema_drift · critical_nulls · duplicate_encounters · temporal_sanity · pii_in_narrative · patient_identity · audit_lineage. Runs in CI on every PR, exits 1 on failure." },
-      { icon: "cpu", title: "Vertex AI enrichment", desc: "gemini-2.5-flash + response_schema → 100% JSON parse success on 497 rows. CC/HPI/vitals/labs/ESI ground-truth generated for $0.25 total. Scales to 1M rows ≈ $500." },
-      { icon: "search", title: "Patient identity bridge", desc: "55K encounters → 40,235 unique patients via SHA256 short hash. Catches the 'same patient, 12 encounters' pattern that breaks cross-patient leak guards in eval." }
+      { icon: "database", title: "dbt warehouse LIVE on BigQuery", desc: "Medallion star schema (staging → intermediate → marts): fact_patient_encounters + 7 dims. 55,500 rows loaded, dbt build green on all 55 tests — not_null, unique, relationships (FK), accepted_values, and a custom readmission-logic test." },
+      { icon: "shield", title: "7-check L1 quality gate", desc: "schema_drift · critical_nulls · duplicate_encounters · temporal_sanity · pii_in_narrative · patient_identity · audit_lineage. Runs in CI, exits 1 on any critical failure. The unique tests caught ~5,500 duplicate rows in the raw feed." },
+      { icon: "cpu", title: "Vertex-grounded RAG agent", desc: "/api/ask: BM25 retrieves top-K from the redacted enriched corpus, then Gemini 2.5 Flash answers with [doc N] citations and refuses when the evidence doesn't support it. Grounds only on redacted narratives — never raw PII." },
+      { icon: "search", title: "Cockpit — every number traceable", desc: "A1–A6 cockpit at /app; each displayed metric links to the repo file that proves it. The A5 warehouse explorer reads live object + row counts straight from BigQuery." }
     ],
     architecture: [
-      { step: "01", label: "Raw CSV", desc: "55K synthetic encounters → dbt staging (bronze) with PII hashing + type casting." },
-      { step: "02", label: "Enrichment", desc: "Stratified 497-row sample → Vertex AI gemini-2.5-flash with response_schema → CC/HPI/vitals/labs/ESI." },
-      { step: "03", label: "Mart", desc: "fact_patient_encounters + 7 dim_*. Full FK + accepted_values + unique tests in schema.yml." },
-      { step: "04", label: "Gate + API", desc: "7-check L1 quality gate in CI · FastAPI 11 endpoints + OpenAPI docs at /docs · live on Cloud Run." }
+      { step: "01", label: "Load", desc: "55,500 synthetic encounters → BigQuery raw table; dbt staging dedupes to one row per encounter (raw feed had ~5,500 exact dupes)." },
+      { step: "02", label: "Model", desc: "dbt medallion on BigQuery: staging → intermediate → marts (fact + 7 dims). 55 tests green, including FK relationships + accepted_values." },
+      { step: "03", label: "Gate", desc: "7-check L1 quality gate in CI blocks bad data before it reaches the API or the AI agent." },
+      { step: "04", label: "Serve + ground", desc: "FastAPI serves the cockpit + warehouse rooms; /api/ask grounds Gemini on the trusted marts with citations. Live on Cloud Run." }
     ],
-    cost: "Free. Cloud Run scale-to-zero, well under monthly free tier at portfolio traffic.",
-    phase: "Phase 1-3 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
+    cost: "$0 at portfolio traffic — Cloud Run scales to zero, BigQuery stays in free tier, Vertex draws the GCP GenAI credit.",
+    phase: "Phase 1-6 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
   },
 
   {
