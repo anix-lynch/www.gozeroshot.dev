@@ -150,41 +150,6 @@ export const projects = [
     phase: null
   },
 
-  {
-    slug: "healthcare-dbt-bigquery",
-    title: "Healthcare dbt BigQuery",
-    tagline: "Clinical data warehouse: 55K patient records → dbt staging + 3 analytics marts on BigQuery.",
-    lane: "Data Eng",
-    laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/healthcare-dbt-bigquery",
-    live: null,
-    gif: "/dbt_preview.png",
-    icon: "database",
-    description: "Production clinical data warehouse using dbt + BigQuery. Ingests 55,000 patient records through staging models into three analytics marts: condition KPIs, billing analysis, and monthly trend reporting. Full dbt docs, tests, and lineage graph included.",
-    highlight: "55K patient records, 3 analytics marts, full dbt lineage. The data warehouse pattern healthcare teams actually need.",
-    stats: [
-      { value: "55K", label: "Patient Records" },
-      { value: "3", label: "Analytics Marts" },
-      { value: "dbt", label: "Transformation" },
-      { value: "BigQuery", label: "Warehouse" }
-    ],
-    stack: ["dbt", "BigQuery", "SQL", "Python", "GCP", "dbt-tests", "Jinja", "YAML"],
-    features: [
-      { icon: "layers", title: "Staging Models", desc: "Raw clinical data → clean typed staging layer with dbt source tests and freshness checks." },
-      { icon: "bar-chart", title: "Condition KPIs", desc: "Condition prevalence, readmission rates, LOS trends — analytics mart ready for BI tools." },
-      { icon: "database", title: "Billing Analysis", desc: "Claim amounts, denial patterns, payer mix analysis across 55K patient encounters." },
-      { icon: "calendar", title: "Monthly Trends", desc: "Time-series mart tracking month-over-month clinical and financial metrics." }
-    ],
-    architecture: [
-      { step: "01", label: "Source", desc: "Raw clinical CSVs → BigQuery raw dataset with dbt source definitions" },
-      { step: "02", label: "Stage", desc: "dbt staging models: type casting, null handling, PII deidentification" },
-      { step: "03", label: "Marts", desc: "3 analytics marts: condition KPIs, billing, monthly trends" },
-      { step: "04", label: "Docs", desc: "dbt docs site with full lineage graph, test coverage, column descriptions" }
-    ],
-    cost: "BigQuery free tier covers dev. GCP storage minimal for 55K records.",
-    phase: null
-  },
 
   {
     slug: "healthcare-analytics-fabric",
@@ -474,41 +439,6 @@ export const projects = [
     phase: null
   },
 
-  {
-    slug: "healthcare-analytics-portfolio",
-    title: "Healthcare Analytics Portfolio",
-    tagline: "Full-stack healthcare analytics: FastAPI, dbt-Fabric, semantic model, MLflow — interview-grade artifacts.",
-    lane: "Data Eng",
-    laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/healthcare-analytics-portfolio",
-    live: null,
-    gif: "/healthcare-da.png",
-    icon: "heart",
-    description: "Comprehensive healthcare analytics portfolio demonstrating the full modern data stack for healthcare: FastAPI data services, dbt models on Microsoft Fabric, a semantic model layer, and MLflow for experiment tracking. Built to interview-ready production standard.",
-    highlight: "Every layer of the modern healthcare data stack — API, transformation, semantic model, ML tracking — in one portfolio.",
-    stats: [
-      { value: "FastAPI", label: "Data Services" },
-      { value: "dbt", label: "Fabric Models" },
-      { value: "MLflow", label: "Experiment Tracking" },
-      { value: "Semantic", label: "Model Layer" }
-    ],
-    stack: ["Python", "FastAPI", "dbt", "Microsoft Fabric", "MLflow", "Pydantic", "SQL", "Azure"],
-    features: [
-      { icon: "zap", title: "FastAPI Services", desc: "REST APIs for clinical data access with Pydantic validation and OpenAPI docs." },
-      { icon: "layers", title: "dbt on Fabric", desc: "dbt transformation models running on Microsoft Fabric — modern lakehouse pattern." },
-      { icon: "cpu", title: "Semantic Model", desc: "Business-logic layer decoupling BI queries from raw SQL. Self-service analytics ready." },
-      { icon: "activity", title: "MLflow Tracking", desc: "Experiment tracking for clinical ML models: params, metrics, artifacts, model registry." }
-    ],
-    architecture: [
-      { step: "01", label: "Ingest", desc: "Clinical data → Microsoft Fabric lakehouse via Python pipelines" },
-      { step: "02", label: "Transform", desc: "dbt models on Fabric: staging → marts → semantic layer" },
-      { step: "03", label: "Serve", desc: "FastAPI services expose semantic model to downstream consumers" },
-      { step: "04", label: "Track", desc: "MLflow logs all model experiments, metrics, and artifacts" }
-    ],
-    cost: "Microsoft Fabric trial + MLflow open source.",
-    phase: null
-  },
 
   {
     slug: "financial-modeling-automation",
@@ -586,8 +516,8 @@ export const projects = [
     slug: "healthcare-ai-data-engineer",
     title: "Healthcare AI Data Engineer",
     tagline: "L1 data backbone, deployed for real — dbt medallion warehouse on BigQuery (55 tests green) + FastAPI cockpit + a Vertex-grounded RAG agent over 55K synthetic patient encounters.",
-    lane: "AI Data",
-    laneColor: "#8fbc8f",
+    lane: "Data Eng",
+    laneColor: "#c4a8d8",
     status: "Production",
     github: "https://github.com/anix-lynch/healthcare-ai-data-engineer",
     live: "https://healthcare-ai-data-819957310168.us-west1.run.app/app",
