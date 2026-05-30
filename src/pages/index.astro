@@ -111,6 +111,39 @@ function icon(name, size = 18) {
         ))}
       </div>
 
+      <!-- Architecture: the L1→L3 bridge story (cohesive with the ALICE career model) -->
+      <div class="section-label">How the work connects</div>
+      <div class="layer-stack">
+        <a class="layer" href="/projects?lane=Data%20Eng" style="--lc:#5b3fa0;--lbg:#f0ebff">
+          <span class="layer-tag">L1 · Truth</span>
+          <span class="layer-q">What happened?</span>
+          <span class="layer-ex">dbt · BigQuery · data quality · governance</span>
+          <span class="layer-lane">Data Eng →</span>
+        </a>
+        <div class="layer-arrow">↓</div>
+        <a class="layer" href="/projects?lane=AI%20Platform" style="--lc:#1e6b38;--lbg:#edfaf0">
+          <span class="layer-tag">L1.5 · Signal</span>
+          <span class="layer-q">What might happen?</span>
+          <span class="layer-ex">anomaly · cluster · classify · forecast · rank</span>
+          <span class="layer-lane">AI Platform →</span>
+        </a>
+        <div class="layer-arrow">↓</div>
+        <a class="layer" href="/projects?lane=GenAI" style="--lc:#2a6fa8;--lbg:#eaf3fb">
+          <span class="layer-tag">L2 · Action</span>
+          <span class="layer-q">What should the system do?</span>
+          <span class="layer-ex">RAG · agents · tool calling · guardrails · eval</span>
+          <span class="layer-lane">GenAI →</span>
+        </a>
+        <div class="layer-arrow">↓</div>
+        <a class="layer" href="/projects?lane=Solutions" style="--lc:#a85a2a;--lbg:#fbeee6">
+          <span class="layer-tag">L3 · Influence</span>
+          <span class="layer-q">How do humans adopt it?</span>
+          <span class="layer-ex">forward-deployed · solutions · exec narratives</span>
+          <span class="layer-lane">Solutions →</span>
+        </a>
+      </div>
+      <p class="layer-note">Most engineers own one layer. The leverage is bridging them — trusted data → signals → agents → human adoption.</p>
+
       <!-- Featured projects -->
       <div class="section-label">Featured Projects</div>
       <div class="project-grid">
@@ -458,6 +491,33 @@ function icon(name, size = 18) {
   .lane-chip:hover { transform: translateY(-1px); filter: brightness(0.97); }
   .lane-chip-i { display: inline-flex; }
   .lane-chip-n { opacity: 0.6; font-weight: 700; font-size: 11px; }
+
+  /* L1→L3 layer stack — cohesive with the ALICE career architecture */
+  .layer-stack { display: flex; flex-direction: column; align-items: stretch; gap: 4px; margin: 6px 0 10px; }
+  .layer {
+    display: grid;
+    grid-template-columns: 130px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--ink, #2b2b28);
+    background: var(--lbg, #f3eee3);
+    border: 1.5px solid color-mix(in srgb, var(--lc) 30%, transparent);
+    transition: transform .1s ease, filter .1s ease;
+  }
+  .layer:hover { transform: translateX(3px); filter: brightness(0.98); }
+  .layer-tag { font-family: var(--mono, monospace); font-weight: 800; font-size: 13px; color: var(--lc); }
+  .layer-q { font-weight: 600; font-size: 13.5px; }
+  .layer-ex { grid-column: 2; font-size: 12px; color: var(--soft, #6b6760); margin-top: 1px; }
+  .layer-lane { font-family: var(--mono, monospace); font-size: 11.5px; font-weight: 700; color: var(--lc); white-space: nowrap; }
+  .layer-arrow { text-align: center; color: var(--soft, #6b6760); font-size: 13px; line-height: 1; }
+  .layer-note { font-size: 12.5px; color: var(--soft, #6b6760); margin: 0 0 26px; font-style: italic; }
+  @media (max-width: 600px) {
+    .layer { grid-template-columns: 1fr; gap: 3px; }
+    .layer-ex, .layer-lane { grid-column: 1; }
+  }
 
   .live-badge {
     display: inline-flex;
