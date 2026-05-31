@@ -186,23 +186,6 @@ function icon(name, size = 18) {
         </a>
       </div>
 
-      <!-- Production monitoring — only real, provable artifacts go here -->
-      <div class="section-label" style="margin-top: 2.5rem;">Production Monitoring</div>
-      <div class="monitoring-grid">
-        {([
-          { title: "Great Expectations — L1 Data Quality", desc: "21 expectations · 497-row corpus · 100% pass", url: "/dashboards/ge/", iconName: "shield" },
-        ] as const).map(m => (
-          <a href={m.url} class="monitor-card" target="_blank" rel="noopener">
-            <span class="monitor-icon" set:html={icon(m.iconName, 18)} />
-            <div>
-              <div class="monitor-title">{m.title}</div>
-              <div class="monitor-desc">{m.desc}</div>
-            </div>
-            <span class="monitor-arrow" set:html={icon('arrow-right', 14)} />
-          </a>
-        ))}
-      </div>
-
     </main>
   </div>
 </Layout>

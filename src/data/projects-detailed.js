@@ -344,6 +344,7 @@ export const projects = [
     status: "Production",
     github: "https://github.com/anix-lynch/healthcare-ai-data-engineer",
     live: "https://healthcare-ai-data-819957310168.us-west1.run.app/app",
+    dataDocs: "/dashboards/ge/",
     gif: "/healthcare-ai-data-engineer.gif",
     icon: "database",
     description: "Healthcare data backbone deployed end-to-end on GCP: a dbt medallion star schema (staging → intermediate → marts) built and tested LIVE on BigQuery — 55,500 encounters loaded, dbt build green on all 55 tests. A 7-check L1 quality gate runs in CI. FastAPI serves the warehouse plus a human cockpit (A1–A6) where every number links to its proof file, and an L2 grounded-RAG agent (/api/ask): BM25 retrieves from the redacted enriched corpus, then Vertex Gemini answers with [doc N] citations — no raw PII indexed.",

@@ -129,6 +129,12 @@ const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["Gen
                 Quality logs
               </a>
             )}
+            {project.dataDocs && (
+              <a href={project.dataDocs} target="_blank" rel="noopener" class="btn btn-ghost">
+                <Fragment set:html={icon('shield', 15)} />
+                Data Quality (GE)
+              </a>
+            )}
           </div>
         </div>
       </header>
