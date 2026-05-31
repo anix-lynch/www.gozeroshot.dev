@@ -98,43 +98,47 @@ export const projects = [
     beforeAfter: {
       before: {
         title: "Before",
-        badge: "Plain RAG",
-        flow: ["Question", "Retrieve text", "AI answer", "Manual decision"],
+        badge: "Answer-only AI",
+        flow: ["Patient question", "Search records", "AI answer", "Staff still decides"],
         problems: [
-          "Good citations, but still mostly a Q&A box.",
-          "No NOW / SOON / WAIT route for the user to act on.",
-          "No orchestration layer to combine evidence, triage, prediction, and safety rules.",
-          "No per-stage latency trace, so slow or weak steps are hard to debug."
+          "It can find similar notes, but the words have to line up too neatly.",
+          "The answer may be cited, but it does not say whether this is NOW, SOON, or WAIT.",
+          "It explains the past case, not what is likely to happen next: longer stay, bed pressure, or deterioration risk.",
+          "If the next step fails, there is no owner, retry limit, stop rule, or clean handoff."
         ]
       },
       after: {
         title: "After",
-        badge: "Agent-ready RAG",
-        flow: ["Question", "Guardrails", "Evidence + triage", "Action-ready answer"],
+        badge: "Evidence-to-action AI",
+        flow: ["Patient question", "Evidence + risk", "Agent handoff", "Safer next step"],
         built: [
           {
-            title: "Fast Hybrid Retrieval",
-            desc: "Uses exact match plus intent match, with 50 ms p95 latency on the 20-query hybrid eval."
+            title: "Finds What You Meant",
+            desc: "Uses exact match plus intent match, so the case can still surface when the wording is different."
           },
           {
-            title: "NOW / SOON / WAIT Triage",
-            desc: "Turns the answer into a clear urgency path instead of leaving the next step to guesswork."
+            title: "Shows Its Receipts",
+            desc: "Answers with supporting records, source IDs, and privacy checks instead of asking the reader to trust a black box."
           },
           {
-            title: "Orchestration Layer",
-            desc: "Combines retrieval, citations, ESI votes, prediction signals, and safety overrides in one response."
+            title: "Says How Urgent It Is",
+            desc: "Turns evidence into a NOW / SOON / WAIT path, with safety overrides when the clinical red flags are louder than the model."
           },
           {
-            title: "Agent-Friendly Trace",
-            desc: "Returns guard, retrieval, generation, method, warnings, decision basis, and recommendations for downstream agents."
+            title: "Looks Ahead",
+            desc: "Adds future-risk signals like predicted length of stay, deterioration risk, and bed pressure, so the answer is not trapped in the past."
           },
           {
-            title: "Privacy + Receipts",
-            desc: "Masks sensitive details, cites real source IDs, and blocks unsafe output before it returns."
+            title: "Hands Off the Work",
+            desc: "Routes the case from ER Triage to Bed Ops or Care Follow-up, so the next step has an owner instead of living in someone's head."
           },
           {
-            title: "Regression Gate",
-            desc: "Fails the release if hit rate, faithfulness, relevance, or latency drops past the benchmark."
+            title: "Doesn't Spin Forever",
+            desc: "Each agent has a retry budget, stop conditions, and a human escalation path, so a stuck handoff becomes visible instead of looping."
+          },
+          {
+            title: "Blocks Bad Releases",
+            desc: "Golden tests check retrieval, citations, safety, prediction, and agent handoff behavior before a change goes live."
           }
         ]
       }
