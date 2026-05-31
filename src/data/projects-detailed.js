@@ -75,8 +75,8 @@ export const projects = [
 
   {
     slug: "healthcare-genai-engineer",
-    title: "Healthcare GenAI Engineer",
-    tagline: "Healthcare AI that shows its work instead of asking for trust.",
+    title: "Healthcare GenAI Evidence Engine",
+    tagline: "Answers clinical questions with records, citations, privacy checks, and a release gate.",
     lane: "GenAI",
     tags: ["GenAI", "Cloud"],
     cloud: "Vertex",
@@ -86,29 +86,59 @@ export const projects = [
     live: "https://healthcare-genai-2ihyeqmb6q-uw.a.run.app",
     gif: "/healthcare-genai-engineer.gif",
     icon: "shield",
-    description: "Ask a clinical question and it finds the right medical records first, then answers — citing every source it used. Patient information is masked before anything is processed, and a test gate blocks any release that gets less accurate. The point is trust: you can see exactly where each answer came from, not just take its word for it.",
-    highlight: "Ask \"has this happened before?\" — instead of a vague \"probably…\", it pulls the matching records, shows the cases, and cites each source.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "⚡ 5 ms", label: "Fast response" },
-      { value: "🛡️ 100%", label: "Cited answers" },
-      { value: "🧪 20", label: "Healthcare test cases" },
+      { value: "⚡ 5 ms", label: "Near-instant answers" },
+      { value: "🔗 100%", label: "Valid source IDs" },
+      { value: "🧪 20", label: "Healthcare test questions" },
       { value: "📚 497", label: "Medical records indexed" }
     ],
     stack: ["Python", "FastAPI", "BM25", "Sentence Transformers", "RRF", "Anthropic", "OpenAI", "Docker", "Pydantic", "pytest", "GitHub Actions"],
-    features: [
-      { icon: "search", title: "Finds the evidence", desc: "Searches the medical records and pulls the cases most relevant to the question — before it answers anything." },
-      { icon: "shield", title: "Protects patient info", desc: "Masks sensitive details (social security, phone, email, card, medical record number, date of birth) before anything is processed." },
-      { icon: "file-text", title: "Cites every source", desc: "Each answer points back to the exact records it used. No unsourced claims, no guessing." },
-      { icon: "activity", title: "Catches quality drops", desc: "Every release is tested against a set of healthcare cases. If accuracy slips, the release is blocked before it reaches production." }
-    ],
-    architecture: [
-      { step: "01", label: "Medical records", desc: "Starts from the indexed patient records — not the model's memory." },
-      { step: "02", label: "Relevant cases", desc: "Finds the records that actually match the question." },
-      { step: "03", label: "Source citations", desc: "Attaches the exact records it used, so every claim is traceable." },
-      { step: "04", label: "Answer", desc: "Returns a grounded answer a clinician can check and trust." }
-    ],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Answer-first AI",
+        flow: ["Question", "AI answer", "Maybe sources", "Trust gap"],
+        problems: [
+          "The answer can sound confident before evidence is checked.",
+          "Matching cases get missed when the chart uses different wording.",
+          "Sensitive details can reach the model before anyone notices.",
+          "A weaker release can ship unless someone catches it manually."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Evidence-first AI",
+        flow: ["Question", "Guardrails", "Evidence", "Cited answer"],
+        built: [
+          {
+            title: "Finds Matching Records",
+            desc: "Searches exact matches and intent matches before the system answers."
+          },
+          {
+            title: "Shows Receipts",
+            desc: "Returns source IDs and snippets, so every claim can be checked."
+          },
+          {
+            title: "Protects Patient Details",
+            desc: "Masks SSN, phone, email, card, MRN, and DOB-shaped text before processing."
+          },
+          {
+            title: "Adds a Future-Risk Signal",
+            desc: "Surfaces LOS, deterioration, and bed-pressure context without overriding acute safety."
+          },
+          {
+            title: "Blocks Bad Releases",
+            desc: "Runs 20 healthcare questions and fails the gate if retrieval, faithfulness, relevance, or latency regresses."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
     cost: "Template path = $0 (zero LLM calls). LLM path = pay-per-token via Anthropic or OpenAI. Service runs in-memory; ~$1–2/month serverless when deployed.",
-    phase: "Phase 1–6 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
+    phase: null
   },
 
   {
