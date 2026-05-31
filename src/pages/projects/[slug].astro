@@ -150,16 +150,19 @@ const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["Gen
         </div>
       )}
 
-      <!-- Description + Highlight -->
-      <section class="description-block">
-        <p class="description-text">{project.description}</p>
-        {project.highlight && (
-          <blockquote class="highlight-quote">
-            <Fragment set:html={icon('zap', 16)} />
-            <span>{project.highlight}</span>
-          </blockquote>
-        )}
-      </section>
+      {(project.description || project.highlight) && (
+        <section class="description-block">
+          {project.description && (
+            <p class="description-text">{project.description}</p>
+          )}
+          {project.highlight && (
+            <blockquote class="highlight-quote">
+              <Fragment set:html={icon('zap', 16)} />
+              <span>{project.highlight}</span>
+            </blockquote>
+          )}
+        </section>
+      )}
 
       <!-- Stack Pills -->
       <section class="stack-section">
@@ -226,42 +229,44 @@ const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["Gen
         </section>
       )}
 
-      <!-- Feature Grid -->
-      <section class="features-section">
-        <h2 class="section-label">Features</h2>
-        <div class="feature-grid">
-          {project.features.map(feature => (
-            <div class="feature-card">
-              <div class="feature-icon-box">
-                <Fragment set:html={icon(feature.icon, 18)} />
+      {project.features?.length > 0 && (
+        <section class="features-section">
+          <h2 class="section-label">Features</h2>
+          <div class="feature-grid">
+            {project.features.map(feature => (
+              <div class="feature-card">
+                <div class="feature-icon-box">
+                  <Fragment set:html={icon(feature.icon, 18)} />
+                </div>
+                <div class="feature-body">
+                  <h3 class="feature-title">{feature.title}</h3>
+                  <p class="feature-desc">{feature.desc}</p>
+                </div>
               </div>
-              <div class="feature-body">
-                <h3 class="feature-title">{feature.title}</h3>
-                <p class="feature-desc">{feature.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
 
-      <!-- Architecture -->
-      <section class="arch-section">
-        <h2 class="section-label">How It Works</h2>
-        <div class="arch-flow">
-          {project.architecture.map((step, i) => (
-            <div class="arch-step">
-              <div class="arch-number">{step.step}</div>
-              <div class="arch-content">
-                <div class="arch-label">{step.label}</div>
-                <div class="arch-desc">{step.desc}</div>
+      {project.architecture?.length > 0 && (
+        <section class="arch-section">
+          <h2 class="section-label">How It Works</h2>
+          <div class="arch-flow">
+            {project.architecture.map((step, i) => (
+              <div class="arch-step">
+                <div class="arch-number">{step.step}</div>
+                <div class="arch-content">
+                  <div class="arch-label">{step.label}</div>
+                  <div class="arch-desc">{step.desc}</div>
+                </div>
+                {i < project.architecture.length - 1 && (
+                  <div class="arch-arrow">→</div>
+                )}
               </div>
-              {i < project.architecture.length - 1 && (
-                <div class="arch-arrow">→</div>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
 
       <!-- Footer meta row -->
       <footer class="project-footer">

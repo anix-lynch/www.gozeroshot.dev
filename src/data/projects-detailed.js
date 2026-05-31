@@ -6,8 +6,8 @@ export const projects = [
   // ── NORTHSTAR ──────────────────────────────────────────────
   {
     slug: "healthcare-ai-platform-signals",
-    title: "Healthcare AI Evidence Engine",
-    tagline: "Ask a healthcare question. It finds the records, cites the proof, and gives an answer you can check.",
+    title: "Healthcare AI Signal Engine",
+    tagline: "Gives Gemini both trusted facts and computed signals, then shows how the decision changes.",
     lane: "AI Platform",
     tags: ["AI Platform", "Cloud"],
     cloud: "Vertex",
@@ -18,7 +18,7 @@ export const projects = [
     wandb: "https://wandb.ai/alynch-zeroshot/healthcare-l15-signals",
     gif: "/signal-console.png",
     icon: "activity",
-    description: "Most AI demos answer first and ask you to trust them. This one does the safer thing: it finds relevant healthcare records, shows the supporting evidence, cites the sources, protects sensitive data, then answers. A release gate checks the behavior before changes go live, so the demo is not just fast — it is traceable.",
+    description: null,
     highlight: null,
     stats: [
       { value: "⚡ 5 ms", label: "Near-instant answers" },
@@ -30,41 +30,32 @@ export const projects = [
     beforeAfter: {
       before: {
         title: "Before",
-        badge: "Trust me AI",
-        flow: ["Question", "AI answer", "\"trust me\""],
+        badge: "Search-only AI",
+        flow: ["Question", "Search past cases", "AI answer", "Limited insight"],
         problems: [
-          "Where did this answer come from?",
-          "Can we trust it?",
-          "Can we prove it?",
-          "What if the next release breaks it?"
+          "Only retrieves lookalike cases; no separate signal analysis.",
+          "No Smoke Detector to catch arrival-rate anomaly.",
+          "No Treasure Map to group the emergency-dominant cohort.",
+          "No Traffic Light or Ranking to prioritize the action."
         ]
       },
       after: {
         title: "After",
-        badge: "Evidence-first AI",
-        flow: ["Question", "Evidence", "Sources", "Answer"],
+        badge: "Truth + Signal AI",
+        flow: ["Trusted facts", "5 signal services", "Gemini compares choices", "ACT NOW"],
         built: [
-          "Retrieves relevant records",
-          "Cites supporting evidence",
-          "Protects sensitive data",
-          "Blocks bad releases"
+          "Smoke Detector flags weird patterns before the answer.",
+          "Treasure Map clusters lookalike patients into useful cohorts.",
+          "Traffic Light classifies NOW / SOON / WAIT urgency.",
+          "Ranking orders which cases need attention first.",
+          "Retrieve Lookalikes grounds the choice in similar past cases."
         ]
       }
     },
-    features: [
-      { icon: "search", title: "Retrieves relevant records", desc: "Searches the indexed medical records first, so the answer starts from evidence instead of model memory." },
-      { icon: "file-text", title: "Cites supporting evidence", desc: "Every answer points back to the records it used. No floating claims, no mystery source." },
-      { icon: "shield", title: "Protects sensitive data", desc: "Sensitive patient details are masked before the answer flow runs." },
-      { icon: "activity", title: "Blocks bad releases", desc: "Healthcare test cases act as a release gate. If citation quality slips, the change should not ship." }
-    ],
-    architecture: [
-      { step: "01", label: "Question", desc: "A clinician asks something practical, like whether a pattern has appeared before." },
-      { step: "02", label: "Evidence", desc: "The system retrieves the most relevant medical records before it answers." },
-      { step: "03", label: "Sources", desc: "The answer includes source references so a human can check the reasoning." },
-      { step: "04", label: "Answer", desc: "The response is fast, grounded, and test-gated before release." }
-    ],
+    features: [],
+    architecture: [],
     cost: "$0 at portfolio traffic — Cloud Run scales to zero, Gemini draws the GCP GenAI credit.",
-    phase: "Built as a trust-first healthcare AI demo: evidence before answer, citations before confidence."
+    phase: null
   },
 
   {
