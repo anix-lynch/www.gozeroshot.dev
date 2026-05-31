@@ -61,8 +61,8 @@ export const projects = [
             desc: "ICU-need cases rise to the top of the queue; the agent stops treating all arrivals as equal."
           },
           {
-            title: "Retrieve Lookalikes",
-            desc: "BM25 finds matching past cases; the other signals explain which matches actually matter now."
+            title: "Find Similar Cases",
+            desc: "Finds cases that match the chart's intent, even when the wording is different."
           }
         ]
       }
