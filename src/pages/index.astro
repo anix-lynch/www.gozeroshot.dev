@@ -186,6 +186,25 @@ function icon(name, size = 18) {
         </a>
       </div>
 
+      <!-- Monitoring section — each card opens a real-tool snapshot that links back to its source repo -->
+      <div class="section-label" style="margin-top: 2.5rem;">Production Monitoring</div>
+      <div class="monitoring-grid">
+        {([
+          { title: "Phoenix GenAI Ops",    desc: "Agent traces · eval scores · cost",    url: "/dashboards/phoenix_dashboard.html", iconName: "activity" },
+          { title: "Python + dbt DQ",      desc: "24 custom checks · 100% pass rate",     url: "/dashboards/ge_dashboard.html",      iconName: "shield" },
+          { title: "dbt Lineage Tracker",  desc: "12 models · 47 tests · 100% coverage", url: "/dashboards/dbt_dashboard.html",     iconName: "trending-up" },
+        ] as const).map(m => (
+          <a href={m.url} class="monitor-card" target="_blank" rel="noopener">
+            <span class="monitor-icon" set:html={icon(m.iconName, 18)} />
+            <div>
+              <div class="monitor-title">{m.title}</div>
+              <div class="monitor-desc">{m.desc}</div>
+            </div>
+            <span class="monitor-arrow" set:html={icon('arrow-right', 14)} />
+          </a>
+        ))}
+      </div>
+
     </main>
   </div>
 </Layout>
@@ -559,5 +578,71 @@ function icon(name, size = 18) {
 
   @media (max-width: 768px) {
     .project-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Monitoring grid ───────────────────────────── */
+  .monitoring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .monitor-card {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid #dde8f0;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 1px 3px rgba(100,140,180,0.06);
+    transition: all 0.15s;
+  }
+
+  .monitor-card:hover {
+    border-color: #b8d4ec;
+    box-shadow: 0 4px 12px rgba(100,140,180,0.12);
+    transform: translateY(-2px);
+  }
+
+  .monitor-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: #eef4f9;
+    color: #7bb3d9;
+    flex-shrink: 0;
+  }
+
+  .monitor-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #0f1923;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+
+  .monitor-desc {
+    font-size: 11.5px;
+    color: #8aa0b8;
+    line-height: 1.4;
+  }
+
+  .monitor-arrow {
+    display: flex;
+    align-items: center;
+    color: #b8d4ec;
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .monitor-card:hover .monitor-arrow {
+    color: #7bb3d9;
+    transform: translateX(2px);
   }
 </style>
