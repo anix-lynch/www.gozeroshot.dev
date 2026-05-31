@@ -6,8 +6,8 @@ export const projects = [
   // ── NORTHSTAR ──────────────────────────────────────────────
   {
     slug: "healthcare-ai-platform-signals",
-    title: "Healthcare AI Platform — Signal Layer",
-    tagline: "L1.5 Signal Intelligence — machine intuition (anomaly, cluster, classify) computed before the agent and fed in as labeled facts.",
+    title: "Healthcare AI Evidence Engine",
+    tagline: "Ask a healthcare question. It finds the records, cites the proof, and gives an answer you can check.",
     lane: "AI Platform",
     tags: ["AI Platform", "Cloud"],
     cloud: "Vertex",
@@ -18,29 +18,29 @@ export const projects = [
     wandb: "https://wandb.ai/alynch-zeroshot/healthcare-l15-signals",
     gif: "/signal-console.png",
     icon: "activity",
-    description: "An AI-platform signal layer (L1.5) that turns trusted healthcare data into pre-computed signals — cluster, classify, anomaly, rank (+ BM25 retrieval) — fed to a GenAI agent as labeled fields, never raw text in the context window. The live console proves two things: (1) the signals are HIGH QUALITY — each carries its eval vs an industry benchmark with a green/yellow status; (2) the signals CHANGE THE AGENT — an on-screen ablation runs the same Gemini agent WITH signals vs on raw facts only, and on the ops-capacity case the call visibly flips ('monitor beds' → 'initiate critical-care surge planning'). Chain: L1 truth (dbt/warehouse) → L1.5 signals → L2 Gemini decision → L3 human Approve/Override (accountable judgment). Signal evals tracked in Weights & Biases; every agent call traced in Langfuse.",
-    highlight: "Signals are machine intuition the agent consumes, not computes — the Palantir-AIP platform pattern. Toggle the signals off in the live demo and the agent's call degrades: that ablation is the proof they matter.",
+    description: "Most AI demos answer first and ask you to trust them. This one does the safer thing: it finds relevant healthcare records, shows the supporting evidence, cites the sources, protects sensitive data, then answers. A release gate checks the behavior before changes go live, so the demo is not just fast — it is traceable.",
+    highlight: "Before: question -> AI answer -> trust me. After: question -> evidence -> sources -> answer.",
     stats: [
-      { value: "0.85", label: "anomaly F1 (R 0.92)" },
-      { value: "535", label: "high-utilizers / 40K" },
-      { value: "100%", label: "classify ±1 tier" },
-      { value: "0", label: "safety violations" }
+      { value: "⚡ 5 ms", label: "Near-instant answers" },
+      { value: "🛡️ 100%", label: "Citation validity" },
+      { value: "🧪 20", label: "Healthcare test cases" },
+      { value: "📚 497", label: "Medical records indexed" }
     ],
     stack: ["Python", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "scikit-learn (K-Means)", "NumPy", "Weights & Biases", "Langfuse", "Cloud Run", "Docker"],
     features: [
-      { icon: "activity", title: "Smoke Detector — anomaly", desc: "Z-score over (gender × condition × age-band) cohorts on LOS + admission alignment. Eval: P 0.79 / R 0.92 / F1 0.85, FPR 6% on a 250-case synthetic injection set." },
-      { icon: "search", title: "Treasure Map — cluster", desc: "Pure-Python k-means on 5 patient-level features (z-standardized). Surfaces 535 complex high-utilizers (1.3%) out of 40,167 patients; silhouette 0.41." },
-      { icon: "shield", title: "Traffic Light — classify", desc: "ESI tier + NOW/SOON/WAIT with a safety overlay. ±1-tier accuracy 100%, bucket accuracy 94%, 0 safety-critical violations across the gold set." },
-      { icon: "cpu", title: "Signals feed the agent as labels", desc: "Each signal is a labeled field ({anomaly_score, cluster, esi_tier}), pre-computed in L1.5. The L2 Gemini agent reasons on the labels — never recomputes them — avoiding context pollution." }
+      { icon: "search", title: "Retrieves relevant records", desc: "Searches the indexed medical records first, so the answer starts from evidence instead of model memory." },
+      { icon: "file-text", title: "Cites supporting evidence", desc: "Every answer points back to the records it used. No floating claims, no mystery source." },
+      { icon: "shield", title: "Protects sensitive data", desc: "Sensitive patient details are masked before the answer flow runs." },
+      { icon: "activity", title: "Blocks bad releases", desc: "Healthcare test cases act as a release gate. If citation quality slips, the change should not ship." }
     ],
     architecture: [
-      { step: "01", label: "L1 Truth", desc: "dbt / warehouse facts for the case (vitals, history, KPIs) — the trusted inputs." },
-      { step: "02", label: "L1.5 Signals", desc: "cluster / classify / anomaly / rank (+ BM25 retrieval) pre-computed into labeled fields — each evaluated vs a benchmark (green/yellow), tracked in Weights & Biases." },
-      { step: "03", label: "L2 Agent", desc: "Gemini 2.5 Flash (Vertex) reads truth + labeled signals, cites them by name. On-screen ablation shows the call WITH vs WITHOUT signals; traced in Langfuse." },
-      { step: "04", label: "L3 Human", desc: "Approve / Override / Hold — the accountable human judgment. The agent recommends; the human decides." }
+      { step: "01", label: "Question", desc: "A clinician asks something practical, like whether a pattern has appeared before." },
+      { step: "02", label: "Evidence", desc: "The system retrieves the most relevant medical records before it answers." },
+      { step: "03", label: "Sources", desc: "The answer includes source references so a human can check the reasoning." },
+      { step: "04", label: "Answer", desc: "The response is fast, grounded, and test-gated before release." }
     ],
     cost: "$0 at portfolio traffic — Cloud Run scales to zero, Gemini draws the GCP GenAI credit.",
-    phase: "Layer-2 of healthcare-genai-fullstack: 7 signal patterns, real eval numbers per pattern."
+    phase: "Built as a trust-first healthcare AI demo: evidence before answer, citations before confidence."
   },
 
   {

@@ -47,12 +47,17 @@ function icon(name, size = 20) {
 }
 
 const laneColors = {
-  "GenAI":    { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
-  "n8n":      { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
-  "Data Eng": { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
-  "ML":       { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
+  "GenAI":      { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
+  "Data Eng":   { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
+  "AI Platform": { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
+  "Automation": { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
+  "Cloud":      { bg: "#e6f2f2", text: "#2a7a7a", border: "rgba(90,139,139,0.4)" },
+  "Solutions":  { bg: "#fbeee6", text: "#a85a2a", border: "rgba(217,139,111,0.4)" },
+  "Forward Deployed": { bg: "#fbeee6", text: "#a85a2a", border: "rgba(217,139,111,0.4)" },
+  "ML":         { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
 };
-const lc = laneColors[project.lane] || laneColors["GenAI"];
+const primaryTag = project.tags?.[0] || project.lane;
+const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["GenAI"];
 ---
 
 <style is:global>body { display: block; }</style>
@@ -98,7 +103,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
           <div class="hero-meta">
             <div class="hero-badges">
               <span class="lane-badge" style={`background:${lc.bg};color:${lc.text};border-color:${lc.border}`}>
-                {project.lane}
+                {primaryTag}
               </span>
               <span class={`status-badge status-${project.status.toLowerCase()}`}>
                 {project.status}
@@ -121,7 +126,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
             {project.wandb && (
               <a href={project.wandb} target="_blank" rel="noopener" class="btn btn-ghost">
                 <Fragment set:html={icon('activity', 15)} />
-                W&B evals
+                Quality logs
               </a>
             )}
           </div>
@@ -354,6 +359,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     flex-direction: column;
     gap: 0.5rem;
     flex-shrink: 0;
+    min-width: 0;
   }
 
   .btn {
@@ -632,7 +638,15 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
 
   @media (max-width: 900px) {
     .hero-top { flex-wrap: wrap; }
-    .hero-actions { flex-direction: row; width: 100%; }
+    .hero-actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    .hero-actions .btn {
+      flex: 1 1 120px;
+      min-width: 0;
+    }
     .stats-row { grid-template-columns: repeat(2, 1fr); }
     .feature-grid { grid-template-columns: 1fr; }
     .arch-flow { flex-direction: column; }
