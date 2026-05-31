@@ -148,7 +148,7 @@ export const projects = [
   {
     slug: "mocktailverse-bedrock",
     title: "MocktailVerse Bedrock",
-    tagline: "Enterprise GenAI data platform powered by AWS Bedrock, RAG, and Vector Search.",
+    tagline: "Ask for a vibe, not an ingredient — AWS Bedrock RAG finds the drink that matches what you meant.",
     lane: "GenAI",
     tags: ["GenAI", "Cloud"],
     cloud: "AWS",
@@ -158,27 +158,53 @@ export const projects = [
     live: "https://dgco3hhxo94y8.cloudfront.net",
     gif: "/mocktailverse_bedrock.gif",
     icon: "layers",
-    description: "Enterprise-grade GenAI data engineering platform using AWS Bedrock for LLM inference, pgvector for semantic search, and a full RAG pipeline over a cocktail knowledge base. Demonstrates the full AWS GenAI stack from ingestion to retrieval to generation.",
-    highlight: "The full AWS Bedrock RAG stack — embeddings, vector store, retrieval, generation — in one production-ready platform.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "AWS", label: "Bedrock LLMs" },
-      { value: "RAG", label: "Retrieval Pipeline" },
-      { value: "pgvector", label: "Vector Store" },
-      { value: "E2E", label: "GenAI Platform" }
+      { value: "🧠 AWS", label: "Bedrock Claude + Titan" },
+      { value: "🔍 pgvector", label: "Postgres vector search" },
+      { value: "🔁 RAG", label: "Chunk → retrieve → answer" },
+      { value: "🏭 E2E", label: "Ingest to generation" }
     ],
     stack: ["Python", "AWS Bedrock", "pgvector", "RAG", "PostgreSQL", "LangChain", "boto3", "Docker", "FastAPI"],
-    features: [
-      { icon: "database", title: "pgvector Store", desc: "PostgreSQL + pgvector for production semantic search. No managed vector DB required." },
-      { icon: "cpu", title: "Bedrock LLM", desc: "Claude and Titan models via AWS Bedrock API. Swap models without changing application code." },
-      { icon: "layers", title: "RAG Pipeline", desc: "Full retrieval-augmented generation: chunk → embed → store → retrieve → generate." },
-      { icon: "zap", title: "Enterprise Stack", desc: "Production patterns: retry logic, observability hooks, cost tracking per query." }
-    ],
-    architecture: [
-      { step: "01", label: "Ingest", desc: "Cocktail dataset → chunked documents → Bedrock embeddings" },
-      { step: "02", label: "Store", desc: "Vectors → pgvector PostgreSQL with cosine similarity index" },
-      { step: "03", label: "Retrieve", desc: "User query → embed → top-k semantic search" },
-      { step: "04", label: "Generate", desc: "Retrieved context + query → Bedrock Claude → grounded response" }
-    ],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Keyword cocktail search",
+        flow: ["Question", "SQL LIKE search", "Exact-name match", "Misses the vibe"],
+        problems: [
+          "Ask for 'something smoky and bitter' and a keyword search shrugs.",
+          "Needs the exact ingredient or drink name to find anything.",
+          "No semantic understanding — it matches letters, not meaning.",
+          "Real vector search usually means a managed vector DB bill."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Bedrock RAG platform",
+        flow: ["Question", "Semantic retrieve", "Bedrock grounds", "Real answer"],
+        built: [
+          {
+            title: "Vibe Search",
+            desc: "Ask for 'smoky and bitter' and pgvector surfaces the mezcal negroni — even when those exact words aren't in the recipe."
+          },
+          {
+            title: "Model Swap",
+            desc: "Claude or Titan behind one Bedrock API. Change the brain without touching the application code."
+          },
+          {
+            title: "No-VendorDB Vectors",
+            desc: "Production semantic search on plain Postgres + pgvector — no managed vector DB to pay for."
+          },
+          {
+            title: "Cost Receipts",
+            desc: "Retry logic, observability hooks, and per-query cost tracking — it behaves like prod, not a notebook."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
     cost: "AWS Bedrock pay-per-token. pgvector runs on any Postgres instance.",
     phase: null
   },
@@ -186,7 +212,7 @@ export const projects = [
   {
     slug: "healthcare-analytics-fabric",
     title: "Healthcare Analytics on Microsoft Fabric",
-    tagline: "FastAPI + dbt + Fabric lakehouse + TMDL semantic model + MLflow — every claim maps to a file.",
+    tagline: "Power BI you can code-review — dbt + Fabric lakehouse + TMDL in git, where every claim maps to a file.",
     lane: "Data Eng",
     tags: ["Data Eng", "Cloud", "AI Platform"],
     cloud: "Azure",
@@ -196,27 +222,53 @@ export const projects = [
     live: null,
     gif: "/healthcare-fabric-proof.png",
     icon: "layers",
-    description: "End-to-end healthcare analytics on Microsoft Fabric: synthetic 55.5k encounters, FastAPI read layer, dbt star schema, Power BI semantic model as TMDL in git, Fabric lakehouse validation, and MLflow-tracked XGBoost baseline. Every headline claim maps to a file in the repo.",
-    highlight: "The Microsoft Fabric + Power BI story recruiters ask for — with dbt and API layers in the same public showroom repo.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "55.5K", label: "Encounters" },
-      { value: "11", label: "API Routes" },
-      { value: "TMDL", label: "Semantic Model" },
-      { value: "Fabric", label: "Lakehouse Proof" }
+      { value: "🏥 55.5K", label: "Encounters modeled" },
+      { value: "🧱 TMDL", label: "Power BI as code" },
+      { value: "🔌 11", label: "API routes" },
+      { value: "📊 Fabric", label: "Lakehouse proof" }
     ],
     stack: ["Microsoft Fabric", "Power BI", "dbt", "FastAPI", "Python", "TMDL", "DAX", "MLflow", "Azure AD"],
-    features: [
-      { icon: "database", title: "dbt Star Schema", desc: "Staging → intermediate → fact + dims with domain SQL tests before BI." },
-      { icon: "layers", title: "TMDL in Git", desc: "Certified measures and relationships reviewed like application code." },
-      { icon: "zap", title: "Fabric API Proof", desc: "Lakehouse + semantic validation captured as markdown + scripted screenshot summaries." },
-      { icon: "cpu", title: "MLflow Lineage", desc: "Training runs logged with metrics — honest AUC for synthetic demo data." }
-    ],
-    architecture: [
-      { step: "01", label: "Serve", desc: "FastAPI exposes curated metrics and encounter slices from the synthetic dataset." },
-      { step: "02", label: "Transform", desc: "dbt builds the star schema and clinical DQ assertions." },
-      { step: "03", label: "Model", desc: "Power BI semantic model (TMDL) defines certified DAX measures." },
-      { step: "04", label: "Fabric", desc: "Workspace lakehouse + dataset checks via service principal automation." }
-    ],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Dashboard-only BI",
+        flow: ["Data", "Manual Power BI", "Pretty chart", "No lineage"],
+        problems: [
+          "Measures live inside a .pbix binary nobody can review.",
+          "No tests run before the data reaches a chart.",
+          "No API layer — the numbers can't be reused downstream.",
+          "'Trust me it's right' instead of 'here's the file that proves it'."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Git-reviewed Fabric stack",
+        flow: ["dbt star schema", "TMDL in git", "Fabric validate", "Traceable BI"],
+        built: [
+          {
+            title: "BI as Code",
+            desc: "Certified Power BI measures + relationships live in git as TMDL — reviewed like application code, not buried in a binary."
+          },
+          {
+            title: "Tested Before Pretty",
+            desc: "dbt star schema with clinical data-quality tests runs before anything reaches a chart."
+          },
+          {
+            title: "Fabric Receipts",
+            desc: "Lakehouse + semantic-model validation captured as markdown proof — not a screenshot you have to trust."
+          },
+          {
+            title: "Honest AUC",
+            desc: "XGBoost baseline logged in MLflow with real metrics, honest about the limits of synthetic demo data."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
     cost: "Dev Fabric trial / local API — no PHI; demo dataset only.",
     phase: null
   },
@@ -224,7 +276,7 @@ export const projects = [
   {
     slug: "realtime-fraud-detection",
     title: "Realtime Fraud Detection",
-    tagline: "Real-time feature engineering for fraud detection with Streamlit monitoring UI.",
+    tagline: "Catch fraud while it happens, not in tomorrow's batch — streaming features with zero data leakage.",
     lane: "ML",
     tags: ["AI Platform"],
     laneColor: "#a8d8a8",
@@ -233,27 +285,53 @@ export const projects = [
     // live: hidden — Streamlit Cloud runtime error, code is on GitHub
     gif: "/realtime-fraud-detection.gif",
     icon: "shield",
-    description: "Real-time feature engineering pipeline for fraud detection, with a Streamlit dashboard for monitoring fraud scores and anomaly patterns. Demonstrates streaming feature computation, point-in-time correctness, and production fraud scoring patterns.",
-    highlight: "Real-time feature engineering done right: point-in-time correctness, no data leakage, streaming patterns.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "Real-time", label: "Feature Engineering" },
-      { value: "Streamlit", label: "Monitoring UI" },
-      { value: "Anomaly", label: "Detection" },
-      { value: "0", label: "Data Leakage" }
+      { value: "⚡ <100ms", label: "Score per transaction" },
+      { value: "🧮 0", label: "Data leakage" },
+      { value: "📡 Real-time", label: "Feature engineering" },
+      { value: "📈 Streamlit", label: "Live monitor" }
     ],
     stack: ["Python", "Streamlit", "scikit-learn", "Pandas", "FastAPI", "DuckDB", "Plotly"],
-    features: [
-      { icon: "zap", title: "Streaming Features", desc: "Real-time feature computation with point-in-time correctness. No future data leakage into training." },
-      { icon: "shield", title: "Fraud Scoring", desc: "ML model scores each transaction in real-time with interpretable feature contributions." },
-      { icon: "bar-chart", title: "Anomaly Patterns", desc: "Streamlit dashboard visualizes fraud pattern clusters, score distributions, and detection rates." },
-      { icon: "cpu", title: "FastAPI Serving", desc: "REST endpoint for real-time scoring with sub-100ms latency on standard hardware." }
-    ],
-    architecture: [
-      { step: "01", label: "Stream", desc: "Transaction events → real-time feature computation engine" },
-      { step: "02", label: "Features", desc: "Point-in-time correct features: velocity, pattern, behavioral signals" },
-      { step: "03", label: "Score", desc: "FastAPI → ML model → fraud score + feature importance" },
-      { step: "04", label: "Monitor", desc: "Streamlit dashboard → score drift, anomaly clusters, detection rate" }
-    ],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Batch fraud scoring",
+        flow: ["Transactions", "Nightly batch", "Stale features", "Fraud already happened"],
+        problems: [
+          "Features get computed after the fact, so the score is always late.",
+          "Training quietly leaks future data — the model looks great until prod.",
+          "No live monitor to watch fraud patterns form.",
+          "By the time the batch flags it, the money is gone."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Streaming fraud engine",
+        flow: ["Transaction", "Live features", "Score <100ms", "Catch in the act"],
+        built: [
+          {
+            title: "Time Machine Guard",
+            desc: "Point-in-time correctness means features only ever see the past — zero future-data leakage into training."
+          },
+          {
+            title: "Catch-in-the-Act Scoring",
+            desc: "Each transaction scored in under 100ms, with the feature contributions that flagged it."
+          },
+          {
+            title: "Pattern Radar",
+            desc: "Streamlit dashboard surfaces fraud clusters, score drift, and detection rate as they form."
+          },
+          {
+            title: "Streaming Features",
+            desc: "Velocity + behavioral signals computed live on the event stream, not in last night's job."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
     cost: "Free to run locally.",
     phase: null
   },
@@ -261,7 +339,7 @@ export const projects = [
   {
     slug: "pied-piper-legal",
     title: "Pied Piper Legal Simulator",
-    tagline: "Grounded VC term-sheet advisor — Gemini on Vertex reads a clause, cites it, and explains who it favors + which Silicon Valley episode it mirrors.",
+    tagline: "Read a term sheet like a senior analyst — Gemini cites the clause, scores who it favors, and names the Silicon Valley episode it mirrors.",
     lane: "GenAI",
     tags: ["GenAI", "Cloud"],
     cloud: "Vertex",
@@ -271,35 +349,61 @@ export const projects = [
     live: "https://pied-piper-advisor-819957310168.us-west1.run.app",
     gif: "/piedpiper.gif",
     icon: "file-text",
-    description: "A grounded VC term-sheet advisor: ask any term and it retrieves the matching clause(s) from a 57-clause library, links the Silicon Valley episode by conflict_type, then grounds a Gemini 2.5 Flash answer (Vertex AI) with [clause_id] citations, founder/VC risk scores, and the direction the term pushes fund returns. DIY retrieval right-sized for the corpus (no managed index) — same grounded-RAG pattern as the healthcare service, retargeted to legal/VC.",
-    highlight: "Read a term sheet the way a new analyst dreams of: instant grounded read of who it favors, the risk, and the real-world drama it mirrors — every claim cites a clause.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "57", label: "clauses grounded" },
-      { value: "19", label: "SV episodes" },
-      { value: "[id]", label: "cited answers" },
-      { value: "2.5 Flash", label: "Gemini / Vertex" }
+      { value: "📜 57", label: "Clauses grounded" },
+      { value: "🎬 19", label: "Silicon Valley episodes" },
+      { value: "🔖 [id]", label: "Every answer cited" },
+      { value: "🤖 2.5 Flash", label: "Gemini on Vertex" }
     ],
     stack: ["Python", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "RAG", "Cloud Run", "Docker"],
-    features: [
-      { icon: "file-text", title: "Term Sheet Generator", desc: "Structured VC term sheets with configurable valuation, liquidation prefs, and pro-rata rights." },
-      { icon: "shield", title: "NDA Simulator", desc: "Mutual and one-way NDAs with jurisdiction-aware clause selection." },
-      { icon: "cpu", title: "IP Dispute Engine", desc: "Simulates IP dispute scenarios with competing claims, prior art arguments, and settlement terms." },
-      { icon: "bot", title: "LLM Grounding", desc: "All generated docs grounded with structured schemas — reduces hallucination in legal clause generation." }
-    ],
-    architecture: [
-      { step: "01", label: "Template", desc: "Jinja2 legal templates define document structure and required fields" },
-      { step: "02", label: "Generate", desc: "LLM fills clauses within schema constraints — structured output enforced" },
-      { step: "03", label: "Validate", desc: "Pydantic models validate each generated document against expected structure" },
-      { step: "04", label: "Export", desc: "Streamlit UI → download as formatted Markdown or plain text" }
-    ],
-    cost: "OpenAI API minimal per document. Free otherwise.",
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Google the term sheet",
+        flow: ["Term sheet", "Google the clause", "Generic blog post", "Still unsure who wins"],
+        problems: [
+          "A blog post about 'liquidation preference' isn't YOUR clause.",
+          "No read on who the term actually favors — founder or VC.",
+          "No citation, so you can't trust or check the answer.",
+          "Intimidating for a new analyst staring at unfamiliar legalese."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Grounded clause advisor",
+        flow: ["Ask a term", "Retrieve the clause", "Gemini grounds + cites", "Know who it favors"],
+        built: [
+          {
+            title: "Who Wins?",
+            desc: "Every clause gets a founder-vs-VC risk read and the direction it pushes fund returns — not just a definition."
+          },
+          {
+            title: "Cite or Shut Up",
+            desc: "Each answer points to a real [clause_id] from the 57-clause library. No hand-waving, every claim traceable."
+          },
+          {
+            title: "TV Translator",
+            desc: "Links each conflict to the Silicon Valley episode it mirrors, so the legal drama actually sticks."
+          },
+          {
+            title: "Right-Sized Retrieval",
+            desc: "DIY retrieval matched to a 57-clause corpus — no managed index. Same grounded-RAG pattern as the healthcare service, retargeted to legal/VC."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
+    cost: "Vertex Gemini draws the GCP GenAI credit. Cloud Run scales to zero.",
     phase: null
   },
 
   {
     slug: "financial-modeling-automation",
     title: "Financial Modeling Automation",
-    tagline: "PE/VC financial modeling automation — VC cap tables + LP/GP fund economics with Python.",
+    tagline: "Fund economics that don't break at 2am — VC cap tables + LP/GP waterfalls in version-controlled Python, not a fragile spreadsheet.",
     lane: "Data Eng",
     tags: ["Automation"],
     laneColor: "#c4a8d8",
@@ -308,27 +412,53 @@ export const projects = [
     live: "https://huggingface.co/spaces/anixlynch/financial-modeling-automation",
     gif: "/excel-automation.gif",
     icon: "trending-up",
-    description: "Python automation for PE/VC financial modeling: VC cap table generation, LP/GP fund economics calculations, carried interest waterfalls, and scenario analysis. Replaces manual Excel modeling with reproducible, version-controlled Python that runs in seconds.",
-    highlight: "VC cap tables and fund economics in Python. Reproducible, version-controlled, and 100× faster than Excel.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "VC", label: "Cap Tables" },
-      { value: "LP/GP", label: "Fund Economics" },
-      { value: "Carry", label: "Waterfall Calc" },
-      { value: "Python", label: "Not Excel" }
+      { value: "⚡ 100×", label: "Faster than Excel" },
+      { value: "🧾 VC", label: "Cap tables" },
+      { value: "💧 Carry", label: "Waterfall calc" },
+      { value: "🔁 100+", label: "Scenarios in seconds" }
     ],
     stack: ["Python", "Pandas", "NumPy", "openpyxl", "Plotly", "Jupyter", "DuckDB"],
-    features: [
-      { icon: "trending-up", title: "Cap Table Engine", desc: "Full VC cap table: pre/post-money, pro-rata, anti-dilution, option pool shuffle — all automated." },
-      { icon: "database", title: "Fund Economics", desc: "LP/GP economics: management fees, carried interest, hurdle rates, preferred return calculations." },
-      { icon: "layers", title: "Waterfall Model", desc: "Carry distribution waterfall for multiple fund scenarios with European vs American waterfall options." },
-      { icon: "bar-chart", title: "Scenario Analysis", desc: "Run 100+ exit scenarios in seconds. Plotly visualizations for LP reports and IC presentations." }
-    ],
-    architecture: [
-      { step: "01", label: "Input", desc: "Fund terms + portfolio companies → structured Python dataclasses" },
-      { step: "02", label: "Model", desc: "Cap table engine + economics calculator → scenario matrix" },
-      { step: "03", label: "Waterfall", desc: "Carry distribution engine with configurable waterfall structure" },
-      { step: "04", label: "Report", desc: "Plotly charts + openpyxl Excel export for LP/IC presentations" }
-    ],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Excel by hand",
+        flow: ["Fund terms", "Manual Excel", "Copy-paste cells", "Breaks at 2am"],
+        problems: [
+          "One wrong cell silently breaks the whole carry waterfall.",
+          "Not version-controlled — no diff, no review, no audit trail.",
+          "Can't rerun 100 exit scenarios without rebuilding the sheet.",
+          "The model lives in one person's head and one fragile file."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Python fund engine",
+        flow: ["Fund terms", "Python model", "Scenario matrix", "LP-ready report"],
+        built: [
+          {
+            title: "Cap Table Engine",
+            desc: "Pre/post-money, pro-rata, anti-dilution, option-pool shuffle — all automated, no fragile linked cells."
+          },
+          {
+            title: "Waterfall Calc",
+            desc: "Carried-interest distribution for European vs American waterfalls, reproducible on every run."
+          },
+          {
+            title: "100 Scenarios, Seconds",
+            desc: "Run 100+ exit scenarios in seconds, with Plotly charts ready for the LP report or IC deck."
+          },
+          {
+            title: "Version-Controlled Math",
+            desc: "Every assumption lives in git — diff it, review it, trust it. Not a mystery spreadsheet."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
     cost: "Free. Pure Python.",
     phase: null
   },
@@ -336,7 +466,7 @@ export const projects = [
   {
     slug: "healthcare-ai-data-engineer",
     title: "Healthcare AI Data Engineer",
-    tagline: "L1 + L1.25 data backbone, deployed for real — dbt medallion warehouse on BigQuery (55 tests green) + a Feast feature store (point-in-time-correct patient features) + FastAPI cockpit + a Vertex-grounded RAG agent over 55K synthetic patient encounters.",
+    tagline: "A data backbone that's actually deployed — dbt medallion on BigQuery (55 tests green), a quality gate that caught 5,500 bad rows, and an AI agent that only answers from the trusted marts.",
     lane: "Data Eng",
     tags: ["Data Eng", "Cloud"],
     cloud: "Vertex",
@@ -347,27 +477,53 @@ export const projects = [
     dataDocs: "/dashboards/ge/",
     gif: "/healthcare-ai-data-engineer.gif",
     icon: "database",
-    description: "Healthcare data backbone deployed end-to-end on GCP: a dbt medallion star schema (staging → intermediate → marts) built and tested LIVE on BigQuery — 55,500 encounters loaded, dbt build green on all 55 tests. A 7-check L1 quality gate runs in CI. FastAPI serves the warehouse plus a human cockpit (A1–A6) where every number links to its proof file, and an L2 grounded-RAG agent (/api/ask): BM25 retrieves from the redacted enriched corpus, then Vertex Gemini answers with [doc N] citations — no raw PII indexed.",
-    highlight: "The data-engineer layer is real, not a mockup: dbt actually runs on BigQuery with every test green, and the AI agent answers only from the trusted marts.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "55,500", label: "rows in BigQuery" },
-      { value: "55/55", label: "dbt tests green" },
-      { value: "50,000", label: "fact-table rows" },
-      { value: "[doc N]", label: "grounded citations" }
+      { value: "🗄️ 55,500", label: "Rows live in BigQuery" },
+      { value: "✅ 55/55", label: "dbt tests green" },
+      { value: "🚨 5,500", label: "Dupes the gate caught" },
+      { value: "🔖 [doc N]", label: "Grounded citations" }
     ],
     stack: ["Python", "dbt", "BigQuery", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "BM25", "Pandas", "pytest", "Docker", "GCP Cloud Run", "GitHub Actions"],
-    features: [
-      { icon: "database", title: "dbt warehouse LIVE on BigQuery", desc: "Medallion star schema (staging → intermediate → marts): fact_patient_encounters + 7 dims. 55,500 rows loaded, dbt build green on all 55 tests — not_null, unique, relationships (FK), accepted_values, and a custom readmission-logic test." },
-      { icon: "shield", title: "7-check L1 quality gate", desc: "schema_drift · critical_nulls · duplicate_encounters · temporal_sanity · pii_in_narrative · patient_identity · audit_lineage. Runs in CI, exits 1 on any critical failure. The unique tests caught ~5,500 duplicate rows in the raw feed." },
-      { icon: "cpu", title: "Vertex-grounded RAG agent", desc: "/api/ask: BM25 retrieves top-K from the redacted enriched corpus, then Gemini 2.5 Flash answers with [doc N] citations and refuses when the evidence doesn't support it. Grounds only on redacted narratives — never raw PII." },
-      { icon: "search", title: "Cockpit — every number traceable", desc: "A1–A6 cockpit at /app; each displayed metric links to the repo file that proves it. The A5 warehouse explorer reads live object + row counts straight from BigQuery." }
-    ],
-    architecture: [
-      { step: "01", label: "Load", desc: "55,500 synthetic encounters → BigQuery raw table; dbt staging dedupes to one row per encounter (raw feed had ~5,500 exact dupes)." },
-      { step: "02", label: "Model", desc: "dbt medallion on BigQuery: staging → intermediate → marts (fact + 7 dims). 55 tests green, including FK relationships + accepted_values." },
-      { step: "03", label: "Gate", desc: "7-check L1 quality gate in CI blocks bad data before it reaches the API or the AI agent." },
-      { step: "04", label: "Serve + ground", desc: "FastAPI serves the cockpit + warehouse rooms; /api/ask grounds Gemini on the trusted marts with citations. Live on Cloud Run." }
-    ],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Scripts + a spreadsheet",
+        flow: ["Raw data", "Ad-hoc scripts", "Untested tables", "Hope it's clean"],
+        problems: [
+          "Nothing catches the ~5,500 duplicate rows hiding in the raw feed.",
+          "No quality gate before the AI agent reads the data.",
+          "Dashboard numbers nobody can trace back to a file.",
+          "Raw PII can leak straight into the narratives the model sees."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Tested warehouse + grounded agent",
+        flow: ["BigQuery load", "dbt medallion", "7-check gate", "Grounded answer"],
+        built: [
+          {
+            title: "Dupe Catcher",
+            desc: "The unique test caught ~5,500 duplicate rows in the raw feed before they could poison anything downstream."
+          },
+          {
+            title: "Green-or-Block CI",
+            desc: "dbt build runs LIVE on BigQuery — 55/55 tests green (not_null, unique, FK, accepted_values) or the release fails. Not a local mock."
+          },
+          {
+            title: "Every Number Traceable",
+            desc: "A1–A6 cockpit where each displayed metric links to the repo file that proves it. The warehouse explorer reads live row counts from BigQuery."
+          },
+          {
+            title: "Answers Only From Truth",
+            desc: "/api/ask grounds Gemini on the redacted marts with [doc N] citations — never raw PII, and it refuses when the evidence is thin."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
     cost: "$0 at portfolio traffic — Cloud Run scales to zero, BigQuery stays in free tier, Vertex draws the GCP GenAI credit.",
     phase: "Phase 1-6 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
   },
@@ -375,7 +531,7 @@ export const projects = [
   {
     slug: "healthcare-forward-deployed-engineer",
     title: "Healthcare Forward Deployed Engineer",
-    tagline: "Customer-deployable ER triage assistant — one workflow, one runbook, one postmortem, one acceptance gate.",
+    tagline: "An ER triage assistant a customer can actually deploy — graded by acceptance contracts, not ML metrics. If a suicidal patient doesn't get human review, it isn't done.",
     lane: "Forward Deployed",
     tags: ["Solutions", "Cloud"],
     cloud: "Vertex",
@@ -385,27 +541,53 @@ export const projects = [
     live: "https://healthcare-fde-2ihyeqmb6q-uw.a.run.app/",
     gif: "/healthcare-fde.png",
     icon: "shield",
-    description: "End-to-end customer-deployment package for an ER triage assistant: customer brief + solution design + runbook + handoff guide + integrations (Epic FHIR adapter, OAuth, identity mapper), the one workflow (rule-based ESI + pediatric/suicidal/sepsis safety floors + retrieval + grounded rationale), guardrails (input + output + PII), observability (split-sink audit/PHI logging), deployment unit (Dockerfile + non-root + healthcheck), and a postmortem template populated with a real incident.",
-    highlight: "Acceptance tests as customer-contract gates — NOT ML metrics. If a suicidal patient doesn't get human review, the deployment isn't done.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "10", label: "customer-contract tests" },
-      { value: "39 ms", label: "/v1/ask p50" },
-      { value: "P0/P1/P2/P3", label: "alert ladder" },
-      { value: "8/8", label: "FDE deliverables" }
+      { value: "🤝 10", label: "Customer-contract tests" },
+      { value: "⚡ 39 ms", label: "/v1/ask p50" },
+      { value: "🚦 P0–P3", label: "Alert ladder" },
+      { value: "📦 8/8", label: "FDE deliverables" }
     ],
     stack: ["Python", "FastAPI", "BM25", "Pydantic", "pytest", "Docker", "Cloud Run", "GitHub Actions", "Epic FHIR (mock)", "OAuth", "asciinema"],
-    features: [
-      { icon: "shield", title: "Customer-contract acceptance gate", desc: "8 tests: pediatric < 1y safety floor · chest-pain + diaphoresis · sepsis SIRS (qSOFA-shaped) · suicidal ideation · altered mental status · p95 < 800ms · p99 < 2000ms · response shape complete. Each maps to eval_dataset.json with a named customer owner." },
-      { icon: "file-text", title: "Runbook + postmortem discipline", desc: "P0/P1/P2/P3 alert ladder with paging windows + exact curl commands. Two postmortems (one real-shaped integration failure + one brief↔code drift audit finding) using the same template." },
-      { icon: "lock", title: "Split-sink HIPAA-aligned logging", desc: "audit.jsonl = metadata only (safe for cloud index + stdout). phi_archive.jsonl = full payload, restricted volume, NO stdout mirror. Fail-LOUD on archive write failure (compliance event)." },
-      { icon: "key", title: "Fail-closed admin auth", desc: "POST /admin/mode requires bearer token (hmac.compare_digest, timing-safe). ADMIN_BEARER_TOKEN unset → 503. Explicit ADMIN_AUTH_DISABLED=1 escape hatch for dev only." }
-    ],
-    architecture: [
-      { step: "01", label: "EHR intake", desc: "Epic FHIR adapter (mocked) → fhir_transform (Patient/Encounter/Observation with LOINC codes) → identity_mapper (MRN ↔ patient_id SHA256 short hash)." },
-      { step: "02", label: "Guard + workflow", desc: "guardrails (input + output + PII mask on inbound) → workflows.triage_assistant (rule-based ESI + pediatric/suicidal/SIRS safety floors + retrieval + grounded rationale)." },
-      { step: "03", label: "Fallback + audit", desc: "should_escalate routes low-confidence + safety-floor cases to human review. Split-sink audit: metadata to audit.jsonl + stdout; full payload to phi_archive.jsonl (restricted)." },
-      { step: "04", label: "Deploy + smoke", desc: "Dockerfile (port $PORT, non-root) + smoke_test.sh (5 curl checks incl. 401 on missing bearer) + CI runs `make acceptance` on every PR." }
-    ],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "ML metrics = done",
+        flow: ["Model", "Good F1 score", "Ship it", "Customer breaks"],
+        problems: [
+          "A high F1 says nothing about whether a suicidal patient got human review.",
+          "No runbook when it pages at 3am.",
+          "No acceptance gate the customer can sign off on.",
+          "No postmortem discipline when the integration drifts."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Customer-contract delivery",
+        flow: ["Customer brief", "Acceptance gate", "Runbook + guardrails", "Deployed for real"],
+        built: [
+          {
+            title: "Acceptance Gate, Not F1",
+            desc: "8 tests as customer contracts — pediatric <1y floor, sepsis SIRS, suicidal-ideation human review, p95 < 800ms. Pass, or the deployment isn't done."
+          },
+          {
+            title: "Fail-Loud Logging",
+            desc: "Split-sink: metadata to audit.jsonl (safe for cloud index), full PHI to a restricted archive — and it screams if the archive write fails."
+          },
+          {
+            title: "Fail-Closed Auth",
+            desc: "Admin endpoint needs a timing-safe bearer token. Token unset → 503. No accidental open door in production."
+          },
+          {
+            title: "Runbook + Postmortem",
+            desc: "P0–P3 alert ladder with exact curl commands, plus two real-shaped postmortems. Ops discipline, not vibes."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
     cost: "Free. Cloud Run scale-to-zero, well under monthly free tier at portfolio traffic.",
     phase: "Phase 1-8 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
   }
