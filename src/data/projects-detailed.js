@@ -30,10 +30,10 @@ export const projects = [
     beforeAfter: {
       before: {
         title: "Before",
-        badge: "Search-only AI",
-        flow: ["Question", "Search past cases", "AI answer", "Limited insight"],
+        badge: "Keyword-match AI",
+        flow: ["Question", "Keyword search", "AI answer", "Limited insight"],
         problems: [
-          "Only retrieves lookalike cases; no separate signal analysis.",
+          "Can match words in past records, but it does not forecast LOS or read hidden risk.",
           "No Smoke Detector to catch arrival-rate anomaly.",
           "No Treasure Map to group the emergency-dominant cohort.",
           "No Traffic Light or Ranking to prioritize the action."
@@ -62,7 +62,7 @@ export const projects = [
           },
           {
             title: "Retrieve Lookalikes",
-            desc: "Finds similar past cases, then the other signals explain which ones actually matter now."
+            desc: "BM25 finds matching past cases; the other signals explain which matches actually matter now."
           }
         ]
       }
