@@ -544,12 +544,12 @@ export const projects = [
     description: null,
     highlight: null,
     stats: [
-      { value: "🤝 10", label: "Customer-contract tests" },
+      { value: "🤝 21", label: "Tests — all green" },
       { value: "⚡ 39 ms", label: "/v1/ask p50" },
-      { value: "🚦 P0–P3", label: "Alert ladder" },
-      { value: "📦 8/8", label: "FDE deliverables" }
+      { value: "🛑 HITL gate", label: "Stop before harm" },
+      { value: "🔁 8-step agent", label: "Remembers where it left off" }
     ],
-    stack: ["Python", "FastAPI", "BM25", "Pydantic", "pytest", "Docker", "Cloud Run", "GitHub Actions", "Epic FHIR (mock)", "OAuth", "asciinema"],
+    stack: ["Python", "FastAPI", "LangGraph", "BM25", "Pydantic", "pytest", "OpenTelemetry", "Docker", "Cloud Run", "GitHub Actions", "Epic FHIR (mock)", "OAuth", "asciinema"],
     beforeAfter: {
       before: {
         title: "Before",
@@ -569,11 +569,27 @@ export const projects = [
         built: [
           {
             title: "Acceptance Gate, Not F1",
-            desc: "8 tests as customer contracts — pediatric <1y floor, sepsis SIRS, suicidal-ideation human review, p95 < 800ms. Pass, or the deployment isn't done."
+            desc: "21 tests as customer contracts — pediatric <1y floor, sepsis SIRS, suicidal-ideation human review, p95 < 800ms. Pass, or the deployment isn't done."
+          },
+          {
+            title: "Agent That Remembers",
+            desc: "8-step decision graph that saves its place. If the same case comes back mid-flow, it picks up where it left off — not from scratch."
+          },
+          {
+            title: "Stop Button Before It's Too Late",
+            desc: "High-risk decisions pause and wait for a human to approve or reject before anything goes back to the nurse. The AI doesn't just flag — it literally stops."
+          },
+          {
+            title: "Tries Again Without Doubling Up",
+            desc: "External calls fail all the time. The system retries automatically — and knows not to run the same call twice if the first one already went through."
+          },
+          {
+            title: "Every Decision Leaves a Trail",
+            desc: "Each triage call stamps what it decided, how confident it was, and how long it took — so on-call can see exactly what happened without digging through logs."
           },
           {
             title: "Fail-Loud Logging",
-            desc: "Split-sink: metadata to audit.jsonl (safe for cloud index), full PHI to a restricted archive — and it screams if the archive write fails."
+            desc: "Split-sink: metadata safe for cloud index, full PHI to a restricted archive — and it screams if the archive write fails."
           },
           {
             title: "Fail-Closed Auth",
