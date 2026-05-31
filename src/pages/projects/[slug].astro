@@ -220,7 +220,14 @@ const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["Gen
                 {project.beforeAfter.after.built.map(item => (
                   <div class="comparison-item built">
                     <span>✓</span>
-                    <p>{item}</p>
+                    <p>
+                      {typeof item === 'string' ? item : (
+                        <>
+                          <strong>{item.title}</strong>
+                          <small>{item.desc}</small>
+                        </>
+                      )}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -665,6 +672,18 @@ const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["Gen
   }
 
   .comparison-item p { margin: 0; }
+  .comparison-item strong {
+    display: block;
+    color: #0f1923;
+    font-weight: 800;
+    margin-bottom: 2px;
+  }
+  .comparison-item small {
+    display: block;
+    color: #4a6080;
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
   .comparison-item.problem span { background: #fbeee6; color: #a85a2a; }
   .comparison-item.built span { background: #edfaf0; color: #1e6b38; }
 

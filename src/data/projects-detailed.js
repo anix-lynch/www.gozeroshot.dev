@@ -44,11 +44,26 @@ export const projects = [
         badge: "Truth + Signal AI",
         flow: ["Trusted facts", "5 signal services", "Gemini compares choices", "ACT NOW"],
         built: [
-          "Smoke Detector flags weird patterns before the answer.",
-          "Treasure Map clusters lookalike patients into useful cohorts.",
-          "Traffic Light classifies NOW / SOON / WAIT urgency.",
-          "Ranking orders which cases need attention first.",
-          "Retrieve Lookalikes grounds the choice in similar past cases."
+          {
+            title: "Smoke Detector",
+            desc: "Beds look fine, but arrivals are 1.8x baseline. The signal catches the cliff before the dashboard panics."
+          },
+          {
+            title: "Treasure Map",
+            desc: "Not just '4 ER arrivals' — it sees an emergency-dominant cohort forming in the waiting room."
+          },
+          {
+            title: "Traffic Light",
+            desc: "Turns vague risk into NOW / SOON / WAIT, so Gemini reasons with an urgency label instead of vibes."
+          },
+          {
+            title: "Ranking",
+            desc: "ICU-need cases rise to the top of the queue; the agent stops treating all arrivals as equal."
+          },
+          {
+            title: "Retrieve Lookalikes",
+            desc: "Finds similar past cases, then the other signals explain which ones actually matter now."
+          }
         ]
       }
     },
