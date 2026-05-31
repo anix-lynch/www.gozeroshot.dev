@@ -46,7 +46,7 @@ export const projects = [
   {
     slug: "healthcare-genai-engineer",
     title: "Healthcare GenAI Engineer",
-    tagline: "Healthcare RAG service — BM25/dense hybrid + PII guardrails + custom-proxy eval + CI regression gate.",
+    tagline: "Healthcare AI that shows its work instead of asking for trust.",
     lane: "GenAI",
     tags: ["GenAI", "Cloud"],
     cloud: "Vertex",
@@ -56,26 +56,26 @@ export const projects = [
     live: "https://healthcare-genai-2ihyeqmb6q-uw.a.run.app",
     gif: "/healthcare-genai-engineer.gif",
     icon: "shield",
-    description: "End-to-end healthcare RAG service: FastAPI ER-triage workflow with BM25 + dense + RRF hybrid retrieval over a 497-row enriched corpus, input PII guardrails (SSN, phone, email, CC, MRN, DOB), citation-validated grounded answers, custom-proxy Ragas-style eval over a 20-query golden set, and a CI regression gate that blocks merges on metric drop past tolerance.",
-    highlight: "One focused ER-triage RAG vertical where every claim cites a retrieved source_id — no hallucinated citations on hits.",
+    description: "Ask a clinical question and it finds the right medical records first, then answers — citing every source it used. Patient information is masked before anything is processed, and a test gate blocks any release that gets less accurate. The point is trust: you can see exactly where each answer came from, not just take its word for it.",
+    highlight: "Ask \"has this happened before?\" — instead of a vague \"probably…\", it pulls the matching records, shows the cases, and cites each source.",
     stats: [
-      { value: "5 ms", label: "p95 latency" },
-      { value: "0.65", label: "faithfulness (BM25)" },
-      { value: "20", label: "golden queries" },
-      { value: "497", label: "corpus rows" }
+      { value: "⚡ 5 ms", label: "Fast response" },
+      { value: "🛡️ 100%", label: "Cited answers" },
+      { value: "🧪 20", label: "Healthcare test cases" },
+      { value: "📚 497", label: "Medical records indexed" }
     ],
     stack: ["Python", "FastAPI", "BM25", "Sentence Transformers", "RRF", "Anthropic", "OpenAI", "Docker", "Pydantic", "pytest", "GitHub Actions"],
     features: [
-      { icon: "search", title: "Hybrid retrieval", desc: "BM25 from scratch (Okapi k1=1.5 / b=0.75) + dense MiniLM + RRF fusion (k=60, Cormack & Buettcher). Swap method via query param." },
-      { icon: "shield", title: "PII + injection guardrails", desc: "Input: sanitize · injection regex · token cap. PII masker covers SSN, phone, email, CC, MRN, DOB. Output: citation valid · length · forbidden-action." },
-      { icon: "file-text", title: "Citation-grounded answers", desc: "Every claim cites a retrieved source_id. Deterministic template baseline by default; LLM path behind USE_LLM flag (Anthropic or OpenAI), falls back on provider error." },
-      { icon: "activity", title: "Regression gate in CI", desc: "20-query golden set + custom-proxy faithfulness/relevance + baseline.json snapshot. `make gate` exits 1 on metric drop past tolerance — GitHub Actions blocks merges." }
+      { icon: "search", title: "Finds the evidence", desc: "Searches the medical records and pulls the cases most relevant to the question — before it answers anything." },
+      { icon: "shield", title: "Protects patient info", desc: "Masks sensitive details (social security, phone, email, card, medical record number, date of birth) before anything is processed." },
+      { icon: "file-text", title: "Cites every source", desc: "Each answer points back to the exact records it used. No unsourced claims, no guessing." },
+      { icon: "activity", title: "Catches quality drops", desc: "Every release is tested against a set of healthcare cases. If accuracy slips, the release is blocked before it reaches production." }
     ],
     architecture: [
-      { step: "01", label: "Guard", desc: "POST /v1/ask → sanitize · injection scan · PII mask · token cap before retrieval sees the query." },
-      { step: "02", label: "Retrieve", desc: "BM25 (default) / dense / hybrid over 497-row enriched corpus → top-k candidates with similarity scores." },
-      { step: "03", label: "Generate", desc: "Grounded template (zero-LLM, deterministic) or LLM path with enforced inline source_id citations." },
-      { step: "04", label: "Validate", desc: "Output validator: citation freshness · length · forbidden actions. Regression gate runs in CI on every PR." }
+      { step: "01", label: "Medical records", desc: "Starts from the indexed patient records — not the model's memory." },
+      { step: "02", label: "Relevant cases", desc: "Finds the records that actually match the question." },
+      { step: "03", label: "Source citations", desc: "Attaches the exact records it used, so every claim is traceable." },
+      { step: "04", label: "Answer", desc: "Returns a grounded answer a clinician can check and trust." }
     ],
     cost: "Template path = $0 (zero LLM calls). LLM path = pay-per-token via Anthropic or OpenAI. Service runs in-memory; ~$1–2/month serverless when deployed.",
     phase: "Phase 1–6 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
