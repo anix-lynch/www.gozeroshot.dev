@@ -171,6 +171,61 @@ const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["Gen
         </div>
       </section>
 
+      {project.beforeAfter && (
+        <section class="before-after-section">
+          <h2 class="section-label">Before / After</h2>
+          <div class="before-after-grid">
+            <div class="comparison-card comparison-before">
+              <div class="comparison-kicker">Before</div>
+              <h3>{project.beforeAfter.before.title}</h3>
+              <span class="comparison-badge muted">{project.beforeAfter.before.badge}</span>
+              <div class="comparison-flow">
+                {project.beforeAfter.before.flow.map((item, i) => (
+                  <Fragment>
+                    <div class="flow-step">{item}</div>
+                    {i < project.beforeAfter.before.flow.length - 1 && (
+                      <div class="flow-arrow">↓</div>
+                    )}
+                  </Fragment>
+                ))}
+              </div>
+              <div class="comparison-list">
+                {project.beforeAfter.before.problems.map(item => (
+                  <div class="comparison-item problem">
+                    <span>×</span>
+                    <p>{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div class="comparison-card comparison-after">
+              <div class="comparison-kicker">After</div>
+              <h3>{project.beforeAfter.after.title}</h3>
+              <span class="comparison-badge good">{project.beforeAfter.after.badge}</span>
+              <div class="comparison-flow">
+                {project.beforeAfter.after.flow.map((item, i) => (
+                  <Fragment>
+                    <div class="flow-step">{item}</div>
+                    {i < project.beforeAfter.after.flow.length - 1 && (
+                      <div class="flow-arrow">↓</div>
+                    )}
+                  </Fragment>
+                ))}
+              </div>
+              <div class="comparison-list">
+                {project.beforeAfter.after.built.map(item => (
+                  <div class="comparison-item built">
+                    <span>✓</span>
+                    <p>{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       <!-- Feature Grid -->
       <section class="features-section">
         <h2 class="section-label">Features</h2>
@@ -495,6 +550,119 @@ const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["Gen
     border: 1px solid rgba(123, 179, 217, 0.28);
   }
 
+  .before-after-section { margin-bottom: 2rem; }
+
+  .before-after-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .comparison-card {
+    background: #fff;
+    border: 1px solid #dde8f0;
+    border-radius: 14px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(100,140,180,0.07);
+  }
+
+  .comparison-before { border-color: rgba(217,139,111,0.36); }
+  .comparison-after { border-color: rgba(100,200,130,0.36); }
+
+  .comparison-kicker {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8aa0b8;
+    margin-bottom: 0.4rem;
+  }
+
+  .comparison-card h3 {
+    margin: 0 0 0.55rem;
+    font-size: 1.05rem;
+    color: #0f1923;
+  }
+
+  .comparison-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .comparison-badge.muted {
+    color: #a85a2a;
+    background: #fbeee6;
+    border: 1px solid rgba(217,139,111,0.36);
+  }
+
+  .comparison-badge.good {
+    color: #1e6b38;
+    background: #edfaf0;
+    border: 1px solid rgba(100,200,130,0.36);
+  }
+
+  .comparison-flow {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .flow-step {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dde8f0;
+    border-radius: 10px;
+    background: #f8fbfd;
+    color: #304968;
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .flow-arrow {
+    text-align: center;
+    color: #8aa0b8;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .comparison-list {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .comparison-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #4a6080;
+  }
+
+  .comparison-item span {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 800;
+    font-size: 13px;
+  }
+
+  .comparison-item p { margin: 0; }
+  .comparison-item.problem span { background: #fbeee6; color: #a85a2a; }
+  .comparison-item.built span { background: #edfaf0; color: #1e6b38; }
+
   .features-section { margin-bottom: 2rem; }
 
   .feature-grid {
@@ -660,6 +828,7 @@ const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["Gen
     .project-main { padding: 1rem; }
     .hero-title { font-size: 1.4rem; }
     .stats-row { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+    .before-after-grid { grid-template-columns: 1fr; }
     .project-footer { flex-direction: column; align-items: flex-start; }
     .footer-actions { width: 100%; }
     .footer-actions .btn { flex: 1; }

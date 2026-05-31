@@ -27,6 +27,30 @@ export const projects = [
       { value: "📚 497", label: "Medical records indexed" }
     ],
     stack: ["Python", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "scikit-learn (K-Means)", "NumPy", "Weights & Biases", "Langfuse", "Cloud Run", "Docker"],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Trust me AI",
+        flow: ["Question", "AI answer", "\"trust me\""],
+        problems: [
+          "Where did this answer come from?",
+          "Can we trust it?",
+          "Can we prove it?",
+          "What if the next release breaks it?"
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Evidence-first AI",
+        flow: ["Question", "Evidence", "Sources", "Answer"],
+        built: [
+          "Retrieves relevant records",
+          "Cites supporting evidence",
+          "Protects sensitive data",
+          "Blocks bad releases"
+        ]
+      }
+    },
     features: [
       { icon: "search", title: "Retrieves relevant records", desc: "Searches the indexed medical records first, so the answer starts from evidence instead of model memory." },
       { icon: "file-text", title: "Cites supporting evidence", desc: "Every answer points back to the records it used. No floating claims, no mystery source." },
