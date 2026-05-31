@@ -19,7 +19,7 @@ export const projects = [
     gif: "/signal-console.png",
     icon: "activity",
     description: "Most AI demos answer first and ask you to trust them. This one does the safer thing: it finds relevant healthcare records, shows the supporting evidence, cites the sources, protects sensitive data, then answers. A release gate checks the behavior before changes go live, so the demo is not just fast — it is traceable.",
-    highlight: "Before: question -> AI answer -> trust me. After: question -> evidence -> sources -> answer.",
+    highlight: null,
     stats: [
       { value: "⚡ 5 ms", label: "Near-instant answers" },
       { value: "🛡️ 100%", label: "Citation validity" },
