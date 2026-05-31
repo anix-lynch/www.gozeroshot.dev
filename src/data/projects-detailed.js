@@ -122,7 +122,7 @@ export const projects = [
   {
     slug: "healthcare-analytics-fabric",
     title: "Healthcare Analytics on Microsoft Fabric",
-    tagline: "FastAPI + dbt + Fabric lakehouse + TMDL semantic model + MLflow — interview-ready proof stack.",
+    tagline: "FastAPI + dbt + Fabric lakehouse + TMDL semantic model + MLflow — every claim maps to a file.",
     lane: "Data Eng",
     tags: ["Data Eng", "Cloud", "AI Platform"],
     cloud: "Azure",
