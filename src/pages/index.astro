@@ -186,25 +186,6 @@ function icon(name, size = 18) {
         </a>
       </div>
 
-      <!-- Monitoring section — each card opens a real-tool snapshot that links back to its source repo -->
-      <div class="section-label" style="margin-top: 2.5rem;">Production Monitoring</div>
-      <div class="monitoring-grid">
-        {([
-          { title: "Phoenix GenAI Ops",    desc: "Agent traces · eval scores · cost",    url: "/dashboards/phoenix_dashboard.html", iconName: "activity" },
-          { title: "Python + dbt DQ",      desc: "24 custom checks · 100% pass rate",     url: "/dashboards/ge_dashboard.html",      iconName: "shield" },
-          { title: "dbt Lineage Tracker",  desc: "12 models · 47 tests · 100% coverage", url: "/dashboards/dbt_dashboard.html",     iconName: "trending-up" },
-        ] as const).map(m => (
-          <a href={m.url} class="monitor-card" target="_blank" rel="noopener">
-            <span class="monitor-icon" set:html={icon(m.iconName, 18)} />
-            <div>
-              <div class="monitor-title">{m.title}</div>
-              <div class="monitor-desc">{m.desc}</div>
-            </div>
-            <span class="monitor-arrow" set:html={icon('arrow-right', 14)} />
-          </a>
-        ))}
-      </div>
-
     </main>
   </div>
 </Layout>
