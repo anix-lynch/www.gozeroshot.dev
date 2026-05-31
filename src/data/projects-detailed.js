@@ -89,48 +89,52 @@ export const projects = [
     description: null,
     highlight: null,
     stats: [
-      { value: "⚡ 5 ms", label: "Near-instant answers" },
-      { value: "🔗 100%", label: "Valid source IDs" },
-      { value: "🧪 20", label: "Healthcare test questions" },
-      { value: "📚 497", label: "Medical records indexed" }
+      { value: "⚡ 50 ms", label: "Hybrid p95 latency" },
+      { value: "✅ 100%", label: "Hybrid hit@5" },
+      { value: "🚦 3", label: "NOW / SOON / WAIT paths" },
+      { value: "🧪 20", label: "Golden test queries" }
     ],
     stack: ["Python", "FastAPI", "BM25", "Sentence Transformers", "RRF", "Anthropic", "OpenAI", "Docker", "Pydantic", "pytest", "GitHub Actions"],
     beforeAfter: {
       before: {
         title: "Before",
-        badge: "Answer-first AI",
-        flow: ["Question", "AI answer", "Maybe sources", "Trust gap"],
+        badge: "Plain RAG",
+        flow: ["Question", "Retrieve text", "AI answer", "Manual decision"],
         problems: [
-          "The answer can sound confident before evidence is checked.",
-          "Matching cases get missed when the chart uses different wording.",
-          "Sensitive details can reach the model before anyone notices.",
-          "A weaker release can ship unless someone catches it manually."
+          "Good citations, but still mostly a Q&A box.",
+          "No NOW / SOON / WAIT route for the user to act on.",
+          "No orchestration layer to combine evidence, triage, prediction, and safety rules.",
+          "No per-stage latency trace, so slow or weak steps are hard to debug."
         ]
       },
       after: {
         title: "After",
-        badge: "Evidence-first AI",
-        flow: ["Question", "Guardrails", "Evidence", "Cited answer"],
+        badge: "Agent-ready RAG",
+        flow: ["Question", "Guardrails", "Evidence + triage", "Action-ready answer"],
         built: [
           {
-            title: "Finds Matching Records",
-            desc: "Searches exact matches and intent matches before the system answers."
+            title: "Fast Hybrid Retrieval",
+            desc: "Uses exact match plus intent match, with 50 ms p95 latency on the 20-query hybrid eval."
           },
           {
-            title: "Shows Receipts",
-            desc: "Returns source IDs and snippets, so every claim can be checked."
+            title: "NOW / SOON / WAIT Triage",
+            desc: "Turns the answer into a clear urgency path instead of leaving the next step to guesswork."
           },
           {
-            title: "Protects Patient Details",
-            desc: "Masks SSN, phone, email, card, MRN, and DOB-shaped text before processing."
+            title: "Orchestration Layer",
+            desc: "Combines retrieval, citations, ESI votes, prediction signals, and safety overrides in one response."
           },
           {
-            title: "Adds a Future-Risk Signal",
-            desc: "Surfaces LOS, deterioration, and bed-pressure context without overriding acute safety."
+            title: "Agent-Friendly Trace",
+            desc: "Returns guard, retrieval, generation, method, warnings, decision basis, and recommendations for downstream agents."
           },
           {
-            title: "Blocks Bad Releases",
-            desc: "Runs 20 healthcare questions and fails the gate if retrieval, faithfulness, relevance, or latency regresses."
+            title: "Privacy + Receipts",
+            desc: "Masks sensitive details, cites real source IDs, and blocks unsafe output before it returns."
+          },
+          {
+            title: "Regression Gate",
+            desc: "Fails the release if hit rate, faithfulness, relevance, or latency drops past the benchmark."
           }
         ]
       }
