@@ -85,12 +85,11 @@ function icon(name, size = 18) {
       <!-- Page header -->
       <div class="page-header">
         <div>
-          <h1 class="page-title">Portfolio</h1>
           <p class="page-sub">Production AI systems — real evals, real costs, traceable to code.</p>
         </div>
         <a href="/projects" class="btn-browse">
           <Fragment set:html={icon('layers', 15)} />
-          All {projects.length} projects
+          Proof of Work
         </a>
       </div>
 
@@ -107,7 +106,7 @@ function icon(name, size = 18) {
       </div>
 
       <!-- Featured projects -->
-      <div class="section-label">Featured Projects</div>
+      <div class="section-label">Featured Proof</div>
       <div class="project-grid">
         {featured.map(project => {
           const primary = tagsOf(project)[0];
@@ -181,7 +180,7 @@ function icon(name, size = 18) {
       <!-- View all CTA -->
       <div class="cta-row">
         <a href="/projects" class="btn-view-all">
-          Browse all {projects.length} projects
+          Browse all proof
           <Fragment set:html={icon('arrow-right', 15)} />
         </a>
       </div>
