@@ -489,7 +489,7 @@ export const projects = [
       { value: "🚨 5,500", label: "Dupes the gate caught" },
       { value: "🔖 [doc N]", label: "Grounded citations" }
     ],
-    stack: ["Python", "dbt", "BigQuery", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "BM25", "Pandas", "pytest", "Docker", "GCP Cloud Run", "GitHub Actions"],
+    stack: ["Python", "dbt", "BigQuery", "BigQuery ML", "Pub/Sub", "Dataflow", "BigLake", "Cloud Monitoring", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "BM25", "Pandas", "pytest", "Docker", "GCP Cloud Run", "GitHub Actions"],
     beforeAfter: {
       before: {
         title: "Before",
@@ -522,6 +522,14 @@ export const projects = [
           {
             title: "Answers Only From Truth",
             desc: "/api/ask grounds Gemini on the redacted marts with [doc N] citations — never raw PII, and it refuses when the evidence is thin."
+          },
+          {
+            title: "Senior Warehouse Moves",
+            desc: "Partition + cluster cut a date-filtered scan 266x (1.76 MB → 6.6 KB). Incremental MERGE is idempotent (re-run = the same 50k rows, no dupes), a materialized view serves pre-aggregates, a BigLake external table reads straight from GCS, and a Cloud Monitoring log-metric watches the warehouse — the cost/perf discipline a senior warehouse is expected to show. All on free tier ($0)."
+          },
+          {
+            title: "Real-Time + In-Warehouse ML",
+            desc: "Native Pub/Sub→BigQuery streaming lands events on free tier ($0); a managed Dataflow Beam job was separately proven end-to-end and drained immediately (ephemeral, under $1). A BigQuery ML classifier trained next to the marts flags high-acuity encounters at ROC AUC 0.908 — no data export."
           }
         ]
       }
