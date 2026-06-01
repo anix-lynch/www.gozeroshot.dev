@@ -554,10 +554,10 @@ export const projects = [
     phase: "Phase 1-6 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
   },
 
-  {
+    {
     slug: "healthcare-forward-deployed-engineer",
     title: "Healthcare Forward Deployed Engineer",
-    tagline: "An ER triage assistant a customer can actually deploy — graded by acceptance contracts, not ML metrics. If a suicidal patient doesn't get human review, it isn't done.",
+    tagline: "Built the forward-deployed handoff layer for hospital-safe AI triage — 21 acceptance tests, forced human review on high-risk cases, and a deployment package built to hand off.",
     lane: "Forward Deployed",
     tags: ["Solutions", "Cloud"],
     cloud: "Vertex",
@@ -570,60 +570,48 @@ export const projects = [
     description: null,
     highlight: null,
     stats: [
-      { value: "🤝 21", label: "Tests — all green" },
+      { value: "🛡️ 21", label: "Contract tests — all pass" },
       { value: "⚡ 39 ms", label: "/v1/ask p50" },
       { value: "🛑 HITL gate", label: "Stop before harm" },
-      { value: "🔁 8-step agent", label: "Remembers where it left off" }
+      { value: "📦 Handoff ready", label: "Runbook + deploy plan" }
     ],
     stack: ["Python", "FastAPI", "LangGraph", "BM25", "Pydantic", "pytest", "OpenTelemetry", "Docker", "Cloud Run", "GitHub Actions", "Epic FHIR (mock)", "OAuth", "asciinema"],
     beforeAfter: {
       before: {
         title: "Before",
-        badge: "ML metrics = done",
-        flow: ["Model", "Good F1 score", "Ship it", "Customer breaks"],
+        badge: "Code with no handoff",
+        flow: ["Case arrives", "AI predicts ESI", "Nurse carries risk alone", "No proof loop"],
         problems: [
-          "A high F1 says nothing about whether a suicidal patient got human review.",
-          "No runbook when it pages at 3am.",
-          "No acceptance gate the customer can sign off on.",
-          "No postmortem discipline when the integration drifts."
+          "Model can predict the triage level, but there is no proof dangerous cases were blocked.",
+          "Nurse has no clean moment to sign off or override — she just gets a number.",
+          "Hospital cannot easily review who approved what decision, or when.",
+          "Customer gets a model and a README, not an adoption package."
         ]
       },
       after: {
         title: "After",
-        badge: "Customer-contract delivery",
-        flow: ["Customer brief", "Acceptance gate", "Runbook + guardrails", "Deployed for real"],
+        badge: "Hospital-ready handoff",
+        flow: ["Case arrives", "AI checks safety", "Nurse signs or overrides", "Audit proves it", "Hospital can hand off"],
         built: [
           {
-            title: "Acceptance Gate, Not F1",
-            desc: "21 tests as customer contracts — pediatric <1y floor, sepsis SIRS, suicidal-ideation human review, p95 < 800ms. Pass, or the deployment isn't done."
+            title: "Safety Gate",
+            desc: "21 contract tests: pediatric floor, chest-pain routing, suicidal ideation forced-review, sepsis SIRS shape, weak-evidence override, p95 latency cap. All 21 must pass — or the deployment is not ready."
           },
           {
-            title: "Agent That Remembers",
-            desc: "8-step decision graph that saves its place. If the same case comes back mid-flow, it picks up where it left off — not from scratch."
+            title: "Human Decision",
+            desc: "High-risk cases pause. The AI does not just flag — it stops and waits for a nurse to sign or override before anything is written back to the patient record."
           },
           {
-            title: "Stop Button Before It's Too Late",
-            desc: "High-risk decisions pause and wait for a human to approve or reject before anything goes back to the nurse. The AI doesn't just flag — it literally stops."
+            title: "Audit Proof",
+            desc: "Each decision stamps what the model decided, confidence score, and latency. PHI goes to a restricted archive, metadata to the cloud index. If the archive write fails, the system screams."
           },
           {
-            title: "Tries Again Without Doubling Up",
-            desc: "External calls fail all the time. The system retries automatically — and knows not to run the same call twice if the first one already went through."
+            title: "Handoff Package",
+            desc: "Runbook, deployment plan, smoke-test suite, ownership guide. What the hospital actually needs to keep this running without the engineer on call."
           },
           {
-            title: "Every Decision Leaves a Trail",
-            desc: "Each triage call stamps what it decided, how confident it was, and how long it took — so on-call can see exactly what happened without digging through logs."
-          },
-          {
-            title: "Fail-Loud Logging",
-            desc: "Split-sink: metadata safe for cloud index, full PHI to a restricted archive — and it screams if the archive write fails."
-          },
-          {
-            title: "Fail-Closed Auth",
-            desc: "Admin endpoint needs a timing-safe bearer token. Token unset → 503. No accidental open door in production."
-          },
-          {
-            title: "Runbook + Postmortem",
-            desc: "P0–P3 alert ladder with exact curl commands, plus two real-shaped postmortems. Ops discipline, not vibes."
+            title: "Business Target (90-day)",
+            desc: "Target, not achieved outcome: reduce triage-to-first-clinician contact by 15 minutes. Keep down-triage rate below 2%. These are the acceptance criteria in the customer contract — not measured results from a live deployment."
           }
         ]
       }
