@@ -470,7 +470,7 @@ export const projects = [
   {
     slug: "healthcare-ai-data-engineer",
     title: "Healthcare AI Data Engineer",
-    tagline: "A data backbone that's actually deployed — dbt medallion on BigQuery (55 tests green), a quality gate that caught 5,500 bad rows, and an AI agent that only answers from the trusted marts.",
+    tagline: "The part of healthcare AI nobody sees until it breaks — a trusted BigQuery backbone where bad rows stop early, every number has a receipt, and the agent reads the clean layer.",
     lane: "Data Eng",
     tags: ["Data Eng", "Cloud"],
     cloud: "Vertex",
@@ -493,43 +493,57 @@ export const projects = [
     beforeAfter: {
       before: {
         title: "Before",
-        badge: "Scripts + a spreadsheet",
-        flow: ["Raw data", "Ad-hoc scripts", "Untested tables", "Hope it's clean"],
+        badge: "Hope-Based Data",
+        flow: ["Hospital export", "Cleanup scripts", "Tables look fine", "Dashboard + AI eat the mess"],
         problems: [
-          "Nothing catches the ~5,500 duplicate rows hiding in the raw feed.",
-          "No quality gate before the AI agent reads the data.",
-          "Dashboard numbers nobody can trace back to a file.",
-          "Raw PII can leak straight into the narratives the model sees."
+          "The data looks clean because nobody has shaken it hard enough. Duplicate rows and weird dates slide into the dashboard smiling.",
+          "Nobody can tell if the data is actually fresh. A table can be stale while the page still looks freshly baked.",
+          "Failures go quiet. The pipeline can die in the back room while the dashboard keeps serving confident numbers.",
+          "The metrics look polished, but there is no receipt. A manager asks where a number came from and everyone turns to a script like it is a fortune teller.",
+          "The agent sees more raw patient data than it should. That is not a feature; it is a privacy incident waiting for better lighting.",
+          "The team finds out after users complain. There is no real gate, just a well-dressed README and hope."
         ]
       },
       after: {
         title: "After",
-        badge: "Tested warehouse + grounded agent",
-        flow: ["BigQuery load", "dbt medallion", "7-check gate", "Grounded answer"],
+        badge: "Data With Receipts",
+        flow: ["BigQuery load", "dbt medallion", "Quality gates", "Grounded answer"],
         built: [
           {
-            title: "Dupe Catcher",
-            desc: "The unique test caught ~5,500 duplicate rows in the raw feed before they could poison anything downstream."
+            title: "Bad Rows Stop At The Door",
+            desc: "Duplicates, broken dates, missing fields, and patient identity drift are caught before they can poison the cockpit or the agent."
           },
           {
-            title: "Green-or-Block CI",
-            desc: "dbt build runs LIVE on BigQuery — 55/55 tests green (not_null, unique, FK, accepted_values) or the release fails. Not a local mock."
+            title: "Freshness Is Visible",
+            desc: "The trust room shows when truth last moved. No more pretending a stale table is current because the page still loads."
           },
           {
-            title: "Every Number Traceable",
-            desc: "A1–A6 cockpit where each displayed metric links to the repo file that proves it. The warehouse explorer reads live row counts from BigQuery."
+            title: "Failures Get Loud Early",
+            desc: "Great Expectations, custom checks, and CI make breakage show up before a user trusts the wrong number."
           },
           {
-            title: "Answers Only From Truth",
-            desc: "/api/ask grounds Gemini on the redacted marts with [doc N] citations — never raw PII, and it refuses when the evidence is thin."
+            title: "Every Metric Has A Receipt",
+            desc: "Cockpit numbers trace back to committed files, BigQuery tables, quality reports, or live API payloads. Not trust-me math."
           },
           {
-            title: "Senior Warehouse Moves",
-            desc: "Partition + cluster cut a date-filtered scan 266x (1.76 MB → 6.6 KB). Incremental MERGE is idempotent (re-run = the same 50k rows, no dupes), a materialized view serves pre-aggregates, a BigLake external table reads straight from GCS, and a Cloud Monitoring log-metric watches the warehouse — the cost/perf discipline a senior warehouse is expected to show. All on free tier ($0)."
+            title: "The Agent Reads The Clean Layer",
+            desc: "/api/ask now returns grounded answers from the redacted corpus with [doc N] citations instead of crawling through raw patient data."
           },
           {
-            title: "Real-Time + In-Warehouse ML",
-            desc: "Native Pub/Sub→BigQuery streaming lands events on free tier ($0); a managed Dataflow Beam job was separately proven end-to-end and drained immediately (ephemeral, under $1). A BigQuery ML classifier trained next to the marts flags high-acuity encounters at ROC AUC 0.908 — no data export."
+            title: "BigQuery Does More Than Store Boxes",
+            desc: "Partitioning cuts scan size 266x, materialized views pre-compute the hot path, and MERGE proves reruns do not duplicate the mart."
+          },
+          {
+            title: "Streaming Proof Without A Money Leak",
+            desc: "Native Pub/Sub→BigQuery handles the cheap path; a managed Dataflow path was also run, proven, and drained before the bill kept bleeding."
+          },
+          {
+            title: "The Warehouse Can Train In Place",
+            desc: "BigQuery ML trains next to the marts and hits ROC AUC 0.908 on the synthetic high-acuity task — no data export parade."
+          },
+          {
+            title: "Releases Face A Gate",
+            desc: "If quality, retrieval, grounding, or cost discipline regresses, the release should fail before a human has to smell smoke."
           }
         ]
       }
