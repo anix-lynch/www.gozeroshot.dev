@@ -6,8 +6,8 @@ export const projects = [
   // ── NORTHSTAR ──────────────────────────────────────────────
   {
     slug: "healthcare-ai-platform-signals",
-    title: "Healthcare AI Signal Engine",
-    tagline: "Gives Gemini both trusted facts and computed signals, then shows how the decision changes.",
+    title: "From Reactive AI to Signal-First Intelligence",
+    tagline: "Signals reduce noise. AI focuses on what matters. Doctors act with confidence.",
     lane: "AI Platform",
     tags: ["AI Platform", "Cloud"],
     cloud: "Vertex",
@@ -21,48 +21,48 @@ export const projects = [
     description: null,
     highlight: null,
     stats: [
-      { value: "⚡ 5 ms", label: "Near-instant answers" },
-      { value: "🛡️ 100%", label: "Citation validity" },
-      { value: "🧪 20", label: "Healthcare test cases" },
-      { value: "📚 497", label: "Medical records indexed" }
+      { value: "🎯 80%", label: "Fewer LLM calls · target" },
+      { value: "💸 Lower", label: "Inference cost goal" },
+      { value: "⚡ Faster", label: "Time to insight" },
+      { value: "🛡️ Preserve", label: "Decision quality goal" }
     ],
     stack: ["Python", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "scikit-learn (K-Means)", "NumPy", "Weights & Biases", "Langfuse", "Cloud Run", "Docker"],
     beforeAfter: {
       before: {
-        title: "Before",
-        badge: "Keyword-match AI",
-        flow: ["Question", "Keyword search", "AI answer", "Limited insight"],
+        title: "Without Signals",
+        badge: "Gemini thinks about everything",
+        flow: ["100,000 patients", "Gemini reads every case", "High token cost", "More noise", "Doctor reviews too much"],
         problems: [
-          "Can match words in past records, but it does not forecast LOS or read hidden risk.",
-          "No Smoke Detector to catch arrival-rate anomaly.",
-          "No Treasure Map to group the emergency-dominant cohort.",
-          "No Traffic Light or Ranking to prioritize the action."
+          "Gemini spends money looking for a fire that may not exist.",
+          "Every patient looks isolated, so trends are harder to see.",
+          "Everything competes for attention.",
+          "Critical cases may be buried in a random queue."
         ]
       },
       after: {
-        title: "After",
-        badge: "Truth + Signal AI",
-        flow: ["Trusted facts", "5 signal services", "Gemini compares choices", "ACT NOW"],
+        title: "With Signals",
+        badge: "Attention allocation layer",
+        flow: ["100,000 patients", "Signals identify where attention matters", "High-value cases go to Gemini", "Lower LLM cost", "Doctor reviews what matters"],
         built: [
           {
-            title: "Smoke Detector",
-            desc: "Beds look fine, but arrivals are 1.8x baseline. The signal catches the cliff before the dashboard panics."
+            title: "Smoke Detector / Anomaly",
+            desc: "Before, Gemini reads everyone to find unusual patterns. First, the signal narrows 100,000 patients to the suspicious few. After, Gemini investigates like a detective instead of watching like a security camera."
           },
           {
-            title: "Treasure Map",
-            desc: "Not just '4 ER arrivals' — it sees an emergency-dominant cohort forming in the waiting room."
+            title: "Treasure Map / Clustering",
+            desc: "Before, Gemini reads patients one by one. First, the signal groups patients into cohorts. After, Gemini analyzes patterns instead of individual trees."
           },
           {
-            title: "Traffic Light",
-            desc: "Turns vague risk into NOW / SOON / WAIT, so Gemini reasons with an urgency label instead of vibes."
+            title: "Traffic Light / Classification",
+            desc: "Before, Gemini decides urgency for every patient. First, the signal sorts NOW / SOON / WAIT. After, Gemini focuses on NOW and spends less time on low-risk cases."
           },
           {
-            title: "Ranking",
-            desc: "ICU-need cases rise to the top of the queue; the agent stops treating all arrivals as equal."
+            title: "Ranking Engine",
+            desc: "Before, Gemini starts at the top of a random queue. First, ranking pushes the top 100 highest-impact cases forward. After, important cases reach AI attention first."
           },
           {
-            title: "Find Similar Cases",
-            desc: "Finds cases that match the chart's intent, even when the wording is different."
+            title: "Similar Cases / Lookalike",
+            desc: "Before, Gemini reasons from scratch on each new patient. First, retrieval finds comparable cases. After, Gemini reasons with examples and preserves quality instead of guessing alone."
           }
         ]
       }
