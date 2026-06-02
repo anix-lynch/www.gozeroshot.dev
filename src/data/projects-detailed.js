@@ -21,10 +21,10 @@ export const projects = [
     description: null,
     highlight: null,
     stats: [
-      { value: "🎯 80%", label: "Fewer LLM calls · target" },
-      { value: "💸 Lower", label: "Inference cost goal" },
-      { value: "⚡ Faster", label: "Time to insight" },
-      { value: "🛡️ Preserve", label: "Decision quality goal" }
+      { value: "🎯 80%", label: "Fewer LLM calls · design target" },
+      { value: "💸 ~5×", label: "Cheaper per insight · target" },
+      { value: "🧭 535/40K", label: "High-cost patients surfaced · real eval" },
+      { value: "🛡️ 0.85", label: "Anomaly F1 · real eval (bar ≥0.80)" }
     ],
     stack: ["Python", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "scikit-learn (K-Means)", "NumPy", "Weights & Biases", "Langfuse", "Cloud Run", "Docker"],
     beforeAfter: {
