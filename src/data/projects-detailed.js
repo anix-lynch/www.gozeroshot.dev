@@ -110,7 +110,7 @@ export const projects = [
       after: {
         title: "After",
         badge: "Evidence-to-action AI",
-        flow: ["Patient question", "Evidence + risk", "Agent handoff", "Safer next step"],
+        flow: ["Patient question", "Evidence + risk", "Acknowledged handoff", "Real action + receipt"],
         built: [
           {
             title: "Finds What You Meant",
@@ -130,7 +130,15 @@ export const projects = [
           },
           {
             title: "Hands Off the Work",
-            desc: "Routes the case from ER Triage to Bed Ops or Care Follow-up, so the next step has an owner instead of living in someone's head."
+            desc: "Routes the case from ER Triage to Bed Ops, and the receiver signs for it, so ownership is a real handoff instead of a note left in the air."
+          },
+          {
+            title: "Actually Changes the State",
+            desc: "Commits the bed decision to durable state for real and emits a before/after receipt, so it acts on the case instead of returning a recommendation no one applied."
+          },
+          {
+            title: "Won't Fake Success",
+            desc: "Re-reads the state after acting to confirm it truly changed, so a tool that claims it finished but did not gets caught instead of trusted."
           },
           {
             title: "Doesn't Spin Forever",
