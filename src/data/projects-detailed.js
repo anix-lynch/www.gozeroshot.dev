@@ -12,57 +12,61 @@ export const projects = [
     tags: ["AI Platform", "Cloud"],
     cloud: "Vertex",
     laneColor: "#1e6b38",
-    status: "Production",
+    status: "Proof of Work",
     github: "https://github.com/anix-lynch/healthcare-signal-platform",
-    live: "https://signal-console-819957310168.us-west1.run.app",
-    wandb: "https://wandb.ai/alynch-zeroshot/healthcare-l15-signals",
+    live: null,
     gif: "/signal-console.png",
     icon: "activity",
     description: null,
     highlight: null,
     stats: [
-      { value: "🎯 80%", label: "Fewer LLM calls · design target" },
-      { value: "💸 ~5×", label: "Cheaper per insight · target" },
-      { value: "🧭 535/40K", label: "High-cost patients surfaced · real eval" },
-      { value: "🛡️ 0.85", label: "Anomaly F1 · real eval (bar ≥0.80)" }
+      { value: "📊 5", label: "Evaluated signals · real metrics" },
+      { value: "🎯 0.846", label: "Serious-report F1 (n=300 openFDA)" },
+      { value: "📈 0.833", label: "Ranking P@30 vs 0.53 random" },
+      { value: "◐ MEASURED", label: "Cost-quality tradeoff — no free lunch" }
     ],
-    stack: ["Python", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "scikit-learn (K-Means)", "NumPy", "Weights & Biases", "Langfuse", "Cloud Run", "Docker"],
+    stack: ["Python", "scikit-learn", "IsolationForest", "KMeans", "RandomForest", "TF-IDF", "NumPy", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "Cloud Run", "Docker"],
     beforeAfter: {
       before: {
-        title: "Without Signals",
-        badge: "Gemini thinks about everything",
-        flow: ["100,000 patients", "Gemini reads every case", "High token cost", "More noise", "Doctor reviews too much"],
+        title: "LLM Reads Everything",
+        badge: "No measured tradeoff",
+        flow: ["300 openFDA reports", "Every report reaches the LLM", "Full token bill", "More noise", "Reviewer reads too much"],
         problems: [
-          "Gemini spends money looking for a fire that may not exist.",
-          "Every patient looks isolated, so trends are harder to see.",
-          "Everything competes for attention.",
-          "Critical cases may be buried in a random queue."
+          "Expensive reasoning is spent equally on useful and low-value adverse-event reports.",
+          "Nobody knows what quality is lost when calls are reduced.",
+          "Models exist separately without a shared routing decision.",
+          "Cost reduction is a hope, not an evaluated result."
         ]
       },
       after: {
-        title: "With Signals",
-        badge: "Attention allocation layer",
-        flow: ["100,000 patients", "Signals identify where attention matters", "High-value cases go to Gemini", "Lower LLM cost", "Doctor reviews what matters"],
+        title: "Signals Decide What Deserves Attention",
+        badge: "Evidence before optimization",
+        flow: ["300 openFDA reports", "5 cheap signals score each", "Router measures cost vs quality", "Tradeoff made explicit", "Serious coverage protected"],
         built: [
           {
             title: "Smoke Detector / Anomaly",
-            desc: "Before, Gemini reads everyone to find unusual patterns. First, the signal narrows 100,000 patients to the suspicious few. After, Gemini investigates like a detective instead of watching like a security camera."
+            desc: "IsolationForest flags the unusual reports first — the 30 it flags carry 4.8 reactions on average vs 2.3 for the rest, so the LLM investigates outliers instead of scanning everything."
           },
           {
             title: "Treasure Map / Clustering",
-            desc: "Before, Gemini reads patients one by one. First, the signal groups patients into cohorts. After, Gemini analyzes patterns instead of individual trees."
+            desc: "KMeans groups reports into cohorts (silhouette 0.61 at k=4 — modest structure on n=300, reported honestly) so patterns are analyzed, not individual reports."
           },
           {
             title: "Traffic Light / Classification",
-            desc: "Before, Gemini decides urgency for every patient. First, the signal sorts NOW / SOON / WAIT. After, Gemini focuses on NOW and spends less time on low-risk cases."
+            desc: "A RandomForest predicts whether a report is serious — F1 0.846 on a held-out test (no text features yet), sorting NOW / WAIT before the LLM spends a token."
           },
           {
             title: "Ranking Engine",
-            desc: "Before, Gemini starts at the top of a random queue. First, ranking pushes the top 100 highest-impact cases forward. After, important cases reach AI attention first."
+            desc: "Reports are ranked by P(serious): precision@30 is 0.833 vs 0.53 for a random queue, so the highest-impact reports reach the LLM first."
           },
           {
             title: "Similar Cases / Lookalike",
-            desc: "Before, Gemini reasons from scratch on each new patient. First, retrieval finds comparable cases. After, Gemini reasons with examples and preserves quality instead of guessing alone."
+            desc: "TF-IDF over reaction text retrieves comparable reports (Recall@5 0.34 for same-drug siblings), so the LLM reasons with examples instead of from scratch."
+          },
+          {
+            status: "MEASURED",
+            title: "The Router Has A Speedometer",
+            desc: "Every reduction in LLM calls shows the serious-report recall it costs. On this small dataset, holding ≥95% serious recall currently requires routing every report — the cost-quality curve is measured and shown, not a free-lunch claim."
           }
         ]
       }
