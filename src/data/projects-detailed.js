@@ -521,6 +521,7 @@ export const projects = [
             desc: "Duplicates, broken received-dates, missing fields, and drug-name drift are caught and quarantined before they can poison the dashboard or the agent."
           },
           {
+            status: "BOUNDARY",
             title: "Freshness Is Watched — scheduled detection",
             desc: "An independently scheduled Cloud Scheduler watchdog records when truth last moved. Recovery and escalation paths are exercised under controlled fault-injection tests — not yet a production cloud recovery (boundary stated, not green-washed)."
           },
@@ -541,10 +542,12 @@ export const projects = [
             desc: "Partitioning and clustering cut scan size, materialized views pre-compute the hot path, and idempotent MERGE proves reruns do not duplicate the mart."
           },
           {
+            status: "MEASURED",
             title: "Batch + Event-Driven Ingestion",
             desc: "openFDA's source is batch; a native Pub/Sub→BigQuery path ingests records as an event-driven feed (replay), proving the streaming architecture without a live-stream claim or a money leak."
           },
           {
+            status: "BOUNDARY",
             title: "Governed, Reconciled — with stated boundaries",
             desc: "Row counts reconcile source → BigQuery on every load; a versioned data contract, audit ledger, column masking, and retention/deletion cover the lifecycle. Access control is a reduced-column authorized view — the restricted-identity denial test is a documented boundary, not yet proven."
           },

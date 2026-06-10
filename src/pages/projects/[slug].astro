@@ -224,12 +224,12 @@ const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["Gen
               </div>
               <div class="comparison-list">
                 {project.beforeAfter.after.built.map(item => (
-                  <div class="comparison-item built">
-                    <span>✓</span>
+                  <div class={`comparison-item built ${item.status ? 'st-' + item.status.toLowerCase() : ''}`}>
+                    <span>{item.status === 'BOUNDARY' ? '○' : item.status === 'MEASURED' ? '◐' : '✓'}</span>
                     <p>
                       {typeof item === 'string' ? item : (
                         <>
-                          <strong>{item.title}</strong>
+                          <strong>{item.title}{item.status && item.status !== 'PROVEN' ? <em class="st-tag"> · {item.status}</em> : ''}</strong>
                           <small>{item.desc}</small>
                         </>
                       )}
@@ -692,6 +692,10 @@ const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["Gen
   }
   .comparison-item.problem span { background: #fbeee6; color: #a85a2a; }
   .comparison-item.built span { background: #edfaf0; color: #1e6b38; }
+  .comparison-item.st-boundary span { background: #f0eeea; color: #777; }
+  .comparison-item.st-measured span { background: #fdf2e3; color: #c97b30; }
+  .st-tag { font-style: normal; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; color: #999; }
+  .comparison-item.st-measured .st-tag { color: #c97b30; }
 
   .features-section { margin-bottom: 2rem; }
 
