@@ -261,8 +261,8 @@ export const projects = [
       },
       after: {
         title: "After",
-        badge: "Git-reviewed Fabric stack",
-        flow: ["dbt star schema", "TMDL in git", "Fabric validate", "Traceable BI"],
+        badge: "Code-first Fabric stack",
+        flow: ["openFDA → OneLake", "Direct Lake model", "API-deployed report", "DAX < 5s + reconcile"],
         built: [
           {
             title: "Power BI Ships From Code",
