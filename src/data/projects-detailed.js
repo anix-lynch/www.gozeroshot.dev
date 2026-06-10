@@ -483,10 +483,9 @@ export const projects = [
     tags: ["Data Eng", "Cloud"],
     cloud: "Vertex",
     laneColor: "#c4a8d8",
-    status: "Production",
+    status: "Proof of Work",
     github: "https://github.com/anix-lynch/healthcare-ai-data-engineer",
-    live: "https://healthcare-ai-data-819957310168.us-west1.run.app/app",
-    dataDocs: "/dashboards/ge/",
+    live: null,
     gif: "/healthcare-ai-data-engineer.gif",
     icon: "database",
     description: null,
@@ -502,13 +501,13 @@ export const projects = [
       before: {
         title: "Before",
         badge: "Hope-Based Data",
-        flow: ["Hospital export", "Cleanup scripts", "Tables look fine", "Dashboard + AI eat the mess"],
+        flow: ["openFDA pull", "Cleanup scripts", "Tables look fine", "Dashboard + AI eat the mess"],
         problems: [
-          "The data looks clean because nobody has shaken it hard enough. Duplicate rows and weird dates slide into the dashboard smiling.",
+          "The data looks clean because nobody has shaken it hard enough. Duplicate report IDs and weird received-dates slide into the dashboard smiling.",
           "Nobody can tell if the data is actually fresh. A table can be stale while the page still looks freshly baked.",
           "Failures go quiet. The pipeline can die in the back room while the dashboard keeps serving confident numbers.",
           "The metrics look polished, but there is no receipt. A manager asks where a number came from and everyone turns to a script like it is a fortune teller.",
-          "The agent sees more raw patient data than it should. That is not a feature; it is a privacy incident waiting for better lighting.",
+          "The agent sees more raw adverse-event detail than it should — free-text narrative and unredacted fields. That is not a feature; it is a privacy incident waiting for better lighting.",
           "The team finds out after users complain. There is no real gate, just a well-dressed README and hope."
         ]
       },
@@ -519,11 +518,11 @@ export const projects = [
         built: [
           {
             title: "Bad Rows Stop At The Door",
-            desc: "Duplicates, broken dates, missing fields, and patient identity drift are caught before they can poison the cockpit or the agent."
+            desc: "Duplicates, broken received-dates, missing fields, and drug-name drift are caught and quarantined before they can poison the dashboard or the agent."
           },
           {
-            title: "Freshness Is Visible",
-            desc: "The trust room shows when truth last moved. No more pretending a stale table is current because the page still loads."
+            title: "Freshness Is Watched — scheduled detection",
+            desc: "An independently scheduled Cloud Scheduler watchdog records when truth last moved. Recovery and escalation paths are exercised under controlled fault-injection tests — not yet a production cloud recovery (boundary stated, not green-washed)."
           },
           {
             title: "Failures Get Loud Early",
@@ -535,19 +534,19 @@ export const projects = [
           },
           {
             title: "The Agent Reads The Clean Layer",
-            desc: "/api/ask now returns grounded answers from the redacted corpus with [doc N] citations instead of crawling through raw patient data."
+            desc: "/api/ask returns grounded answers from the redacted corpus with [doc N] citations and refuses when the evidence isn't there — instead of crawling raw adverse-event narratives."
           },
           {
             title: "BigQuery Does More Than Store Boxes",
-            desc: "Partitioning cuts scan size 266x, materialized views pre-compute the hot path, and MERGE proves reruns do not duplicate the mart."
+            desc: "Partitioning and clustering cut scan size, materialized views pre-compute the hot path, and idempotent MERGE proves reruns do not duplicate the mart."
           },
           {
-            title: "Streaming Proof Without A Money Leak",
-            desc: "Native Pub/Sub→BigQuery handles the cheap path; a managed Dataflow path was also run, proven, and drained before the bill kept bleeding."
+            title: "Batch + Event-Driven Ingestion",
+            desc: "openFDA's source is batch; a native Pub/Sub→BigQuery path ingests records as an event-driven feed (replay), proving the streaming architecture without a live-stream claim or a money leak."
           },
           {
-            title: "Governed, Reconciled, Not Trust-Me",
-            desc: "Row counts reconcile source → BigQuery on every load, and a versioned data contract, audit ledger, column masking, and retention/deletion govern the full lifecycle."
+            title: "Governed, Reconciled — with stated boundaries",
+            desc: "Row counts reconcile source → BigQuery on every load; a versioned data contract, audit ledger, column masking, and retention/deletion cover the lifecycle. Access control is a reduced-column authorized view — the restricted-identity denial test is a documented boundary, not yet proven."
           },
           {
             title: "Releases Face A Gate",
