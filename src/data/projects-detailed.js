@@ -292,6 +292,70 @@ export const projects = [
   },
 
   {
+    slug: "healthcare-multicloud-portability",
+    title: "Multicloud Portability — One Contract, Three Clouds",
+    tagline: "The same openFDA fact runs on GCP BigQuery, Microsoft Fabric, and AWS serverless — and the counts, business metrics, and schema reconcile exactly. Moving the platform can't change the truth.",
+    lane: "Data Eng",
+    tags: ["Data Eng", "Cloud", "AI Platform"],
+    cloud: "Multi",
+    laneColor: "#2a9d8f",
+    status: "Proof of Work",
+    github: "https://github.com/anix-lynch/healthcare-de-AWS",
+    live: null,
+    gif: "/healthcare-fabric-proof.png",
+    icon: "layers",
+    description: null,
+    highlight: null,
+    stats: [
+      { value: "🟰 300", label: "Records match all 3 clouds" },
+      { value: "🚨 68.33%", label: "Serious rate — identical" },
+      { value: "🔗 fingerprint", label: "Schema reconciles" },
+      { value: "💸 <$0.0001", label: "AWS cost (serverless)" }
+    ],
+    stack: ["GCP BigQuery", "Microsoft Fabric", "OneLake", "AWS S3", "AWS DynamoDB", "Terraform", "Python", "Delta Lake", "PyArrow"],
+    beforeAfter: {
+      before: {
+        title: "Three Clouds, Three Truths",
+        badge: "Vendor lock-in risk",
+        flow: ["GCP result", "≠ Fabric result", "≠ AWS result", "Nobody reconciles"],
+        problems: [
+          "Each cloud computes its own numbers, and a silent drift between them is nobody's job to catch.",
+          "Logic is copied per cloud, so a fix on one is a bug on the others.",
+          "\"Portable\" is a slide, not a proven property.",
+          "Migrating means hoping the KPIs survive the move."
+        ]
+      },
+      after: {
+        title: "One Contract, Three Native Implementations",
+        badge: "Moving can't change the truth",
+        flow: ["Shared openFDA contract", "BigQuery · Fabric · S3+DynamoDB", "Each cloud-native", "Reconciled exactly"],
+        built: [
+          {
+            title: "The Same Numbers, Everywhere",
+            desc: "record_count, serious_count, serious_rate (68.33%), distinct_drugs, and total_reactions (759) reconcile EXACTLY across GCP, Fabric, and AWS — each computed independently on its own cloud's copy."
+          },
+          {
+            title: "Schema Is Enforced, Not Asserted",
+            desc: "Each cloud's ACTUAL schema is fingerprinted from real data and validated against one shared versioned contract — not a constant copied three times."
+          },
+          {
+            title: "AWS Serverless, Not A Server Farm",
+            desc: "openFDA lands in S3 (typed Parquet) and serves from DynamoDB (on-demand) — two serverless services, no RDS/OpenSearch/always-on."
+          },
+          {
+            title: "Cheap And Reversible",
+            desc: "The whole AWS slice costs under $0.0001 with a documented teardown (--teardown / terraform destroy) and a 30-day S3 expiry."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
+    cost: "< $0.0001 on AWS (on-demand DynamoDB + tiny S3); GCP free tier; Fabric free trial. Public openFDA data, no PHI.",
+    phase: null
+  },
+
+  {
     slug: "realtime-fraud-detection",
     title: "Realtime Fraud Detection",
     tagline: "Catch fraud while it happens, not in tomorrow's batch — streaming features with zero data leakage.",
