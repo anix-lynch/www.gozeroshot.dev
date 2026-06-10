@@ -234,7 +234,7 @@ export const projects = [
     cloud: "Azure",
     laneColor: "#c4a8d8",
     status: "Proof of Work",
-    github: "https://github.com/anix-lynch/healthcare-da/tree/openfda-fabric",
+    github: "https://github.com/anix-lynch/healthcare-da",
     live: null,
     gif: "/healthcare-fabric-proof.png",
     icon: "layers",
