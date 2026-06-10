@@ -492,12 +492,12 @@ export const projects = [
     description: null,
     highlight: null,
     stats: [
-      { value: "🗄️ 55,500", label: "Rows live in BigQuery" },
-      { value: "✅ 55/55", label: "dbt tests green" },
-      { value: "🚨 5,500", label: "Dupes the gate caught" },
-      { value: "🔖 [doc N]", label: "Grounded citations" }
+      { value: "🗄️ 300", label: "Real openFDA FAERS reports" },
+      { value: "💊 156", label: "Drugs tracked" },
+      { value: "🚨 68.3%", label: "Serious adverse events" },
+      { value: "🔖 [doc N]", label: "Grounded citations + refusal" }
     ],
-    stack: ["Python", "dbt", "BigQuery", "BigQuery ML", "Pub/Sub", "Dataflow", "BigLake", "Cloud Monitoring", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "BM25", "Pandas", "pytest", "Docker", "GCP Cloud Run", "GitHub Actions"],
+    stack: ["Python", "dbt", "BigQuery", "Great Expectations", "Feast", "Cloud Scheduler", "Cloud Monitoring", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "BM25", "Pandas", "pytest", "Docker", "GCP Cloud Run", "GitHub Actions"],
     beforeAfter: {
       before: {
         title: "Before",
@@ -546,8 +546,8 @@ export const projects = [
             desc: "Native Pub/Sub→BigQuery handles the cheap path; a managed Dataflow path was also run, proven, and drained before the bill kept bleeding."
           },
           {
-            title: "The Warehouse Can Train In Place",
-            desc: "BigQuery ML trains next to the marts and hits ROC AUC 0.908 on the synthetic high-acuity task — no data export parade."
+            title: "Governed, Reconciled, Not Trust-Me",
+            desc: "Row counts reconcile source → BigQuery on every load, and a versioned data contract, audit ledger, column masking, and retention/deletion govern the full lifecycle."
           },
           {
             title: "Releases Face A Gate",
