@@ -486,6 +486,7 @@ export const projects = [
     status: "Proof of Work",
     github: "https://github.com/anix-lynch/healthcare-ai-data-engineer",
     live: null,
+    dataDocs: "/dashboards/ge/",
     gif: "/healthcare-ai-data-engineer.gif",
     icon: "database",
     description: null,
