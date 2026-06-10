@@ -228,25 +228,25 @@ export const projects = [
   {
     slug: "healthcare-analytics-fabric",
     title: "Healthcare Analytics on Microsoft Fabric",
-    tagline: "Power BI you can code-review — dbt + Fabric lakehouse + TMDL in git, where every claim maps to a file.",
+    tagline: "Power BI you can code-review — openFDA drug-safety on Microsoft Fabric, deployed through the API with sub-1.3s DAX and counts that reconcile against GCP.",
     lane: "Data Eng",
     tags: ["Data Eng", "Cloud", "AI Platform"],
     cloud: "Azure",
     laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/healthcare-da",
+    status: "Proof of Work",
+    github: "https://github.com/anix-lynch/healthcare-da/tree/openfda-fabric",
     live: null,
     gif: "/healthcare-fabric-proof.png",
     icon: "layers",
     description: null,
     highlight: null,
     stats: [
-      { value: "🏥 55.5K", label: "Encounters modeled" },
-      { value: "🧱 TMDL", label: "Power BI as code" },
-      { value: "🔌 11", label: "API routes" },
-      { value: "📊 Fabric", label: "Lakehouse proof" }
+      { value: "💊 300", label: "Real openFDA reports" },
+      { value: "⚡ 1.15s", label: "DAX p50 (all < 5s)" },
+      { value: "🧱 Direct Lake", label: "Semantic model as code" },
+      { value: "🔗 GCP=Fabric", label: "Counts reconcile" }
     ],
-    stack: ["Microsoft Fabric", "Power BI", "dbt", "FastAPI", "Python", "TMDL", "DAX", "MLflow", "Azure AD"],
+    stack: ["Microsoft Fabric", "OneLake", "Power BI", "Direct Lake", "DAX", "Delta Lake", "Python", "Fabric REST API"],
     beforeAfter: {
       before: {
         title: "Before",
@@ -265,27 +265,29 @@ export const projects = [
         flow: ["dbt star schema", "TMDL in git", "Fabric validate", "Traceable BI"],
         built: [
           {
-            title: "BI as Code",
-            desc: "Certified Power BI measures + relationships live in git as TMDL — reviewed like application code, not buried in a binary."
+            title: "Power BI Ships From Code",
+            desc: "The Direct Lake semantic model and the report (openFDA Drug Safety Report, id ef468dc5, 3 visuals) deploy through the Fabric REST API — not by clicking through Power BI Desktop."
           },
           {
-            title: "Tested Before Pretty",
-            desc: "dbt star schema with clinical data-quality tests runs before anything reaches a chart."
+            title: "Questions Return In Seconds",
+            desc: "Real DAX runs through the Power BI engine: drug leaderboard p50 1.15s, KPI card p50 0.66s — every query under 5s, measured (proofs/powerbi_dax_latency.json)."
           },
           {
-            title: "Fabric Receipts",
-            desc: "Lakehouse + semantic-model validation captured as markdown proof — not a screenshot you have to trust."
+            status: "MEASURED",
+            title: "Fabric Can't Quietly Change The Truth",
+            desc: "fact + dim_drug/reaction + mart counts reconcile GCP ↔ Fabric exactly (300 = 300); the openFDA fact contract is the same one GCP and AWS load."
           },
           {
-            title: "Honest AUC",
-            desc: "XGBoost baseline logged in MLflow with real metrics, honest about the limits of synthetic demo data."
+            status: "BOUNDARY",
+            title: "Rendered Screenshot Has A Cap",
+            desc: "ExportToFile (report → PNG via API) is blocked on the free FTL trial, so the native screenshot needs a logged-in browser; the published chart is generated from the same DAX data."
           }
         ]
       }
     },
     features: [],
     architecture: [],
-    cost: "Dev Fabric trial / local API — no PHI; demo dataset only.",
+    cost: "Free Fabric trial — no PHI; 300 real openFDA FAERS reports, public data.",
     phase: null
   },
 
