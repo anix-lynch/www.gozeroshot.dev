@@ -606,7 +606,11 @@ export const projects = [
           },
           {
             title: "The Agent Reads The Clean Layer",
-            desc: "/api/ask returns grounded answers from the redacted corpus with [doc N] citations and refuses when the evidence isn't there — instead of crawling raw adverse-event narratives."
+            desc: "/api/ask retrieves the redacted corpus (BM25), answers with [doc N] citations, and refuses when the evidence isn't there — verified: a grounded run cites a real report and an out-of-evidence question is declined, instead of crawling raw adverse-event narratives."
+          },
+          {
+            title: "Features Are Discoverable + Leak-Free (Feast)",
+            desc: "A Feast feature view (openfda_drug_features, 4 features) over the openFDA fact — discoverable in the registry, with point-in-time-correct historical retrieval and online serving, so the model and any downstream consumer pull the same governed features without future leakage."
           },
           {
             title: "BigQuery Does More Than Store Boxes",
