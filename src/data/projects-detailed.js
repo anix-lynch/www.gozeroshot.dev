@@ -592,9 +592,8 @@ export const projects = [
             desc: "Duplicates, broken received-dates, missing fields, and drug-name drift are caught and quarantined before they can poison the dashboard or the agent."
           },
           {
-            status: "BOUNDARY",
-            title: "Freshness Is Watched — scheduled detection",
-            desc: "An independently scheduled Cloud Scheduler watchdog records when truth last moved. Recovery and escalation paths are exercised under controlled fault-injection tests — not yet a production cloud recovery (boundary stated, not green-washed)."
+            title: "Self-Healing — Detect → Recover → Verify",
+            desc: "An independent watchdog reads the durable BigQuery run-ledger, detects a stale end-to-end run, runs a bounded recovery (re-ingest → quarantine → gates → GE → dbt → freshness) against BigQuery, and advances the ledger watermark ONLY after verification passes — proven: a forced-stale run recovered + verified in ~134s and moved the watermark, while a failed recovery escalates and leaves it untouched."
           },
           {
             title: "Failures Get Loud Early",
