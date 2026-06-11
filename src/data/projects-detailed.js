@@ -621,9 +621,8 @@ export const projects = [
             desc: "openFDA's source is batch; a native Pub/Sub→BigQuery path ingests records as an event-driven feed (replay), proving the streaming architecture without a live-stream claim or a money leak."
           },
           {
-            status: "BOUNDARY",
-            title: "Governed, Reconciled — with stated boundaries",
-            desc: "Row counts reconcile source → BigQuery on every load; a versioned data contract, audit ledger, column masking, and retention/deletion cover the lifecycle. Access control is a reduced-column authorized view — the restricted-identity denial test is a documented boundary, not yet proven."
+            title: "Governed + Least-Privilege, Proven",
+            desc: "Row counts reconcile source → BigQuery on every load; a versioned data contract, audit ledger, column masking, and retention/deletion cover the lifecycle. Least-privilege is proven empirically: a restricted identity reads the reduced 5-column authorized view (300 rows) but is DENIED 403 on the full base table."
           },
           {
             title: "Releases Face A Gate",
