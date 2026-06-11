@@ -20,17 +20,17 @@ export const projects = [
     description: null,
     highlight: null,
     stats: [
-      { value: "📊 5", label: "Evaluated signals · real metrics" },
-      { value: "🎯 0.846", label: "Serious-report F1 (n=300 openFDA)" },
-      { value: "📈 0.833", label: "Ranking P@30 vs 0.53 random" },
-      { value: "◐ MEASURED", label: "Cost-quality tradeoff — no free lunch" }
+      { value: "📊 5,000", label: "Real openFDA reports evaluated" },
+      { value: "🎯 0.877", label: "Serious-report F1 (TF-IDF + numeric)" },
+      { value: "✂️ 30%", label: "LLM calls cut @ ≥95% serious recall" },
+      { value: "🟢 WIN", label: "Beats route-everything baseline" }
     ],
     stack: ["Python", "scikit-learn", "IsolationForest", "KMeans", "RandomForest", "TF-IDF", "NumPy", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "Cloud Run", "Docker"],
     beforeAfter: {
       before: {
         title: "LLM Reads Everything",
         badge: "No measured tradeoff",
-        flow: ["300 openFDA reports", "Every report reaches the LLM", "Full token bill", "More noise", "Reviewer reads too much"],
+        flow: ["~5,000 openFDA reports", "Every report reaches the LLM", "Full token bill", "More noise", "Reviewer reads too much"],
         problems: [
           "Expensive reasoning is spent equally on useful and low-value adverse-event reports.",
           "Nobody knows what quality is lost when calls are reduced.",
@@ -41,7 +41,7 @@ export const projects = [
       after: {
         title: "Signals Decide What Deserves Attention",
         badge: "Evidence before optimization",
-        flow: ["300 openFDA reports", "5 cheap signals score each", "Router measures cost vs quality", "Tradeoff made explicit", "Serious coverage protected"],
+        flow: ["~5,000 openFDA reports", "5 signals (+ text) score each", "Router cuts 30% at ≥95% recall", "Beats route-everything", "Serious coverage held"],
         built: [
           {
             title: "Smoke Detector / Anomaly",
@@ -53,20 +53,19 @@ export const projects = [
           },
           {
             title: "Traffic Light / Classification",
-            desc: "A RandomForest predicts whether a report is serious — F1 0.846 on a held-out test (no text features yet), sorting NOW / WAIT before the LLM spends a token."
+            desc: "A classifier over TF-IDF reaction-text + numeric features predicts whether a report is serious — F1 0.877 in 5-fold CV (text features lifted it past the no-text 0.846), sorting NOW / WAIT before the LLM spends a token."
           },
           {
             title: "Ranking Engine",
-            desc: "Reports are ranked by P(serious): precision@30 is 0.833 vs 0.53 for a random queue, so the highest-impact reports reach the LLM first."
+            desc: "Reports are ranked by P(serious): precision@200 is 1.0 vs 0.55 for a random queue, so the highest-impact reports reach the LLM first."
           },
           {
             title: "Similar Cases / Lookalike",
             desc: "TF-IDF over reaction text retrieves comparable reports (Recall@5 0.34 for same-drug siblings), so the LLM reasons with examples instead of from scratch."
           },
           {
-            status: "MEASURED",
-            title: "The Router Has A Speedometer",
-            desc: "Every reduction in LLM calls shows the serious-report recall it costs. On this small dataset, holding ≥95% serious recall currently requires routing every report — the cost-quality curve is measured and shown, not a free-lunch claim."
+            title: "The Router Earns Its Cut — Honestly",
+            desc: "Scaling to ~5,000 real reports and adding TF-IDF features over the reaction text turned a measured tradeoff into a real win: the router cuts 30% of LLM calls while holding serious-report recall at 0.954 (≥95%), beating the route-everything baseline. The full cost-recall curve is shown — deeper cuts trade recall, and that's stated, not hidden."
           }
         ]
       }
