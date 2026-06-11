@@ -4,7 +4,7 @@ import Sidebar from '../components/Sidebar.astro';
 import { projects } from '../data/projects-detailed.js';
 
 // Hand-picked featured — northstar first, then one per lane
-const featuredSlugs = ["healthcare-ai-platform-signals", "healthcare-ai-data-engineer", "healthcare-genai-engineer", "pied-piper-legal", "healthcare-forward-deployed-engineer", "healthcare-analytics-fabric"];
+const featuredSlugs = ["healthcare-ai-platform-signals", "healthcare-ai-data-engineer", "healthcare-multicloud-portability", "healthcare-analytics-fabric", "healthcare-genai-engineer", "pied-piper-legal", "healthcare-forward-deployed-engineer"];
 const featured = featuredSlugs.map(slug => projects.find(p => p.slug === slug)).filter(Boolean);
 
 const tagsOf = (p) => (p.tags && p.tags.length ? p.tags : [p.lane]);
