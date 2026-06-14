@@ -235,12 +235,12 @@ export const projects = [
     status: "Proof of Work",
     github: "https://github.com/anix-lynch/healthcare-da",
     live: null,
-    gif: "/healthcare-fabric-proof.png",
+    gif: "/healthcare-fabric-star.png",
     icon: "layers",
     description: null,
     highlight: null,
     stats: [
-      { value: "💊 300", label: "Real openFDA reports" },
+      { value: "💊 3,000", label: "Real openFDA reports" },
       { value: "⚡ 1.15s", label: "DAX p50 (all < 5s)" },
       { value: "🧱 Direct Lake", label: "Semantic model as code" },
       { value: "🔗 GCP=Fabric", label: "Counts reconcile" }
@@ -274,7 +274,7 @@ export const projects = [
           {
             status: "MEASURED",
             title: "Fabric Can't Quietly Change The Truth",
-            desc: "fact + dim_drug/reaction + mart counts reconcile GCP ↔ Fabric exactly (300 = 300); the openFDA fact contract is the same one GCP and AWS load."
+            desc: "fact + dim_drug/reaction + mart counts reconcile GCP ↔ Fabric exactly (3,000 = 3,000); the openFDA fact contract is the same one GCP and AWS load."
           },
           {
             status: "BOUNDARY",
@@ -286,7 +286,7 @@ export const projects = [
     },
     features: [],
     architecture: [],
-    cost: "Free Fabric trial — no PHI; 300 real openFDA FAERS reports, public data.",
+    cost: "Free Fabric trial — no PHI; 3,000 real openFDA FAERS reports, public data.",
     phase: null
   },
 
@@ -301,13 +301,13 @@ export const projects = [
     status: "Proof of Work",
     github: "https://github.com/anix-lynch/healthcare-de-AWS",
     live: null,
-    gif: "/healthcare-fabric-proof.png",
+    gif: "/healthcare-3cloud-reconcile.png",
     icon: "layers",
     description: null,
     highlight: null,
     stats: [
-      { value: "🟰 300", label: "Records match all 3 clouds" },
-      { value: "🚨 68.33%", label: "Serious rate — identical" },
+      { value: "🟰 3,000", label: "Records match GCP=Fabric=AWS" },
+      { value: "🚨 51.27%", label: "Serious rate — identical" },
       { value: "🔗 fingerprint", label: "Schema reconciles" },
       { value: "💸 <$0.0001", label: "AWS cost (serverless)" }
     ],
@@ -331,7 +331,7 @@ export const projects = [
         built: [
           {
             title: "The Same Numbers, Everywhere",
-            desc: "record_count, serious_count, serious_rate (68.33%), distinct_drugs, and total_reactions (759) reconcile EXACTLY across GCP, Fabric, and AWS — each computed independently on its own cloud's copy."
+            desc: "record_count, serious_count, serious_rate (51.27%), distinct_drugs, and total_reactions (8,269) reconcile EXACTLY across GCP, Fabric, and AWS — each computed independently on its own cloud's copy."
           },
           {
             title: "Schema Is Enforced, Not Asserted",
@@ -561,9 +561,9 @@ export const projects = [
     description: null,
     highlight: null,
     stats: [
-      { value: "🗄️ 300", label: "Real openFDA FAERS reports" },
+      { value: "🗄️ 3,000", label: "Real openFDA FAERS reports" },
       { value: "💊 156", label: "Drugs tracked" },
-      { value: "🚨 68.3%", label: "Serious adverse events" },
+      { value: "🚨 51.27%", label: "Serious adverse events" },
       { value: "🔖 [doc N]", label: "Grounded citations + refusal" }
     ],
     stack: ["Python", "dbt", "BigQuery", "Great Expectations", "Feast", "Cloud Scheduler", "Cloud Monitoring", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "BM25", "Pandas", "pytest", "Docker", "GCP Cloud Run", "GitHub Actions"],

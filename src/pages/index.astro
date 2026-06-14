@@ -4,10 +4,12 @@ import Sidebar from '../components/Sidebar.astro';
 import { projects } from '../data/projects-detailed.js';
 
 // Hand-picked featured — northstar first, then one per lane
-const featuredSlugs = ["healthcare-ai-platform-signals", "healthcare-ai-data-engineer", "healthcare-multicloud-portability", "healthcare-analytics-fabric", "healthcare-genai-engineer", "pied-piper-legal", "healthcare-forward-deployed-engineer"];
+const featuredSlugs = ["healthcare-ai-platform-signals", "healthcare-ai-data-engineer", "healthcare-genai-engineer", "healthcare-forward-deployed-engineer", "healthcare-analytics-fabric", "mocktailverse-bedrock"];
 const featured = featuredSlugs.map(slug => projects.find(p => p.slug === slug)).filter(Boolean);
 
 const tagsOf = (p) => (p.tags && p.tags.length ? p.tags : [p.lane]);
+const beforeLabel = (p) => p.beforeAfter?.before?.badge || p.beforeAfter?.before?.title || "Before";
+const afterLabel = (p) => p.beforeAfter?.after?.badge || p.beforeAfter?.after?.title || "After";
 
 const laneColors = {
   "GenAI":      { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
@@ -153,6 +155,11 @@ function icon(name, size = 18) {
                 <div class="card-body">
                   <h2 class="card-title">{project.title}</h2>
                   <p class="card-desc">{project.tagline}</p>
+                  <div class="card-change" aria-label={`Before: ${beforeLabel(project)}. After: ${afterLabel(project)}.`}>
+                    <span class="card-change-before">{beforeLabel(project)}</span>
+                    <span class="card-change-arrow" aria-hidden="true">→</span>
+                    <span class="card-change-after">{afterLabel(project)}</span>
+                  </div>
                 </div>
 
                 <div class="card-footer">
@@ -470,6 +477,34 @@ function icon(name, size = 18) {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .card-change {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.75rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--color-border, #dde8f0);
+    border-radius: 9px;
+    background: var(--color-surface-1, #f8fbfd);
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .card-change-before,
+  .card-change-after {
+    min-width: 0;
+    font-weight: 600;
+  }
+
+  .card-change-before {
+    color: var(--color-text-muted, #8aa0b8);
+    text-align: right;
+  }
+
+  .card-change-after { color: var(--color-text-primary, #0f1923); }
+  .card-change-arrow { color: var(--color-accent, #7bb3d9); font-size: 14px; }
 
   .card-footer {
     display: flex;
