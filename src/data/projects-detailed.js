@@ -78,85 +78,69 @@ export const projects = [
 
   {
     slug: "healthcare-genai-engineer",
-    title: "Healthcare GenAI Evidence Engine",
-    tagline: "Answers clinical questions with records, citations, privacy checks, and a release gate.",
+    title: "Baymax ER Nurse Assistant",
+    tagline: "An evidence-to-action agent that changes its mind, stops itself, and checks whether work really happened.",
     lane: "GenAI",
     tags: ["GenAI", "Cloud"],
     cloud: "Vertex",
     laneColor: "#7bb3d9",
-    status: "Production",
-    github: "https://github.com/anix-lynch/healthcare-genai-engineer",
-    live: "https://healthcare-genai-2ihyeqmb6q-uw.a.run.app",
-    gif: "/healthcare-genai-engineer.gif",
+    status: "Simulation",
+    github: "https://github.com/anix-lynch/baymax",
+    live: "https://baymax-bice.vercel.app",
+    gif: "/baymax.gif",
     icon: "shield",
     description: null,
     highlight: null,
     stats: [
-      { value: "⚡ 50 ms", label: "Hybrid p95 latency" },
-      { value: "✅ 100%", label: "Hybrid hit@5" },
-      { value: "🚦 3", label: "NOW / SOON / WAIT paths" },
-      { value: "🧪 20", label: "Golden test queries" }
+      { value: "🎬 3", label: "Legendary agent cases" },
+      { value: "✅ 100%", label: "Action safety floors" },
+      { value: "🧪 50/50", label: "Agent scenarios passed" },
+      { value: "🛡 5/5", label: "Rollout gates passed" }
     ],
-    stack: ["Python", "FastAPI", "BM25", "Sentence Transformers", "RRF", "Anthropic", "OpenAI", "Docker", "Pydantic", "pytest", "GitHub Actions"],
+    stack: ["Python", "Agent Workflows", "Evidence Arbitration", "Decision Safety Envelope", "Durable Actions", "Outcome Verification", "openFDA", "pytest", "GitHub Actions", "Vercel"],
     beforeAfter: {
       before: {
         title: "Before",
         badge: "Answer-only AI",
-        flow: ["Patient question", "Search records", "AI answer", "Staff still decides"],
+        flow: ["Incoming case", "Search records", "AI answer", "Work stops at recommendation"],
         problems: [
-          "It can find similar notes, but the words have to line up too neatly.",
-          "The answer may be cited, but it does not say whether this is NOW, SOON, or WAIT.",
-          "It explains the past case, not what is likely to happen next: longer stay, bed pressure, or deterioration risk.",
-          "If the next step fails, there is no owner, retry limit, stop rule, or clean handoff."
+          "Every case spends the same expensive evidence budget.",
+          "Another evidence domain can appear without changing the action.",
+          "A recommendation can look finished even when no durable state changed.",
+          "Unsafe uncertainty has no explicit brake, owner, or verified handoff."
         ]
       },
       after: {
         title: "After",
         badge: "Evidence-to-action AI",
-        flow: ["Patient question", "Evidence + risk", "Acknowledged handoff", "Real action + receipt"],
+        flow: ["Nose allocates attention", "Two eyes change perspective", "Brain acts or brakes", "Outcome receipt"],
         built: [
           {
-            title: "Finds What You Meant",
-            desc: "Uses exact match plus intent match, so the case can still surface when the wording is different."
+            title: "Opens Expensive Eyes Only When Needed",
+            desc: "A served, versioned attention signal routes patient cases before retrieval while protecting at least 95% serious-case recall."
           },
           {
-            title: "Shows Its Receipts",
-            desc: "Answers with supporting records, source IDs, and privacy checks instead of asking the reader to trust a black box."
+            title: "Changes Action When Perspective Changes",
+            desc: "The same patient receives assign_bed or divert when capacity changes; drug-safety evidence can turn discharge_plan into human_review."
           },
           {
-            title: "Says How Urgent It Is",
-            desc: "Turns evidence into a NOW / SOON / WAIT path, with safety overrides when the clinical red flags are louder than the model."
+            title: "Stops Before Unsafe Action",
+            desc: "Cross-domain uncertainty applies the brake, blocks autonomous disposition, and hands the case to a human review owner."
           },
           {
-            title: "Looks Ahead",
-            desc: "Adds future-risk signals like predicted length of stay, deterioration risk, and bed pressure, so the answer is not trapped in the past."
+            title: "Acts Until Durable Outcome",
+            desc: "Allowed actions change bounded operational state, record receiver ACK, and re-read the result instead of trusting a success message."
           },
           {
-            title: "Hands Off the Work",
-            desc: "Routes the case from ER Triage to Bed Ops, and the receiver signs for it, so ownership is a real handoff instead of a note left in the air."
-          },
-          {
-            title: "Actually Changes the State",
-            desc: "Commits the bed decision to durable state for real and emits a before/after receipt, so it acts on the case instead of returning a recommendation no one applied."
-          },
-          {
-            title: "Won't Fake Success",
-            desc: "Re-reads the state after acting to confirm it truly changed, so a tool that claims it finished but did not gets caught instead of trusted."
-          },
-          {
-            title: "Doesn't Spin Forever",
-            desc: "Each agent has a retry budget, stop conditions, and a human escalation path, so a stuck handoff becomes visible instead of looping."
-          },
-          {
-            title: "Blocks Bad Releases",
-            desc: "Golden tests check retrieval, citations, safety, prediction, and agent handoff behavior before a change goes live."
+            title: "Rehearses Failure Before Rollout",
+            desc: "A simulated deployment contract checks five gates, injects false success, and requires rollback when outcome verification disappears."
           }
         ]
       }
     },
     features: [],
     architecture: [],
-    cost: "Template path = $0 (zero LLM calls). LLM path = pay-per-token via Anthropic or OpenAI. Service runs in-memory; ~$1–2/month serverless when deployed.",
+    cost: "Closed-loop ER simulation using synthetic encounters and real openFDA population safety signals. No hospital deployment, clinical validation, or adoption claim.",
     phase: null
   },
 
