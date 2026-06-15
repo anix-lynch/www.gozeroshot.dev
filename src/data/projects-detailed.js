@@ -79,7 +79,7 @@ export const projects = [
   {
     slug: "healthcare-genai-engineer",
     title: "Baymax ER Nurse Assistant",
-    tagline: "An evidence-to-action agent that changes its mind, stops itself, and checks whether work really happened.",
+    tagline: "Starts with an ordinary symptom, discovers what nobody mentioned, then changes course or stops safely.",
     lane: "GenAI",
     tags: ["GenAI", "Cloud"],
     cloud: "Vertex",
@@ -92,7 +92,7 @@ export const projects = [
     description: null,
     highlight: null,
     stats: [
-      { value: "🎬 3", label: "Legendary agent cases" },
+      { value: "🎬 4", label: "Patient-to-action stories" },
       { value: "✅ 100%", label: "Action safety floors" },
       { value: "🧪 50/50", label: "Agent scenarios passed" },
       { value: "🛡 5/5", label: "Rollout gates passed" }
