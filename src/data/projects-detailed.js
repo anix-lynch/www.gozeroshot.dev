@@ -686,5 +686,43 @@ export const projects = [
     architecture: [],
     cost: "Free. Cloud Run scale-to-zero, well under monthly free tier at portfolio traffic.",
     phase: "Phase 1-8 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
+  },
+  {
+    slug: "healthcare-ai-data-engineer",
+    title: "Healthcare AI Data Platform",
+    tagline: "B1→B5 trust layer: ingest, validate, reason, survive, govern. Every number traces to a file.",
+    lane: "AI Data Eng",
+    laneColor: "#5FA978",
+    status: "Production",
+    github: "https://github.com/anix-lynch/healthcare-ai-data-engineer",
+    live: "https://healthcare-ai-data-819957310168.us-west1.run.app/app",
+    storyboard: "https://healthcare-ai-data-819957310168.us-west1.run.app/storyboard",
+    gif: "/healthcare-ai-data-storyboard.gif",
+    icon: "layers",
+    description: "Production AI data platform for healthcare — 55,500+ encounter records through a 5-layer trust stack: ingestion (B1), truth contracts (B2), semantic knowledge products (B3), self-healing reliability (B4), and AI spend governance with Vertex Context Caching (B5). Zero data-quality violations reached AI-facing endpoints across 1,000 fault-injection runs. 59.3% AI inference cost reduction via novelty-driven attention routing.",
+    highlight: "B1→B5: every record earns its way to Baymax. Bad data is quarantined before AI sees it. Good data gets the right compute budget. Fully auditable.",
+    stats: [
+      { value: "55.5K", label: "Records Ingested" },
+      { value: "0", label: "Violations to AI Layer" },
+      { value: "59.3%", label: "AI Cost Reduction" },
+      { value: "99.0%", label: "Pipeline Success Rate" }
+    ],
+    stack: ["Python", "BigQuery", "dbt", "Feast", "FastAPI", "Vertex AI", "Gemini", "GCP", "Cloud Run", "Great Expectations"],
+    features: [
+      { icon: "layers", title: "B1: Trusted Ingestion", desc: "55.5K records, 100% source-to-warehouse reconciliation. Entity resolution to 40,235 canonical patients. Domain-specific plausibility contracts (CLINICAL-002) quarantine impossible records before they reach AI." },
+      { icon: "shield", title: "B2: Truth Contracts", desc: "7 named truth contracts (6 BLOCKING), 48/48 GE checks, 52/52 dbt tests. Zero data-quality violations reached AI-facing endpoints across 1,000 fault-injection runs." },
+      { icon: "cpu", title: "B3: Semantic Knowledge Products", desc: "4 versioned semantic profiles (PatientProfile, RiskProfile, MedicationProfile, EncounterSummary). BM25 RAG retrieval: Hit@5=0.95, MRR=0.90, NDCG@10=0.89. Grounded answers verified by Vertex Gen AI Eval." },
+      { icon: "zap", title: "B4: Self-Healing Reliability", desc: "99.0% pipeline success, 90% auto-recovery rate, 99.9% SLA compliance. 9-class failure taxonomy. Stale data incidents = 0 across 1,000 seeded fault-injection runs." },
+      { icon: "target", title: "B5: AI Spend Governance", desc: "novelty_score (text-embedding-004 kNN) drives 89% of PRO-tier routing decisions. Vertex Context Caching: 61.7% per-call cost reduction (measured via count_tokens API). 59.3% cost savings vs naive all-Pro routing across 401 encounters." }
+    ],
+    architecture: [
+      { step: "01", label: "B1 Capture", desc: "Batch + stream + API ingestion → idempotent BigQuery merge → entity resolution → plausibility contracts quarantine impossible records" },
+      { step: "02", label: "B2 Trust", desc: "7 named truth contracts → 48 GE checks → 52 dbt tests → promotion gate blocks every CRITICAL fault before the agent layer" },
+      { step: "03", label: "B3 Understand", desc: "4 semantic knowledge products → Feast PIT-correct feature store → BM25 retrieval → Vertex Gemini grounded answers" },
+      { step: "04", label: "B4+B5 Govern", desc: "Self-healing orchestration + novelty_score attention routing + Vertex Context Caching → fully auditable inference budget decisions" }
+    ],
+    cost: "GCP credit (Cloud Run + BigQuery + Vertex AI). Scale-to-zero = $0 idle.",
+    phase: null
   }
+
 ];
