@@ -3,545 +3,726 @@
 // Add { slug, title, ... } here → page auto-generates. That's it.
 
 export const projects = [
+  // ── NORTHSTAR ──────────────────────────────────────────────
   {
-    slug: "ai-job-intelligence",
-    title: "AI Job Intelligence",
-    tagline: "Multi-agent job platform with resume-aware AI, ATS scoring, and commute analysis.",
-    lane: "GenAI",
-    laneColor: "#7bb3d9",
-    status: "Production",
-    github: "https://github.com/anix-lynch/ai-agent-job-intelligence-phase-2",
-    // live: hidden — Streamlit Cloud runtime error, code is on GitHub
-    gif: "/ATS_phase2.gif",
-    icon: "cpu",
-    description: "A multi-agent job intelligence system that combines semantic vector search, ML-powered ATS scoring, and a LangChain ReAct agent to find and rank the best-fit roles for a specific resume. Built for the LA Silicon Beach market. Personalizes every search to your actual skills, salary targets, and commute tolerance — not just keywords.",
-    highlight: "What if job search worked like a personal recruiter instead of a keyword filter? This is that.",
+    slug: "healthcare-ai-platform-signals",
+    title: "From Reactive AI to Signal-First Intelligence",
+    tagline: "Signals reduce noise. AI focuses on what matters. Doctors act with confidence.",
+    lane: "AI Platform",
+    tags: ["AI Platform", "Cloud"],
+    cloud: "Vertex",
+    laneColor: "#1e6b38",
+    status: "Proof of Work",
+    github: "https://github.com/anix-lynch/healthcare-signal-platform",
+    live: null,
+    gif: "/signal-console.png",
+    icon: "activity",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "93%", label: "Task Success Rate" },
-      { value: "14", label: "Parallel MCP Tools" },
-      { value: "96%+", label: "ATS Accuracy" },
-      { value: "1,000+", label: "AI/ML Jobs" }
+      { value: "📊 5,000", label: "Real openFDA reports evaluated" },
+      { value: "🎯 0.877", label: "Serious-report F1 (TF-IDF + numeric)" },
+      { value: "✂️ 30%", label: "LLM calls cut @ ≥95% serious recall" },
+      { value: "🟢 WIN", label: "Beats route-everything baseline" }
     ],
-    stack: ["Python", "LangChain", "ChromaDB", "Streamlit", "FastAPI", "scikit-learn", "Sentence Transformers", "DuckDB", "DeepSeek", "Docker"],
-    features: [
-      { icon: "search", title: "Semantic Vector Search", desc: "SBERT sentence-transformer embeddings + ChromaDB. Finds roles by meaning, not keywords. Your resume becomes the query." },
-      { icon: "target", title: "ATS Classifier", desc: "scikit-learn ML model trained on real posting data. Predicts pass rate with 96%+ accuracy and shows which keywords move the needle." },
-      { icon: "bot", title: "ReAct Agent Orchestration", desc: "LangChain multi-agent with autonomous reasoning. Uses 14 parallel MCP tools to filter, rank, and compare jobs — no human loop." },
-      { icon: "user", title: "Resume-Aware Personalization", desc: "Auto-loads resume.json. Every search pre-filled with your skills, target roles, and salary preference. One-click matching." },
-      { icon: "map", title: "Commute-Aware Scoring", desc: "LA Silicon Beach geospatial focus. Commute distance is part of the ranking model — not filtered out after the fact." },
-      { icon: "zap", title: "70× Cheaper Than GPT-4", desc: "DeepSeek as the reasoning backbone: $0.14/$0.28 per 1M tokens. Full agent intelligence at 1% of the typical LLM cost." }
+    stack: ["Python", "scikit-learn", "IsolationForest", "KMeans", "RandomForest", "TF-IDF", "NumPy", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "Cloud Run", "Docker"],
+    beforeAfter: {
+      before: {
+        title: "LLM Reads Everything",
+        badge: "No measured tradeoff",
+        flow: ["~5,000 openFDA reports", "Every report reaches the LLM", "Full token bill", "More noise", "Reviewer reads too much"],
+        problems: [
+          "Expensive reasoning is spent equally on useful and low-value adverse-event reports.",
+          "Nobody knows what quality is lost when calls are reduced.",
+          "Models exist separately without a shared routing decision.",
+          "Cost reduction is a hope, not an evaluated result."
+        ]
+      },
+      after: {
+        title: "Signals Decide What Deserves Attention",
+        badge: "Evidence before optimization",
+        flow: ["~5,000 openFDA reports", "5 signals (+ text) score each", "Router cuts 30% at ≥95% recall", "Beats route-everything", "Serious coverage held"],
+        built: [
+          {
+            title: "Smoke Detector / Anomaly",
+            desc: "IsolationForest flags the unusual reports first — the 30 it flags carry 4.8 reactions on average vs 2.3 for the rest, so the LLM investigates outliers instead of scanning everything."
+          },
+          {
+            title: "Treasure Map / Clustering",
+            desc: "KMeans groups reports into cohorts (silhouette 0.61 at k=4 — modest structure on n=300, reported honestly) so patterns are analyzed, not individual reports."
+          },
+          {
+            title: "Traffic Light / Classification",
+            desc: "A classifier over TF-IDF reaction-text + numeric features predicts whether a report is serious — F1 0.877 in 5-fold CV (text features lifted it past the no-text 0.846), sorting NOW / WAIT before the LLM spends a token."
+          },
+          {
+            title: "Ranking Engine",
+            desc: "Reports are ranked by P(serious): precision@200 is 1.0 vs 0.55 for a random queue, so the highest-impact reports reach the LLM first."
+          },
+          {
+            title: "Similar Cases / Lookalike",
+            desc: "TF-IDF over reaction text retrieves comparable reports (Recall@5 0.34 for same-drug siblings), so the LLM reasons with examples instead of from scratch."
+          },
+          {
+            title: "The Router Earns Its Cut — Honestly",
+            desc: "Scaling to ~5,000 real reports and adding TF-IDF features over the reaction text turned a measured tradeoff into a real win: the router cuts 30% of LLM calls while holding serious-report recall at 0.954 (≥95%), beating the route-everything baseline. The full cost-recall curve is shown — deeper cuts trade recall, and that's stated, not hidden."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
+    cost: "$0 at portfolio traffic — Cloud Run scales to zero, Gemini draws the GCP GenAI credit.",
+    phase: null
+  },
+
+  {
+    slug: "healthcare-genai-engineer",
+    title: "Baymax ER Nurse Assistant",
+    tagline: "Starts with an ordinary symptom, discovers what nobody mentioned, then changes course or stops safely.",
+    lane: "GenAI",
+    tags: ["GenAI", "Cloud"],
+    cloud: "Vertex",
+    laneColor: "#7bb3d9",
+    status: "Simulation",
+    github: "https://github.com/anix-lynch/baymax",
+    live: "https://baymax-bice.vercel.app",
+    gif: "/baymax.gif",
+    icon: "shield",
+    description: null,
+    highlight: null,
+    stats: [
+      { value: "🎬 4", label: "Patient-to-action stories" },
+      { value: "✅ 100%", label: "Action safety floors" },
+      { value: "🧪 50/50", label: "Agent scenarios passed" },
+      { value: "🛡 5/5", label: "Rollout gates passed" }
     ],
-    architecture: [
-      { step: "01", label: "Resume Load", desc: "resume.json → resume_loader.py extracts skills, projects, salary targets" },
-      { step: "02", label: "Vector Index", desc: "SBERT embeds 1,000+ postings → ChromaDB cosine similarity search" },
-      { step: "03", label: "ATS Score", desc: "ML classifier predicts pass/fail for your specific resume vs each job" },
-      { step: "04", label: "Agent Rank", desc: "LangChain ReAct agent orchestrates 14 tools → ranked shortlist with reasoning" }
-    ],
-    cost: "$0–2/month (DeepSeek API only). All infra on free tiers.",
-    phase: "Phase 2 — adds personalized resume matching on top of Phase 1 job search engine."
+    stack: ["Python", "Agent Workflows", "Evidence Arbitration", "Decision Safety Envelope", "Durable Actions", "Outcome Verification", "openFDA", "pytest", "GitHub Actions", "Vercel"],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Answer-only AI",
+        flow: ["Incoming case", "Search records", "AI answer", "Work stops at recommendation"],
+        problems: [
+          "Every case spends the same expensive evidence budget.",
+          "Another evidence domain can appear without changing the action.",
+          "A recommendation can look finished even when no durable state changed.",
+          "Unsafe uncertainty has no explicit brake, owner, or verified handoff."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Evidence-to-action AI",
+        flow: ["Nose allocates attention", "Two eyes change perspective", "Brain acts or brakes", "Outcome receipt"],
+        built: [
+          {
+            title: "Opens Expensive Eyes Only When Needed",
+            desc: "A served, versioned attention signal routes patient cases before retrieval while protecting at least 95% serious-case recall."
+          },
+          {
+            title: "Changes Action When Perspective Changes",
+            desc: "The same patient receives assign_bed or divert when capacity changes; drug-safety evidence can turn discharge_plan into human_review."
+          },
+          {
+            title: "Stops Before Unsafe Action",
+            desc: "Cross-domain uncertainty applies the brake, blocks autonomous disposition, and hands the case to a human review owner."
+          },
+          {
+            title: "Acts Until Durable Outcome",
+            desc: "Allowed actions change bounded operational state, record receiver ACK, and re-read the result instead of trusting a success message."
+          },
+          {
+            title: "Rehearses Failure Before Rollout",
+            desc: "A simulated deployment contract checks five gates, injects false success, and requires rollback when outcome verification disappears."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
+    cost: "Closed-loop ER simulation using synthetic encounters and real openFDA population safety signals. No hospital deployment, clinical validation, or adoption claim.",
+    phase: null
   },
 
   {
     slug: "mocktailverse-bedrock",
     title: "MocktailVerse Bedrock",
-    tagline: "Enterprise GenAI data platform powered by AWS Bedrock, RAG, and Vector Search.",
+    tagline: "Ask for a vibe, not an ingredient — AWS Bedrock RAG finds the drink that matches what you meant.",
     lane: "GenAI",
+    tags: ["GenAI", "Cloud"],
+    cloud: "AWS",
     laneColor: "#7bb3d9",
     status: "Production",
     github: "https://github.com/anix-lynch/mocktailverse-bedrock",
     live: "https://dgco3hhxo94y8.cloudfront.net",
     gif: "/mocktailverse_bedrock.gif",
     icon: "layers",
-    description: "Enterprise-grade GenAI data engineering platform using AWS Bedrock for LLM inference, pgvector for semantic search, and a full RAG pipeline over a cocktail knowledge base. Demonstrates the full AWS GenAI stack from ingestion to retrieval to generation.",
-    highlight: "The full AWS Bedrock RAG stack — embeddings, vector store, retrieval, generation — in one production-ready platform.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "AWS", label: "Bedrock LLMs" },
-      { value: "RAG", label: "Retrieval Pipeline" },
-      { value: "pgvector", label: "Vector Store" },
-      { value: "E2E", label: "GenAI Platform" }
+      { value: "🧠 AWS", label: "Bedrock Claude + Titan" },
+      { value: "🔍 pgvector", label: "Postgres vector search" },
+      { value: "🔁 RAG", label: "Chunk → retrieve → answer" },
+      { value: "🏭 E2E", label: "Ingest to generation" }
     ],
     stack: ["Python", "AWS Bedrock", "pgvector", "RAG", "PostgreSQL", "LangChain", "boto3", "Docker", "FastAPI"],
-    features: [
-      { icon: "database", title: "pgvector Store", desc: "PostgreSQL + pgvector for production semantic search. No managed vector DB required." },
-      { icon: "cpu", title: "Bedrock LLM", desc: "Claude and Titan models via AWS Bedrock API. Swap models without changing application code." },
-      { icon: "layers", title: "RAG Pipeline", desc: "Full retrieval-augmented generation: chunk → embed → store → retrieve → generate." },
-      { icon: "zap", title: "Enterprise Stack", desc: "Production patterns: retry logic, observability hooks, cost tracking per query." }
-    ],
-    architecture: [
-      { step: "01", label: "Ingest", desc: "Cocktail dataset → chunked documents → Bedrock embeddings" },
-      { step: "02", label: "Store", desc: "Vectors → pgvector PostgreSQL with cosine similarity index" },
-      { step: "03", label: "Retrieve", desc: "User query → embed → top-k semantic search" },
-      { step: "04", label: "Generate", desc: "Retrieved context + query → Bedrock Claude → grounded response" }
-    ],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Keyword cocktail search",
+        flow: ["Question", "SQL LIKE search", "Exact-name match", "Misses the vibe"],
+        problems: [
+          "Ask for 'something smoky and bitter' and a keyword search shrugs.",
+          "Needs the exact ingredient or drink name to find anything.",
+          "No semantic understanding — it matches letters, not meaning.",
+          "Real vector search usually means a managed vector DB bill."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Bedrock RAG platform",
+        flow: ["Question", "Semantic retrieve", "Bedrock grounds", "Real answer"],
+        built: [
+          {
+            title: "Vibe Search",
+            desc: "Ask for 'smoky and bitter' and pgvector surfaces the mezcal negroni — even when those exact words aren't in the recipe."
+          },
+          {
+            title: "Model Swap",
+            desc: "Claude or Titan behind one Bedrock API. Change the brain without touching the application code."
+          },
+          {
+            title: "No-VendorDB Vectors",
+            desc: "Production semantic search on plain Postgres + pgvector — no managed vector DB to pay for."
+          },
+          {
+            title: "Cost Receipts",
+            desc: "Retry logic, observability hooks, and per-query cost tracking — it behaves like prod, not a notebook."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
     cost: "AWS Bedrock pay-per-token. pgvector runs on any Postgres instance.",
-    phase: null
-  },
-
-  {
-    slug: "churn-ml-pipeline",
-    title: "Churn ML Pipeline",
-    tagline: "End-to-end customer churn prediction with FastAPI serving and Streamlit dashboard.",
-    lane: "ML",
-    laneColor: "#a8d8a8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/churn-ml-pipeline",
-    live: "https://churn-ml-pipeline-mwvbz4fzdvmd8yvjvz9jak.streamlit.app",
-    gif: "/churn-ml-pipeline.gif",
-    icon: "bar-chart",
-    description: "Full ML lifecycle for customer churn prediction: feature engineering, model training with time-aware splitting, FastAPI model serving, and a Streamlit monitoring dashboard. Production patterns throughout — no notebook-only experiments.",
-    highlight: "The ML pipeline gap most tutorials skip: training-serving parity, time-aware splits, drift detection, production API.",
-    stats: [
-      { value: "E2E", label: "ML Lifecycle" },
-      { value: "FastAPI", label: "Model Serving" },
-      { value: "Streamlit", label: "Monitoring UI" },
-      { value: "RFM", label: "Feature Engineering" }
-    ],
-    stack: ["Python", "scikit-learn", "FastAPI", "Streamlit", "Pandas", "DuckDB", "Docker", "Pydantic"],
-    features: [
-      { icon: "layers", title: "Feature Engineering", desc: "RFM analysis, time-aware train/test splits, statistical feature selection." },
-      { icon: "cpu", title: "Model Training", desc: "scikit-learn pipeline with hyperparameter tuning, cross-validation, SHAP explainability." },
-      { icon: "zap", title: "FastAPI Serving", desc: "REST API with Pydantic validation, async endpoints, health checks, versioned models." },
-      { icon: "bar-chart", title: "Drift Detection", desc: "Streamlit dashboard monitors prediction distribution shifts and feature drift in production." }
-    ],
-    architecture: [
-      { step: "01", label: "Feature Store", desc: "Raw events → RFM features → DuckDB feature store" },
-      { step: "02", label: "Train", desc: "Time-aware split → scikit-learn pipeline → SHAP explainability" },
-      { step: "03", label: "Serve", desc: "FastAPI REST endpoint with Pydantic validation + versioned model registry" },
-      { step: "04", label: "Monitor", desc: "Streamlit dashboard → drift detection → retraining trigger" }
-    ],
-    cost: "Free to run locally or on Streamlit Cloud.",
-    phase: null
-  },
-
-  {
-    slug: "healthcare-dbt-bigquery",
-    title: "Healthcare dbt BigQuery",
-    tagline: "Clinical data warehouse: 55K patient records → dbt staging + 3 analytics marts on BigQuery.",
-    lane: "Data Eng",
-    laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/healthcare-dbt-bigquery",
-    live: null,
-    gif: "/dbt_preview.png",
-    icon: "database",
-    description: "Production clinical data warehouse using dbt + BigQuery. Ingests 55,000 patient records through staging models into three analytics marts: condition KPIs, billing analysis, and monthly trend reporting. Full dbt docs, tests, and lineage graph included.",
-    highlight: "55K patient records, 3 analytics marts, full dbt lineage. The data warehouse pattern healthcare teams actually need.",
-    stats: [
-      { value: "55K", label: "Patient Records" },
-      { value: "3", label: "Analytics Marts" },
-      { value: "dbt", label: "Transformation" },
-      { value: "BigQuery", label: "Warehouse" }
-    ],
-    stack: ["dbt", "BigQuery", "SQL", "Python", "GCP", "dbt-tests", "Jinja", "YAML"],
-    features: [
-      { icon: "layers", title: "Staging Models", desc: "Raw clinical data → clean typed staging layer with dbt source tests and freshness checks." },
-      { icon: "bar-chart", title: "Condition KPIs", desc: "Condition prevalence, readmission rates, LOS trends — analytics mart ready for BI tools." },
-      { icon: "database", title: "Billing Analysis", desc: "Claim amounts, denial patterns, payer mix analysis across 55K patient encounters." },
-      { icon: "calendar", title: "Monthly Trends", desc: "Time-series mart tracking month-over-month clinical and financial metrics." }
-    ],
-    architecture: [
-      { step: "01", label: "Source", desc: "Raw clinical CSVs → BigQuery raw dataset with dbt source definitions" },
-      { step: "02", label: "Stage", desc: "dbt staging models: type casting, null handling, PII deidentification" },
-      { step: "03", label: "Marts", desc: "3 analytics marts: condition KPIs, billing, monthly trends" },
-      { step: "04", label: "Docs", desc: "dbt docs site with full lineage graph, test coverage, column descriptions" }
-    ],
-    cost: "BigQuery free tier covers dev. GCP storage minimal for 55K records.",
     phase: null
   },
 
   {
     slug: "healthcare-analytics-fabric",
     title: "Healthcare Analytics on Microsoft Fabric",
-    tagline: "FastAPI + dbt + Fabric lakehouse + TMDL semantic model + MLflow — interview-ready proof stack.",
+    tagline: "Power BI you can code-review — openFDA drug-safety on Microsoft Fabric, deployed through the API with sub-1.3s DAX and counts that reconcile against GCP.",
     lane: "Data Eng",
+    tags: ["Data Eng", "Cloud", "AI Platform"],
+    cloud: "Azure",
     laneColor: "#c4a8d8",
-    status: "Production",
+    status: "Proof of Work",
     github: "https://github.com/anix-lynch/healthcare-da",
     live: null,
-    gif: "/healthcare-fabric-proof.png",
+    gif: "/healthcare-fabric-star.png",
     icon: "layers",
-    description: "End-to-end healthcare analytics on Microsoft Fabric: synthetic 55.5k encounters, FastAPI read layer, dbt star schema, Power BI semantic model as TMDL in git, Fabric lakehouse validation, and MLflow-tracked XGBoost baseline. Every headline claim maps to a file in the repo.",
-    highlight: "The Microsoft Fabric + Power BI story recruiters ask for — with dbt and API layers in the same public showroom repo.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "55.5K", label: "Encounters" },
-      { value: "11", label: "API Routes" },
-      { value: "TMDL", label: "Semantic Model" },
-      { value: "Fabric", label: "Lakehouse Proof" }
+      { value: "💊 3,000", label: "Real openFDA reports" },
+      { value: "⚡ 1.15s", label: "DAX p50 (all < 5s)" },
+      { value: "🧱 Direct Lake", label: "Semantic model as code" },
+      { value: "🔗 GCP=Fabric", label: "Counts reconcile" }
     ],
-    stack: ["Microsoft Fabric", "Power BI", "dbt", "FastAPI", "Python", "TMDL", "DAX", "MLflow", "Azure AD"],
-    features: [
-      { icon: "database", title: "dbt Star Schema", desc: "Staging → intermediate → fact + dims with domain SQL tests before BI." },
-      { icon: "layers", title: "TMDL in Git", desc: "Certified measures and relationships reviewed like application code." },
-      { icon: "zap", title: "Fabric API Proof", desc: "Lakehouse + semantic validation captured as markdown + scripted screenshot summaries." },
-      { icon: "cpu", title: "MLflow Lineage", desc: "Training runs logged with metrics — honest AUC for synthetic demo data." }
-    ],
-    architecture: [
-      { step: "01", label: "Serve", desc: "FastAPI exposes curated metrics and encounter slices from the synthetic dataset." },
-      { step: "02", label: "Transform", desc: "dbt builds the star schema and clinical DQ assertions." },
-      { step: "03", label: "Model", desc: "Power BI semantic model (TMDL) defines certified DAX measures." },
-      { step: "04", label: "Fabric", desc: "Workspace lakehouse + dataset checks via service principal automation." }
-    ],
-    cost: "Dev Fabric trial / local API — no PHI; demo dataset only.",
+    stack: ["Microsoft Fabric", "OneLake", "Power BI", "Direct Lake", "DAX", "Delta Lake", "Python", "Fabric REST API"],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Dashboard-only BI",
+        flow: ["Data", "Manual Power BI", "Pretty chart", "No lineage"],
+        problems: [
+          "Measures live inside a .pbix binary nobody can review.",
+          "No tests run before the data reaches a chart.",
+          "No API layer — the numbers can't be reused downstream.",
+          "'Trust me it's right' instead of 'here's the file that proves it'."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Code-first Fabric stack",
+        flow: ["openFDA → OneLake", "Direct Lake model", "API-deployed report", "DAX < 5s + reconcile"],
+        built: [
+          {
+            title: "Power BI Ships From Code",
+            desc: "The Direct Lake semantic model and the report (openFDA Drug Safety Report, id ef468dc5, 3 visuals) deploy through the Fabric REST API — not by clicking through Power BI Desktop."
+          },
+          {
+            title: "Questions Return In Seconds",
+            desc: "Real DAX runs through the Power BI engine: drug leaderboard p50 1.15s, KPI card p50 0.66s — every query under 5s, measured (proofs/powerbi_dax_latency.json)."
+          },
+          {
+            status: "MEASURED",
+            title: "Fabric Can't Quietly Change The Truth",
+            desc: "fact + dim_drug/reaction + mart counts reconcile GCP ↔ Fabric exactly (3,000 = 3,000); the openFDA fact contract is the same one GCP and AWS load."
+          },
+          {
+            status: "BOUNDARY",
+            title: "Rendered Screenshot Has A Cap",
+            desc: "ExportToFile (report → PNG via API) is blocked on the free FTL trial, so the native screenshot needs a logged-in browser; the published chart is generated from the same DAX data."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
+    cost: "Free Fabric trial — no PHI; 3,000 real openFDA FAERS reports, public data.",
     phase: null
   },
 
   {
-    slug: "vc-dealflow-automation",
-    title: "VC Dealflow Automation",
-    tagline: "End-to-end VC deal flow: Apollo enrichment → Hunter verify → n8n → Claude → Airtable CRM.",
-    lane: "n8n",
-    laneColor: "#f5c842",
-    status: "Production",
-    github: "https://github.com/anix-lynch/vc-dealflow-automation",
-    live: null,
-    gif: null,
-    icon: "trending-up",
-    description: "Full VC deal flow automation pipeline that takes a raw company name and runs it through Apollo enrichment, Hunter.io email verification, n8n orchestration, Claude AI personalization, and into an Airtable CRM with outreach drafted and ready to send.",
-    highlight: "From company name to personalized outreach in one n8n workflow. The full VC ops stack automated.",
-    stats: [
-      { value: "E2E", label: "Deal Flow Pipeline" },
-      { value: "Apollo", label: "+ Hunter Enrichment" },
-      { value: "Claude", label: "Personalization" },
-      { value: "0", label: "Manual Steps" }
-    ],
-    stack: ["n8n", "Apollo API", "Hunter.io", "Claude AI", "Airtable", "Python", "Webhooks"],
-    features: [
-      { icon: "search", title: "Apollo Enrichment", desc: "Company → firmographics, funding stage, headcount, key contacts pulled automatically." },
-      { icon: "mail", title: "Hunter Verification", desc: "Email addresses verified before any outreach. No bounces, no spam flags." },
-      { icon: "bot", title: "Claude Personalization", desc: "Claude reads the company profile and drafts personalized outreach for each contact." },
-      { icon: "database", title: "Airtable CRM", desc: "All deal data lands in Airtable: company, contacts, enrichment, outreach status, follow-up dates." }
-    ],
-    architecture: [
-      { step: "01", label: "Trigger", desc: "Company name → n8n webhook or manual trigger" },
-      { step: "02", label: "Enrich", desc: "Apollo API → firmographics, contacts, funding data" },
-      { step: "03", label: "Verify", desc: "Hunter.io → email verification → deliverability score" },
-      { step: "04", label: "Draft + Log", desc: "Claude → personalized outreach → Airtable CRM record" }
-    ],
-    cost: "Apollo free tier + Hunter.io free tier covers initial pipeline. Claude API minimal.",
-    phase: null
-  },
-
-  {
-    slug: "silicon-beach-ai-jobs",
-    title: "Silicon Beach AI Jobs",
-    tagline: "AI-powered job search with Snowflake Cortex + Vector Search, migrated to DuckDB.",
+    slug: "healthcare-multicloud-portability",
+    title: "Multicloud Portability — One Contract, Three Clouds",
+    tagline: "The same openFDA fact runs on GCP BigQuery, Microsoft Fabric, and AWS serverless — and the counts, business metrics, and schema reconcile exactly. Moving the platform can't change the truth.",
     lane: "Data Eng",
-    laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/silicon-beach-ai-jobs",
+    tags: ["Data Eng", "Cloud", "AI Platform"],
+    cloud: "Multi",
+    laneColor: "#2a9d8f",
+    status: "Proof of Work",
+    github: "https://github.com/anix-lynch/healthcare-de-AWS",
     live: null,
-    gif: "/silicon-beach.gif",
-    icon: "search",
-    description: "ML-powered job search engine using Snowflake Cortex for LLM inference and Cortex Search for vector similarity, with a clean DuckDB migration path for local/portable deployment. Demonstrates the full Snowflake ML stack with a real-world dataset of LA AI/ML jobs.",
-    highlight: "Snowflake Cortex end-to-end — LLM inference, vector search, and ML functions — with a DuckDB fallback for portability.",
+    gif: "/healthcare-3cloud-reconcile.png",
+    icon: "layers",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "Cortex", label: "Snowflake LLM" },
-      { value: "Vector", label: "Semantic Search" },
-      { value: "DuckDB", label: "Local Migration" },
-      { value: "LA", label: "Silicon Beach Focus" }
+      { value: "🟰 3,000", label: "Records match GCP=Fabric=AWS" },
+      { value: "🚨 51.27%", label: "Serious rate — identical" },
+      { value: "🔗 fingerprint", label: "Schema reconciles" },
+      { value: "💸 <$0.0001", label: "AWS cost (serverless)" }
     ],
-    stack: ["Snowflake Cortex", "DuckDB", "Python", "Streamlit", "SQL", "Vector Search", "Pandas"],
-    features: [
-      { icon: "cpu", title: "Snowflake Cortex", desc: "LLM inference and embedding generation natively in Snowflake — no external API calls." },
-      { icon: "search", title: "Cortex Search", desc: "Vector similarity search over job postings using Snowflake's managed vector store." },
-      { icon: "database", title: "DuckDB Migration", desc: "Full portability layer — same queries run locally in DuckDB without Snowflake credits." },
-      { icon: "map", title: "LA Market Focus", desc: "Curated AI/ML job dataset from LA Silicon Beach companies. Real data, real market." }
-    ],
-    architecture: [
-      { step: "01", label: "Ingest", desc: "LA AI/ML job dataset → Snowflake staging table" },
-      { step: "02", label: "Embed", desc: "Cortex EMBED_TEXT_768 → vector column on each job posting" },
-      { step: "03", label: "Search", desc: "User query → Cortex Search → top-k semantic results" },
-      { step: "04", label: "Local", desc: "DuckDB migration for zero-cost local development and demos" }
-    ],
-    cost: "Snowflake free trial covers development. DuckDB path is free indefinitely.",
+    stack: ["GCP BigQuery", "Microsoft Fabric", "OneLake", "AWS S3", "AWS DynamoDB", "Terraform", "Python", "Delta Lake", "PyArrow"],
+    beforeAfter: {
+      before: {
+        title: "Three Clouds, Three Truths",
+        badge: "Vendor lock-in risk",
+        flow: ["GCP result", "≠ Fabric result", "≠ AWS result", "Nobody reconciles"],
+        problems: [
+          "Each cloud computes its own numbers, and a silent drift between them is nobody's job to catch.",
+          "Logic is copied per cloud, so a fix on one is a bug on the others.",
+          "\"Portable\" is a slide, not a proven property.",
+          "Migrating means hoping the KPIs survive the move."
+        ]
+      },
+      after: {
+        title: "One Contract, Three Native Implementations",
+        badge: "Moving can't change the truth",
+        flow: ["Shared openFDA contract", "BigQuery · Fabric · S3+DynamoDB", "Each cloud-native", "Reconciled exactly"],
+        built: [
+          {
+            title: "The Same Numbers, Everywhere",
+            desc: "record_count, serious_count, serious_rate (51.27%), distinct_drugs, and total_reactions (8,269) reconcile EXACTLY across GCP, Fabric, and AWS — each computed independently on its own cloud's copy."
+          },
+          {
+            title: "Schema Is Enforced, Not Asserted",
+            desc: "Each cloud's ACTUAL schema is fingerprinted from real data and validated against one shared versioned contract — not a constant copied three times."
+          },
+          {
+            title: "AWS Serverless, Not A Server Farm",
+            desc: "openFDA lands in S3 (typed Parquet) and serves from DynamoDB (on-demand) — two serverless services, no RDS/OpenSearch/always-on."
+          },
+          {
+            title: "Cheap And Reversible",
+            desc: "The whole AWS slice costs under $0.0001 with a documented teardown (--teardown / terraform destroy) and a 30-day S3 expiry."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
+    cost: "< $0.0001 on AWS (on-demand DynamoDB + tiny S3); GCP free tier; Fabric free trial. Public openFDA data, no PHI.",
     phase: null
   },
 
   {
     slug: "realtime-fraud-detection",
     title: "Realtime Fraud Detection",
-    tagline: "Real-time feature engineering for fraud detection with Streamlit monitoring UI.",
+    tagline: "Catch fraud while it happens, not in tomorrow's batch — streaming features with zero data leakage.",
     lane: "ML",
+    tags: ["AI Platform"],
     laneColor: "#a8d8a8",
     status: "Production",
     github: "https://github.com/anix-lynch/realtime-fraud-detection",
     // live: hidden — Streamlit Cloud runtime error, code is on GitHub
     gif: "/realtime-fraud-detection.gif",
     icon: "shield",
-    description: "Real-time feature engineering pipeline for fraud detection, with a Streamlit dashboard for monitoring fraud scores and anomaly patterns. Demonstrates streaming feature computation, point-in-time correctness, and production fraud scoring patterns.",
-    highlight: "Real-time feature engineering done right: point-in-time correctness, no data leakage, streaming patterns.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "Real-time", label: "Feature Engineering" },
-      { value: "Streamlit", label: "Monitoring UI" },
-      { value: "Anomaly", label: "Detection" },
-      { value: "0", label: "Data Leakage" }
+      { value: "⚡ <100ms", label: "Score per transaction" },
+      { value: "🧮 0", label: "Data leakage" },
+      { value: "📡 Real-time", label: "Feature engineering" },
+      { value: "📈 Streamlit", label: "Live monitor" }
     ],
     stack: ["Python", "Streamlit", "scikit-learn", "Pandas", "FastAPI", "DuckDB", "Plotly"],
-    features: [
-      { icon: "zap", title: "Streaming Features", desc: "Real-time feature computation with point-in-time correctness. No future data leakage into training." },
-      { icon: "shield", title: "Fraud Scoring", desc: "ML model scores each transaction in real-time with interpretable feature contributions." },
-      { icon: "bar-chart", title: "Anomaly Patterns", desc: "Streamlit dashboard visualizes fraud pattern clusters, score distributions, and detection rates." },
-      { icon: "cpu", title: "FastAPI Serving", desc: "REST endpoint for real-time scoring with sub-100ms latency on standard hardware." }
-    ],
-    architecture: [
-      { step: "01", label: "Stream", desc: "Transaction events → real-time feature computation engine" },
-      { step: "02", label: "Features", desc: "Point-in-time correct features: velocity, pattern, behavioral signals" },
-      { step: "03", label: "Score", desc: "FastAPI → ML model → fraud score + feature importance" },
-      { step: "04", label: "Monitor", desc: "Streamlit dashboard → score drift, anomaly clusters, detection rate" }
-    ],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Batch fraud scoring",
+        flow: ["Transactions", "Nightly batch", "Stale features", "Fraud already happened"],
+        problems: [
+          "Features get computed after the fact, so the score is always late.",
+          "Training quietly leaks future data — the model looks great until prod.",
+          "No live monitor to watch fraud patterns form.",
+          "By the time the batch flags it, the money is gone."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Streaming fraud engine",
+        flow: ["Transaction", "Live features", "Score <100ms", "Catch in the act"],
+        built: [
+          {
+            title: "Time Machine Guard",
+            desc: "Point-in-time correctness means features only ever see the past — zero future-data leakage into training."
+          },
+          {
+            title: "Catch-in-the-Act Scoring",
+            desc: "Each transaction scored in under 100ms, with the feature contributions that flagged it."
+          },
+          {
+            title: "Pattern Radar",
+            desc: "Streamlit dashboard surfaces fraud clusters, score drift, and detection rate as they form."
+          },
+          {
+            title: "Streaming Features",
+            desc: "Velocity + behavioral signals computed live on the event stream, not in last night's job."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
     cost: "Free to run locally.",
-    phase: null
-  },
-
-  {
-    slug: "cocktailverse",
-    title: "CocktailVerse",
-    tagline: "GCP BigQuery ETL pipeline with Cloud Run deployment and TheCocktailDB as the data source.",
-    lane: "Data Eng",
-    laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/cocktailverse",
-    live: "https://cocktailverse-835005185815.us-central1.run.app",
-    gif: "/cocktailverse.gif",
-    icon: "database",
-    description: "Production GCP data engineering pipeline using BigQuery as the warehouse and Cloud Run for containerized ETL execution. Pulls data from TheCocktailDB API, transforms it through a layered BigQuery schema, and deploys via Cloud Run with Terraform infrastructure.",
-    highlight: "GCP production stack: Cloud Run + BigQuery + Terraform + CI/CD. Real infra, not a local notebook.",
-    stats: [
-      { value: "GCP", label: "Cloud Platform" },
-      { value: "BigQuery", label: "Data Warehouse" },
-      { value: "Cloud Run", label: "ETL Execution" },
-      { value: "Terraform", label: "IaC" }
-    ],
-    stack: ["Python", "GCP", "BigQuery", "Cloud Run", "Terraform", "Docker", "Cloud Storage", "dbt"],
-    features: [
-      { icon: "layers", title: "Layered Schema", desc: "Raw → staging → marts BigQuery schema. dbt transformations with full lineage." },
-      { icon: "cpu", title: "Cloud Run ETL", desc: "Containerized Python ETL jobs run on Cloud Run — serverless, scalable, zero idle cost." },
-      { icon: "database", title: "BigQuery Warehouse", desc: "Partitioned and clustered BigQuery tables for cost-efficient analytics queries." },
-      { icon: "code", title: "Terraform IaC", desc: "All GCP resources defined in Terraform. Reproducible infra from scratch in minutes." }
-    ],
-    architecture: [
-      { step: "01", label: "Extract", desc: "TheCocktailDB API → Cloud Run job → Cloud Storage landing zone" },
-      { step: "02", label: "Load", desc: "GCS → BigQuery raw tables with schema enforcement" },
-      { step: "03", label: "Transform", desc: "dbt models: staging → intermediate → marts" },
-      { step: "04", label: "Deploy", desc: "Terraform provisions all GCP resources. Cloud Run handles execution." }
-    ],
-    cost: "GCP free tier for dev. Cloud Run + BigQuery costs scale to $0 at low volume.",
-    phase: null
-  },
-
-  {
-    slug: "ai-bi-agent",
-    title: "AI BI Agent",
-    tagline: "BI automation with RAG, ChromaDB, and natural language queries over business data.",
-    lane: "GenAI",
-    laneColor: "#7bb3d9",
-    status: "Production",
-    github: "https://github.com/anix-lynch/ai-bi-agent",
-    live: "https://ai-bi-agent.streamlit.app",
-    gif: "/bi_agent.gif",
-    icon: "bar-chart",
-    description: "Business intelligence agent that lets you query your data in plain English using RAG over a ChromaDB vector store. Ask questions like 'which products drove Q3 growth?' and get SQL-backed answers with chart generation — no BI tool required.",
-    highlight: "Skip the BI tool. Ask your data questions in English. Get SQL-backed answers with charts.",
-    stats: [
-      { value: "NL", label: "Natural Language" },
-      { value: "RAG", label: "Retrieval" },
-      { value: "ChromaDB", label: "Vector Store" },
-      { value: "Auto", label: "Chart Gen" }
-    ],
-    stack: ["Python", "LangChain", "ChromaDB", "Streamlit", "Pandas", "DuckDB", "Plotly", "OpenAI"],
-    features: [
-      { icon: "search", title: "NL to SQL", desc: "Natural language query → RAG retrieval of schema context → SQL generation → execution." },
-      { icon: "database", title: "ChromaDB Context", desc: "Business glossary, schema metadata, and query examples stored in ChromaDB for retrieval." },
-      { icon: "bar-chart", title: "Auto Chart Gen", desc: "Results automatically visualized with Plotly. Picks chart type based on result shape." },
-      { icon: "cpu", title: "LangChain Agent", desc: "ReAct agent handles multi-step queries: join, filter, aggregate — all from one natural language request." }
-    ],
-    architecture: [
-      { step: "01", label: "Query", desc: "User question → LangChain agent + ChromaDB schema retrieval" },
-      { step: "02", label: "Generate", desc: "LLM generates SQL using retrieved schema context" },
-      { step: "03", label: "Execute", desc: "DuckDB executes SQL → structured result set" },
-      { step: "04", label: "Visualize", desc: "Plotly auto-generates chart → Streamlit renders answer" }
-    ],
-    cost: "OpenAI API minimal per query. All other components free.",
-    phase: null
-  },
-
-  {
-    slug: "kpi-evidence",
-    title: "KPI Evidence Store",
-    tagline: "Hallucination rate, latency, task success and data quality dashboards for 13 production AI systems.",
-    lane: "GenAI",
-    laneColor: "#7bb3d9",
-    status: "Production",
-    github: "https://github.com/anix-lynch/kpi-evidence",
-    live: null,
-    gif: null,
-    icon: "activity",
-    description: "Centralized KPI evidence store tracking production metrics across 13 AI systems: hallucination rates, p50/p95 latency, task success rates, and data quality scores. Designed as a credibility layer — every claim in a resume bullet has a source record here.",
-    highlight: "Every metric is sourced. This repo exists so 'I improved latency by 40%' has an audit trail.",
-    stats: [
-      { value: "13", label: "AI Systems Tracked" },
-      { value: "Halluc.", label: "Rate Monitoring" },
-      { value: "p95", label: "Latency Benchmarks" },
-      { value: "Audit", label: "Trail for Claims" }
-    ],
-    stack: ["Python", "DuckDB", "Pandas", "Evidence.dev", "SQL", "Markdown", "GitHub Actions"],
-    features: [
-      { icon: "activity", title: "Hallucination Tracking", desc: "Per-system hallucination rates measured with Ragas + manual spot checks. Trend over time." },
-      { icon: "zap", title: "Latency Benchmarks", desc: "p50/p95/p99 latency for each AI system. Before/after for every optimization." },
-      { icon: "target", title: "Task Success Rates", desc: "Agent task completion rates, retry counts, fallback triggers per system." },
-      { icon: "database", title: "Data Quality Scores", desc: "Python + dbt custom validators tracking data quality across pipeline stages." }
-    ],
-    architecture: [
-      { step: "01", label: "Capture", desc: "OpenTelemetry spans + custom metrics → DuckDB evidence store" },
-      { step: "02", label: "Validate", desc: "Custom Python + dbt test assertions run on each metric batch" },
-      { step: "03", label: "Report", desc: "Evidence.dev dashboard renders KPI trends from SQL queries" },
-      { step: "04", label: "Audit", desc: "Each resume bullet links to a specific KPI record in this store" }
-    ],
-    cost: "Free. DuckDB + Evidence.dev + GitHub Actions all free tier.",
     phase: null
   },
 
   {
     slug: "pied-piper-legal",
     title: "Pied Piper Legal Simulator",
-    tagline: "LLM-powered legal document simulator inspired by Silicon Valley's Pied Piper compression drama.",
+    tagline: "Read a term sheet like a senior analyst — Gemini cites the clause, scores who it favors, and names the Silicon Valley episode it mirrors.",
     lane: "GenAI",
+    tags: ["GenAI", "Cloud"],
+    cloud: "Vertex",
     laneColor: "#7bb3d9",
-    status: "Experimental",
+    status: "Production",
     github: "https://github.com/anix-lynch/pied-piper-legal-simulator",
-    live: "https://public-ndx6vbur4-anix-lynchs-projects.vercel.app",
+    live: "https://pied-piper-advisor-819957310168.us-west1.run.app",
     gif: "/piedpiper.gif",
     icon: "file-text",
-    description: "A GenAI simulator that generates legal documents, term sheets, and IP disputes in the style of the Silicon Valley TV show's Pied Piper storyline. Uses LLMs to draft fictional but structurally accurate VC term sheets, NDAs, and court filings for educational purposes.",
-    highlight: "What if LLMs could simulate an entire startup legal drama? This tests the boundaries of structured legal document generation.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "LLM", label: "Doc Generation" },
-      { value: "VC", label: "Term Sheets" },
-      { value: "NDA", label: "Legal Templates" },
-      { value: "IP", label: "Dispute Simulation" }
+      { value: "📜 57", label: "Clauses grounded" },
+      { value: "🎬 19", label: "Silicon Valley episodes" },
+      { value: "🔖 [id]", label: "Every answer cited" },
+      { value: "🤖 2.5 Flash", label: "Gemini on Vertex" }
     ],
-    stack: ["Python", "LangChain", "OpenAI", "Streamlit", "Jinja2", "Pydantic"],
-    features: [
-      { icon: "file-text", title: "Term Sheet Generator", desc: "Structured VC term sheets with configurable valuation, liquidation prefs, and pro-rata rights." },
-      { icon: "shield", title: "NDA Simulator", desc: "Mutual and one-way NDAs with jurisdiction-aware clause selection." },
-      { icon: "cpu", title: "IP Dispute Engine", desc: "Simulates IP dispute scenarios with competing claims, prior art arguments, and settlement terms." },
-      { icon: "bot", title: "LLM Grounding", desc: "All generated docs grounded with structured schemas — reduces hallucination in legal clause generation." }
-    ],
-    architecture: [
-      { step: "01", label: "Template", desc: "Jinja2 legal templates define document structure and required fields" },
-      { step: "02", label: "Generate", desc: "LLM fills clauses within schema constraints — structured output enforced" },
-      { step: "03", label: "Validate", desc: "Pydantic models validate each generated document against expected structure" },
-      { step: "04", label: "Export", desc: "Streamlit UI → download as formatted Markdown or plain text" }
-    ],
-    cost: "OpenAI API minimal per document. Free otherwise.",
-    phase: null
-  },
-
-  {
-    slug: "healthcare-analytics-portfolio",
-    title: "Healthcare Analytics Portfolio",
-    tagline: "Full-stack healthcare analytics: FastAPI, dbt-Fabric, semantic model, MLflow — interview-grade artifacts.",
-    lane: "Data Eng",
-    laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/healthcare-analytics-portfolio",
-    live: null,
-    gif: "/healthcare-da.png",
-    icon: "heart",
-    description: "Comprehensive healthcare analytics portfolio demonstrating the full modern data stack for healthcare: FastAPI data services, dbt models on Microsoft Fabric, a semantic model layer, and MLflow for experiment tracking. Built to interview-ready production standard.",
-    highlight: "Every layer of the modern healthcare data stack — API, transformation, semantic model, ML tracking — in one portfolio.",
-    stats: [
-      { value: "FastAPI", label: "Data Services" },
-      { value: "dbt", label: "Fabric Models" },
-      { value: "MLflow", label: "Experiment Tracking" },
-      { value: "Semantic", label: "Model Layer" }
-    ],
-    stack: ["Python", "FastAPI", "dbt", "Microsoft Fabric", "MLflow", "Pydantic", "SQL", "Azure"],
-    features: [
-      { icon: "zap", title: "FastAPI Services", desc: "REST APIs for clinical data access with Pydantic validation and OpenAPI docs." },
-      { icon: "layers", title: "dbt on Fabric", desc: "dbt transformation models running on Microsoft Fabric — modern lakehouse pattern." },
-      { icon: "cpu", title: "Semantic Model", desc: "Business-logic layer decoupling BI queries from raw SQL. Self-service analytics ready." },
-      { icon: "activity", title: "MLflow Tracking", desc: "Experiment tracking for clinical ML models: params, metrics, artifacts, model registry." }
-    ],
-    architecture: [
-      { step: "01", label: "Ingest", desc: "Clinical data → Microsoft Fabric lakehouse via Python pipelines" },
-      { step: "02", label: "Transform", desc: "dbt models on Fabric: staging → marts → semantic layer" },
-      { step: "03", label: "Serve", desc: "FastAPI services expose semantic model to downstream consumers" },
-      { step: "04", label: "Track", desc: "MLflow logs all model experiments, metrics, and artifacts" }
-    ],
-    cost: "Microsoft Fabric trial + MLflow open source.",
+    stack: ["Python", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "RAG", "Cloud Run", "Docker"],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Google the term sheet",
+        flow: ["Term sheet", "Google the clause", "Generic blog post", "Still unsure who wins"],
+        problems: [
+          "A blog post about 'liquidation preference' isn't YOUR clause.",
+          "No read on who the term actually favors — founder or VC.",
+          "No citation, so you can't trust or check the answer.",
+          "Intimidating for a new analyst staring at unfamiliar legalese."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Grounded clause advisor",
+        flow: ["Ask a term", "Retrieve the clause", "Gemini grounds + cites", "Know who it favors"],
+        built: [
+          {
+            title: "Who Wins?",
+            desc: "Every clause gets a founder-vs-VC risk read and the direction it pushes fund returns — not just a definition."
+          },
+          {
+            title: "Cite or Shut Up",
+            desc: "Each answer points to a real [clause_id] from the 57-clause library. No hand-waving, every claim traceable."
+          },
+          {
+            title: "TV Translator",
+            desc: "Links each conflict to the Silicon Valley episode it mirrors, so the legal drama actually sticks."
+          },
+          {
+            title: "Right-Sized Retrieval",
+            desc: "DIY retrieval matched to a 57-clause corpus — no managed index. Same grounded-RAG pattern as the healthcare service, retargeted to legal/VC."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
+    cost: "Vertex Gemini draws the GCP GenAI credit. Cloud Run scales to zero.",
     phase: null
   },
 
   {
     slug: "financial-modeling-automation",
     title: "Financial Modeling Automation",
-    tagline: "PE/VC financial modeling automation — VC cap tables + LP/GP fund economics with Python.",
+    tagline: "Fund economics that don't break at 2am — VC cap tables + LP/GP waterfalls in version-controlled Python, not a fragile spreadsheet.",
     lane: "Data Eng",
+    tags: ["Automation"],
     laneColor: "#c4a8d8",
     status: "Production",
     github: "https://github.com/anix-lynch/financial-modeling-automation",
     live: "https://huggingface.co/spaces/anixlynch/financial-modeling-automation",
     gif: "/excel-automation.gif",
     icon: "trending-up",
-    description: "Python automation for PE/VC financial modeling: VC cap table generation, LP/GP fund economics calculations, carried interest waterfalls, and scenario analysis. Replaces manual Excel modeling with reproducible, version-controlled Python that runs in seconds.",
-    highlight: "VC cap tables and fund economics in Python. Reproducible, version-controlled, and 100× faster than Excel.",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "VC", label: "Cap Tables" },
-      { value: "LP/GP", label: "Fund Economics" },
-      { value: "Carry", label: "Waterfall Calc" },
-      { value: "Python", label: "Not Excel" }
+      { value: "⚡ 100×", label: "Faster than Excel" },
+      { value: "🧾 VC", label: "Cap tables" },
+      { value: "💧 Carry", label: "Waterfall calc" },
+      { value: "🔁 100+", label: "Scenarios in seconds" }
     ],
     stack: ["Python", "Pandas", "NumPy", "openpyxl", "Plotly", "Jupyter", "DuckDB"],
-    features: [
-      { icon: "trending-up", title: "Cap Table Engine", desc: "Full VC cap table: pre/post-money, pro-rata, anti-dilution, option pool shuffle — all automated." },
-      { icon: "database", title: "Fund Economics", desc: "LP/GP economics: management fees, carried interest, hurdle rates, preferred return calculations." },
-      { icon: "layers", title: "Waterfall Model", desc: "Carry distribution waterfall for multiple fund scenarios with European vs American waterfall options." },
-      { icon: "bar-chart", title: "Scenario Analysis", desc: "Run 100+ exit scenarios in seconds. Plotly visualizations for LP reports and IC presentations." }
-    ],
-    architecture: [
-      { step: "01", label: "Input", desc: "Fund terms + portfolio companies → structured Python dataclasses" },
-      { step: "02", label: "Model", desc: "Cap table engine + economics calculator → scenario matrix" },
-      { step: "03", label: "Waterfall", desc: "Carry distribution engine with configurable waterfall structure" },
-      { step: "04", label: "Report", desc: "Plotly charts + openpyxl Excel export for LP/IC presentations" }
-    ],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Excel by hand",
+        flow: ["Fund terms", "Manual Excel", "Copy-paste cells", "Breaks at 2am"],
+        problems: [
+          "One wrong cell silently breaks the whole carry waterfall.",
+          "Not version-controlled — no diff, no review, no audit trail.",
+          "Can't rerun 100 exit scenarios without rebuilding the sheet.",
+          "The model lives in one person's head and one fragile file."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Python fund engine",
+        flow: ["Fund terms", "Python model", "Scenario matrix", "LP-ready report"],
+        built: [
+          {
+            title: "Cap Table Engine",
+            desc: "Pre/post-money, pro-rata, anti-dilution, option-pool shuffle — all automated, no fragile linked cells."
+          },
+          {
+            title: "Waterfall Calc",
+            desc: "Carried-interest distribution for European vs American waterfalls, reproducible on every run."
+          },
+          {
+            title: "100 Scenarios, Seconds",
+            desc: "Run 100+ exit scenarios in seconds, with Plotly charts ready for the LP report or IC deck."
+          },
+          {
+            title: "Version-Controlled Math",
+            desc: "Every assumption lives in git — diff it, review it, trust it. Not a mystery spreadsheet."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
     cost: "Free. Pure Python.",
     phase: null
   },
 
   {
-    slug: "marketing-analytics-etl",
-    title: "Marketing Analytics ETL",
-    tagline: "Marketing analytics dashboard with real-time KPIs, campaign tracking, and cross-platform attribution.",
+    slug: "healthcare-ai-data-engineer",
+    title: "Healthcare AI Data Engineer",
+    tagline: "The part of healthcare AI nobody sees until it breaks — a trusted BigQuery backbone where bad rows stop early, every number has a receipt, and the agent reads the clean layer.",
     lane: "Data Eng",
+    tags: ["Data Eng", "Cloud"],
+    cloud: "Vertex",
     laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/marketing-analytics-etl",
-    live: "https://marketing-analytics-etl.streamlit.app/",
-    gif: "/marketing_etl.gif",
-    icon: "bar-chart",
-    description: "Professional marketing analytics ETL pipeline with a live Streamlit dashboard. Ingests TheCocktailDB data as a proxy for marketing events, transforms via DuckDB, and renders KPIs, campaign performance, and cross-platform attribution in an ECharts-powered UI.",
-    highlight: "The only project in this portfolio with a public live demo. Click the button.",
+    status: "Proof of Work",
+    github: "https://github.com/anix-lynch/healthcare-ai-data-engineer",
+    live: null,
+    dataDocs: "/dashboards/ge/",
+    gif: "/healthcare-ai-data-engineer.gif",
+    icon: "database",
+    description: null,
+    highlight: null,
     stats: [
-      { value: "Live", label: "Public Demo" },
-      { value: "ECharts", label: "Visualizations" },
-      { value: "DuckDB", label: "Analytics Engine" },
-      { value: "Real-time", label: "KPI Dashboard" }
+      { value: "🗄️ 3,000", label: "Real openFDA FAERS reports" },
+      { value: "💊 156", label: "Drugs tracked" },
+      { value: "🚨 51.27%", label: "Serious adverse events" },
+      { value: "🔖 [doc N]", label: "Grounded citations + refusal" }
     ],
-    stack: ["Python", "Streamlit", "ECharts", "Pandas", "DuckDB", "ETL"],
+    stack: ["Python", "dbt", "BigQuery", "Great Expectations", "Feast", "Cloud Scheduler", "Cloud Monitoring", "FastAPI", "Vertex AI", "Gemini 2.5 Flash", "BM25", "Pandas", "pytest", "Docker", "GCP Cloud Run", "GitHub Actions"],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Hope-Based Data",
+        flow: ["openFDA pull", "Cleanup scripts", "Tables look fine", "Dashboard + AI eat the mess"],
+        problems: [
+          "The data looks clean because nobody has shaken it hard enough. Duplicate report IDs and weird received-dates slide into the dashboard smiling.",
+          "Nobody can tell if the data is actually fresh. A table can be stale while the page still looks freshly baked.",
+          "Failures go quiet. The pipeline can die in the back room while the dashboard keeps serving confident numbers.",
+          "The metrics look polished, but there is no receipt. A manager asks where a number came from and everyone turns to a script like it is a fortune teller.",
+          "The agent sees more raw adverse-event detail than it should — free-text narrative and unredacted fields. That is not a feature; it is a privacy incident waiting for better lighting.",
+          "The team finds out after users complain. There is no real gate, just a well-dressed README and hope."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Data With Receipts",
+        flow: ["BigQuery load", "dbt medallion", "Quality gates", "Grounded answer"],
+        built: [
+          {
+            title: "Bad Rows Stop At The Door",
+            desc: "Duplicates, broken received-dates, missing fields, and drug-name drift are caught and quarantined before they can poison the dashboard or the agent."
+          },
+          {
+            title: "Self-Healing — Detect → Recover → Verify",
+            desc: "An independent watchdog reads the durable BigQuery run-ledger, detects a stale end-to-end run, runs a bounded recovery (re-ingest → quarantine → gates → GE → dbt → freshness) against BigQuery, and advances the ledger watermark ONLY after verification passes — proven: a forced-stale run recovered + verified in ~134s and moved the watermark, while a failed recovery escalates and leaves it untouched."
+          },
+          {
+            title: "Failures Get Loud Early",
+            desc: "Great Expectations, custom checks, and CI make breakage show up before a user trusts the wrong number."
+          },
+          {
+            title: "Every Metric Has A Receipt",
+            desc: "Cockpit numbers trace back to committed files, BigQuery tables, quality reports, or live API payloads. Not trust-me math."
+          },
+          {
+            title: "The Agent Reads The Clean Layer",
+            desc: "/api/ask retrieves the redacted corpus (BM25), answers with [doc N] citations, and refuses when the evidence isn't there — verified: a grounded run cites a real report and an out-of-evidence question is declined, instead of crawling raw adverse-event narratives."
+          },
+          {
+            title: "Features Are Discoverable + Leak-Free (Feast)",
+            desc: "A Feast feature view (openfda_drug_features, 4 features) over the openFDA fact — discoverable in the registry, with point-in-time-correct historical retrieval and online serving, so the model and any downstream consumer pull the same governed features without future leakage."
+          },
+          {
+            title: "BigQuery Does More Than Store Boxes",
+            desc: "Partitioning and clustering cut scan size, materialized views pre-compute the hot path, and idempotent MERGE proves reruns do not duplicate the mart."
+          },
+          {
+            status: "MEASURED",
+            title: "Batch + Event-Driven Ingestion",
+            desc: "openFDA's source is batch; a native Pub/Sub→BigQuery path ingests records as an event-driven feed (replay), proving the streaming architecture without a live-stream claim or a money leak."
+          },
+          {
+            title: "Governed + Least-Privilege, Proven",
+            desc: "Row counts reconcile source → BigQuery on every load; a versioned data contract, audit ledger, column masking, and retention/deletion cover the lifecycle. Least-privilege is proven empirically: a restricted identity reads the reduced 5-column authorized view (300 rows) but is DENIED 403 on the full base table."
+          },
+          {
+            title: "Releases Face A Gate",
+            desc: "If quality, retrieval, grounding, or cost discipline regresses, the release should fail before a human has to smell smoke."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
+    cost: "$0 at portfolio traffic — Cloud Run scales to zero, BigQuery stays in free tier, Vertex draws the GCP GenAI credit.",
+    phase: "Phase 1-6 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
+  },
+
+    {
+    slug: "healthcare-forward-deployed-engineer",
+    title: "Healthcare Forward Deployed Engineer",
+    tagline: "Built the forward-deployed handoff layer for hospital-safe AI triage — 21 acceptance tests, forced human review on high-risk cases, and a deployment package built to hand off.",
+    lane: "Forward Deployed",
+    tags: ["Solutions", "Cloud"],
+    cloud: "Vertex",
+    laneColor: "#e8a87c",
+    status: "Production",
+    github: "https://github.com/anix-lynch/healthcare-forward-deployed-engineer",
+    live: "https://healthcare-fde-2ihyeqmb6q-uw.a.run.app/",
+    gif: "/healthcare-fde.png",
+    icon: "shield",
+    description: null,
+    highlight: null,
+    stats: [
+      { value: "🛡️ 21", label: "Contract tests — all pass" },
+      { value: "⚡ 39 ms", label: "/v1/ask p50" },
+      { value: "🛑 HITL gate", label: "Stop before harm" },
+      { value: "📦 Handoff ready", label: "Runbook + deploy plan" }
+    ],
+    stack: ["Python", "FastAPI", "LangGraph", "BM25", "Pydantic", "pytest", "OpenTelemetry", "Docker", "Cloud Run", "GitHub Actions", "Epic FHIR (mock)", "OAuth", "asciinema"],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Code with no handoff",
+        flow: ["Case arrives", "AI predicts ESI", "Nurse carries risk alone", "No proof loop"],
+        problems: [
+          "Model can predict the triage level, but there is no proof dangerous cases were blocked.",
+          "Nurse has no clean moment to sign off or override — she just gets a number.",
+          "Hospital cannot easily review who approved what decision, or when.",
+          "Customer gets a model and a README, not an adoption package."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Hospital-ready handoff",
+        flow: ["Case arrives", "AI checks safety", "Nurse signs or overrides", "Audit proves it", "Hospital can hand off"],
+        built: [
+          {
+            title: "Safety Gate",
+            desc: "21 contract tests: pediatric floor, chest-pain routing, suicidal ideation forced-review, sepsis SIRS shape, weak-evidence override, p95 latency cap. All 21 must pass — or the deployment is not ready."
+          },
+          {
+            title: "Human Decision",
+            desc: "High-risk cases pause. The AI does not just flag — it stops and waits for a nurse to sign or override before anything is written back to the patient record."
+          },
+          {
+            title: "Audit Proof",
+            desc: "Each decision stamps what the model decided, confidence score, and latency. PHI goes to a restricted archive, metadata to the cloud index. If the archive write fails, the system screams."
+          },
+          {
+            title: "Handoff Package",
+            desc: "Runbook, deployment plan, smoke-test suite, ownership guide. What the hospital actually needs to keep this running without the engineer on call."
+          },
+          {
+            title: "Business Target (90-day)",
+            desc: "Target, not achieved outcome: reduce triage-to-first-clinician contact by 15 minutes. Keep down-triage rate below 2%. These are the acceptance criteria in the customer contract — not measured results from a live deployment."
+          }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
+    cost: "Free. Cloud Run scale-to-zero, well under monthly free tier at portfolio traffic.",
+    phase: "Phase 1-8 audit trail in ROADMAP.md — each phase has the commit hash that shipped it."
+  },
+  {
+    slug: "healthcare-ai-data-engineer",
+    title: "Healthcare AI Data Platform",
+    tagline: "B1→B5 trust layer: ingest, validate, reason, survive, govern. Every number traces to a file.",
+    lane: "AI Data Eng",
+    laneColor: "#5FA978",
+    status: "Production",
+    github: "https://github.com/anix-lynch/healthcare-ai-data-engineer",
+    live: "https://healthcare-ai-data-819957310168.us-west1.run.app/app",
+    storyboard: "https://healthcare-ai-data-819957310168.us-west1.run.app/storyboard",
+    gif: "/healthcare-ai-data-storyboard.gif",
+    icon: "layers",
+    description: "Production AI data platform for healthcare — 55,500+ encounter records through a 5-layer trust stack: ingestion (B1), truth contracts (B2), semantic knowledge products (B3), self-healing reliability (B4), and AI spend governance with Vertex Context Caching (B5). Zero data-quality violations reached AI-facing endpoints across 1,000 fault-injection runs. 59.3% AI inference cost reduction via novelty-driven attention routing.",
+    highlight: "B1→B5: every record earns its way to Baymax. Bad data is quarantined before AI sees it. Good data gets the right compute budget. Fully auditable.",
+    stats: [
+      { value: "55.5K", label: "Records Ingested" },
+      { value: "0", label: "Violations to AI Layer" },
+      { value: "59.3%", label: "AI Cost Reduction" },
+      { value: "99.0%", label: "Pipeline Success Rate" }
+    ],
+    stack: ["Python", "BigQuery", "dbt", "Feast", "FastAPI", "Vertex AI", "Gemini", "GCP", "Cloud Run", "Great Expectations"],
     features: [
-      { icon: "zap", title: "Live Demo", desc: "Publicly deployed on Streamlit Cloud. See the full dashboard without any setup." },
-      { icon: "bar-chart", title: "ECharts Viz", desc: "Apache ECharts for interactive charts — funnel, bar, line, scatter, all responsive." },
-      { icon: "database", title: "DuckDB Analytics", desc: "In-process analytics engine. Sub-second aggregations over marketing event tables." },
-      { icon: "layers", title: "Attribution Model", desc: "First-touch, last-touch, and linear attribution models computed in DuckDB SQL." }
+      { icon: "layers", title: "B1: Trusted Ingestion", desc: "55.5K records, 100% source-to-warehouse reconciliation. Entity resolution to 40,235 canonical patients. Domain-specific plausibility contracts (CLINICAL-002) quarantine impossible records before they reach AI." },
+      { icon: "shield", title: "B2: Truth Contracts", desc: "7 named truth contracts (6 BLOCKING), 48/48 GE checks, 52/52 dbt tests. Zero data-quality violations reached AI-facing endpoints across 1,000 fault-injection runs." },
+      { icon: "cpu", title: "B3: Semantic Knowledge Products", desc: "4 versioned semantic profiles (PatientProfile, RiskProfile, MedicationProfile, EncounterSummary). BM25 RAG retrieval: Hit@5=0.95, MRR=0.90, NDCG@10=0.89. Grounded answers verified by Vertex Gen AI Eval." },
+      { icon: "zap", title: "B4: Self-Healing Reliability", desc: "99.0% pipeline success, 90% auto-recovery rate, 99.9% SLA compliance. 9-class failure taxonomy. Stale data incidents = 0 across 1,000 seeded fault-injection runs." },
+      { icon: "target", title: "B5: AI Spend Governance", desc: "novelty_score (text-embedding-004 kNN) drives 89% of PRO-tier routing decisions. Vertex Context Caching: 61.7% per-call cost reduction (measured via count_tokens API). 59.3% cost savings vs naive all-Pro routing across 401 encounters." }
     ],
     architecture: [
-      { step: "01", label: "Extract", desc: "TheCocktailDB API → pandas raw DataFrames" },
-      { step: "02", label: "Transform", desc: "DuckDB SQL → KPI aggregations, attribution calculations" },
-      { step: "03", label: "Load", desc: "In-memory DuckDB → Streamlit session state" },
-      { step: "04", label: "Visualize", desc: "ECharts components render live, interactive marketing dashboard" }
+      { step: "01", label: "B1 Capture", desc: "Batch + stream + API ingestion → idempotent BigQuery merge → entity resolution → plausibility contracts quarantine impossible records" },
+      { step: "02", label: "B2 Trust", desc: "7 named truth contracts → 48 GE checks → 52 dbt tests → promotion gate blocks every CRITICAL fault before the agent layer" },
+      { step: "03", label: "B3 Understand", desc: "4 semantic knowledge products → Feast PIT-correct feature store → BM25 retrieval → Vertex Gemini grounded answers" },
+      { step: "04", label: "B4+B5 Govern", desc: "Self-healing orchestration + novelty_score attention routing + Vertex Context Caching → fully auditable inference budget decisions" }
     ],
-    cost: "Free. Streamlit Cloud free tier.",
+    cost: "GCP credit (Cloud Run + BigQuery + Vertex AI). Scale-to-zero = $0 idle.",
     phase: null
   }
+
 ];

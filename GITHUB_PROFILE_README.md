@@ -98,6 +98,48 @@ AI Data Engineer specializing in **multi-cloud ETL pipelines** (AWS, Azure, GCP)
 
 **[🌐 View Full Portfolio →](https://gozeroshot.dev/)**
 
+---
+
+### 🏥 Healthcare AI Trifecta — three roles, three live Cloud Run services, one coherent stack
+
+The same 497-row enriched healthcare corpus serves three different role lenses. Each repo is independently deployable + tested + audited + line-level-reviewed twice (Cowork verdict + Comet hiring scorecard). Live demos hit Cloud Run in `bchan-genai-lab`; CI runs on every PR.
+
+#### A. Healthcare GenAI Engineer | [Live Demo](https://healthcare-genai-2ihyeqmb6q-uw.a.run.app) | [Code](https://github.com/anix-lynch/healthcare-genai-engineer)
+
+**Purpose:** End-to-end healthcare RAG service with hybrid retrieval (BM25 + dense MiniLM + RRF), citation-grounded answers, PII guardrails, and a CI regression gate.
+
+**Key Features:**
+- **Hybrid retrieval from scratch:** Okapi BM25 (k1=1.5 / b=0.75) + dense sentence-transformers MiniLM + RRF fusion (k=60, Cormack & Buettcher). Swap method via query param.
+- **PII + injection guardrails:** Input: sanitize · injection regex · token cap. PII masker covers SSN, phone, email, CC, MRN, DOB. Output: citation valid · length · forbidden-action.
+- **Citation-grounded answers:** Every claim cites a retrieved source_id. Deterministic template baseline; LLM path behind USE_LLM flag (Anthropic or OpenAI), falls back on provider error.
+- **Regression gate in CI:** 20-query golden set + custom-proxy faithfulness/relevance + baseline.json snapshot. `make gate` exits 1 on metric drop past tolerance.
+
+---
+
+#### B. Healthcare AI Data Engineer | [Live Demo](https://healthcare-ai-data-2ihyeqmb6q-uw.a.run.app) | [Code](https://github.com/anix-lynch/healthcare-ai-data-engineer)
+
+**Purpose:** L1 data backbone that the GenAI layer consumes — dbt medallion (bronze→silver→gold) + FastAPI 11 endpoints + Vertex AI enrichment + 7-check quality gate.
+
+**Key Features:**
+- **dbt medallion star schema:** `fact_patient_encounters` + 7 dim_* with full schema.yml (not_null + unique + relationships FK + accepted_values for clinical enums).
+- **7-check L1 quality gate:** schema_drift · critical_nulls · duplicate_encounters · temporal_sanity · pii_in_narrative · patient_identity · audit_lineage. Runs in CI on every PR, exits 1 on failure.
+- **Vertex AI enrichment shipped:** gemini-2.5-flash + response_schema → 100% JSON parse on 497 rows. CC/HPI/vitals/labs/ESI generated for $0.25 total. Scales to 1M rows ≈ $500.
+- **Patient identity bridge:** 55K encounters → 40,235 unique patients via SHA256 short hash. Catches the cross-patient leak vector that breaks naive eval setups.
+
+---
+
+#### C. Healthcare Forward Deployed Engineer | [Live Demo](https://healthcare-fde-2ihyeqmb6q-uw.a.run.app) | [Code](https://github.com/anix-lynch/healthcare-forward-deployed-engineer)
+
+**Purpose:** Customer-deployable ER triage assistant — the full "make AI work inside a messy enterprise" loop, not just the model internals.
+
+**Key Features:**
+- **Customer-contract acceptance gate:** 8 tests (NOT ML metrics) — pediatric < 1y safety floor · chest-pain + diaphoresis · sepsis SIRS (qSOFA-shaped) · suicidal ideation · altered mental status · p95 < 800ms · p99 < 2000ms · response shape complete. Each maps to `eval_dataset.json` with a named customer owner.
+- **Runbook + postmortem discipline:** P0/P1/P2/P3 alert ladder with paging windows + exact curl commands. Two postmortems (one real-shaped integration failure + one brief↔code drift audit finding) using the same template.
+- **Split-sink HIPAA-aligned logging:** `audit.jsonl` (metadata only, safe for cloud index + stdout) vs `phi_archive.jsonl` (full payload, restricted volume, NO stdout mirror). Fail-LOUD on archive write failure (compliance event).
+- **Fail-closed admin auth:** `POST /admin/mode` requires bearer token (hmac.compare_digest, timing-safe). Token unset → 503. Explicit `ADMIN_AUTH_DISABLED=1` escape hatch for dev only.
+
+---
+
 ### 1. Mocktailverse: Enterprise GenAI Platform | [Live Demo](https://dgco3hhxo94y8.cloudfront.net) | [Code](https://github.com/anix-lynch/mocktailverse-bedrock)
 
 **Purpose:** Production-ready GenAI data engineering platform demonstrating enterprise-grade AWS Bedrock integration for real-world AI applications.

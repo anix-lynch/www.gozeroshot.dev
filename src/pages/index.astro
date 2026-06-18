@@ -3,23 +3,35 @@ import Layout from '../components/Layout.astro';
 import Sidebar from '../components/Sidebar.astro';
 import { projects } from '../data/projects-detailed.js';
 
-// Hand-picked featured — one per lane, all have GIFs
-const featuredSlugs = ["ai-job-intelligence", "mocktailverse-bedrock", "churn-ml-pipeline", "healthcare-analytics-fabric"];
+// Hand-picked featured — northstar first, then one per lane
+const featuredSlugs = ["healthcare-ai-platform-signals", "healthcare-ai-data-engineer", "healthcare-genai-engineer", "healthcare-forward-deployed-engineer", "healthcare-analytics-fabric", "mocktailverse-bedrock"];
 const featured = featuredSlugs.map(slug => projects.find(p => p.slug === slug)).filter(Boolean);
 
+const tagsOf = (p) => (p.tags && p.tags.length ? p.tags : [p.lane]);
+const beforeLabel = (p) => p.beforeAfter?.before?.badge || p.beforeAfter?.before?.title || "Before";
+const afterLabel = (p) => p.beforeAfter?.after?.badge || p.beforeAfter?.after?.title || "After";
+
 const laneColors = {
-  "GenAI":    { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
-  "n8n":      { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
-  "Data Eng": { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
-  "ML":       { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
+  "GenAI":      { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
+  "Data Eng":   { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
+  "AI Platform":      { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
+  "Automation": { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
+  "Cloud":      { bg: "#e6f2f2", text: "#2a7a7a", border: "rgba(90,139,139,0.4)" },
+  "Solutions":  { bg: "#fbeee6", text: "#a85a2a", border: "rgba(217,139,111,0.4)" },
 };
 
 const laneThumbBg = {
-  "GenAI":    "#ddeef8",
-  "n8n":      "#fdf6d8",
-  "Data Eng": "#ece6f8",
-  "ML":       "#dff5e5",
+  "GenAI":      "#ddeef8",
+  "Data Eng":   "#ece6f8",
+  "AI Platform":      "#dff5e5",
+  "Automation": "#fdf6d8",
+  "Cloud":      "#dceeee",
+  "Solutions":  "#f6e4d8",
 };
+
+const navLanes = ["GenAI", "Data Eng", "AI Platform", "Automation", "Cloud", "Solutions"];
+const laneIcons = { "GenAI": "bot", "Data Eng": "database", "AI Platform": "activity", "Automation": "workflow", "Cloud": "layers", "Solutions": "heart" };
+const laneCounts = navLanes.reduce((a, l) => { a[l] = projects.filter(p => tagsOf(p).includes(l)).length; return a; }, {});
 
 const svgPaths = {
   cpu:           `<path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 1-2-2V9m0 0h18"/>`,
@@ -34,6 +46,9 @@ const svgPaths = {
   "file-text":   `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>`,
   "external-link": `<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>`,
   "arrow-right": `<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>`,
+  bot:           `<rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/>`,
+  heart:         `<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>`,
+  cloud:         `<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>`,
 };
 
 function icon(name, size = 18) {
@@ -44,7 +59,7 @@ function icon(name, size = 18) {
 
 <Layout
   title="Anix Lynch — AI Data Engineer & GenAI Architect"
-  description="Production AI and data engineering systems. Ragas 0.92 faithfulness, 24 Python + dbt data quality checks, 14-tool MCP orchestration. Built in LA."
+  description="Production AI and data engineering systems — grounded RAG, dbt-on-BigQuery warehouses, and cloud deploys, each traceable to its repo. Built in LA."
   image="/profile-photo.jpg"
 >
   <div class="app-shell">
@@ -52,7 +67,7 @@ function icon(name, size = 18) {
       name="Anix Lynch"
       tagline={"AI Data Engineer · GenAI Architect\nLos Angeles, CA"}
       avatar="/profile-photo.jpg"
-      about="Self-taught AI engineer. Microsoft Fabric, Power BI (TMDL), dbt, and Python data products. 4 sprint lanes: AI-DE, GenAI/Agent, DevRel, n8n. Ex-VC turned builder."
+      about="Most AI projects fail before the model. I build the systems that connect trusted data, meaningful signals, AI workflows, and human adoption — Truth → Context → Signals → Actions → Adoption."
       social={{
         github:    "https://github.com/anix-lynch",
         linkedin:  "https://linkedin.com/in/anixlynch",
@@ -72,45 +87,33 @@ function icon(name, size = 18) {
       <!-- Page header -->
       <div class="page-header">
         <div>
-          <h1 class="page-title">Portfolio</h1>
           <p class="page-sub">Production AI systems — real evals, real costs, traceable to code.</p>
         </div>
         <a href="/projects" class="btn-browse">
           <Fragment set:html={icon('layers', 15)} />
-          All {projects.length} projects
+          Proof of Work
         </a>
       </div>
 
-      <!-- Proof numbers -->
-      <div class="proof-row">
-        <div class="proof-pill">
-          <span class="proof-val">0.92</span>
-          <span class="proof-lbl">Ragas faithfulness</span>
-        </div>
-        <div class="proof-pill">
-          <span class="proof-val">24</span>
-          <span class="proof-lbl">Python + dbt DQ checks</span>
-        </div>
-        <div class="proof-pill">
-          <span class="proof-val">14</span>
-          <span class="proof-lbl">MCP tools</span>
-        </div>
-        <div class="proof-pill">
-          <span class="proof-val">$1–2</span>
-          <span class="proof-lbl">/mo serverless</span>
-        </div>
-        <div class="proof-pill">
-          <span class="proof-val">124</span>
-          <span class="proof-lbl">Medium articles</span>
-        </div>
+      <!-- Lane filter (jumps to the full filtered grid) -->
+      <div class="lane-nav">
+        <a href="/projects" class="lane-chip">All <span class="lane-chip-n">{projects.length}</span></a>
+        {navLanes.map(lane => (
+          <a href={`/projects?lane=${encodeURIComponent(lane)}`} class="lane-chip"
+             style={`--c:${laneColors[lane].text};--bg:${laneColors[lane].bg};--bd:${laneColors[lane].border}`}>
+            <span class="lane-chip-i" set:html={icon(laneIcons[lane], 13)} />
+            {lane} <span class="lane-chip-n">{laneCounts[lane]}</span>
+          </a>
+        ))}
       </div>
 
       <!-- Featured projects -->
-      <div class="section-label">Featured Projects</div>
+      <div class="section-label">Featured Proof</div>
       <div class="project-grid">
         {featured.map(project => {
-          const lc = laneColors[project.lane] || laneColors["GenAI"];
-          const thumbBg = laneThumbBg[project.lane] || laneThumbBg["GenAI"];
+          const primary = tagsOf(project)[0];
+          const lc = laneColors[primary] || laneColors["GenAI"];
+          const thumbBg = laneThumbBg[primary] || laneThumbBg["GenAI"];
           return (
             <a
               href={`/projects/${project.slug}`}
@@ -135,8 +138,11 @@ function icon(name, size = 18) {
                   <div class="card-badges">
                     <span class="card-lane-badge"
                       style={`background:${lc.bg};color:${lc.text};border-color:${lc.border}`}>
-                      {project.lane}
+                      {primary}
                     </span>
+                    {project.cloud && (
+                      <span class="cloud-badge">☁ {project.cloud}</span>
+                    )}
                     {project.live && (
                       <span class="live-badge">
                         <span class="live-dot"></span>
@@ -149,6 +155,11 @@ function icon(name, size = 18) {
                 <div class="card-body">
                   <h2 class="card-title">{project.title}</h2>
                   <p class="card-desc">{project.tagline}</p>
+                  <div class="card-change" aria-label={`Before: ${beforeLabel(project)}. After: ${afterLabel(project)}.`}>
+                    <span class="card-change-before">{beforeLabel(project)}</span>
+                    <span class="card-change-arrow" aria-hidden="true">→</span>
+                    <span class="card-change-after">{afterLabel(project)}</span>
+                  </div>
                 </div>
 
                 <div class="card-footer">
@@ -176,28 +187,9 @@ function icon(name, size = 18) {
       <!-- View all CTA -->
       <div class="cta-row">
         <a href="/projects" class="btn-view-all">
-          Browse all {projects.length} projects
+          Browse all proof
           <Fragment set:html={icon('arrow-right', 15)} />
         </a>
-      </div>
-
-      <!-- Monitoring section -->
-      <div class="section-label" style="margin-top: 2.5rem;">Production Monitoring</div>
-      <div class="monitoring-grid">
-        {([
-          { title: "Phoenix GenAI Ops",    desc: "Agent traces · eval scores · cost",    url: "/dashboards/phoenix_dashboard.html", iconName: "activity" },
-          { title: "Python + dbt DQ",      desc: "24 custom checks · 100% pass rate",     url: "/dashboards/ge_dashboard.html",      iconName: "shield" },
-          { title: "dbt Lineage Tracker",  desc: "12 models · 47 tests · 100% coverage", url: "/dashboards/dbt_dashboard.html",     iconName: "trending-up" },
-        ] as const).map(m => (
-          <a href={m.url} class="monitor-card">
-            <span class="monitor-icon" set:html={icon(m.iconName, 18)} />
-            <div>
-              <div class="monitor-title">{m.title}</div>
-              <div class="monitor-desc">{m.desc}</div>
-            </div>
-            <span class="monitor-arrow" set:html={icon('arrow-right', 14)} />
-          </a>
-        ))}
       </div>
 
     </main>
@@ -266,39 +258,6 @@ function icon(name, size = 18) {
     background: #eef4f9;
     border-color: #b8d4ec;
     color: #0f1923;
-  }
-
-  /* ── Proof row ─────────────────────────────────── */
-  .proof-row {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .proof-pill {
-    display: flex;
-    align-items: baseline;
-    gap: 0.35rem;
-    padding: 6px 14px;
-    background: #fff;
-    border: 1px solid #dde8f0;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(100,140,180,0.07);
-  }
-
-  .proof-val {
-    font-size: 15px;
-    font-weight: 800;
-    color: #0f1923;
-    font-variant-numeric: tabular-nums;
-    line-height: 1;
-  }
-
-  .proof-lbl {
-    font-size: 11px;
-    color: #8aa0b8;
-    font-weight: 500;
   }
 
   /* ── Section label ─────────────────────────────── */
@@ -411,6 +370,67 @@ function icon(name, size = 18) {
     border: 1px solid;
   }
 
+  .cloud-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    background: #2b2b28;
+    color: #fbf9f4;
+  }
+
+  /* Lane filter chips on the homepage → deep-link to /projects?lane= */
+  .lane-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0 26px;
+  }
+  .lane-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--c, #2a6fa8);
+    background: var(--bg, #f3eee3);
+    border: 1.5px solid var(--bd, rgba(0,0,0,0.08));
+    transition: transform .1s ease, filter .1s ease;
+  }
+  .lane-chip:hover { transform: translateY(-1px); filter: brightness(0.97); }
+  .lane-chip-i { display: inline-flex; }
+  .lane-chip-n { opacity: 0.6; font-weight: 700; font-size: 11px; }
+
+  /* L1→L3 layer cards — compact gallery row (cohesive with the ALICE career architecture) */
+  .layer-stack { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 6px 0 10px; }
+  .layer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 11px 13px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--ink, #2b2b28);
+    background: var(--lbg, #f3eee3);
+    border: 1.5px solid color-mix(in srgb, var(--lc) 30%, transparent);
+    transition: transform .1s ease, filter .1s ease;
+  }
+  .layer:hover { transform: translateY(-3px); filter: brightness(0.98); }
+  .layer-tag { font-family: var(--mono, monospace); font-weight: 800; font-size: 12px; color: var(--lc); }
+  .layer-q { font-weight: 600; font-size: 13px; line-height: 1.25; }
+  .layer-ex { font-size: 11px; color: var(--soft, #6b6760); line-height: 1.35; }
+  .layer-lane { font-family: var(--mono, monospace); font-size: 11px; font-weight: 700; color: var(--lc); margin-top: auto; padding-top: 6px; }
+  .layer-note { font-size: 12.5px; color: var(--soft, #6b6760); margin: 0 0 26px; font-style: italic; }
+  @media (max-width: 760px) { .layer-stack { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 420px) { .layer-stack { grid-template-columns: 1fr; } }
+
   .live-badge {
     display: inline-flex;
     align-items: center;
@@ -457,6 +477,34 @@ function icon(name, size = 18) {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .card-change {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.75rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--color-border, #dde8f0);
+    border-radius: 9px;
+    background: var(--color-surface-1, #f8fbfd);
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .card-change-before,
+  .card-change-after {
+    min-width: 0;
+    font-weight: 600;
+  }
+
+  .card-change-before {
+    color: var(--color-text-muted, #8aa0b8);
+    text-align: right;
+  }
+
+  .card-change-after { color: var(--color-text-primary, #0f1923); }
+  .card-change-arrow { color: var(--color-accent, #7bb3d9); font-size: 14px; }
 
   .card-footer {
     display: flex;
@@ -538,6 +586,15 @@ function icon(name, size = 18) {
     transform: translateY(-1px);
   }
 
+  /* ── Responsive ────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .home-main { padding: 1.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    .project-grid { grid-template-columns: 1fr; }
+  }
+
   /* ── Monitoring grid ───────────────────────────── */
   .monitoring-grid {
     display: grid;
@@ -602,16 +659,5 @@ function icon(name, size = 18) {
   .monitor-card:hover .monitor-arrow {
     color: #7bb3d9;
     transform: translateX(2px);
-  }
-
-  /* ── Responsive ────────────────────────────────── */
-  @media (max-width: 1024px) {
-    .home-main { padding: 1.5rem; }
-  }
-
-  @media (max-width: 768px) {
-    .project-grid { grid-template-columns: 1fr; }
-    .proof-row { gap: 0.4rem; }
-    .proof-pill { padding: 5px 10px; }
   }
 </style>

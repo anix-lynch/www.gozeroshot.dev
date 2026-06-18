@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Healthcare Data Platform — Quality & Reliability</title>
+<style>
+:root{--bg:#fbfaf7;--ink:#264653;--teal:#2a9d8f;--blue:#2878a8;--coral:#e76f51;--line:#e7e7e3}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:44px 22px 80px}
+h1{font-size:28px;margin:0 0 4px}.sub{color:#777;font-size:14px;margin:0 0 26px}.eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 28px}.kpi,.panel{background:#fff;border:1px solid var(--line);border-radius:13px}
+.kpi{padding:16px 18px}.kpi b{display:block;font-size:24px;color:var(--teal)}.kpi span{font-size:12.5px;color:#777}
+.panel{padding:20px;margin-top:18px}.panel h2{font-size:17px;margin:0 0 5px}.panel p{color:#666;margin:0 0 16px;font-size:13.5px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{text-align:left;padding:10px 13px;font-size:13px;border-bottom:1px solid var(--line)}th{background:#f6f5f1;color:#555;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px}
+tr.ok td:first-child{color:var(--teal);font-weight:700}code{font:12px ui-monospace,Menlo,monospace;color:#456}
+.badge{display:inline-block;background:#e6f4f1;color:var(--teal);border-radius:18px;padding:4px 13px;font-size:13px;font-weight:600}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px}.flow span{border:1px solid var(--line);background:#f8faf9;border-radius:8px;padding:7px 10px;font:12px ui-monospace,Menlo,monospace}.arrow{color:#999}
+footer{color:#888;font-size:12.5px;margin-top:26px}@media(max-width:760px){.cards{grid-template-columns:repeat(2,1fr)}}
+</style></head><body><div class="wrap">
+<div class="eyebrow">Data Platform Control Plane</div>
+<h1>Quality gates + GCP-native reliability</h1>
+<p class="sub">Two separate controls: Great Expectations validates data contracts before release; Cloud Scheduler and Cloud Monitoring verify the live BigQuery platform after deployment.</p>
+
+<div class="cards">
+<div class="kpi"><b>48/48</b><span>GE expectations passed</span></div>
+<div class="kpi"><b>55,500</b><span>Source rows contract-tested</span></div>
+<div class="kpi"><b>50,000</b><span>Warehouse facts verified live</span></div>
+<div class="kpi"><b>6-hour</b><span>GCP reliability schedule</span></div>
+</div>
+
+<section class="panel">
+<span class="badge">✓ Quality gate passed — release allowed</span>
+<h2>Great Expectations: release-boundary contracts</h2>
+<p>GE runs automatically in CI before release: once over the full source delivery, then again over the AI-facing enrichment. Domain-specific PII, identity, and lineage checks run as a separate custom checkpoint.</p>
+<table><thead><tr><th></th><th>Contract group</th><th>Coverage</th><th>Observed result</th></tr></thead><tbody>
+<tr class="ok"><td>✓</td><td><code>source_release_contract</code></td><td>55,500 rows · 27 expectations</td><td>27/27 passed</td></tr>
+<tr class="ok"><td>✓</td><td><code>enriched_ai_contract</code></td><td>497 rows · 21 expectations</td><td>21/21 passed</td></tr>
+<tr class="ok"><td>✓</td><td><code>exception visibility</code></td><td>108 negative billing values observed</td><td>Within explicit 0.5% tolerance</td></tr>
+<tr class="ok"><td>✓</td><td><code>release behavior</code></td><td>Critical contract failure</td><td>Blocks publish</td></tr>
+</tbody></table>
+</section>
+
+<section class="panel">
+<span class="badge">✓ Reconciliation passed — no silent row loss</span>
+<h2>Source-to-warehouse reconciliation</h2>
+<p>The grain chain accounts for every source row and verifies that entity resolution and the warehouse patient dimension agree.</p>
+<div class="flow"><span>55,500 raw</span><b class="arrow">→</b><span>5,500 exact duplicates removed</span><b class="arrow">→</b><span>50,000 encounters</span><b class="arrow">→</b><span>40,235 canonical patients</span></div>
+</section>
+
+<section class="panel">
+<span class="badge">✓ Live GCP probe — final verification true</span>
+<h2>Platform reliability: detect, retry, verify, escalate</h2>
+<p>A GCP-native probe runs every six hours against the live BigQuery warehouse. Each execution writes a verified receipt to <code>healthcare_analytics.pipeline_run_history</code>; HTTP failures trigger bounded Scheduler retries and a Cloud Monitoring alert policy.</p>
+<table><thead><tr><th></th><th>Reliability control</th><th>Native GCP mechanism</th><th>Latest proof</th></tr></thead><tbody>
+<tr class="ok"><td>✓</td><td>Detect</td><td>Cloud Run probe → BigQuery</td><td>50,000 fact rows queryable</td></tr>
+<tr class="ok"><td>✓</td><td>Retry</td><td>Cloud Scheduler exponential backoff</td><td>Enabled</td></tr>
+<tr class="ok"><td>✓</td><td>Verify</td><td>BigQuery run receipt</td><td><code>final_verification=true</code></td></tr>
+<tr class="ok"><td>✓</td><td>Escalate</td><td>Cloud Monitoring alert policy</td><td>Enabled on HTTP 5xx</td></tr>
+</tbody></table>
+</section>
+
+<footer>healthcare-ai-data-engineer · Great Expectations Data Docs + BigQuery reconciliation + live GCP operational receipts. Quality and reliability are shown separately because passing data tests is not the same as operating a reliable platform.</footer>
+</div></body></html>

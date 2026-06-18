@@ -47,12 +47,17 @@ function icon(name, size = 20) {
 }
 
 const laneColors = {
-  "GenAI":    { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
-  "n8n":      { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
-  "Data Eng": { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
-  "ML":       { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
+  "GenAI":      { bg: "#eaf3fb", text: "#2a6fa8", border: "rgba(123,179,217,0.4)" },
+  "Data Eng":   { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
+  "AI Platform": { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
+  "Automation": { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
+  "Cloud":      { bg: "#e6f2f2", text: "#2a7a7a", border: "rgba(90,139,139,0.4)" },
+  "Solutions":  { bg: "#fbeee6", text: "#a85a2a", border: "rgba(217,139,111,0.4)" },
+  "Forward Deployed": { bg: "#fbeee6", text: "#a85a2a", border: "rgba(217,139,111,0.4)" },
+  "ML":         { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
 };
-const lc = laneColors[project.lane] || laneColors["GenAI"];
+const primaryTag = project.tags?.[0] || project.lane;
+const lc = laneColors[primaryTag] || laneColors[project.lane] || laneColors["GenAI"];
 ---
 
 <style is:global>body { display: block; }</style>
@@ -66,7 +71,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
       name="Anix Lynch"
       tagline="AI Data Engineer · GenAI Architect\nLos Angeles, CA"
       avatar="/profile-photo.jpg"
-      about="Self-taught AI engineer. 4 sprint lanes: AI Data Engineering, GenAI/Agent, DevRel, n8n. Ex-VC background."
+      about="Most AI projects fail before the model. I build the systems that connect trusted data, meaningful signals, AI workflows, and human adoption — Truth → Context → Signals → Actions → Adoption."
       social={{
         github: "https://github.com/anix-lynch",
         linkedin: "https://linkedin.com/in/anixlynch",
@@ -83,7 +88,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
       <nav class="breadcrumb">
         <a href="/projects" class="breadcrumb-link">
           <Fragment set:html={icon('arrow-left', 14)} />
-          All Projects
+          All Proof
         </a>
         <span class="breadcrumb-sep">/</span>
         <span class="breadcrumb-current">{project.title}</span>
@@ -98,7 +103,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
           <div class="hero-meta">
             <div class="hero-badges">
               <span class="lane-badge" style={`background:${lc.bg};color:${lc.text};border-color:${lc.border}`}>
-                {project.lane}
+                {primaryTag}
               </span>
               <span class={`status-badge status-${project.status.toLowerCase()}`}>
                 {project.status}
@@ -116,6 +121,18 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
               <a href={project.live} target="_blank" rel="noopener" class="btn btn-primary">
                 <Fragment set:html={icon('external-link', 15)} />
                 Live Demo
+              </a>
+            )}
+            {project.wandb && (
+              <a href={project.wandb} target="_blank" rel="noopener" class="btn btn-ghost">
+                <Fragment set:html={icon('activity', 15)} />
+                Quality logs
+              </a>
+            )}
+            {project.dataDocs && (
+              <a href={project.dataDocs} target="_blank" rel="noopener" class="btn btn-ghost">
+                <Fragment set:html={icon('shield', 15)} />
+                Data Quality (GE)
               </a>
             )}
           </div>
@@ -139,16 +156,19 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
         </div>
       )}
 
-      <!-- Description + Highlight -->
-      <section class="description-block">
-        <p class="description-text">{project.description}</p>
-        {project.highlight && (
-          <blockquote class="highlight-quote">
-            <Fragment set:html={icon('zap', 16)} />
-            <span>{project.highlight}</span>
-          </blockquote>
-        )}
-      </section>
+      {(project.description || project.highlight) && (
+        <section class="description-block">
+          {project.description && (
+            <p class="description-text">{project.description}</p>
+          )}
+          {project.highlight && (
+            <blockquote class="highlight-quote">
+              <Fragment set:html={icon('zap', 16)} />
+              <span>{project.highlight}</span>
+            </blockquote>
+          )}
+        </section>
+      )}
 
       <!-- Stack Pills -->
       <section class="stack-section">
@@ -160,42 +180,106 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
         </div>
       </section>
 
-      <!-- Feature Grid -->
-      <section class="features-section">
-        <h2 class="section-label">Features</h2>
-        <div class="feature-grid">
-          {project.features.map(feature => (
-            <div class="feature-card">
-              <div class="feature-icon-box">
-                <Fragment set:html={icon(feature.icon, 18)} />
+      {project.beforeAfter && (
+        <section class="before-after-section">
+          <h2 class="section-label">Before / After</h2>
+          <div class="before-after-grid">
+            <div class="comparison-card comparison-before">
+              <div class="comparison-kicker">Before</div>
+              <h3>{project.beforeAfter.before.title}</h3>
+              <span class="comparison-badge muted">{project.beforeAfter.before.badge}</span>
+              <div class="comparison-flow">
+                {project.beforeAfter.before.flow.map((item, i) => (
+                  <Fragment>
+                    <div class="flow-step">{item}</div>
+                    {i < project.beforeAfter.before.flow.length - 1 && (
+                      <div class="flow-arrow">↓</div>
+                    )}
+                  </Fragment>
+                ))}
               </div>
-              <div class="feature-body">
-                <h3 class="feature-title">{feature.title}</h3>
-                <p class="feature-desc">{feature.desc}</p>
+              <div class="comparison-list">
+                {project.beforeAfter.before.problems.map(item => (
+                  <div class="comparison-item problem">
+                    <span>×</span>
+                    <p>{item}</p>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-      </section>
 
-      <!-- Architecture -->
-      <section class="arch-section">
-        <h2 class="section-label">How It Works</h2>
-        <div class="arch-flow">
-          {project.architecture.map((step, i) => (
-            <div class="arch-step">
-              <div class="arch-number">{step.step}</div>
-              <div class="arch-content">
-                <div class="arch-label">{step.label}</div>
-                <div class="arch-desc">{step.desc}</div>
+            <div class="comparison-card comparison-after">
+              <div class="comparison-kicker">After</div>
+              <h3>{project.beforeAfter.after.title}</h3>
+              <span class="comparison-badge good">{project.beforeAfter.after.badge}</span>
+              <div class="comparison-flow">
+                {project.beforeAfter.after.flow.map((item, i) => (
+                  <Fragment>
+                    <div class="flow-step">{item}</div>
+                    {i < project.beforeAfter.after.flow.length - 1 && (
+                      <div class="flow-arrow">↓</div>
+                    )}
+                  </Fragment>
+                ))}
               </div>
-              {i < project.architecture.length - 1 && (
-                <div class="arch-arrow">→</div>
-              )}
+              <div class="comparison-list">
+                {project.beforeAfter.after.built.map(item => (
+                  <div class={`comparison-item built ${item.status ? 'st-' + item.status.toLowerCase() : ''}`}>
+                    <span>{item.status === 'BOUNDARY' ? '○' : item.status === 'MEASURED' ? '◐' : '✓'}</span>
+                    <p>
+                      {typeof item === 'string' ? item : (
+                        <>
+                          <strong>{item.title}{item.status && item.status !== 'PROVEN' ? <em class="st-tag"> · {item.status}</em> : ''}</strong>
+                          <small>{item.desc}</small>
+                        </>
+                      )}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
+
+      {project.features?.length > 0 && (
+        <section class="features-section">
+          <h2 class="section-label">Features</h2>
+          <div class="feature-grid">
+            {project.features.map(feature => (
+              <div class="feature-card">
+                <div class="feature-icon-box">
+                  <Fragment set:html={icon(feature.icon, 18)} />
+                </div>
+                <div class="feature-body">
+                  <h3 class="feature-title">{feature.title}</h3>
+                  <p class="feature-desc">{feature.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {project.architecture?.length > 0 && (
+        <section class="arch-section">
+          <h2 class="section-label">How It Works</h2>
+          <div class="arch-flow">
+            {project.architecture.map((step, i) => (
+              <div class="arch-step">
+                <div class="arch-number">{step.step}</div>
+                <div class="arch-content">
+                  <div class="arch-label">{step.label}</div>
+                  <div class="arch-desc">{step.desc}</div>
+                </div>
+                {i < project.architecture.length - 1 && (
+                  <div class="arch-arrow">→</div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <!-- Footer meta row -->
       <footer class="project-footer">
@@ -221,7 +305,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
           )}
           <a href="/projects" class="btn btn-ghost btn-lg">
             <Fragment set:html={icon('arrow-left', 16)} />
-            All Projects
+            All Proof
           </a>
         </div>
       </footer>
@@ -348,6 +432,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     flex-direction: column;
     gap: 0.5rem;
     flex-shrink: 0;
+    min-width: 0;
   }
 
   .btn {
@@ -482,6 +567,135 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     color: #2a6fa8;
     border: 1px solid rgba(123, 179, 217, 0.28);
   }
+
+  .before-after-section { margin-bottom: 2rem; }
+
+  .before-after-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .comparison-card {
+    background: #fff;
+    border: 1px solid #dde8f0;
+    border-radius: 14px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(100,140,180,0.07);
+  }
+
+  .comparison-before { border-color: rgba(217,139,111,0.36); }
+  .comparison-after { border-color: rgba(100,200,130,0.36); }
+
+  .comparison-kicker {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8aa0b8;
+    margin-bottom: 0.4rem;
+  }
+
+  .comparison-card h3 {
+    margin: 0 0 0.55rem;
+    font-size: 1.05rem;
+    color: #0f1923;
+  }
+
+  .comparison-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .comparison-badge.muted {
+    color: #a85a2a;
+    background: #fbeee6;
+    border: 1px solid rgba(217,139,111,0.36);
+  }
+
+  .comparison-badge.good {
+    color: #1e6b38;
+    background: #edfaf0;
+    border: 1px solid rgba(100,200,130,0.36);
+  }
+
+  .comparison-flow {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .flow-step {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dde8f0;
+    border-radius: 10px;
+    background: #f8fbfd;
+    color: #304968;
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .flow-arrow {
+    text-align: center;
+    color: #8aa0b8;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .comparison-list {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .comparison-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #4a6080;
+  }
+
+  .comparison-item span {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 800;
+    font-size: 13px;
+  }
+
+  .comparison-item p { margin: 0; }
+  .comparison-item strong {
+    display: block;
+    color: #0f1923;
+    font-weight: 800;
+    margin-bottom: 2px;
+  }
+  .comparison-item small {
+    display: block;
+    color: #4a6080;
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+  .comparison-item.problem span { background: #fbeee6; color: #a85a2a; }
+  .comparison-item.built span { background: #edfaf0; color: #1e6b38; }
+  .comparison-item.st-boundary span { background: #f0eeea; color: #777; }
+  .comparison-item.st-measured span { background: #fdf2e3; color: #c97b30; }
+  .st-tag { font-style: normal; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; color: #999; }
+  .comparison-item.st-measured .st-tag { color: #c97b30; }
 
   .features-section { margin-bottom: 2rem; }
 
@@ -626,7 +840,15 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
 
   @media (max-width: 900px) {
     .hero-top { flex-wrap: wrap; }
-    .hero-actions { flex-direction: row; width: 100%; }
+    .hero-actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    .hero-actions .btn {
+      flex: 1 1 120px;
+      min-width: 0;
+    }
     .stats-row { grid-template-columns: repeat(2, 1fr); }
     .feature-grid { grid-template-columns: 1fr; }
     .arch-flow { flex-direction: column; }
@@ -640,6 +862,7 @@ const lc = laneColors[project.lane] || laneColors["GenAI"];
     .project-main { padding: 1rem; }
     .hero-title { font-size: 1.4rem; }
     .stats-row { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+    .before-after-grid { grid-template-columns: 1fr; }
     .project-footer { flex-direction: column; align-items: flex-start; }
     .footer-actions { width: 100%; }
     .footer-actions .btn { flex: 1; }
