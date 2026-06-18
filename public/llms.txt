@@ -11,12 +11,12 @@
 - Stack: Python, FastAPI, Docker, n8n, Google Maps Platform, GAM
 
 ## Verified Projects (live on GitHub: github.com/anix-lynch)
-- healthcare-signal-platform: anomaly detection + Vertex AI grounded RAG + 3-cloud portability (GCP/AWS/Azure)
-- healthcare-ai-data-engineer: 50k rows, dbt, Pub/Sub → BigQuery streaming, Great Expectations quality gates
-- mocktailverse-bedrock: AWS Bedrock + pgvector + LangChain RAG pipeline
-- healthcare-da: Microsoft Fabric + Power BI Direct Lake + dbt + TMDL + DAX
-- healthcare-genai-engineer: BM25 + Sentence Transformers + RRF hybrid retrieval
+- mocktailverse-bedrock: RAG pipeline — AWS Bedrock + pgvector + LangChain (non-healthcare domain)
 - baymax: closed-loop agent with attention routing, safety brakes, and outcome verification
+- healthcare-signal-platform: 3-cloud signal platform (GCP+AWS+Azure) — anomaly detection + Vertex AI grounded RAG
+- healthcare-ai-data-engineer: enterprise data pipeline — dbt medallion, Pub/Sub → BigQuery streaming, 50k rows
+- healthcare-da: analytics engineering on Microsoft Fabric — Power BI Direct Lake, dbt, TMDL, DAX
+- healthcare-genai-engineer: hybrid retrieval — BM25 + Sentence Transformers + RRF, multi-provider LLM
 
 ## Stack (verified live, 2026)
 GCP: Cloud Run (7 services) · BigQuery (50k rows, partitioned + clustered) · Pub/Sub · Cloud Scheduler · Vertex AI · Gemini 2.5 · Artifact Registry · Cloud Build · Google Maps Platform · GAM (2 Workspace domains)
