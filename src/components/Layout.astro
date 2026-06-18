@@ -7,13 +7,14 @@ export interface LayoutProps {
 }
 
 const { 
-  title = "Anix Lynch — AI Data Engineer & Architect Portfolio",
-  description = "Portfolio of Anix Lynch - AI Data Engineer, AI Architect. Specializing in machine learning, data visualization, and deploying scalable solutions across AWS, GCP, and Azure. Based in Los Angeles.",
+  title = "Anix Lynch — Proof of Work",
+  description = "Production AI systems, data pipelines, and proof-backed builds by Anix Lynch. Real systems, measured behavior, and links to the work.",
   image = "https://www.gozeroshot.dev/profile-photo.jpg",
   url = "https://www.gozeroshot.dev"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, url);
+const showHomeReturn = Astro.url.pathname !== "/";
 ---
 
 <!DOCTYPE html>
@@ -42,7 +43,7 @@ const canonicalURL = new URL(Astro.url.pathname, url);
   <meta property="og:image" content={image} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="Anix Lynch Portfolio" />
+  <meta property="og:site_name" content="Anix Lynch" />
   <meta property="og:locale" content="en_US" />
   
   <!-- Twitter Card Tags -->
@@ -60,7 +61,7 @@ const canonicalURL = new URL(Astro.url.pathname, url);
   
   <!-- Additional Meta Tags -->
   <meta name="theme-color" content="#8cb0d4" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/jpeg" href="/profile-photo.jpg" />
   <link rel="apple-touch-icon" href="/profile-photo.jpg" />
   
   <!-- JSON-LD Schema Markup (Structured Data) -->
@@ -89,6 +90,15 @@ const canonicalURL = new URL(Astro.url.pathname, url);
       "https://medium.com/@anixlynch",
       "https://huggingface.co/spaces/anixlynch/anixlynch"
     ],
+    "knowsAbout": [
+      "Generative AI", "RAG", "LLM Agents", "Vertex AI", "Google Cloud Platform",
+      "dbt", "BigQuery", "Data Engineering", "Healthcare AI", "Python", "FastAPI",
+      "AWS Bedrock", "Amazon S3", "DynamoDB", "LangChain", "pgvector",
+      "Microsoft Fabric", "Power BI", "TMDL", "DAX", "Azure",
+      "Pub/Sub", "Cloud Run", "Cloud Scheduler", "Google Maps Platform",
+      "Streaming ETL", "Medallion Architecture", "Feature Store", "Feast",
+      "Great Expectations", "scikit-learn", "Anomaly Detection", "Multi-cloud"
+    ],
     "contactPoint": {
       "@type": "ContactPoint",
       "email": "anixlynch@gmail.com",
@@ -103,8 +113,8 @@ const canonicalURL = new URL(Astro.url.pathname, url);
     "@context": "https://schema.org",
     "@type": "WebSite",
     "url": "https://www.gozeroshot.dev",
-    "name": "Anix Lynch Portfolio",
-    "description": "AI Data Engineer Portfolio - Machine Learning, Data Science, Cloud Solutions",
+    "name": "Anix Lynch",
+    "description": "Production AI systems, proof-backed work, and real deployment evidence",
     "author": {
       "@type": "Person",
       "name": "Anix Lynch"
@@ -118,6 +128,12 @@ const canonicalURL = new URL(Astro.url.pathname, url);
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
+  {showHomeReturn && (
+    <a href="/" class="home-return" aria-label="Back to home">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </a>
+  )}
   <slot />
   <footer class="site-footer">
     <nav class="site-footer-nav" aria-label="Legal">
@@ -128,6 +144,41 @@ const canonicalURL = new URL(Astro.url.pathname, url);
   </footer>
 </body>
 </html>
+
+<style is:global>
+  .home-return {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.48rem 0.74rem;
+    border: 1px solid #d7e4ee;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #304765;
+    box-shadow: 0 8px 24px rgba(21, 42, 68, 0.08);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 650;
+    backdrop-filter: blur(10px);
+  }
+
+  .home-return:hover {
+    background: #eef4f9;
+    color: #0f1923;
+    border-color: #b8d4ec;
+  }
+
+  @media (max-width: 720px) {
+    .home-return {
+      top: 0.7rem;
+      right: 0.7rem;
+    }
+  }
+</style>
 
 <style is:global>
   @import '../styles/global.css';

@@ -7,6 +7,11 @@ Allow: /
 # Sitemap location
 Sitemap: https://www.gozeroshot.dev/sitemap.xml
 
+# LLM context files (Answer Engine Optimization)
+# https://llmstxt.org
+LLMs: https://www.gozeroshot.dev/llms.txt
+LLMs-full: https://www.gozeroshot.dev/llms-full.txt
+
 # Specific rules for search engines
 User-agent: Googlebot
 Allow: /

@@ -1,0 +1,69 @@
+# Anix Lynch — AI/Data Engineer, Los Angeles (Full Context)
+
+> Anix Lynch is an LA-based, self-taught AI and Data Engineer. Ex-VC turned engineer.
+> 4 active sprint lanes: AI Data Engineer, GenAI/Agent, DevRel, n8n automation.
+> Every project claim is traceable to a live deployed repo.
+
+## Identity
+- Name: Anix Lynch
+- Location: Los Angeles, California, USA
+- Email: anixlynch@gmail.com
+- Portfolio: https://gozeroshot.dev
+- GitHub: https://github.com/anix-lynch
+- LinkedIn: https://linkedin.com/in/anixlynch
+
+## GCP Stack (live, verified 2026)
+Batch ingestion: Python bigquery client → WRITE_TRUNCATE → 49,986 rows in raw_healthcare_data
+Streaming ingestion: Pub/Sub topic encounter-events → push subscription → Cloud Run FastAPI → idempotent MERGE → BigQuery
+Streaming path B: Pub/Sub topic healthcare-vitals-stream → BigQuery direct subscription (no Cloud Run)
+Operational: Cloud Scheduler freshness-watchdog-cron (6h HTTP ping) · 7 Cloud Run services with live HTTPS URLs
+Warehouse: BigQuery 4 datasets · 35+ tables · DAY-partitioned + clustered · dbt-bigquery adapter · Great Expectations
+AI: Vertex AI + Gemini 2.5 Flash (grounded RAG, production) · Anthropic (Claude)
+Maps: Google Maps Platform full suite (Places, Geocoding, Routes, Distance Matrix, Street View, Elevation)
+Workspace: GAM across gozeroshot.dev + anixlynch.com — zero-browser Gmail/Drive/Calendar/Admin SDK automation
+
+## AWS Stack (live, verified 2026)
+mocktailverse-bedrock: AWS Bedrock (Claude via boto3) + LangChain + pgvector (PostgreSQL) RAG pipeline
+healthcare-signal-platform (AWS slice): S3 Parquet landing zone + DynamoDB PAY_PER_REQUEST serving
+3-cloud reconcile: GCP BigQuery + Microsoft Fabric OneLake + AWS S3/DynamoDB schema fingerprint verification (sha256)
+Contract: openfda_fact_contract_v1.0.0.json · Account: 340752826866 · region us-east-1
+
+## Azure / Microsoft Fabric Stack (live, verified 2026)
+healthcare-da: Delta Lake → OneLake ingest · dbt-fabric adapter · TMDL semantic model in git
+Power BI Direct Lake semantic model via Items API · DAX queries · MLflow experiment lineage
+Azure AD · Azure Cosmos DB · FastAPI read layer
+
+## Projects (GitHub: github.com/anix-lynch)
+
+### healthcare-signal-platform
+L1.5 flagship — anomaly detection + Vertex AI grounded RAG + multi-cloud portability
+Stack: Python · FastAPI · Vertex AI · Gemini 2.5 · scikit-learn (K-Means) · NumPy · Weights & Biases · Langfuse · Cloud Run · Docker · AWS S3 · DynamoDB · Microsoft Fabric · 3-cloud reconcile
+
+### healthcare-ai-data-engineer
+L1 data engineering showcase — batch + streaming + warehouse + quality gates
+Stack: Python · dbt · BigQuery (50k rows, partitioned + clustered) · Pub/Sub · Cloud Run (7 services) · Cloud Scheduler · Feast · FastAPI · Great Expectations · BM25 · Pandas · pytest · Docker · GitHub Actions
+
+### mocktailverse-bedrock
+AWS Bedrock RAG pipeline — enterprise GenAI data engineering
+Stack: AWS Bedrock · pgvector · PostgreSQL · LangChain · RAG · boto3 · FastAPI · Docker
+
+### healthcare-da
+Microsoft Fabric analytics — dbt star schema + Power BI Direct Lake
+Stack: Microsoft Fabric · Power BI · dbt · TMDL · DAX · MLflow · FastAPI · Python · Azure AD
+
+### baymax
+Closed-loop agent showroom — attention routing, safety brakes, outcome verification
+Stack: Python · FastAPI · Claude API · Docker · GitHub Actions
+
+### healthcare-genai-engineer
+Hybrid retrieval RAG — BM25 + Sentence Transformers + RRF fusion
+Stack: Python · FastAPI · BM25 · Sentence Transformers · RRF · Anthropic · OpenAI · Docker · pytest
+
+### healthcare-forward-deployed-engineer
+Customer-deployable triage assistant — VPC/on-prem deployment pattern
+Stack: Python · FastAPI · Cloud Run · Docker · GitHub Actions · Epic FHIR (mock) · OAuth
+
+## Credentials (all active)
+AI/LLM: Anthropic · OpenAI · Google AI/Gemini · Cohere · Mistral · DeepSeek · Groq · Fireworks · OpenRouter · Perplexity · xAI · Hugging Face · LlamaCloud
+Vector/Eval: Pinecone · Qdrant · ChromaDB · Deep Lake · Weights & Biases · Langfuse · LangSmith · MLflow · Lakera Guard · Mem0
+Data/Cloud: BigQuery/GCP · AWS Bedrock · Microsoft Fabric/Azure · Supabase · Neon · MotherDuck · Vercel · Docker Hub

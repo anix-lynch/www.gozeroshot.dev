@@ -1,0 +1,34 @@
+# Anix Lynch — AI/Data Engineer, Los Angeles
+
+> Anix Lynch is an LA-based AI and Data Engineer specializing in GenAI
+> systems, RAG pipelines, and healthcare AI applications on GCP, AWS, and Azure.
+> Available for senior AI/Data Engineering roles.
+
+## Expertise
+- GenAI: RAG, LLM agents, Vertex AI, Gemini, Claude, OpenAI, AWS Bedrock
+- Data Engineering: dbt, BigQuery, Pub/Sub streaming, medallion architecture, Microsoft Fabric
+- Cloud: GCP (Cloud Run, BigQuery, Vertex AI, Pub/Sub), AWS (Bedrock, S3, DynamoDB), Azure (Fabric, Power BI, TMDL)
+- Stack: Python, FastAPI, Docker, n8n, Google Maps Platform, GAM
+
+## Verified Projects (live on GitHub: github.com/anix-lynch)
+- healthcare-signal-platform: anomaly detection + Vertex AI grounded RAG + 3-cloud portability (GCP/AWS/Azure)
+- healthcare-ai-data-engineer: 50k rows, dbt, Pub/Sub → BigQuery streaming, Great Expectations quality gates
+- mocktailverse-bedrock: AWS Bedrock + pgvector + LangChain RAG pipeline
+- healthcare-da: Microsoft Fabric + Power BI Direct Lake + dbt + TMDL + DAX
+- healthcare-genai-engineer: BM25 + Sentence Transformers + RRF hybrid retrieval
+- baymax: closed-loop agent with attention routing, safety brakes, and outcome verification
+
+## Stack (verified live, 2026)
+GCP: Cloud Run (7 services) · BigQuery (50k rows, partitioned + clustered) · Pub/Sub · Cloud Scheduler · Vertex AI · Gemini 2.5 · Artifact Registry · Cloud Build · Google Maps Platform · GAM (2 Workspace domains)
+AWS: Bedrock (Claude via boto3) · S3 (Parquet landing) · DynamoDB (PAY_PER_REQUEST) · LangChain · pgvector
+Azure: Microsoft Fabric · Power BI Direct Lake · dbt-fabric · TMDL · DAX · MLflow · Azure AD
+Python · FastAPI · Pydantic · Docker · GitHub Actions · n8n · Great Expectations · Feast
+
+## Location
+Los Angeles, California, USA
+
+## Links
+- Portfolio: https://gozeroshot.dev
+- GitHub: https://github.com/anix-lynch
+- LinkedIn: https://linkedin.com/in/anixlynch
+- Bluesky: https://bsky.app/profile/anixlynch.bsky.social
