@@ -466,69 +466,6 @@ export const projects = [
   },
 
   {
-    slug: "financial-modeling-automation",
-    title: "Financial Modeling Automation",
-    tagline: "Fund economics that don't break at 2am — VC cap tables + LP/GP waterfalls in version-controlled Python, not a fragile spreadsheet.",
-    lane: "Data Eng",
-    tags: ["Automation"],
-    laneColor: "#c4a8d8",
-    status: "Production",
-    github: "https://github.com/anix-lynch/financial-modeling-automation",
-    live: "https://huggingface.co/spaces/anixlynch/financial-modeling-automation",
-    gif: "/excel-automation.gif",
-    icon: "trending-up",
-    description: null,
-    highlight: null,
-    stats: [
-      { value: "⚡ 100×", label: "Faster than Excel" },
-      { value: "🧾 VC", label: "Cap tables" },
-      { value: "💧 Carry", label: "Waterfall calc" },
-      { value: "🔁 100+", label: "Scenarios in seconds" }
-    ],
-    stack: ["Python", "Pandas", "NumPy", "openpyxl", "Plotly", "Jupyter", "DuckDB"],
-    beforeAfter: {
-      before: {
-        title: "Before",
-        badge: "Excel by hand",
-        flow: ["Fund terms", "Manual Excel", "Copy-paste cells", "Breaks at 2am"],
-        problems: [
-          "One wrong cell silently breaks the whole carry waterfall.",
-          "Not version-controlled — no diff, no review, no audit trail.",
-          "Can't rerun 100 exit scenarios without rebuilding the sheet.",
-          "The model lives in one person's head and one fragile file."
-        ]
-      },
-      after: {
-        title: "After",
-        badge: "Python fund engine",
-        flow: ["Fund terms", "Python model", "Scenario matrix", "LP-ready report"],
-        built: [
-          {
-            title: "Cap Table Engine",
-            desc: "Pre/post-money, pro-rata, anti-dilution, option-pool shuffle — all automated, no fragile linked cells."
-          },
-          {
-            title: "Waterfall Calc",
-            desc: "Carried-interest distribution for European vs American waterfalls, reproducible on every run."
-          },
-          {
-            title: "100 Scenarios, Seconds",
-            desc: "Run 100+ exit scenarios in seconds, with Plotly charts ready for the LP report or IC deck."
-          },
-          {
-            title: "Version-Controlled Math",
-            desc: "Every assumption lives in git — diff it, review it, trust it. Not a mystery spreadsheet."
-          }
-        ]
-      }
-    },
-    features: [],
-    architecture: [],
-    cost: "Free. Pure Python.",
-    phase: null
-  },
-
-  {
     slug: "healthcare-ai-data-engineer",
     title: "Healthcare AI Data Engineer",
     tagline: "The part of healthcare AI nobody sees until it breaks — a trusted BigQuery backbone where bad rows stop early, every number has a receipt, and the agent reads the clean layer.",
