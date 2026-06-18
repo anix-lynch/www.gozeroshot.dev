@@ -1,8 +1,8 @@
 # Anix Lynch — AI/Data Engineer, Los Angeles
 
 > Anix Lynch is an LA-based AI and Data Engineer specializing in GenAI
-> systems, RAG pipelines, and healthcare AI applications on GCP, AWS, and Azure.
-> Available for senior AI/Data Engineering roles.
+> systems, RAG pipelines, and multi-cloud data engineering on GCP, AWS, and Azure.
+> Available for senior AI/Data Engineering roles across industries.
 
 ## Expertise
 - GenAI: RAG, LLM agents, Vertex AI, Gemini, Claude, OpenAI, AWS Bedrock
