@@ -79,14 +79,14 @@ export const projects = [
   {
     slug: "healthcare-genai-engineer",
     title: "Baymax ER Nurse Assistant",
-    tagline: "Starts with an ordinary symptom, discovers what nobody mentioned, then changes course or stops safely.",
+    tagline: "Shows the agent trace: intake, routing, retrieval, tool calls, human handoff, and receipts.",
     lane: "GenAI",
     tags: ["GenAI", "Cloud"],
     cloud: "Vertex",
     laneColor: "#7bb3d9",
     status: "Simulation",
     github: "https://github.com/anix-lynch/baymax",
-    live: "https://baymax-bice.vercel.app",
+    live: "https://baymax-bice.vercel.app/baymax/belt-trace.html",
     gif: "/baymax.gif",
     icon: "shield",
     description: null,
@@ -97,7 +97,7 @@ export const projects = [
       { value: "🧪 50/50", label: "Agent scenarios passed" },
       { value: "🛡 5/5", label: "Rollout gates passed" }
     ],
-    stack: ["Python", "Agent Workflows", "Evidence Arbitration", "Decision Safety Envelope", "Durable Actions", "Outcome Verification", "openFDA", "pytest", "GitHub Actions", "Vercel"],
+    stack: ["Python", "Agent Workflows", "Attention Routing", "Retrieval", "Decision Safety Envelope", "Durable Actions", "Outcome Verification", "openFDA", "pytest", "GitHub Actions", "Vercel"],
     beforeAfter: {
       before: {
         title: "Before",
@@ -112,20 +112,20 @@ export const projects = [
       },
       after: {
         title: "After",
-        badge: "Evidence-to-action AI",
-        flow: ["Nose allocates attention", "Two eyes change perspective", "Brain acts or brakes", "Outcome receipt"],
+        badge: "Trace-backed healthcare agent",
+        flow: ["Case intake", "Attention router", "Retrieval call", "Tool call or human handoff", "Outcome receipt"],
         built: [
           {
-            title: "Opens Expensive Eyes Only When Needed",
+            title: "Routes Attention Before Retrieval",
             desc: "A served, versioned attention signal routes patient cases before retrieval while protecting at least 95% serious-case recall."
           },
           {
-            title: "Changes Action When Perspective Changes",
+            title: "Changes Action When Evidence Changes",
             desc: "The same patient receives assign_bed or divert when capacity changes; drug-safety evidence can turn discharge_plan into human_review."
           },
           {
             title: "Stops Before Unsafe Action",
-            desc: "Cross-domain uncertainty applies the brake, blocks autonomous disposition, and hands the case to a human review owner."
+            desc: "Cross-domain uncertainty applies the brake, blocks autonomous disposition, and routes the case to a human review owner."
           },
           {
             title: "Acts Until Durable Outcome",
