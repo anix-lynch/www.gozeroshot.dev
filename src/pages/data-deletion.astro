@@ -1,0 +1,128 @@
+---
+import Layout from '../components/Layout.astro';
+---
+
+<Layout
+  title="Data Deletion | GoZeroShot"
+  description="How to request deletion of data GoZeroShot holds from connected social-media accounts, and how that differs from removing already-published content."
+>
+  <main class="main legal-page">
+    <section class="legal-shell">
+      <a class="back-link" href="/">Back to home</a>
+      <h1>Data Deletion</h1>
+      <p class="effective-date">Last updated: September 21, 2026</p>
+
+      <p>
+        This page explains how to request deletion of data GoZeroShot holds
+        after you connected a social-media or advertising account, and how
+        that differs from removing content already published to a platform.
+        See our <a href="/privacy">Privacy Policy</a> for the full details on
+        what we collect and why.
+      </p>
+
+      <h2>How to request deletion</h2>
+      <p>
+        Email <a href="mailto:alynch@gozeroshot.dev">alynch@gozeroshot.dev</a>
+        with a deletion request. To help us locate and remove the right data,
+        please include:
+      </p>
+      <ul>
+        <li>the email address or account name you used with GoZeroShot</li>
+        <li>which platform(s) you connected (e.g. TikTok, LinkedIn, Meta/Facebook/Instagram)</li>
+        <li>the username, Page, Board, or channel name associated with the connection, if known</li>
+      </ul>
+      <p>
+        Never include passwords, tokens, secrets, cookies, recovery codes, or
+        OAuth authorization codes in a deletion request — GoZeroShot will
+        never ask for these, and they are not needed to process a deletion.
+      </p>
+
+      <h2>Disconnecting at the platform</h2>
+      <p>
+        You can revoke GoZeroShot's access at the source at any time by going
+        to the connected platform's own app/connection settings (for example,
+        the platform's "Apps," "Connected Accounts," or "Third-Party Access"
+        page) and removing GoZeroShot from the list of authorized apps. This
+        stops GoZeroShot from making further API calls on that account
+        immediately.
+      </p>
+
+      <h2>Stored data vs. published content</h2>
+      <p>
+        Deleting the integration data GoZeroShot stores (account identifiers,
+        authorization scopes, cached drafts, retrieved analytics, and similar
+        records) is different from deleting content that has already been
+        published to a platform. Removing published posts, pins, videos, or
+        ads requires deleting them directly on that platform — GoZeroShot
+        deleting its own records does not reach into the platform to remove
+        that content.
+      </p>
+
+      <h2>Timing</h2>
+      <p>
+        We process deletion requests as soon as reasonably possible after we
+        can verify the request. We do not currently commit to a fixed
+        deletion deadline; if you need confirmation once a specific request
+        is complete, ask in your email and we will confirm.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Data deletion requests and questions can be sent to
+        <a href="mailto:alynch@gozeroshot.dev">alynch@gozeroshot.dev</a>.
+      </p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .legal-page {
+    display: block;
+  }
+
+  .legal-shell {
+    max-width: 760px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 2rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #4a6f98;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    margin-top: 1.75rem;
+    margin-bottom: 0.6rem;
+    font-size: 1.1rem;
+  }
+
+  p {
+    line-height: 1.7;
+    margin-bottom: 0.9rem;
+  }
+
+  ul {
+    line-height: 1.7;
+    margin: 0 0 0.9rem 1.25rem;
+  }
+
+  li {
+    margin-bottom: 0.35rem;
+  }
+
+  .effective-date {
+    color: #6b7280;
+  }
+</style>
