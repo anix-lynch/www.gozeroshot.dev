@@ -3,6 +3,59 @@
 // Add { slug, title, ... } here → page auto-generates. That's it.
 
 export const projects = [
+  // ── CREATIVE PRODUCTION AUTOMATION ────────────────────────
+  {
+    slug: "adobe-suite-automation",
+    title: "Adobe Suite Automation — E-commerce Campaign Kit",
+    tagline: "One source-asset kit, scripted end-to-end across Photoshop, Illustrator, After Effects, and Premiere Pro — 10 real channel-ready deliverables, zero manual re-creation per channel.",
+    lane: "Creative Production",
+    tags: ["Creative", "Automation"],
+    cloud: null,
+    laneColor: "#b8935a",
+    status: "Proof of Work",
+    github: "https://github.com/anix-lynch/adobe-suite-automation-",
+    live: null,
+    gif: "/adobe-suite-automation.gif",
+    icon: "image",
+    description: null,
+    highlight: null,
+    stats: [
+      { value: "📦 10", label: "Real deliverables from 1 asset kit" },
+      { value: "🎬 13/14", label: "Premiere UXP capabilities proven live" },
+      { value: "🎨 4 of 5", label: "Adobe apps at Tier A/B automation" },
+      { value: "🐛 3", label: "Real design bugs found + fixed" }
+    ],
+    stack: ["Photoshop ExtendScript", "Illustrator ExtendScript", "After Effects ExtendScript", "Premiere Pro UXP", "aerender", "Final Cut FCPXML", "osascript"],
+    beforeAfter: {
+      before: {
+        title: "Before",
+        badge: "Static campaign kit, no automation proof",
+        flow: ["Source photo + brand tokens", "Manual re-creation per channel", "5 channels, 5 separate builds", "No script, no re-run path"],
+        problems: [
+          "Every channel (marketplace, email, social, ads, video) rebuilt by hand from the same source assets.",
+          "No proof any of it is scriptable — just finished images.",
+          "Layout bugs (missing headline layer, invisible logo on dark background, placeholder art shipped as final) went unnoticed because nothing was re-run or re-checked.",
+          "Premiere and Final Cut had no automation story at all going in — untested claims."
+        ]
+      },
+      after: {
+        title: "After",
+        badge: "Scripted, re-runnable, bug-fixed",
+        flow: ["Source assets + brand tokens", "JSON layout specs", "ExtendScript / UXP build the real app files", "10 real exports, one script run"],
+        built: [
+          { title: "Photoshop + Illustrator (Tier A)", desc: "Zero-click `do javascript` automation. 5 real layered PSDs, real vector hang-tag design, all exports regenerated from corrected specs after real bugs were found (missing headline layer, logo invisible on dark background, placeholder art used as final product art)." },
+          { title: "After Effects (Tier B)", desc: "One-time Startup-folder bootstrap, then fully scripted composition build + headless `aerender`. Real 15s vertical video, rendered on two separate machines." },
+          { title: "Premiere Pro (Tier B, UXP)", desc: "13 of 14 real UXP capabilities proven live in one session: cuts, transitions, keyframed effects, markers, AI transcription, AE↔Premiere linking, and direct export straight out of Premiere — not just import/export theater." },
+          { title: "Final Cut handoff", desc: "Real modern FCPXML interchange, confirmed importable — legacy Premiere→FCP XML confirmed rejected by modern Final Cut, documented honestly rather than silently worked around." },
+          { title: "Honest boundaries", desc: "Lightroom CC confirmed Tier C (zero scripting surface, tested not assumed) — stated plainly instead of forcing a fake automation story." }
+        ]
+      }
+    },
+    features: [],
+    architecture: [],
+    cost: "$0 — local Adobe Creative Cloud automation, no cloud compute.",
+    phase: null
+  },
   // ── NORTHSTAR ──────────────────────────────────────────────
   {
     slug: "healthcare-ai-platform-signals",
