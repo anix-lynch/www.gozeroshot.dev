@@ -24,7 +24,7 @@ const rankOf = (project) => {
 };
 const rankedProjects = [...projects].sort((a, b) => rankOf(a) - rankOf(b));
 
-const lanes = ["All", "GenAI", "Data Eng", "AI Platform", "Automation", "Cloud", "Solutions"];
+const lanes = ["All", "GenAI", "Data Eng", "AI Platform", "Automation", "Creative", "Cloud", "Solutions"];
 
 // A card can live in multiple lanes (e.g. a GCP GenAI service shows under both
 // GenAI and Cloud). `tags` is the source of truth; fall back to single `lane`.
@@ -37,6 +37,7 @@ const laneColors = {
   "Data Eng":   { bg: "#f0ebff", text: "#5b3fa0", border: "rgba(180,140,220,0.3)" },
   "AI Platform":      { bg: "#edfaf0", text: "#1e6b38", border: "rgba(100,200,130,0.3)" },
   "Automation": { bg: "#fffbe6", text: "#7a5f00", border: "rgba(245,200,66,0.4)" },
+  "Creative":   { bg: "#fff2e8", text: "#9a4f16", border: "rgba(216,139,78,0.4)" },
   "Cloud":      { bg: "#e6f2f2", text: "#2a7a7a", border: "rgba(90,139,139,0.4)" },
   "Solutions":  { bg: "#fbeee6", text: "#a85a2a", border: "rgba(217,139,111,0.4)" },
 };
@@ -46,6 +47,7 @@ const laneThumbBg = {
   "Data Eng":   "#ece6f8",
   "AI Platform":      "#dff5e5",
   "Automation": "#fdf6d8",
+  "Creative":   "#fce8d7",
   "Cloud":      "#dceeee",
   "Solutions":  "#f6e4d8",
 };
@@ -71,6 +73,7 @@ const svgPaths = {
   github: `<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>`,
   zap: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
   bot: `<rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/>`,
+  image: `<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>`,
 };
 
 function icon(name, size = 18) {
@@ -78,7 +81,7 @@ function icon(name, size = 18) {
   return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 }
 
-const laneIcons = { "GenAI": "bot", "Data Eng": "database", "AI Platform": "activity", "Automation": "workflow", "Cloud": "layers", "Solutions": "heart" };
+const laneIcons = { "GenAI": "bot", "Data Eng": "database", "AI Platform": "activity", "Automation": "workflow", "Creative": "image", "Cloud": "layers", "Solutions": "heart" };
 ---
 
 <Layout
