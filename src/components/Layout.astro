@@ -129,6 +129,18 @@ const showHomeReturn = Astro.url.pathname !== "/";
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <slot name="head" />
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-WCS6476Q99"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-WCS6476Q99', {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
+  </script>
 </head>
 <body>
   {showHomeReturn && (
