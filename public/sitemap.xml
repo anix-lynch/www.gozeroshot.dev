@@ -1,47 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-  
-  <!-- Main Portfolio Page -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.gozeroshot.dev/</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://www.gozeroshot.dev/profile-photo.jpg</image:loc>
-      <image:title>Anix Lynch - AI Data Engineer, AI Architect</image:title>
-    </image:image>
+    <image:image><image:loc>https://www.gozeroshot.dev/profile-photo.jpg</image:loc></image:image>
   </url>
-
-  <!-- Public Speaking Page -->
-  <url>
-    <loc>https://www.gozeroshot.dev/public-speaking</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Leadership Page -->
-  <url>
-    <loc>https://www.gozeroshot.dev/leadership</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Press Page -->
-  <url>
-    <loc>https://www.gozeroshot.dev/press</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Certifications Page -->
   <url>
     <loc>https://www.gozeroshot.dev/credentials</loc>
   </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/leadership</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/press</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/public-speaking</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/behind-the-scenes</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/projects</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/publication</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/projects/adobe-suite-automation</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/projects/healthcare-ai-data-engineer</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/projects/healthcare-ai-platform-signals</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/projects/healthcare-analytics-fabric</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/projects/healthcare-forward-deployed-engineer</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/projects/healthcare-genai-engineer</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/projects/healthcare-multicloud-portability</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/projects/mocktailverse-bedrock</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/projects/pied-piper-legal</loc>
+  </url>
+  <url>
+    <loc>https://www.gozeroshot.dev/projects/realtime-fraud-detection</loc>
+  </url>
 </urlset>
-

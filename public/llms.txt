@@ -4,6 +4,11 @@
 > systems, RAG pipelines, and multi-cloud data engineering on GCP, AWS, and Azure.
 > Available for senior AI/Data Engineering roles across industries.
 
+## Portfolio pages
+- [Proof of Work](https://www.gozeroshot.dev/projects): Project case studies, technical evidence, repositories, and demos.
+- [Credentials](https://www.gozeroshot.dev/credentials): Certification gallery, diplomas, and issuer-linked verification index.
+- [Publications](https://www.gozeroshot.dev/publication): Technical writing and published articles.
+
 ## Expertise
 - GenAI: RAG, LLM agents, Vertex AI, Gemini, Claude, OpenAI, AWS Bedrock
 - Data Engineering: dbt, BigQuery, Pub/Sub streaming, medallion architecture, Microsoft Fabric
