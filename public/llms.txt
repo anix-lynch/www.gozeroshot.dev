@@ -12,6 +12,7 @@
 
 ## Verified Projects (live on GitHub: github.com/anix-lynch)
 - healthcare-signal-platform: anomaly detection + Vertex AI grounded RAG + 3-cloud portability (GCP/AWS/Azure)
+- [Healthcare Forward Deployed Engineer](https://www.gozeroshot.dev/projects/healthcare-forward-deployed-engineer): 21 passing contract tests.
 - healthcare-ai-data-engineer: 50k rows, dbt, Pub/Sub → BigQuery streaming, Great Expectations quality gates
 - mocktailverse-bedrock: AWS Bedrock + pgvector + LangChain RAG pipeline
 - healthcare-da: Microsoft Fabric + Power BI Direct Lake + dbt + TMDL + DAX
@@ -23,6 +24,19 @@ GCP: Cloud Run (7 services) · BigQuery (50k rows, partitioned + clustered) · P
 AWS: Bedrock (Claude via boto3) · S3 (Parquet landing) · DynamoDB (PAY_PER_REQUEST) · LangChain · pgvector
 Azure: Microsoft Fabric · Power BI Direct Lake · dbt-fabric · TMDL · DAX · MLflow · Azure AD
 Python · FastAPI · Pydantic · Docker · GitHub Actions · n8n · Great Expectations · Feast
+
+## Credentials
+
+- [IBM Generative AI Engineering Professional Certificate](https://www.coursera.org/account/accomplishments/specialization/X1DE1MZIHH82)
+- [IBM RAG and Agentic AI Professional Certificate](https://www.coursera.org/account/accomplishments/specialization/JXLDF28XUOMZ)
+- [IBM AI Developer Professional Certificate](https://www.coursera.org/account/accomplishments/specialization/UM3M63UAPC2D)
+- [Meta Data Analyst Professional Certificate](https://www.coursera.org/account/accomplishments/specialization/J2IM7FBE1LDE)
+- [HubSpot Revenue Operations Certified](https://github.com/anix-lynch/Certification/blob/main/other_jpg/HubSpot_RevOps_Certificate.png) (valid through April 2027)
+- [Certified ScrumMaster (CSM)](https://github.com/anix-lynch/Certification/blob/main/certification/other/ScrumAlliance_CSM_Certificate.pdf) (earned 2012, expired August 2014)
+
+- [48 verified Coursera credentials](https://www.gozeroshot.dev/credentials): 44 course certificates and 4 completed professional certificates from IBM, Meta, DeepLearning.AI × AWS, Google, and Google Cloud.
+- DeepLearning.AI × AWS: 3/4 Verified Coursework in data engineering.
+- [Full credential archive and issuer links](https://github.com/anix-lynch/Certification).
 
 ## Location
 Los Angeles, California, USA

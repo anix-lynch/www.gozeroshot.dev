@@ -69,6 +69,7 @@ const showHomeReturn = Astro.url.pathname !== "/";
   {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://www.gozeroshot.dev/#person",
     "name": "Anix Lynch",
     "url": "https://www.gozeroshot.dev",
     "image": "https://www.gozeroshot.dev/profile-photo.jpg",
@@ -126,6 +127,7 @@ const showHomeReturn = Astro.url.pathname !== "/";
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <slot name="head" />
 </head>
 <body>
   {showHomeReturn && (
@@ -136,7 +138,9 @@ const showHomeReturn = Astro.url.pathname !== "/";
   )}
   <slot />
   <footer class="site-footer">
-    <nav class="site-footer-nav" aria-label="Legal">
+    <nav class="site-footer-nav" aria-label="Footer">
+      <a href="/credentials">Credentials</a>
+      <span aria-hidden="true">·</span>
       <a href="/terms">Terms</a>
       <span aria-hidden="true">·</span>
       <a href="/privacy">Privacy</a>

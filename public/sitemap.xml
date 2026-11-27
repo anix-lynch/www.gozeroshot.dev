@@ -47,5 +47,8 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://www.gozeroshot.dev/credentials</loc>
+  </url>
 </urlset>
 
