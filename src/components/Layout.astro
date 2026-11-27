@@ -13,7 +13,8 @@ const {
   url = "https://www.gozeroshot.dev"
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, url);
+const pathname = Astro.url.pathname;
+const canonicalURL = new URL(pathname === "/credentials/" ? "/credentials" : pathname, url);
 const showHomeReturn = Astro.url.pathname !== "/";
 ---
 
