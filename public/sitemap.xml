@@ -41,13 +41,6 @@
 
   <!-- Certifications Page -->
   <url>
-    <loc>https://www.gozeroshot.dev/certifications</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
     <loc>https://www.gozeroshot.dev/credentials</loc>
   </url>
 </urlset>

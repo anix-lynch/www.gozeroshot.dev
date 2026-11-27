@@ -14,7 +14,7 @@ const {
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
-const canonicalURL = new URL(pathname === "/credentials/" ? "/credentials" : pathname, url);
+const canonicalURL = new URL(["/credentials/", "/certifications", "/certifications/"].includes(pathname) ? "/credentials" : pathname, url);
 const showHomeReturn = Astro.url.pathname !== "/";
 ---
 
